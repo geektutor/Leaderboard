@@ -1,3 +1,16 @@
+<?php
+include "../src/register.php";
+$username=$email=$phone="";
+
+if ($_SERVER['REQUEST_METHOD']== "POST") {
+  $username= $_POST['username'];
+  $email= $_POST['email'];
+  $phone= $_POST['phone'];
+}
+
+echo $username.$email.$phone;
+register_user();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,8 +22,8 @@
 </head>
 <body>
     <div class="contact-us">
-        <form id="login" action="#">
-          <input placeholder="Name" required="" type="text" />
+        <form id="login" action="<?php htmlspecialchars($_SERVER['PHP_SELF'])?>" method='POST'>
+          <input placeholder="Name" required="" type="text" name="username"/>
           <input name="email" placeholder="Email" type="email" />
           <input name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="Phone" type="tel" />
           <button type="submit">SIGN UP</button><br><br>
