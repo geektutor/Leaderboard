@@ -6,10 +6,12 @@ if ($_SERVER['REQUEST_METHOD']== "POST") {
   $username= $_POST['username'];
   $email= $_POST['email'];
   $phone= $_POST['phone'];
+  
+  register_user($username,$email,$phone);
 }
 
 echo $username.$email.$phone;
-register_user();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
