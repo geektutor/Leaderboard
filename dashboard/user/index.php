@@ -1,3 +1,8 @@
+<?php
+require('../../config/connect.php');
+require('../../config/session.php');
+if(isset( $_SESSION['login_user'])){
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -30,7 +35,7 @@
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                         <a class="dropdown-item" href="#">Settings</a><a class="dropdown-item" href="#">Activity Log</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="login.html">Logout</a>
+                        <a class="dropdown-item" href="../../logout.php">Logout</a>
                     </div>
                 </li>
             </ul>
@@ -49,36 +54,9 @@
                                 ><div class="sb-nav-link-icon"><i class="fas fa-submit"></i></div>
                                 Submit
                             </a>
-                            <!--<div class="sb-sidenav-menu-heading">Interface</div>
-                           
-                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages"
-                                ><div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                                Pages
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
-                            ></a>
-                            <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth"
-                                        >Authentication
-                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
-                                    ></a>
-                                    <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
-                                        <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="login.html">Login</a><a class="nav-link" href="register.html">Register</a><a class="nav-link" href="password.html">Forgot Password</a></nav>
-                                    </div>
-                                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError"
-                                        >Error
-                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
-                                    ></a>
-                                    <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
-                                        <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="401.html">401 Page</a><a class="nav-link" href="404.html">404 Page</a><a class="nav-link" href="500.html">500 Page</a></nav>
-                                    </div>
-                                </nav>
-                            </div>
-                        </div>
-                    </div>-->
                     <div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>
-                       Geektutor
+                       <?=$_SESSION['login_user'];?>
                     </div>
                 </nav>
             </div>
@@ -93,6 +71,13 @@
                         <div class="card mb-4">
                             <div class="card-header"><i class="fas fa-table mr-1"></i>Submissions</div>
                             <div class="card-body">
+                                <?php
+                                    $u = $_SESSION['login_user'];
+                                    $sql = "SELECT * FROM submissions WHERE user = '$u'";
+                                    $result = mysqli_query($conn, $sql);
+                                    $count = mysqli_num_rows($result);
+                                    
+                                ?>
                                 <div class="table-responsive">
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
@@ -109,22 +94,21 @@
                                                 <th>Points</th>                                            </tr>
                                         </tfoot>
                                         <tbody>
+                                            <?php
+                                            
+                                            if($count > 0){
+                                                $j =1;
+                                                while($row = $result->fetch_assoc()) {
+                                            ?>
                                             <tr>
-                                                <td>1</td>
-                                                <td>Edinburgh</td>
-                                                <td>61</td>
+                                                <td><?=$j?></td>
+                                                <td><?= $row['url'];?></td>
+                                                <td><?= $row['points'];?></td>
                                             </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>Tokyo</td>
-                                                <td>63</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>San Francisco</td>
-                                                <td>66</td>
-                                            </tr>
-                                        
+                                            <?php 
+                                                $j++;
+                                                }}
+                                            ?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -154,3 +138,8 @@
         <script src="../assets/demo/datatables-demo.js"></script>
     </body>
 </html>
+<?php
+}else{
+    header("location:../../login.php"); 
+}
+?>
