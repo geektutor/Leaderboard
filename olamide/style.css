@@ -6,27 +6,67 @@ body {
 }
 
 .nav {
-	background-color: brown;
+	background-color: #212529;
 	padding: 10px;
 	height:50px;
-	color: white
+	color: #ffa580
 }
 .navbar-brand{
 	color: white;
 }
 .nav-link{
-	color: yellow
+	color: #ffa580
 }
 form {
-	background-color: white;
+	background-color: #f8f4e5;
 	border: 2px solid black;
-	width: 300px;
+	width: 400px;
 	margin: auto;
 	padding: 12px;
-	margin-top: 30px
+	margin-top: 30px;
+	box-shadow: 15px 15px 1px #ffa580, 15px 15px 1px 2px black;
 }
 
 .form-control{
 	border: none;
 	border-bottom: 3px solid black;
 }
+
+input, select {
+	display: block;
+	width: 100%;
+	font-size: 14pt;
+	line-height: 28pt;
+	font-family: "Fjalla One";
+	margin-bottom: 28pt;
+	border: none;
+	border-bottom: 5px solid black;
+	background: #f8f4e5;
+	min-width: 250px;
+	padding-left: 5px;
+	outline: none;
+	color: black;
+  }
+  
+  input:focus {
+	border-bottom: 5px solid #ffa580;
+  }
+
+button {
+	display: block;
+	margin: 0 auto;
+	line-height: 28pt;
+	padding: 0 20px;
+	background: #ffa580;
+	letter-spacing: 2px;
+	transition: 0.2s all ease-in-out;
+	outline: none;
+	border: 1px solid black;
+	box-shadow: 3px 3px 1px #95a4ff, 3px 3px 1px 1px black;
+  }
+  button:hover {
+	background: black;
+	color: white;
+	border: 1px solid black;
+  }
+  
