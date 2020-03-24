@@ -1,4 +1,43 @@
-<!DOCTYPE html>
+<?php
+  //include db connection
+  include "../config/connect.php";
+
+
+  //array of fetched users 
+  //user class for each fetched user
+  class User 
+  {
+    public $nickname;
+    public $track;
+    public $score;
+
+    function __construct($nickname,$track,$score){
+      $this->nickame = $nickname;
+      $this->track = $track;
+      $this->score = $score;
+    }
+  }
+
+  //fetch user ranking
+  $sql = "SELECT * FROM user ORDER BY `score` DESC";
+  $result = mysqli_query($conn,$sql);
+  if (mysqli_num_rows($result) > 0) {
+    while ($row = mysqli_fetch_assoc($result)) {
+      if ($row['isAdmin']==1) {
+        return false;
+      }else{
+        $nickname = $row['nickname'];
+        $track = $row['track'];
+        $score = $row['score'];        
+        $user = new User($nickname,$track,$score);
+        array_push($usersranking,$user);
+      }
+    }
+  }
+  echo count($usersranking);
+ ?>
+
+<!-- <!DOCTYPE html>
 <html>
     <head>
         <link rel="stylesheet" href="index.css">
@@ -131,4 +170,9 @@
             </div>
           </div>
     </body>
-</html>
+</html> -->
+<?php 
+echo '<script>';
+echo 'var usersrankings = ' . json_encode($usersranking) . ';';
+echo '</script>';
+?>
