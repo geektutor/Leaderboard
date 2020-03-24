@@ -24,7 +24,11 @@
               // If result matched $myusername and $mypassword, table row must be 1 row
                 if($count == 1) {
                     $_SESSION['login_user'] = $username;
-                    header("location: dashboard/user/index.php");
+                    if($row['isAdmin'] == 0){
+                        header("location: dashboard/user/index.php");
+                    }else{
+                        header("location: dashboard/admin/index.php");
+                    }
                 }else {
                 $error = "Your Login Name or Password is invalid";
                 }

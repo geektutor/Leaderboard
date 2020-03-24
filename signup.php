@@ -27,6 +27,7 @@
             }
             if(isset($_POST['submit'])){
                 $user_id = keys();
+                var_dump($user_id); die;
                 $nick = $_POST['nick'];
                 $email = $_POST['email'];
                 $password = $_POST['password'];
