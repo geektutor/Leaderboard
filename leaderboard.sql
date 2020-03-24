@@ -13,8 +13,8 @@
 
 
 -- Dumping database structure for leaderboard
-CREATE DATABASE IF NOT EXISTS `leaderboard` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `leaderboard`;
+CREATE DATABASE IF NOT EXISTS `mushpgwz_leaderboard` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `mushpgwz_leaderboard`;
 
 -- Dumping structure for table leaderboard.submissions
 CREATE TABLE IF NOT EXISTS `submissions` (

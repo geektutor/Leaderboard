@@ -27,7 +27,7 @@ echo $username.$email.$phone;
         <form id="login" action="<?php htmlspecialchars($_SERVER['PHP_SELF'])?>" method='POST'>
           <input placeholder="Name" required="" type="text" name="username"/>
           <input name="email" placeholder="Email" type="email" />
-          <input name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="Phone" type="tel" />
+          <input name="phone" placeholder="Phone" type="tel" />
           <button type="submit">SIGN UP</button><br><br>
           <p>Already a user ? <a href="login.php"> Login here </a></p>
         </form>

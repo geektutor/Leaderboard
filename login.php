@@ -40,6 +40,7 @@
           <input name="password" placeholder="password" type="password" value="" required/>
           <button type="submit" name="submit" value="submit">Login</button>
         </form>
+        <p>Not already a user ? <a href="signup.php"> signup here </a></p>
       </div>
 </body>
 </html>
