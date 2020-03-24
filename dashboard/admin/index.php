@@ -35,7 +35,7 @@ if(isset( $_SESSION['login_user'])){
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                         <a class="dropdown-item" href="#">Settings</a><a class="dropdown-item" href="#">Activity Log</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="../../logout.php">Logout</a>
+                        <a class="dropdown-item" href="login.html">Logout</a>
                     </div>
                 </li>
             </ul>
@@ -46,17 +46,13 @@ if(isset( $_SESSION['login_user'])){
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Core</div>
-                            <a class="nav-link" href="index.php"
+                            <a class="nav-link" href="index.html"
                                 ><div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
-                            <a class="nav-link" href="submit.php"
-                                ><div class="sb-nav-link-icon"><i class="fas fa-submit"></i></div>
-                                Submit
-                            </a>
                     <div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>
-                       <?=$_SESSION['login_user'];?>
+                        <?=$_SESSION['login_user'];?>
                     </div>
                 </nav>
             </div>
@@ -67,13 +63,49 @@ if(isset( $_SESSION['login_user'])){
                        <!-- <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">Dashboard</li>
                         </ol>-->
-                        
+                        <div class="row">
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card bg-primary text-white mb-4">
+                                    <div class="card-body">Primary Card</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link" href="#">View Details</a>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card bg-warning text-white mb-4">
+                                    <div class="card-body">Warning Card</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link" href="#">View Details</a>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card bg-success text-white mb-4">
+                                    <div class="card-body">Success Card</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link" href="#">View Details</a>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card bg-danger text-white mb-4">
+                                    <div class="card-body">Danger Card</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link" href="#">View Details</a>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="card mb-4">
                             <div class="card-header"><i class="fas fa-table mr-1"></i>Submissions</div>
                             <div class="card-body">
                                 <?php
-                                    $u = $_SESSION['login_user'];
-                                    $sql = "SELECT * FROM submissions WHERE user = '$u'";
+                                    $sql = "SELECT * FROM submissions";
                                     $result = mysqli_query($conn, $sql);
                                     $count = mysqli_num_rows($result);
                                     
@@ -83,26 +115,32 @@ if(isset( $_SESSION['login_user'])){
                                         <thead>
                                             <tr>
                                                 <th>S/N</th>
+                                                <th>user</th>
                                                 <th>Url</th>
+                                                <th>Date</th>                                            
                                                 <th>Points</th>
                                             </tr>
                                         </thead>
                                         <tfoot>
                                             <tr>
                                                 <th>S/N</th>
+                                                <th>user</th>
                                                 <th>Url</th>
-                                                <th>Points</th>                                            </tr>
+                                                <th>Date</th>                                            
+                                                <th>Points</th>                                            
+                                            </tr>
                                         </tfoot>
                                         <tbody>
-                                            <?php
-                                            
+                                        <?php
                                             if($count > 0){
                                                 $j =1;
                                                 while($row = $result->fetch_assoc()) {
                                             ?>
-                                            <tr>
+                                            <a><tr>
                                                 <td><?=$j?></td>
+                                                <td><a href="view.php?id=<?= $row['id'];?>"><?= $row['user'];?></a></td>
                                                 <td><?= $row['url'];?></td>
+                                                <td><?= $row['sub_date'];?></td>
                                                 <td><?= $row['points'];?></td>
                                             </tr>
                                             <?php 

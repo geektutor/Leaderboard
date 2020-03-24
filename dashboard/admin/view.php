@@ -1,3 +1,12 @@
+<?php
+require('../../config/connect.php');
+require('../../config/session.php');
+if(isset( $_SESSION['login_user'])){
+    $id = $_GET['id'];
+    $sql = "SELECT * FROM submissions WHERE id = '$id'";
+    $result = mysqli_query($conn, $sql);
+    $count = mysqli_num_rows($result);
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -41,13 +50,13 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Core</div>
-                            <a class="nav-link" href="index.html"
+                            <a class="nav-link" href="index.php"
                                 ><div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard</a
                             >
                     <div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>
-                       Geektutor
+                        <?=$_SESSION['login_user'];?>
                     </div>
                 </nav>
             </div>
@@ -55,24 +64,59 @@
                 <main>
                     <div class="container-fluid">
                         <h1 class="mt-4">Dashboard</h1>
-                       <!-- <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Dashboard</li>
-                        </ol>-->
-                        
                         <div class="card mb-4">
                             <div class="card-header"><i class="fas fa-table mr-1"></i>View A Submission</div>
                             <div class="card-body">
-                                <form>
+                            <?php
+                                if($count > 0){
+                                    while($row = $result->fetch_assoc()) {
+
+                                        if (isset($_POST['submit'])) {
+                                            $u = $_POST['user'];
+                                            $point = $_POST['point'];
+
+                                        $sql = "UPDATE submissions SET points = {$point} WHERE id = {$id}";
+                                        $result = mysqli_query($conn, $sql);
+                                        if($result){
+                                            $sql = "SELECT score FROM user WHERE email = '$u'";
+                                            $result = mysqli_query($conn, $sql);
+                                            $count = mysqli_num_rows($result);
+                                            $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+                                            $newPoint = $point + intval($row['score']);
+                                            
+                                            $sql = "UPDATE user SET score = '$newPoint' WHERE email = '$u'";
+                                            $result = mysqli_query($conn, $sql);
+                                            if($result){
+                                                header("location: view.php?id=$id");
+                                            }else{
+                                                die("Could not update user");
+                                            }
+
+                                        } else {
+                                            die("Could not update sub");
+
+                                        }
+                                    }
+                                        
+                            ?>
+                                <form method="POST">
                                     <div class="form-group">
-                                      <label for="Url">Url: </label> <span class="alert alert-primary"><a href="" target="_blank">http://</a></span> 
-                                      <br><br>
-                                      <label for="comments">Comment: </label> <span class="alert alert-primary">Comments here</span>
-                                      <br><label for="point">Point</label>
-                                      <input type="point" class="form-control" id="url" aria-describedby="emailHelp" placeholder="Enter Point for This Submissions">
-                                      <small id="emailHelp" class="form-text text-muted">Enter Points for This Submission</small>
+                                    <label for="Url">Url: </label> <span class="alert alert-primary"><a href="<?= $row['url'];?>" target="_blank"><?= $row['url'];?></a></span> 
+                                    <br><br>
+                                    <label for="comments">Comment: </label> <span class="alert alert-primary"><?= $row['comments'];?></span>
+                                    <br><label for="point">Point</label>
+                                    <input type="number" name="point" class="form-control" id="point" placeholder="Enter Point for This Submissions" value="<?= $row['points'];?>">
+                                    <input type="text" name="user" class="form-control" id="user" value="<?= $row['user'];?>" hidden>
+                                    <small id="emailHelp" class="form-text text-muted">Enter Points for This Submission</small>
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                  </form>
+                                    <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+                                </form>
+                            <?php 
+                                }}else{
+                                    echo `<p>No Submissions yet</p>`;
+                                }
+                            ?>
+                    
                             </div>
                         </div>
                     </div>
@@ -99,3 +143,8 @@
         <script src="../assets/demo/datatables-demo.js"></script>
     </body>
 </html>
+<?php
+}else{
+    header("location:../../login.php"); 
+}
+?>
