@@ -35,7 +35,7 @@
                 $sql = "INSERT INTO user(`user_id`, `nickname`, `email`, `password`, `phone`) 
                         VALUES('$user_id', '$nick', '$email', '$password', '$phone')";
                 if($conn->query($sql)){
-                    header("location:index.php");
+                    header("location:login.php");
                 }else{
                    die('could not enter data: '. $conn->error);
                 }
