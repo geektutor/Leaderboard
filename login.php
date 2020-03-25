@@ -27,6 +27,7 @@
                     if($row['isAdmin'] == 0){
                         header("location: dashboard/user/index.php");
                     }else{
+                        $_SESSION['isAdmin'] = true;
                         header("location: dashboard/admin/index.php");
                     }
                 }else {

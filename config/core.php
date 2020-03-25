@@ -4,7 +4,7 @@ session_start();
 
 function logged_in()
 {
-    if (isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])) {
+    if (isset($_SESSION['login_user']) && !empty($_SESSION['login_user'])) {
         return true;
     }else{
         return false;
