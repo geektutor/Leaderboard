@@ -2,6 +2,12 @@
 require('../../config/connect.php');
 require('../../config/session.php');
 if(isset( $_SESSION['login_user'])){
+    $tt = $_SESSION['login_user'];
+    $sql = "SELECT track FROM user WHERE email = '$tt'";
+    $result = mysqli_query($conn, $sql);
+    $row =mysqli_fetch_assoc($result);
+    $track = $row['track'];
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -88,8 +94,8 @@ if(isset( $_SESSION['login_user'])){
                                         $comment =  mysqli_real_escape_string($conn, $_POST['comment']);
                                         $check = check();
                                         if($check == 0){
-                                            $sql = "INSERT INTO submissions(user, url, comments, sub_date) 
-                                                    VALUES('$user', '$url', '$comment', NOW())";
+                                            $sql = "INSERT INTO submissions(user,track, url, comments, sub_date) 
+                                                    VALUES('$user','$track', '$url', '$comment', NOW())";
                                             if($conn->query($sql)){
                                                 $error = "Submitted Successfully";
                                             }else{

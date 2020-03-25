@@ -35,7 +35,7 @@ if(isset( $_SESSION['login_user'])){
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                         <a class="dropdown-item" href="#">Settings</a><a class="dropdown-item" href="#">Activity Log</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="login.html">Logout</a>
+                        <a class="dropdown-item" href="../../logout.php">Logout</a>
                     </div>
                 </li>
             </ul>
@@ -117,6 +117,7 @@ if(isset( $_SESSION['login_user'])){
                                                 <th>S/N</th>
                                                 <th>user</th>
                                                 <th>Url</th>
+                                                <th>Track</th>
                                                 <th>Date</th>                                            
                                                 <th>Points</th>
                                             </tr>
@@ -126,6 +127,7 @@ if(isset( $_SESSION['login_user'])){
                                                 <th>S/N</th>
                                                 <th>user</th>
                                                 <th>Url</th>
+                                                <th>Track</th>
                                                 <th>Date</th>                                            
                                                 <th>Points</th>                                            
                                             </tr>
@@ -140,6 +142,7 @@ if(isset( $_SESSION['login_user'])){
                                                 <td><?=$j?></td>
                                                 <td><a href="view.php?id=<?= $row['id'];?>"><?= $row['user'];?></a></td>
                                                 <td><?= $row['url'];?></td>
+                                                <td><?= $row['track'];?></td>
                                                 <td><?= $row['sub_date'];?></td>
                                                 <td><?= $row['points'];?></td>
                                             </tr>
