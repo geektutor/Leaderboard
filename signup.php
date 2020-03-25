@@ -27,28 +27,33 @@
             }
             if(isset($_POST['submit'])){
                 $user_id = keys();
-                var_dump($user_id); die;
                 $nick = $_POST['nick'];
                 $email = $_POST['email'];
                 $password = $_POST['password'];
                 $phone = $_POST['phone'];
+                $track = $_POST['track'];
 
-                $sql = "INSERT INTO user(`user_id`, `nickname`, `email`, `password`, `phone`) 
-                        VALUES('$user_id', '$nick', '$email', '$password', '$phone')";
+                $sql = "INSERT INTO user(`user_id`, `nickname`, `email`, `password`, `phone`,`track`) 
+                        VALUES('$user_id', '$nick', '$email', '$password', '$phone','$track')";
                 if($conn->query($sql)){
                     header("location:login.php");
                 }else{
                    die('could not enter data: '. $conn->error);
                 }
-
-
             }
         ?>
-        <form method="POST">
+        <form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
           <input name="nick" placeholder="Nickname" required="" type="text" />
           <input name="email" placeholder="Email" type="email" />
           <input placeholder="Password" required="" name="password" type="password" />
           <input name="phone" placeholder="Phone" type="tel" />
+          <select name="track">
+            <option value="frontend">frontend</option>
+            <option value="backend">backend</option>
+            <option value="android">android</option>
+            <option value="ui">ui/ux</option>
+            <option value="python">python</option>
+          </select>
           <button type="submit" name="submit" value="submit">SIGN UP</button>
         </form>
       </div>
