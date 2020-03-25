@@ -41,7 +41,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="../public/css/index.css">
+        <link rel="stylesheet" href="../index.css">
     </head>
     <body>
       <div class="center">
