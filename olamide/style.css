@@ -57,12 +57,12 @@ button {
 	margin: 0 auto;
 	line-height: 28pt;
 	padding: 0 20px;
-	background: #4CAF50;
+	background: #ffa580;
 	letter-spacing: 2px;
 	transition: 0.2s all ease-in-out;
 	outline: none;
 	border: 1px solid black;
-	box-shadow: 3px 3px 1px #ffa580, 3px 3px 1px 1px black;
+	box-shadow: 3px 3px 1px #95a4ff, 3px 3px 1px 1px black;
   }
   button:hover {
 	background: black;
@@ -90,7 +90,7 @@ button {
 }
 
 .topnav a.active {
-  background-color: #4CAF50;
+  background-color: #95a4ff;
   color: white;
 }
 
