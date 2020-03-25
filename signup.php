@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="signup.css">
-    <title>Leaderboard  - Sign Up</title>
+    <title>30DaysOfCode  - Sign Up</title>
 </head>
 <body>
     <div class="contact-us">

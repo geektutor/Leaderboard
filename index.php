@@ -5,7 +5,7 @@ require "./config/core.php";
 if (logged_in()) {
   header("location: ./includes/leaderboard.php");
 }else if(!logged_in()) {
-  header("location: ./login.php");
+  header("location: login.php");
 }
 
 ?>
