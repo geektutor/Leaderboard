@@ -30,6 +30,7 @@
                         header("location: dashboard/user/index.php");
                     }else{
                         $_SESSION['isAdmin'] = true;
+                        $_SESSION['login_user'] = $username.'_';
                         header("location: dashboard/admin/index.php");
                     }
                 }else {
