@@ -46,6 +46,22 @@ if(isset( $_SESSION['login_user'])){
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Core</div>
+                            <div class="avatar">
+                                <?php
+                                global $conn;
+                                $email = $_SESSION['login_user'];
+                                $sql = "SELECT * FROM user WHERE email='$email' ";
+                                $result = mysqli_query($conn,$sql);
+                                while($row = mysqli_fetch_assoc($result)) {
+                                    $user_nickname = $row['nickname'];
+                                    $user_score = $row['score'];
+                                    $user_track = $row['track'];
+                                    echo '<center><img style=\'width:120px;height:120px;\' src=\'https://robohash.org/'.$user_nickname.$user_track.'\'/></center>';
+                                    echo '<center><div>'.$user_nickname.'</div></center>';
+                                    echo '<center><div>'.$user_score.'&nbsp; points</div></center>';
+                                }
+                                ?>
+                            </div> 
                             <a class="nav-link" href="index.php"
                                 ><div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
