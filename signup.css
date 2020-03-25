@@ -21,7 +21,7 @@ body {
   box-shadow: 15px 15px 1px #ffa580, 15px 15px 1px 2px black;
 }
 
-input {
+input, select {
   display: block;
   width: 100%;
   font-size: 14pt;
@@ -37,7 +37,7 @@ input {
   color: black;
 }
 
-input:focus {
+input:focus, select:focus {
   border-bottom: 5px solid #ffa580;
 }
 
