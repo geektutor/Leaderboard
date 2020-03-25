@@ -87,7 +87,7 @@
           </div>
         </div>
 
-      <script src="../public/js/jquery-2.2.3.min.js"></script>
+      <script src="../dashboard/scripts/jquery-2.2.3.min.js"></script>
       <script>
       $.ajax({
         url : "./results.json",

@@ -48,14 +48,16 @@
           <input placeholder="Password" required="" name="password" type="password" />
           <input name="phone" placeholder="Phone" type="tel" />
           <select name="track">
-            <option value="frontend">frontend</option>
-            <option value="backend">backend</option>
-            <option value="android">android</option>
-            <option value="ui">ui/ux</option>
-            <option value="python">python</option>
+            <option value="frontend">Front End</option>
+            <option value="backend">Back End</option>
+            <option value="android">Mobile</option>
+            <option value="ui">UI/UX</option>
+            <option value="python">Python</option>
+            <option value="design">Engineering Design</option>
           </select>
           <button type="submit" name="submit" value="submit">SIGN UP</button>
-        </form>
+        </form><br>
+        <p>Already a user ? <a href="login.php"> Login here </a></p>
       </div>
 </body>
 </html>
