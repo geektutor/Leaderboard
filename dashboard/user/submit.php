@@ -69,6 +69,7 @@ if(isset( $_SESSION['login_user'])){
                             <div class="card-header"><i class="fas fa-table mr-1"></i>Make a New Submission</div>
                             <div class="card-body">
                                 <?php
+                                $error = "";
                                     function check(){	
                                         global $conn;
                                         $date = date('Y-m-d');
@@ -90,7 +91,7 @@ if(isset( $_SESSION['login_user'])){
                                             $sql = "INSERT INTO submissions(user, url, comments, sub_date) 
                                                     VALUES('$user', '$url', '$comment', NOW())";
                                             if($conn->query($sql)){
-                                                header("location:index.php");
+                                                $error = "Submitted Successfully";
                                             }else{
                                             die('could not enter data: '. $conn->error);
                                             }
@@ -99,6 +100,11 @@ if(isset( $_SESSION['login_user'])){
                                         }
                                     }
                                 ?>
+                                <?php if($error !== ''){ ?>
+                                <div class="alert alert-primary alert-dismissable">
+                                    <?= $error?>
+                                </div>
+                                <?php }?>
                                 <form method="POST">
                                     <div class="form-group">
                                       <label for="URL">URL</label>

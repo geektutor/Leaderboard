@@ -11,6 +11,7 @@
 <body>
     <div class="contact-us">
         <?php
+            $error = "";
             session_start();
             if (isset($_POST['submit'])) {
                 $username = mysqli_real_escape_string($conn, $_POST['email']);
@@ -21,6 +22,7 @@
                 $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
                 $active = $row['active'];
                 $count = mysqli_num_rows($result);
+                $error = "";
               // If result matched $myusername and $mypassword, table row must be 1 row
                 if($count == 1) {
                     $_SESSION['login_user'] = $username;
@@ -30,11 +32,16 @@
                         header("location: dashboard/admin/index.php");
                     }
                 }else {
-                $error = "Your Login Name or Password is invalid";
+                    $error = "Your Login Name or Password is invalid";
                 }
             }
         
         ?>
+        <?php if($error !== ''){ ?>
+        <div class="alert alert-primary alert-dismissable">
+            <?= $error?>
+        </div>
+        <?php }?>
         <form method="POST">
           <input name="email" placeholder="email" required="" type="email" value="" />
           <input name="password" placeholder="password" type="password" value="" required/>
