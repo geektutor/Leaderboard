@@ -1,7 +1,8 @@
 <?php
 require('../../config/connect.php');
 require('../../config/session.php');
-if(isset( $_SESSION['login_user'])){
+if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">

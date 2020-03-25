@@ -68,6 +68,7 @@ if(isset( $_SESSION['login_user'])){
                             <div class="card-header"><i class="fas fa-table mr-1"></i>View A Submission</div>
                             <div class="card-body">
                             <?php
+                            $error = "";
                                 if($count > 0){
                                     while($row = $result->fetch_assoc()) {
 
@@ -87,13 +88,13 @@ if(isset( $_SESSION['login_user'])){
                                             $sql = "UPDATE user SET score = '$newPoint' WHERE email = '$u'";
                                             $result = mysqli_query($conn, $sql);
                                             if($result){
-                                                header("location: view.php?id=$id");
+                                                $error = "Submitted Successfully";
                                             }else{
-                                                die("Could not update user");
+                                               $error = "Could not update user";
                                             }
 
                                         } else {
-                                            die("Could not update sub");
+                                            $error = "Could not update sub";
 
                                         }
                                     }
