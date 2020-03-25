@@ -107,7 +107,8 @@ if(isset( $_SESSION['login_user'])){
                                             <tr>
                                                 <th>S/N</th>
                                                 <th>Url</th>
-                                                <th>Points</th>                                            </tr>
+                                                <th>Points</th>                                            
+                                            </tr>
                                         </tfoot>
                                         <tbody>
                                             <?php
