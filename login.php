@@ -13,8 +13,12 @@
     <div class="contact-us">
     <?php
         $ref = substr(@$_SERVER['HTTP_REFERER'],strlen(@$_SERVER['HTTP_REFERER']) - 10, 10);
+        $resetPassword = substr(@$_SERVER['HTTP_REFERER'],strlen(@$_SERVER['HTTP_REFERER']) - 15, 15);
         if (@$_GET['message'] == 'success' && $ref == 'signup.php') {
             echo "<div class='msg alert-success alert-dismissable'>Registration Successful </div>";
+        }
+        if (@$_GET['message'] == 'success' && $resetPassword == 'newpassword.php') {
+            echo "<div class='msg alert-success alert-dismissable'>Password reset Successful. kindly log into your account.</div>";
         }
         ?>
         <?php
@@ -64,6 +68,7 @@
           <button type="submit" name="submit" value="submit">Login</button>
         </form><br>
         <p>Not already a user ? <a href="signup.php"> Signup here </a></p>
+        <a href="./forgotpassword.php">Forgot Password ?</a>
       </div>
 </body>
 </html>
