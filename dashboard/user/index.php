@@ -66,7 +66,7 @@ if(isset( $_SESSION['login_user'])){
                                 ><div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
-                            <a class="nav-link" href="../index.html"
+                            <a class="nav-link" href="https://30daysofcode.xyz/dashboard/"
                                 >
                                 <div class="sb-nav-link-icon"><i class="fas fa-plane"></i></div>
                             Leaderboard
