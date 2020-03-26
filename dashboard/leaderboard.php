@@ -42,6 +42,7 @@
 <html>
     <head>
         <link rel="stylesheet" href="../index.css">
+        <title>Leaderboard - 30 Days Of Code</title>
     </head>
     <body>
       <div class="center">
