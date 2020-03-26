@@ -169,7 +169,7 @@ if(isset( $_SESSION['login_user'])){
                                     <div class="form-group">
                                       <label for="URL">URL</label>
                                       <input name="url" type="url" class="form-control" id="url" aria-describedby="emailHelp" placeholder="Enter URL" value="">
-                                      <small id="emailHelp" class="form-text text-muted">Python - Repl.it Url, Backend - Github repo Url, Frontend - Github Pages Url, UI/UX - Figma/Adobe XD Url, Engineering Design - Google Drive Url</small>
+                                      <small id="emailHelp" class="form-text text-muted">Python - Repl.it Url, Backend - Github repo Url, Frontend - Github repo Url(put link to your Github Pages in the readme), UI/UX - Figma/Adobe XD Url, Engineering Design - Google Drive Url</small>
                                     </div>
                                     <div class="form-group">
                                       <label for="day">Day?</label>
