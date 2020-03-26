@@ -18,10 +18,6 @@
             return $total;
         }
     }
-    
-    if ($conn->query($sql)){
-        header("location: login.php?message=sucess");
-    }
     //do the rest, i'm blank
 ?>
 
