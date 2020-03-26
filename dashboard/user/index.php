@@ -70,10 +70,6 @@ if(isset( $_SESSION['login_user'])){
                                 ><div class="sb-nav-link-icon"><i class="fas fa-submit"></i></div>
                                 Submit
                             </a>
-                            <a class="nav-link" href="submit-old.php"
-                                ><div class="sb-nav-link-icon"><i class="fas fa-submit"></i></div>
-                                Submit Day 0&1
-                            </a>
                             <div class="sb-sidenav-menu-heading"></div>
 
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
@@ -132,7 +128,7 @@ if(isset( $_SESSION['login_user'])){
                         </ol>-->
                         
                         <div class="card mb-4">
-                            <div class="card-header"><i class="fas fa-table mr-1"></i>Submissions <a class="btn btn-primary stretched-link" href="submit.php">Add New</a> | <a class="btn btn-primary stretched-link" href="submit-old.php">Submit Day 0 & 1</a></div>
+                            <div class="card-header"><i class="fas fa-table mr-1"></i>Submissions <a class="btn btn-primary" href="submit.php">Add New</a></div>
                             <div class="card-body">
                                 <?php
                                     $u = $_SESSION['login_user'];

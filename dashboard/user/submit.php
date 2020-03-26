@@ -123,18 +123,18 @@ if(isset( $_SESSION['login_user'])){
                             <div class="card-body">
                                 <?php
                                 $error = "";
-                                    function check(){	
-                                        global $conn;
-                                        $date = date('Y-m-d');
-                                        $queryURL = "SELECT sub_date FROM submissions WHERE user = '".$_SESSION['login_user']."' AND sub_date = '$date'";
-                                        $resultURL = mysqli_query($conn, $queryURL);
-                                        $countURL = mysqli_num_rows($resultURL);
-                                        if ($countURL > 0) {
-                                            return 1;
-                                        }else{
-                                            return 0;
-                                        }
+                                function check(){	
+                                    global $conn;
+                                    $task_day = mysqli_real_escape_string($conn, $_POST['task_day']);
+                                    $queryURL = "SELECT task_day FROM submissions WHERE user = '".$_SESSION['login_user']."' AND task_day = '$task_day'";
+                                    $resultURL = mysqli_query($conn, $queryURL);
+                                    $countURL = mysqli_num_rows($resultURL);
+                                    if ($countURL > 0) {
+                                        return 1;
+                                    }else{
+                                        return 0;
                                     }
+                                }
                                     if(isset($_POST['submit'])){
                                         $url = mysqli_real_escape_string($conn, $_POST['url']);
                                         $task_day = mysqli_real_escape_string($conn, $_POST['task_day']);
