@@ -67,7 +67,7 @@ if(isset( $_SESSION['login_user'])){
                                 Dashboard
                             </a>
                             <a class="nav-link" href="../index.html"
-                                ><div class="sb-nav-link-icon"><i class="fas fa-submit"></i></div>
+                                >
                                 <div class="sb-nav-link-icon"><i class="fas fa-plane"></i></div>
                             Leaderboard
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-paper-plane"></i></div>
