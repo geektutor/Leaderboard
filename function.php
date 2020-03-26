@@ -37,5 +37,12 @@ include './config/connect.php';
             }
         }
     }
-    //do the rest, i'm blank
+    /*
+    SELECT 
+    email, 
+    COUNT(col)
+FROM
+    user
+GROUP BY col
+HAVING COUNT(col) > 1;*/
 ?>
