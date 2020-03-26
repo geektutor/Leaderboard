@@ -56,13 +56,15 @@ if(isset( $_SESSION['login_user'])){
                                 ><div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
-                            <a class="nav-link" href="../index.html"
-                                >
+                            <a class="nav-link" href="../index.html">
                                 <div class="sb-nav-link-icon"><i class="fas fa-plane"></i></div>
                             Leaderboard
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-paper-plane"></i></div>
                             </a>
-                            <div class="sb-sidenav-menu-heading"></div>
+                            <a class="nav-link" href="https://30daysofcode.xyz/whatsapp">
+                                <div class="sb-nav-link-icon"><i class="fas fa-whatsapp"></i></div>
+                            Support
+                            </a>
                             <a class="nav-link" href="submit.php"
                                 ><div class="sb-nav-link-icon"><i class="fas fa-submit"></i></div>
                                 Submit
