@@ -38,8 +38,8 @@
                     global $conn;
                     $queryURL = "SELECT email FROM `user` WHERE user = '$email'";
                     $resultURL = mysqli_query($conn, $queryURL);
-                    // $countURL = mysqli_num_rows($resultURL);
-                    if ($resultURL) {
+                    $countURL = mysqli_num_rows($resultURL);
+                    if ($countURL > 0) {
                         return 0;
                     }else{
                         return 1;
