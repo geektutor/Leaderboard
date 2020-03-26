@@ -21,7 +21,8 @@ include './config/connect.php';
     $sql = "UPDATE user SET `score` = '$total' WHERE `email` = '$email'";
     if(mysqli_query($conn, $sql)){
         echo 'successful';
-    }else {
+    }
+    else {
         echo 'error';
     }
 
@@ -30,19 +31,12 @@ include './config/connect.php';
         $resultURL = mysqli_query($conn, $queryURL);
         $countURL = mysqli_num_rows($resultURL);
         $total = 0;
-        if ($countURL > 0)
-        {
-            while ($row=$resul->fetch_assoc()){
+        if ($countURL > 0)  {
+            while ($row=$resul->fetch_assoc())  {
                 total_score($row['user'])
             }
         }
     }
     /*
-    SELECT 
-    email, 
-    COUNT(col)
-FROM
-    user
-GROUP BY col
-HAVING COUNT(col) > 1;*/
+   SELECT email, COUNT(email) FROM user GROUP BY email HAVING COUNT(email) > 1 */
 ?>
