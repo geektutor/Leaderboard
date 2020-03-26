@@ -33,7 +33,7 @@ include './config/connect.php';
         $total = 0;
         if ($countURL > 0)  {
             while ($row=$resul->fetch_assoc())  {
-                total_score($row['user'])
+                total_score($row['user']);
             }
         }
     }
