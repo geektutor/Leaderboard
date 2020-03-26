@@ -121,8 +121,11 @@ if(isset( $_SESSION['login_user'])){
                                     </div>
                                     <div class="form-group">
                                       <label for="day">Day</label>
-                                      <input name="task_day" type="number" class="form-control" aria-describedby="emailHelp" placeholder="Enter task day for URL" value="">
-                                      <small id="emailHelp" class="form-text text-muted">Include the task day for the url</small>
+                                      <select name="task_day" class="form-control" aria-describedby="emailHelp" placeholder="Enter task day for URL" value="">
+                                      <option value="day1">Day 1</option>
+                                      <option value="day2">Day 2</option>
+                                      <option value="day3">Day 3</option>
+                                    </select>
                                     </div>
                                     <div class="form-group">
                                       <label for="comments">Comments</label>
