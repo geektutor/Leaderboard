@@ -3,10 +3,9 @@
         global $conn;
         $query = "SELECT email FROM submissions";
         $count = mysqli_query($conn, $query);
-        $array = [];
-        var_dump(mysqli_fetch_array($count) );
-        foreach (mysqli_fetch_array($count) as $row)
-        {
+        $countRows = mysqli_num_rows($count);
+        var_dump($countRows);
+        if ($countRows > 0) {
             $queryURL = "SELECT points FROM submissions WHERE user = $row ";
             $resultURL = mysqli_query($conn, $queryURL);
             $countURL = mysqli_num_rows($resultURL);
@@ -21,8 +20,8 @@
             }
             else{
                 return $total;
-            }
-            $array[] = $row['column'];
+            }   
         }
+            
     //do the rest, i'm blank 
 ?>
