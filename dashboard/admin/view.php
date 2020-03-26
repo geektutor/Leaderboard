@@ -89,6 +89,7 @@ if(isset( $_SESSION['login_user'])){
                                             $result = mysqli_query($conn, $sql);
                                             if($result){
                                                 $error = "Submitted Successfully";
+                                                header('location:./index.php?message=success');
                                             }else{
                                                $error = "Could not update user";
                                             }
@@ -103,9 +104,9 @@ if(isset( $_SESSION['login_user'])){
                                 <form method="POST">
                                     <div class="form-group">
                                     <label for="Url">Url: </label> <span class="alert alert-primary"><a href="<?= $row['url'];?>" target="_blank"><?= $row['url'];?></a></span> 
-                                    <br><br>
+                                    <br><br><br>
                                     <label for="comments">Comment: </label> <span class="alert alert-primary"><?= $row['comments'];?></span>
-                                    <br><label for="point">Point</label>
+                                    <br><br><label for="point">Point</label> <br>
                                     <input type="number" name="point" class="form-control" id="point" placeholder="Enter Point for This Submissions" value="<?= $row['points'];?>">
                                     <input type="text" name="user" class="form-control" id="user" value="<?= $row['user'];?>" hidden>
                                     <small id="emailHelp" class="form-text text-muted">Enter Points for This Submission</small>

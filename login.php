@@ -5,11 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="signup.css">
     <title>30DaysOfCode  - Login</title>
 </head>
 <body>
     <div class="contact-us">
+    <?php
+        $ref = substr(@$_SERVER['HTTP_REFERER'],strlen(@$_SERVER['HTTP_REFERER']) - 10, 10);
+        if (@$_GET['message'] == 'success' && $ref == 'signup.php') {
+            echo "<div class='msg alert-success alert-dismissable'>Registration Successful </div>";
+        }
+        ?>
         <?php
             $error = "";
             session_start();
@@ -26,6 +33,13 @@
               // If result matched $myusername and $mypassword, table row must be 1 row
                 if($count == 1) {
                     $_SESSION['login_user'] = $username;
+                    $track_sql = "SELECT track FROM user WHERE email = '$username'";
+                    $result = mysqli_query($conn,$track_sql);
+                    if (mysqli_num_rows($result) > 0) {
+                        while($track = mysqli_fetch_assoc($result)) {
+                            $_SESSION['user_track'] = $track['track'];
+                        }
+                    }
                     if($row['isAdmin'] == 0){
                         header("location: dashboard/user/index.php");
                     }else{
