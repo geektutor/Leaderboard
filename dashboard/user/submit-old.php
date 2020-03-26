@@ -125,7 +125,7 @@ if(isset( $_SESSION['login_user'])){
                                 $error = "";
                                     function check(){	
                                         global $conn;
-                                        $date = date('Y-m-d');
+                                        $task_day = mysqli_real_escape_string($conn, $_POST['task_day']);
                                         $queryURL = "SELECT task_day FROM submissions WHERE user = '".$_SESSION['login_user']."' AND task_day = '$task_day'";
                                         $resultURL = mysqli_query($conn, $queryURL);
                                         $countURL = mysqli_num_rows($resultURL);
