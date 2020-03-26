@@ -132,7 +132,7 @@ if(isset( $_SESSION['login_user'])){
                         </ol>-->
                         
                         <div class="card mb-4">
-                            <div class="card-header"><i class="fas fa-table mr-1"></i>Submissions <a class="" href="submit.php">Add New</a></div>
+                            <div class="card-header"><i class="fas fa-table mr-1"></i>Submissions <a class="btn btn-primary stretched-link" href="submit.php">Add New</a> | <a class="btn btn-primary stretched-link" href="submit-old.php">Submit Day 0 & 1</a></div>
                             <div class="card-body">
                                 <?php
                                     $u = $_SESSION['login_user'];
