@@ -76,7 +76,7 @@ if(isset( $_SESSION['login_user'])){
                                             $u = $_POST['user'];
                                             $point = $_POST['point'];
 
-                                        $sql = "UPDATE submissions SET points = {$point} WHERE id = {$id}";
+                                        $sql = "UPDATE submissions SET points = {$point}, reviewed = 1 WHERE id = {$id}";
                                         $result = mysqli_query($conn, $sql);
                                         if($result){
                                             $sql = "SELECT score FROM user WHERE email = '$u'";
@@ -101,6 +101,11 @@ if(isset( $_SESSION['login_user'])){
                                     }
                                         
                             ?>
+                                <?php if($error !== ''){ ?>
+                                    <div class="alert alert-primary alert-dismissable">
+                                        <?= $error?>
+                                    </div>
+                                <?php }?>
                                 <form method="POST">
                                     <div class="form-group">
                                     <label for="Url">Url: </label> <span class="alert alert-primary"><a href="<?= $row['url'];?>" target="_blank"><?= $row['url'];?></a></span> 
