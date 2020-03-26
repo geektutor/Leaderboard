@@ -70,8 +70,8 @@ if(isset( $_SESSION['login_user'])){
                                 ><div class="sb-nav-link-icon"><i class="fas fa-submit"></i></div>
                                 Submit
                             </a>
-                            <a class="nav-link" href="submit.php"
-                                ><div class="alert alert-danger"><i class="fas fa-submit"></i></div>
+                            <a class="nav-link" href="submit-old.php"
+                                ><div class="sb-nav-link-icon"><i class="fas fa-submit"></i></div>
                                 Submit Day 0&1
                             </a>
                             <div class="sb-sidenav-menu-heading"></div>
