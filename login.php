@@ -31,7 +31,7 @@
         
                 $result = mysqli_query($conn,$sql);
                 $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-                $active = $row['active'];
+                //$active = $row['active'];
                 $count = mysqli_num_rows($result);
                 $error = "";
               // If result matched $myusername and $mypassword, table row must be 1 row
