@@ -1,6 +1,18 @@
 <?php
 include './config/connect.php';
 //i don't know what i am writing tho, i hope it works sha
+    $sql = "SELECT email FROM user";
+    $result = mysqli_query($conn, $sql);
+    $count = mysqli_num_rows($result);
+    if ($count > 0) {
+        while($row = mysqli_fetch_assoc($result)) {
+            $particular_user = $row['email'];
+            $up = total_score($particular_user);
+            update_total($particular_user, $up);
+        }
+    }
+
+
     function total_score($email){   
         global $conn;
         $queryURL = "SELECT `points` FROM submissions WHERE `user` = '$email' ";
@@ -16,27 +28,38 @@ include './config/connect.php';
             return $total;
         }
     }
-    $email = $_SESSION['login_user'];
-    $total = total_score($email);
-    $sql = "UPDATE user SET `score` = '$total' WHERE `email` = '$email'";
-    if(mysqli_query($conn, $sql)){
-        echo 'successful';
-    }
-    else {
-        echo 'error';
-    }
-
-    function totalRun($email){
-        $queryURL = "SELECT `user` FROM user WHERE isAdmin = 0";
-        $resultURL = mysqli_query($conn, $queryURL);
-        $countURL = mysqli_num_rows($resultURL);
-        $total = 0;
-        if ($countURL > 0)  {
-            while ($row=$resul->fetch_assoc())  {
-                total_score($row['user']);
-            }
+    function update_total($email, $total){
+        global $conn;
+        $query = "UPDATE user SET score = $total WHERE `email` = '$email' ";
+        $result = mysqli_query($conn, $query);
+        if($conn->query($query)){
+            return 1;
+        }else{
+            return 0;
         }
     }
+    // $email = $_SESSION['login_user'];
+    // $total = total_score($email);
+    // $sql = "UPDATE user SET `score` = '$total' WHERE `email` = '$email'";
+    // if(mysqli_query($conn, $sql)){
+    //     echo 'successful';
+    // }
+    // else {
+    //     echo 'error';
+    // }
+
+    // function totalRun($email){
+    //     global $conn;
+    //     $queryURL = "SELECT `user` FROM user WHERE isAdmin = 0";
+    //     $resultURL = mysqli_query($conn, $queryURL);
+    //     $countURL = mysqli_num_rows($resultURL);
+    //     $total = 0;
+    //     if ($countURL > 0)  {
+    //         while ($row=$resul->fetch_assoc())  {
+    //             total_score($row['user']);
+    //         }
+    //     }
+    // }
     /*
    SELECT email, COUNT(email) FROM user GROUP BY email HAVING COUNT(email) > 1 */
 ?>
