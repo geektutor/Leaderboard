@@ -13,7 +13,6 @@
             $email = $_SESSION['login_user'];
             $total = total_score($email);
             $sql = "UPDATE `user` SET score = $total WHERE email = $email"
-            return $total;
         }else{
             return $total;
         }
