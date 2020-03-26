@@ -44,7 +44,7 @@ if (isset($_POST['submit'])) {
             <option value="python">Python</option>
             <option value="design">Engineering Design</option>
             </select>
-            <button type="submit" name="submit" value="submit">SIGN UP</button>
+            <button type="submit" name="submit" value="submit">Submit</button>
         </form><br> <br>
         <center><a href="login.php"> Login here </a> |
         <a href="signup.php"> Signup here </a></center>
