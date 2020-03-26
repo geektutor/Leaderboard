@@ -2,7 +2,7 @@
 //i don't know what i am writing tho, i hope it works sha
     function total_score($email){   
         global $conn;
-        $queryURL = "SELECT points FROM submissions WHERE email = $email ";
+        $queryURL = "SELECT points FROM submissions WHERE user = $email ";
         $resultURL = mysqli_query($conn, $queryURL);
         $countURL = mysqli_num_rows($resultURL);
         $total = 0;
@@ -10,15 +10,15 @@
             while($row = $resultURL->fetch_assoc()) {
                 $total += $row['points'];
             }
+            $email = $_SESSION['login_user'];
+            $total = total_score($email);
+            $sql = "UPDATE `user` SET score = $total WHERE email = $email"
             return $total;
         }else{
             return $total;
         }
     }
-    $email = $_SESSION['login_user'];
-    $total = total_score($email);
-    $sql = "UPDATE `user` SET score = $total WHERE user = $email"
-    $result = mysqli_query($conn, $sql);
+    
     if ($conn->query($sql)){
         header("location: login.php?message=sucess");
     }
