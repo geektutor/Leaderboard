@@ -4,6 +4,7 @@
         $query = "SELECT email FROM submissions";
         $count = mysqli_query($conn, $query);
         $array = [];
+        var_dump(mysqli_fetch_array($count) );
         foreach (mysqli_fetch_array($count) as $row)
         {
             $queryURL = "SELECT points FROM submissions WHERE user = $row ";
