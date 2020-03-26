@@ -2,6 +2,12 @@
 require('../../config/connect.php');
 require('../../config/session.php');
 if(isset( $_SESSION['login_user'])){
+    $tt = $_SESSION['login_user'];
+    $sql = "SELECT track FROM user WHERE email = '$tt'";
+    $result = mysqli_query($conn, $sql);
+    $row =mysqli_fetch_assoc($result);
+    $track = $row['track'];
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,8 +24,8 @@ if(isset( $_SESSION['login_user'])){
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            <a class="navbar-brand" href="index.html">30DaysOfCode.xyz</a><button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button
-            ><!-- Navbar Search
+            <a class="navbar-brand" href="index.php">30DaysOfCode.xyz</a><button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button
+            ><!-- Navbar Search-->
             <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
                 <div class="input-group">
                     <input class="form-control" type="text" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
@@ -28,7 +34,7 @@ if(isset( $_SESSION['login_user'])){
                     </div>
                 </div>
             </form>
-            <!-- Navbar-
+            <!-- Navbar-->
             <ul class="navbar-nav ml-auto ml-md-0">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
@@ -38,30 +44,14 @@ if(isset( $_SESSION['login_user'])){
                         <a class="dropdown-item" href="../../logout.php">Logout</a>
                     </div>
                 </li>
-            </ul>-->
+            </ul>
         </nav>
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
-                            <div class="sb-sidenav-menu-heading">User</div>
-                            <div class="avatar">
-                                <?php
-                                global $conn;
-                                $email = $_SESSION['login_user'];
-                                $sql = "SELECT * FROM user WHERE email='$email' ";
-                                $result = mysqli_query($conn,$sql);
-                                while($row = mysqli_fetch_assoc($result)) {
-                                    $user_nickname = $row['nickname'];
-                                    $user_score = $row['score'];
-                                    $user_track = $row['track'];
-                                    echo '<center><img style=\'width:120px;height:120px;\' src=\'https://robohash.org/'.$user_nickname.$user_track.'\'/></center>';
-                                    echo '<center><div>'.$user_nickname.'</div></center>';
-                                    echo '<center><div>'.$user_score.'&nbsp; points</div></center>';
-                                }
-                                ?>
-                            </div> 
+                            <div class="sb-sidenav-menu-heading">Core</div>
                             <a class="nav-link" href="index.php"
                                 ><div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
@@ -69,10 +59,6 @@ if(isset( $_SESSION['login_user'])){
                             <a class="nav-link" href="submit.php"
                                 ><div class="sb-nav-link-icon"><i class="fas fa-submit"></i></div>
                                 Submit
-                            </a>
-                            <a class="nav-link" href="submit.php"
-                                ><div class="alert alert-danger"><i class="fas fa-submit"></i></div>
-                                Submit Day 0&1
                             </a>
                             <div class="sb-sidenav-menu-heading"></div>
 
@@ -116,10 +102,11 @@ if(isset( $_SESSION['login_user'])){
                                 <a class="nav-link collapsed" href="#">Day 28</a>
                                 <a class="nav-link collapsed" href="#">Day 29</a>
                             </nav>
-                            </div> 
+                            </div>
+                           
                     <div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>
-                       <?=$_SESSION['login_user'];?>
+                        <?=$_SESSION['login_user'];?>
                     </div>
                 </nav>
             </div>
@@ -132,52 +119,67 @@ if(isset( $_SESSION['login_user'])){
                         </ol>-->
                         
                         <div class="card mb-4">
-                            <div class="card-header"><i class="fas fa-table mr-1"></i>Submissions</div>
+                            <div class="card-header"><i class="fas fa-table mr-1"></i>Make a New Submission</div>
                             <div class="card-body">
                                 <?php
-                                    $u = $_SESSION['login_user'];
-                                    $sql = "SELECT * FROM submissions WHERE user = '$u'";
-                                    $result = mysqli_query($conn, $sql);
-                                    $count = mysqli_num_rows($result);
-                                    
+                                $error = "";
+                                    function check(){	
+                                        global $conn;
+                                        $date = date('Y-m-d');
+                                        $queryURL = "SELECT task_day FROM submissions WHERE user = '".$_SESSION['login_user']."' AND task_day = '$task_day'";
+                                        $resultURL = mysqli_query($conn, $queryURL);
+                                        $countURL = mysqli_num_rows($resultURL);
+                                        if ($countURL > 0) {
+                                            return 1;
+                                        }else{
+                                            return 0;
+                                        }
+                                    }
+                                    if(isset($_POST['submit'])){
+                                        $url = mysqli_real_escape_string($conn, $_POST['url']);
+                                        $task_day = mysqli_real_escape_string($conn, $_POST['task_day']);
+                                        $track = $_SESSION['user_track'];
+                                        $user =  mysqli_real_escape_string($conn, $_SESSION['login_user']);
+                                        $comment =  mysqli_real_escape_string($conn, $_POST['comment']);
+                                        $check = check();
+                                        if(check() == 0){
+                                            $sql = "INSERT INTO submissions(user, track, url, task_day, comments, sub_date) 
+                                                    VALUES('$user','$track', '$url','$task_day', '$comment', NOW())";
+                                            if($conn->query($sql)){
+                                                $error = "Submitted Successfully";
+                                            }else{
+                                            die('could not enter data: '. $conn->error);
+                                            }
+                                        }else{
+                                            die("Task for that day submitted already");
+                                        }
+                                    }
                                 ?>
-                                <div class="table-responsive">
-                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                        <thead>
-                                            <tr>
-                                                <th>S/N</th>
-                                                <th>Url</th>
-                                                <th>Points</th>
-                                            </tr>
-                                        </thead>
-                                        <tfoot>
-                                            <tr>
-                                                <th>S/N</th>
-                                                <th>Url</th>
-                                                <th>Points</th>                                            
-                                            </tr>
-                                        </tfoot>
-                                        <tbody>
-                                            <?php
-                                            
-                                            if($count > 0){
-                                                $j =1;
-                                                while($row = $result->fetch_assoc()) {
-                                            ?>
-                                            <tr>
-                                                <td><?=$j?></td>
-                                                <td><?= $row['url'];?></td>
-                                                <td><?= $row['points'];?></td>
-                                            </tr>
-                                            <?php 
-                                                $j++;
-                                                }}else{
-                                                    echo `<p>No Submissions yet</p>`;
-                                                }
-                                            ?>
-                                        </tbody>
-                                    </table>
+                                <?php if($error !== ''){ ?>
+                                <div class="alert alert-primary alert-dismissable">
+                                    <?= $error?>
                                 </div>
+                                <?php }?>
+                                <form method="POST">
+                                    <div class="form-group">
+                                      <label for="URL">URL</label>
+                                      <input name="url" type="url" class="form-control" id="url" aria-describedby="emailHelp" placeholder="Enter URL" value="">
+                                      <small id="emailHelp" class="form-text text-muted">Submit the url to your code. Please, add the URL to the demo in the readme</small>
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="day">Day?</label>
+                                      <select name="task_day" class="form-control" aria-describedby="emailHelp" value="">
+                                      <option value="day0">Day 0</option>
+                                      <option value="day1">Day 1</option>
+                                      <option value="day2">Day 2</option>
+                                    </select>
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="comments">Comments</label>
+                                      <input name="comment" type="text" class="form-control" id="comment" placeholder="Any comments?" value="">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+                                  </form>
                             </div>
                         </div>
                     </div>
@@ -201,11 +203,8 @@ if(isset( $_SESSION['login_user'])){
         <script src="../js/scripts.js"></script>
         <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-        <script src="../assets/demo/datatables-demo.js"></script>
     </body>
 </html>
-<?php
-}else{
-    header("location:../../login.php"); 
+<?php 
 }
 ?>
