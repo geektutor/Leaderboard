@@ -2,17 +2,18 @@
 body, html {
   height: 100%;
   width: 100%;
+  overflow-x: hidden !important;
+  margin: 0px;
   background: rgb(48, 47, 51);
   color: #333;
+  
 }
 
 .center {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  z-index: 10;
+  top:10%;
+  width: 50%;
+  left: 25%;
   font-family: 'Red Hat Display', sans-serif;
 }
 
@@ -20,9 +21,9 @@ body, html {
   display: -webkit-box;
   display: flex;
   -webkit-box-pack: center;
-  justify-content: center;
+          justify-content: center;
   -webkit-box-align: end;
-  align-items: flex-end;
+          align-items: flex-end;
   color: #4B4168;
 }
 .top3 .item {
@@ -36,7 +37,7 @@ body, html {
   margin: 1rem 1rem 2rem;
   border-radius: 0.5rem;
   -webkit-transform-origin: bottom;
-  transform-origin: bottom;
+          transform-origin: bottom;
   cursor: pointer;
   -webkit-transition: -webkit-transform 200ms ease-in-out;
   transition: -webkit-transform 200ms ease-in-out;
