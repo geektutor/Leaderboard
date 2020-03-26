@@ -56,18 +56,17 @@ if(isset( $_SESSION['login_user'])){
                                 ><div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
+                            <a class="nav-link" href="../index.html"
+                                ><div class="sb-nav-link-icon"><i class="fas fa-submit"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-plane"></i></div>
+                            Leaderboard
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-paper-plane"></i></div>
+                            </a>
+                            <div class="sb-sidenav-menu-heading"></div>
                             <a class="nav-link" href="submit.php"
                                 ><div class="sb-nav-link-icon"><i class="fas fa-submit"></i></div>
                                 Submit
                             </a>
-                            <a class="nav-link" href="../index.html"
-                                ><div class="sb-nav-link-icon"><i class="fas fa-submit"></i></div>
-                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                            Leaderboard
-                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="sb-sidenav-menu-heading"></div>
-
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                             aria-expanded="false" aria-controls="collapsePages">
                             <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
