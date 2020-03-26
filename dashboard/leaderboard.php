@@ -118,8 +118,7 @@
 
         //update the rest
         var starter = 4
-        for (let i = 3; i < ranks.length; i++) {
-          while (starter < 10;){
+        for (let i = 3; i < 10; i++) {
           var markup =`
           <div class="item">
               <div class="pos">
@@ -134,7 +133,6 @@
               </div>
             </div>`;
           $('div.list').append(markup);
-          }
           starter++
         }
       }
