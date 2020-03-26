@@ -19,7 +19,9 @@
     $total = total_score($email);
     $sql = "UPDATE `user` SET score = $total WHERE user = $email"
     $result = mysqli_query($conn, $sql);
-
+    if ($conn->query($sql)){
+        header("location: login.php?message=sucess");
+    }
     //do the rest, i'm blank
 ?>
 
