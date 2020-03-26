@@ -1,4 +1,4 @@
-<?php
+<?php include('config/connect.php'); 
 //i don't know what i am writing tho, i hope it works sha
     function total_score($email){   
         global $conn;
