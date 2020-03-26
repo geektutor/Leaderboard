@@ -36,17 +36,19 @@
 
                 function check($email){	
                     global $conn;
-                    $queryURL = "SELECT email FROM `user` WHERE user = '$email'";
+                    $queryURL = "SELECT email FROM user WHERE email = '$email'";
                     $resultURL = mysqli_query($conn, $queryURL);
-                    // $countURL = mysqli_num_rows($resultURL);
-                    if ($resultURL) {
-                        return 0;
-                    }else{
+                    $countURL = mysqli_num_rows($resultURL);
+                    if ($countURL == 0) {
+                        //user doesnt not exist
                         return 1;
+                    }else{
+                        //user exist
+                        return 0;
                     }
                 }
                 $checkIt = check($email);
-                if($checkIt == 1){
+                if($checkIt){
                     $sql = "INSERT INTO user(`user_id`, `nickname`, `email`, `password`, `phone`,`track`) 
                             VALUES('$user_id', '$nick', '$email', '$password', '$phone','$track')";
                     if($conn->query($sql)){
