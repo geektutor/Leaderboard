@@ -1,10 +1,10 @@
 <?php include('config/connect.php'); 
 
         global $conn;
-        $stmt = $mysqli->prepare("SELECT email FROM submissions");
-        $stmt->execute();
+        $query = "SELECT email FROM submissions";
+        $count = mysqli_query($conn, $query);
         $array = [];
-        foreach ($stmt->get_result() as $row)
+        foreach ($count as $row)
         {
             $queryURL = "SELECT points FROM submissions WHERE user = $row ";
             $resultURL = mysqli_query($conn, $queryURL);
