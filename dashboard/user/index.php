@@ -72,7 +72,10 @@ if(isset( $_SESSION['login_user'])){
                             Leaderboard
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-paper-plane"></i></div>
                             </a>
-                            <div class="sb-sidenav-menu-heading"></div>
+                            <a class="nav-link" href="https://30daysofcode.xyz/whatsapp">
+                                <div class="sb-nav-link-icon"><i class="fas fa-comments"></i></div>
+                            Support Group
+                            </a>
                             <a class="nav-link" href="submit.php"
                                 ><div class="sb-nav-link-icon"><i class="fas fa-submit"></i></div>
                                 Submit
