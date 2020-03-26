@@ -7,7 +7,7 @@
         $countURL = mysqli_num_rows($resultURL);
         $total = 0;
         if ($countURL > 0) {
-            while($row = $result->fetch_assoc()) {
+            while($row = $resultURL->fetch_assoc()) {
                 $total += $row['points'];
             }
             return $total;
