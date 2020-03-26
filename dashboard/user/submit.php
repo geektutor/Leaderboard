@@ -62,8 +62,8 @@ if(isset( $_SESSION['login_user'])){
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-paper-plane"></i></div>
                             </a>
                             <a class="nav-link" href="https://30daysofcode.xyz/whatsapp">
-                                <div class="sb-nav-link-icon"><i class="fas fa-whatsapp"></i></div>
-                            Support
+                                <div class="sb-nav-link-icon"><i class="fa fa-whatsapp"></i></div>
+                            Support Group
                             </a>
                             <a class="nav-link" href="submit.php"
                                 ><div class="sb-nav-link-icon"><i class="fas fa-submit"></i></div>
