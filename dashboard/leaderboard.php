@@ -1,5 +1,4 @@
 <?php
-
   $userRanking = [];
   function getUSerRankings($fetched_array)
   {
@@ -34,7 +33,6 @@
     $res =json_encode($fetched_array);
     $file = fopen('results.json','w') or die('error creating file');
     fwrite($file,$res);
-    header('location : leaderboard.php');
   }
   getUSerRankings($userRanking);
  ?>
