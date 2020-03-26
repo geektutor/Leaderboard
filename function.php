@@ -16,19 +16,26 @@ include './config/connect.php';
             return $total;
         }
     }
-    //$email = $_SESSION['login_user'];
-    $email = "kruse@gmail.com";
+    $email = $_SESSION['login_user'];
     $total = total_score($email);
-    $sql = "UPDATE user SET `score` = '$total' WHERE email = '$email'";
+    $sql = "UPDATE user SET `score` = '$total' WHERE `email` = '$email'";
     if(mysqli_query($conn, $sql)){
         echo 'successful';
     }else {
         echo 'error';
     }
 
+    function totalRun($email){
+        $queryURL = "SELECT `user` FROM user WHERE isAdmin = 0";
+        $resultURL = mysqli_query($conn, $queryURL);
+        $countURL = mysqli_num_rows($resultURL);
+        $total = 0;
+        if ($countURL > 0)
+        {
+            while ($row=$resul->fetch_assoc()){
+                total_score($row['user'])
+            }
+        }
+    }
     //do the rest, i'm blank
 ?>
-
-
-
-
