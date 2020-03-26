@@ -36,7 +36,7 @@
 
                 function check($email){	
                     global $conn;
-                    $queryURL = "SELECT email FROM `user` WHERE user = '$email'";
+                    $queryURL = "SELECT email FROM `user` WHERE email = '$email'";
                     $resultURL = mysqli_query($conn, $queryURL);
                     $countURL = mysqli_num_rows($resultURL);
                     if ($countURL > 0) {
