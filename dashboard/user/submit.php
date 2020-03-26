@@ -120,11 +120,11 @@ if(isset( $_SESSION['login_user'])){
                                       <small id="emailHelp" class="form-text text-muted">Submit the url to your code. Please, add the URL to the demo in the readme</small>
                                     </div>
                                     <div class="form-group">
-                                      <label for="day">Day</label>
-                                      <select name="task_day" class="form-control" aria-describedby="emailHelp" placeholder="Enter task day for URL" value="">
+                                      <label for="day">Day?</label>
+                                      <select name="task_day" class="form-control" aria-describedby="emailHelp" value="">
+                                      <option value="day0">Day 0</option>
                                       <option value="day1">Day 1</option>
                                       <option value="day2">Day 2</option>
-                                      <option value="day3">Day 3</option>
                                     </select>
                                     </div>
                                     <div class="form-group">
