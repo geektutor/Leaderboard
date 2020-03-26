@@ -40,9 +40,9 @@
                     $resultURL = mysqli_query($conn, $queryURL);
                     // $countURL = mysqli_num_rows($resultURL);
                     if ($resultURL) {
-                        return 1;
-                    }else{
                         return 0;
+                    }else{
+                        return 1;
                     }
                 }
                 $checkIt = check($email);
@@ -50,7 +50,7 @@
                     $sql = "INSERT INTO user(`user_id`, `nickname`, `email`, `password`, `phone`,`track`) 
                             VALUES('$user_id', '$nick', '$email', '$password', '$phone','$track')";
                     if($conn->query($sql)){
-                        header("location:login.php");
+                    header("location:login.php?message=success");
                     }else{
                     die('could not enter data: '. $conn->error);
                     }

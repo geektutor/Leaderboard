@@ -90,12 +90,14 @@ if(isset( $_SESSION['login_user'])){
                                     }
                                     if(isset($_POST['submit'])){
                                         $url = mysqli_real_escape_string($conn, $_POST['url']);
+                                        $task_day = mysqli_real_escape_string($conn, $_POST['task_day']);
+                                        $track = $_SESSION['user_track'];
                                         $user =  mysqli_real_escape_string($conn, $_SESSION['login_user']);
                                         $comment =  mysqli_real_escape_string($conn, $_POST['comment']);
                                         $check = check();
-                                        if($check == 0){
-                                            $sql = "INSERT INTO submissions(user,track, url, comments, sub_date) 
-                                                    VALUES('$user','$track', '$url', '$comment', NOW())";
+                                        if(check() == 0){
+                                            $sql = "INSERT INTO submissions(user, track, url, task_day, comments, sub_date) 
+                                                    VALUES('$user','$track', '$url','$task_day', '$comment', NOW())";
                                             if($conn->query($sql)){
                                                 $error = "Submitted Successfully";
                                             }else{
@@ -116,6 +118,11 @@ if(isset( $_SESSION['login_user'])){
                                       <label for="URL">URL</label>
                                       <input name="url" type="url" class="form-control" id="url" aria-describedby="emailHelp" placeholder="Enter URL" value="">
                                       <small id="emailHelp" class="form-text text-muted">Submit the url to your code. Please, add the URL to the demo in the readme</small>
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="day">Day</label>
+                                      <input name="task_day" type="number" class="form-control" aria-describedby="emailHelp" placeholder="Enter task day for URL" value="">
+                                      <small id="emailHelp" class="form-text text-muted">Include the task day for the url</small>
                                     </div>
                                     <div class="form-group">
                                       <label for="comments">Comments</label>

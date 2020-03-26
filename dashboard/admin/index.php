@@ -112,6 +112,11 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                                     
                                 ?>
                                 <div class="table-responsive">
+                                    <?php
+                                        if ($_GET['message'] == 'success') {
+                                            echo "<div id='success' class='alert alert-success'>Score has been assigned successfully</div>";
+                                        }
+                                    ?>
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
@@ -119,6 +124,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                                                 <th>user</th>
                                                 <th>Url</th>
                                                 <th>Track</th>
+                                                <th>Submission for Day</th>
                                                 <th>Date</th>                                            
                                                 <th>Points</th>
                                             </tr>
@@ -129,6 +135,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                                                 <th>user</th>
                                                 <th>Url</th>
                                                 <th>Track</th>
+                                                <th>Submission for Day</th>
                                                 <th>Date</th>                                            
                                                 <th>Points</th>                                            
                                             </tr>
@@ -144,6 +151,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                                                 <td><a href="view.php?id=<?= $row['id'];?>"><?= $row['user'];?></a></td>
                                                 <td><?= $row['url'];?></td>
                                                 <td><?= $row['track'];?></td>
+                                                <td><?= $row['task_day'];?></td>
                                                 <td><?= $row['sub_date'];?></td>
                                                 <td><?= $row['points'];?></td>
                                             </tr>
@@ -180,6 +188,11 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
         <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
         <script src="../assets/demo/datatables-demo.js"></script>
+        <script>
+            setTimeout(() => {
+                $('#success').hide(1000);
+            }, 2000);
+        </script>
     </body>
 </html>
 <?php

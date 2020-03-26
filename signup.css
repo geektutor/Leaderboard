@@ -19,8 +19,14 @@ body {
   padding: 50px 100px;
   border: 2px solid black;
   box-shadow: 15px 15px 1px #ffa580, 15px 15px 1px 2px black;
+  position: relative;
 }
-
+.msg{
+  position: absolute !important;
+  top: 0;
+  left:0;
+  width: 100%;
+}
 input, select {
   display: block;
   width: 100%;
