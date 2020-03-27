@@ -179,6 +179,7 @@ if(isset( $_SESSION['login_user'])){
                                       <option value="day0">Day 0</option>
                                       <option value="day1">Day 1</option>
                                       <option value="day2">Day 2</option>
+                                      <option value="day3">Day 3</option>
                                     </select>
                                     </div>
                                     <div class="form-group">
@@ -209,4 +210,11 @@ if(isset( $_SESSION['login_user'])){
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="../dist/js/scripts.js"></script>
         <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
-    
+        <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+    </body>
+</html>
+<?php
+}else{
+    header("location:../../login.php"); 
+}
+?>

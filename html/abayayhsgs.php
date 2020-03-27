@@ -1,6 +1,6 @@
 <?php
-include './config/connect.php';
-/*i don't know what i am writing tho, i hope it works sha
+/*include './config/connect.php';
+//i don't know what i am writing tho, i hope it works sha
     $sql = "SELECT email FROM user";
     $result = mysqli_query($conn, $sql);
     $count = mysqli_num_rows($result);

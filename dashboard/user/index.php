@@ -18,9 +18,8 @@ if(isset( $_SESSION['login_user'])){
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            <a class="navbar-brand" href="index.html">30DaysOfCode.xyz</a><button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#">
-                <i class="fas fa-bars"></i></button>
-            <!-- Navbar Search
+           <a class="navbar-brand" href="index.php">30DaysOfCode.xyz</a><button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button
+            ><!-- Navbar Search
             <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
                 <div class="input-group">
                     <input class="form-control" type="text" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
@@ -29,7 +28,7 @@ if(isset( $_SESSION['login_user'])){
                     </div>
                 </div>
             </form>
-            <!- Navbar-
+            <!-- Navbar-->
             <ul class="navbar-nav ml-auto ml-md-0">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
@@ -39,7 +38,7 @@ if(isset( $_SESSION['login_user'])){
                         <a class="dropdown-item" href="../../logout.php">Logout</a>
                     </div>
                 </li>
-            </ul>-->
+            </ul>
         </nav>
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
@@ -60,6 +59,24 @@ if(isset( $_SESSION['login_user'])){
                                     echo '<center><img style=\'width:120px;height:120px;\' src=\'https://robohash.org/'.$user_nickname.$user_track.'\'/></center>';
                                     echo '<center><div>'.$user_nickname.'</div></center>';
                                     echo '<center><div>'.$user_score.'&nbsp; points</div></center>';
+                                }
+                                ?>
+                                <?php
+                                global $conn;
+                                $ranking_sql = "SELECT * FROM user WHERE `isAdmin` = '0' ORDER BY `score` DESC";
+                                $ranking_result = mysqli_query($conn,$ranking_sql);
+                                if ($ranking_result) {
+                                    $rank = 1;
+                                    while ($row = mysqli_fetch_assoc($ranking_result)) {
+                                        if($row['email'] == $email){
+                                            echo '<center><div> Overall ranking: '.$rank.'&nbsp;</div></center>';
+                                        }else {
+                                            $rank++;
+                                        }
+                                    }
+                                    
+                                }else {
+                                    echo "error fetching from database";
                                 }
                                 ?>
                             </div> 
@@ -192,9 +209,6 @@ if(isset( $_SESSION['login_user'])){
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid">
                         <div class="d-flex align-items-center justify-content-between small">
-<<<<<<< HEAD
-                            <div class="te
-=======
                             <div class="text-muted">Copyright &copy; 30DayOfCode 2020</div>
                             <div>
                                 <a href="#">Privacy Policy</a>
@@ -218,4 +232,3 @@ if(isset( $_SESSION['login_user'])){
     header("location:../../login.php"); 
 }
 ?>
->>>>>>> 2fa57437ba30bd9272d7c840580884b4f5c552b7
