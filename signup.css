@@ -2,6 +2,7 @@
 * {
   margin: 0;
   padding: 0;
+  font-family: "Fjalla One";
 }
 
 body {
@@ -19,9 +20,15 @@ body {
   padding: 50px 100px;
   border: 2px solid black;
   box-shadow: 15px 15px 1px #ffa580, 15px 15px 1px 2px black;
+  position: relative;
 }
-
-input {
+.msg{
+  position: absolute !important;
+  top: 0;
+  left:0;
+  width: 100%;
+}
+input, select {
   display: block;
   width: 100%;
   font-size: 14pt;
@@ -37,7 +44,7 @@ input {
   color: black;
 }
 
-input:focus {
+input:focus, select:focus {
   border-bottom: 5px solid #ffa580;
 }
 
@@ -62,7 +69,6 @@ button:hover {
 ::selection {
   background: #ffc8ff;
 }
-
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus {
@@ -70,4 +76,9 @@ input:-webkit-autofill:focus {
   -webkit-text-fill-color: #2A293E;
   -webkit-box-shadow: 0 0 0px 1000px #f8f4e5 inset;
   transition: background-color 5000s ease-in-out 0s;
+}
+div.forgot{
+  position: absolute;
+  top: 0;
+  width: 100%;
 }

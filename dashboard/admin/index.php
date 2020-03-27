@@ -2,6 +2,7 @@
 require('../../config/connect.php');
 require('../../config/session.php');
 if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
+    $track = $_SESSION['track'];
     
 ?>
 <!DOCTYPE html>
@@ -20,7 +21,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <a class="navbar-brand" href="index.html">30DaysOfCode.xyz</a><button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button
-            ><!-- Navbar Search-->
+            ><!-- Navbar Search-=
             <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
                 <div class="input-group">
                     <input class="form-control" type="text" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
@@ -29,7 +30,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                     </div>
                 </div>
             </form>
-            <!-- Navbar-->
+            <! Navbar-->
             <ul class="navbar-nav ml-auto ml-md-0">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
@@ -63,7 +64,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                         <h1 class="mt-4">Dashboard</h1>
                        <!-- <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">Dashboard</li>
-                        </ol>-->
+                        </ol>
                         <div class="row">
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-primary text-white mb-4">
@@ -101,17 +102,22 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>-->
                         <div class="card mb-4">
                             <div class="card-header"><i class="fas fa-table mr-1"></i>Submissions</div>
                             <div class="card-body">
                                 <?php
-                                    $sql = "SELECT * FROM submissions";
+                                    $sql = "SELECT * FROM submissions WHERE track = {$track}";
                                     $result = mysqli_query($conn, $sql);
                                     $count = mysqli_num_rows($result);
                                     
                                 ?>
                                 <div class="table-responsive">
+                                    <?php
+                                        if ($_GET['message'] == 'success') {
+                                            echo "<div id='success' class='alert alert-success'>Score has been assigned successfully</div>";
+                                        }
+                                    ?>
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
@@ -119,6 +125,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                                                 <th>user</th>
                                                 <th>Url</th>
                                                 <th>Track</th>
+                                                <th>Submission for Day</th>
                                                 <th>Date</th>                                            
                                                 <th>Points</th>
                                             </tr>
@@ -129,6 +136,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                                                 <th>user</th>
                                                 <th>Url</th>
                                                 <th>Track</th>
+                                                <th>Submission for Day</th>
                                                 <th>Date</th>                                            
                                                 <th>Points</th>                                            
                                             </tr>
@@ -144,6 +152,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                                                 <td><a href="view.php?id=<?= $row['id'];?>"><?= $row['user'];?></a></td>
                                                 <td><?= $row['url'];?></td>
                                                 <td><?= $row['track'];?></td>
+                                                <td><?= $row['task_day'];?></td>
                                                 <td><?= $row['sub_date'];?></td>
                                                 <td><?= $row['points'];?></td>
                                             </tr>
@@ -180,6 +189,11 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
         <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
         <script src="../assets/demo/datatables-demo.js"></script>
+        <script>
+            setTimeout(() => {
+                $('#success').hide(1000);
+            }, 2000);
+        </script>
     </body>
 </html>
 <?php

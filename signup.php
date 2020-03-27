@@ -36,21 +36,23 @@
 
                 function check($email){	
                     global $conn;
-                    $queryURL = "SELECT email FROM `user` WHERE user = '$email'";
+                    $queryURL = "SELECT email FROM user WHERE email = '$email'";
                     $resultURL = mysqli_query($conn, $queryURL);
-                    // $countURL = mysqli_num_rows($resultURL);
-                    if ($resultURL) {
+                    $countURL = mysqli_num_rows($resultURL);
+                    if ($countURL == 0) {
+                        //user doesnt not exist
                         return 1;
                     }else{
+                        //user exist
                         return 0;
                     }
                 }
                 $checkIt = check($email);
-                if($checkIt == 1){
+                if($checkIt){
                     $sql = "INSERT INTO user(`user_id`, `nickname`, `email`, `password`, `phone`,`track`) 
                             VALUES('$user_id', '$nick', '$email', '$password', '$phone','$track')";
                     if($conn->query($sql)){
-                        header("location:login.php");
+                    header("location:login.php?message=success");
                     }else{
                     die('could not enter data: '. $conn->error);
                     }
@@ -70,14 +72,16 @@
           <input placeholder="Password" required="" name="password" type="password" />
           <input name="phone" placeholder="Phone" type="tel" />
           <select name="track">
-            <option value="frontend">frontend</option>
-            <option value="backend">backend</option>
-            <option value="android">android</option>
-            <option value="ui">ui/ux</option>
-            <option value="python">python</option>
+            <option value="frontend">Front End</option>
+            <option value="backend">Back End</option>
+            <option value="android">Mobile</option>
+            <option value="ui">UI/UX</option>
+            <option value="python">Python</option>
+            <option value="design">Engineering Design</option>
           </select>
           <button type="submit" name="submit" value="submit">SIGN UP</button>
-        </form>
+        </form><br>
+        <p>Already a user ? <a href="login.php"> Login here </a></p>
       </div>
 </body>
 </html>

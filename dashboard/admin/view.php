@@ -75,8 +75,9 @@ if(isset( $_SESSION['login_user'])){
                                         if (isset($_POST['submit'])) {
                                             $u = $_POST['user'];
                                             $point = $_POST['point'];
+                                            $feedback = $_POST['feedback'];
 
-                                        $sql = "UPDATE submissions SET points = {$point} WHERE id = {$id}";
+                                        $sql = "UPDATE submissions SET points = {$point}, feedback = {$feedback} WHERE id = {$id}";
                                         $result = mysqli_query($conn, $sql);
                                         if($result){
                                             $sql = "SELECT score FROM user WHERE email = '$u'";
@@ -89,6 +90,7 @@ if(isset( $_SESSION['login_user'])){
                                             $result = mysqli_query($conn, $sql);
                                             if($result){
                                                 $error = "Submitted Successfully";
+                                                header('location:./index.php?message=success');
                                             }else{
                                                $error = "Could not update user";
                                             }
@@ -100,15 +102,23 @@ if(isset( $_SESSION['login_user'])){
                                     }
                                         
                             ?>
+                                <?php if($error !== ''){ ?>
+                                    <div class="alert alert-primary alert-dismissable">
+                                        <?= $error?>
+                                    </div>
+                                <?php }?>
                                 <form method="POST">
                                     <div class="form-group">
                                     <label for="Url">Url: </label> <span class="alert alert-primary"><a href="<?= $row['url'];?>" target="_blank"><?= $row['url'];?></a></span> 
-                                    <br><br>
+                                    <br><br><br>
                                     <label for="comments">Comment: </label> <span class="alert alert-primary"><?= $row['comments'];?></span>
-                                    <br><label for="point">Point</label>
+                                    <br><br><label for="point">Point</label> <br>
                                     <input type="number" name="point" class="form-control" id="point" placeholder="Enter Point for This Submissions" value="<?= $row['points'];?>">
                                     <input type="text" name="user" class="form-control" id="user" value="<?= $row['user'];?>" hidden>
                                     <small id="emailHelp" class="form-text text-muted">Enter Points for This Submission</small>
+                                    <br><br><label for="point">Feedback</label> <br>
+                                    <input type="text" name="feedback" class="form-control" id="feedback" placeholder="Enter Feedback for This Submissions" value="<?= $row['feedback'];?>">
+                                    <small id="emailHelp" class="form-text text-muted">Enter Feedback for This Submission</small>
                                     </div>
                                     <button type="submit" class="btn btn-primary" name="submit">Submit</button>
                                 </form>
