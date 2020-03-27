@@ -75,8 +75,9 @@ if(isset( $_SESSION['login_user'])){
                                         if (isset($_POST['submit'])) {
                                             $u = $_POST['user'];
                                             $point = $_POST['point'];
+                                            $feedback = $_POST['feedback'];
 
-                                        $sql = "UPDATE submissions SET points = {$point} WHERE id = {$id}";
+                                        $sql = "UPDATE submissions SET points = {$point}, feedback = {$feedback} WHERE id = {$id}";
                                         $result = mysqli_query($conn, $sql);
                                         if($result){
                                             $sql = "SELECT score FROM user WHERE email = '$u'";

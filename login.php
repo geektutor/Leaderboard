@@ -47,6 +47,7 @@
                         header("location: dashboard/user/index.php");
                     }else{
                         $_SESSION['isAdmin'] = true;
+                        $_SESSION['track'] = $_SESSION['user_track'];
                         $_SESSION['login_user'] = $username.'_';
                         header("location: dashboard/admin/index.php");
                     }

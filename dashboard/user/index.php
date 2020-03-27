@@ -209,6 +209,9 @@ if(isset( $_SESSION['login_user'])){
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid">
                         <div class="d-flex align-items-center justify-content-between small">
+<<<<<<< HEAD
+                            <div class="te
+=======
                             <div class="text-muted">Copyright &copy; 30DayOfCode 2020</div>
                             <div>
                                 <a href="#">Privacy Policy</a>
@@ -232,3 +235,4 @@ if(isset( $_SESSION['login_user'])){
     header("location:../../login.php"); 
 }
 ?>
+>>>>>>> 2fa57437ba30bd9272d7c840580884b4f5c552b7
