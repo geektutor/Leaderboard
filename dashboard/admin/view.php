@@ -113,11 +113,11 @@ if(isset( $_SESSION['login_user'])){
                                     <br><br><br>
                                     <label for="comments">Comment: </label> <span class="alert alert-primary"><?php echo $row['comments'];?></span>
                                     <br><br><label for="point">Point</label> <br>
-                                    <input type="number" name="point" class="form-control" id="point" placeholder="Enter Point for This Submissions" value="<?= $row['points'];?>">
+                                    <input type="number" name="point" class="form-control" id="point" placeholder="Enter Point for This Submissions" required value="<?= $row['points'];?>">
                                     <input type="text" name="user" class="form-control" id="user" value="<?php echo $row['user'];?>" hidden>
                                     <small id="emailHelp" class="form-text text-muted">Enter Points for This Submission</small>
                                     <br><br><label for="point">Feedback</label> <br>
-                                    <input type="text" name="feedback" class="form-control" id="feedback" placeholder="Enter Feedback for This Submissions" value="<?php echo $row['feedback'];?>">
+                                    <input type="text" name="feedback" class="form-control" id="feedback" placeholder="Enter Feedback for This Submissions" value="<?php echo $row['feedback'];?>" required>
                                     <small id="emailHelp" class="form-text text-muted">Enter Feedback for This Submission</small>
                                     </div>
                                     <button type="submit" class="btn btn-primary" name="submit">Submit</button>
