@@ -170,18 +170,18 @@ if(isset( $_SESSION['login_user'])){
                                         <thead>
                                             <tr>
                                                 <th>S/N</th>
+                                                <th>Day</th>
                                                 <th>Url</th>
                                                 <th>Points</th>
-                                                <th>Date</th>
                                                 <th>Reviews</th>
                                             </tr>
                                         </thead>
                                         <tfoot>
                                             <tr>
                                                 <th>S/N</th>
+                                                <th>Day</th>
                                                 <th>Url</th>
                                                 <th>Points</th>
-                                                <th>Date</th>
                                                 <th>Reviews</th>
                                             </tr>
                                         </tfoot>
@@ -194,9 +194,9 @@ if(isset( $_SESSION['login_user'])){
                                             ?>
                                             <tr>
                                                 <td><?php echo $j?></td>
+                                                <td><?php echo $row['task_day'];?></td>
                                                 <td><?php echo $row['url'];?></td>
                                                 <td><?php echo $row['points'];?></td>
-                                                <td><?php echo $row['sub_date'];?></td>
                                                 <td><?php echo $row['feedback'];?></td>
                                             </tr>
                                             <?php 
