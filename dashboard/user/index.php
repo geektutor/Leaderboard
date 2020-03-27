@@ -172,13 +172,15 @@ if(isset( $_SESSION['login_user'])){
                                                 <th>S/N</th>
                                                 <th>Url</th>
                                                 <th>Points</th>
+                                                <th>Reviews</th>
                                             </tr>
                                         </thead>
                                         <tfoot>
                                             <tr>
                                                 <th>S/N</th>
                                                 <th>Url</th>
-                                                <th>Points</th>                                            
+                                                <th>Points</th>
+                                                <th>Reviews</th>
                                             </tr>
                                         </tfoot>
                                         <tbody>
@@ -189,9 +191,10 @@ if(isset( $_SESSION['login_user'])){
                                                 while($row = $result->fetch_assoc()) {
                                             ?>
                                             <tr>
-                                                <td><?=$j?></td>
-                                                <td><?= $row['url'];?></td>
-                                                <td><?= $row['points'];?></td>
+                                                <td><?php echo $j?></td>
+                                                <td><?php echo $row['url'];?></td>
+                                                <td><?php echo $row['points'];?></td>
+                                                <td><?php echo $row['feedback'];?></td>
                                             </tr>
                                             <?php 
                                                 $j++;
