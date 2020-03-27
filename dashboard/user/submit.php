@@ -170,7 +170,7 @@ if(isset( $_SESSION['login_user'])){
                                 <form method="POST">
                                     <div class="form-group">
                                       <label for="URL">URL</label>
-                                      <input name="url" type="url" class="form-control" id="url" aria-describedby="emailHelp" placeholder="Enter URL" value="">
+                                      <input name="url" type="url" class="form-control" id="url" aria-describedby="emailHelp" placeholder="Enter URL" value="" required="">
                                       <small id="emailHelp" class="form-text text-muted">Python - Repl.it Url, Backend - Github repo Url, Frontend - Github repo Url(put link to your Github Pages in the readme), UI/UX - Figma/Adobe XD Url, Engineering Design - Google Drive Url</small>
                                     </div>
                                     <div class="form-group">
