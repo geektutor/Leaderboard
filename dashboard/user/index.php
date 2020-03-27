@@ -172,6 +172,7 @@ if(isset( $_SESSION['login_user'])){
                                                 <th>S/N</th>
                                                 <th>Url</th>
                                                 <th>Points</th>
+                                                <th>Date</th>
                                                 <th>Reviews</th>
                                             </tr>
                                         </thead>
@@ -180,6 +181,7 @@ if(isset( $_SESSION['login_user'])){
                                                 <th>S/N</th>
                                                 <th>Url</th>
                                                 <th>Points</th>
+                                                <th>Date</th>
                                                 <th>Reviews</th>
                                             </tr>
                                         </tfoot>
@@ -194,6 +196,7 @@ if(isset( $_SESSION['login_user'])){
                                                 <td><?php echo $j?></td>
                                                 <td><?php echo $row['url'];?></td>
                                                 <td><?php echo $row['points'];?></td>
+                                                <td><?php echo $row['sub_date'];?></td>
                                                 <td><?php echo $row['feedback'];?></td>
                                             </tr>
                                             <?php 
