@@ -107,7 +107,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                             <div class="card-header"><i class="fas fa-table mr-1"></i>Submissions</div>
                             <div class="card-body">
                                 <?php
-                                    $sql = "SELECT * FROM submissions WHERE track = {$track}";
+                                    $sql = "SELECT * FROM submissions WHERE track = {$track} AND points = 0";
                                     $result = mysqli_query($conn, $sql);
                                     $count = mysqli_num_rows($result);
                                     
