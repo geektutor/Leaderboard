@@ -76,6 +76,9 @@ if(isset( $_SESSION['login_user'])){
                                             $u = $_POST['user'];
                                             $point = $_POST['point'];
                                             $feedback = $_POST['feedback'];
+                                            if ($feedback == '') {
+                                                $feedback = "Marked";
+                                            }
 
                                         $sql = "UPDATE submissions SET points = '$point', feedback = '$feedback' WHERE id = {$id}";
                                         $result = mysqli_query($conn, $sql);
@@ -117,7 +120,7 @@ if(isset( $_SESSION['login_user'])){
                                     <input type="text" name="user" class="form-control" id="user" value="<?php echo $row['user'];?>" hidden>
                                     <small id="emailHelp" class="form-text text-muted">Enter Points for This Submission</small>
                                     <br><br><label for="point">Feedback</label> <br>
-                                    <input type="text" name="feedback" class="form-control" id="feedback" placeholder="Enter Feedback for This Submissions" value="<?php echo $row['feedback'];?>" required>
+                                    <input type="text" name="feedback" class="form-control" id="feedback" placeholder="Enter Feedback for This Submissions" value="<?php echo $row['feedback'];?>">
                                     <small id="emailHelp" class="form-text text-muted">Enter Feedback for This Submission</small>
                                     </div>
                                     <button type="submit" class="btn btn-primary" name="submit">Submit</button>
