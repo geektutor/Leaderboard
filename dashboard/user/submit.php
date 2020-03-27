@@ -186,10 +186,10 @@ if(isset( $_SESSION['login_user'])){
                                     <div class="form-group">
                                       <label for="day">Day?</label>
                                       <select name="task_day" class="form-control" aria-describedby="emailHelp" value="">
-                                      <option value="day0">Day 0</option>
-                                      <option value="day1">Day 1</option>
-                                      <option value="day2">Day 2</option>
-                                      <option value="day3">Day 3</option>
+                                      <option value="Day 0">Day 0</option>
+                                      <option value="Day 1">Day 1</option>
+                                      <option value="Day 2">Day 2</option>
+                                      <option value="Day 3">Day 3</option>
                                     </select>
                                     </div>
                                     <div class="form-group">
