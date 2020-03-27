@@ -1,6 +1,7 @@
 <?php
 require('../../config/connect.php');
 require('../../config/session.php');
+
 if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
     $track = $_SESSION['track'];
     
@@ -107,7 +108,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                             <div class="card-header"><i class="fas fa-table mr-1"></i>Submissions</div>
                             <div class="card-body">
                                 <?php
-                                    $sql = "SELECT * FROM submissions WHERE track = {$track} AND points = 0";
+                                    $sql = "SELECT * FROM submissions WHERE track = '$track' AND points = 0";
                                     $result = mysqli_query($conn, $sql);
                                     $count = mysqli_num_rows($result);
                                     
@@ -145,16 +146,17 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                                         <?php
                                             if($count > 0){
                                                 $j =1;
-                                                while($row = $result->fetch_assoc()) {
+                                                while($row = mysqli_fetch_assoc($result)) {
+                                                    // echo $row['url'];
                                             ?>
-                                            <a><tr>
-                                                <td><?=$j?></td>
-                                                <td><a href="view.php?id=<?= $row['id'];?>"><?= $row['user'];?></a></td>
-                                                <td><?= $row['url'];?></td>
-                                                <td><?= $row['track'];?></td>
-                                                <td><?= $row['task_day'];?></td>
-                                                <td><?= $row['sub_date'];?></td>
-                                                <td><?= $row['points'];?></td>
+                                            <tr>
+                                                <td><?php echo $j?></td>
+                                                <td><a href="view.php?id=<?php echo $row['id'];?>"><?php echo $row['user'];?></a></td>
+                                                <td><?php echo $row['url'];?></td>
+                                                <td><?php echo $row['track'];?></td>
+                                                <td><?php echo $row['task_day'];?></td>
+                                                <td><?php echo $row['sub_date'];?></td>
+                                                <td><?php echo $row['points'];?></td>
                                             </tr>
                                             <?php 
                                                 $j++;
