@@ -1,6 +1,3 @@
-Redirect /day0 /dashboard/user/day0.html
-Redirect /day1 /dashboard/user/day1.html
-Redirect /day2 /dashboard/user/day2.html
 Redirect /whatsapp https://chat.whatsapp.com/GmoZwE6RUPa4Px4RvreSww
-Redirect /task /dashboard/user/day2.html
+Redirect /task /dashboard/user/day3.html
 

@@ -94,7 +94,7 @@ if(isset( $_SESSION['login_user'])){
                                 <a class="nav-link active" href="day0.html">Day o</a>
                                 <a class="nav-link active" href="day1.html">Day 1</a>
                                 <a class="nav-link active" href="day2.html">Day 2</a>
-                                <a class="nav-link collapsed" href="day3.html">Day 3</a>
+                                <a class="nav-link active" href="day3.html">Day 3</a>
                                 <a class="nav-link collapsed" href="day4.html">Day 4</a>
                                 <a class="nav-link collapsed" href="day5.html">Day 5</a>
                                 <a class="nav-link collapsed" href="#">Day 6</a>
