@@ -170,6 +170,7 @@ if(isset( $_SESSION['login_user'])){
                                         <thead>
                                             <tr>
                                                 <th>S/N</th>
+                                                <th>Day</th>
                                                 <th>Url</th>
                                                 <th>Points</th>
                                                 <th>Reviews</th>
@@ -178,6 +179,7 @@ if(isset( $_SESSION['login_user'])){
                                         <tfoot>
                                             <tr>
                                                 <th>S/N</th>
+                                                <th>Day</th>
                                                 <th>Url</th>
                                                 <th>Points</th>
                                                 <th>Reviews</th>
@@ -192,6 +194,7 @@ if(isset( $_SESSION['login_user'])){
                                             ?>
                                             <tr>
                                                 <td><?php echo $j?></td>
+                                                <td><?php echo $row['task_day'];?></td>
                                                 <td><?php echo $row['url'];?></td>
                                                 <td><?php echo $row['points'];?></td>
                                                 <td><?php echo $row['feedback'];?></td>
