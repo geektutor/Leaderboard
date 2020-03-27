@@ -146,7 +146,7 @@ if (!isset($_SESSION['login_user']) || empty($_SESSION['login_user'])) {
                         </ol>-->
                         
                         <div class="card mb-4">
-                            <div class="card-header"><i class="fas fa-table mr-1"></i>Edit Submission for Day<?php echo $day;?></div>
+                            <div class="card-header"><i class="fas fa-table mr-1"></i>Edit Submission for <?php echo $day;?></div>
                             <div class="card-body">
                                 <form method="POST">
                                     <div class="form-group">
@@ -157,7 +157,7 @@ if (!isset($_SESSION['login_user']) || empty($_SESSION['login_user'])) {
                                     <div class="form-group">
                                       <label for="day">Day?</label>
                                       <select name="task_day" class="form-control" aria-describedby="emailHelp" value="">
-                                      <option value="">Day<?php echo $day;?></option>
+                                      <option value=""><?php echo $day;?></option>
                                     </select>
                                     </div>
                                     <div class="form-group">
