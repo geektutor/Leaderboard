@@ -65,8 +65,12 @@ if(isset( $_SESSION['login_user'])){
                                 <div class="sb-nav-link-icon"><i class="fas fa-comments"></i></div>
                             Support Group
                             </a>
+                            <a class="nav-link" href=" https://twitter.com/intent/tweet?url=https%3A%2F%2F30daysofcodes.xyz&via=codon&text=Hello%2C%20I%20just%20finished%20my%20task%20for%20....&hashtags=30DaysOfCode%2C%20ECX">
+                                <div class="sb-nav-link-icon"><i class="fas fa-share"></i></div>
+                                Tweet
+                            </a>
                             <a class="nav-link" href="submit.php"
-                                ><div class="sb-nav-link-icon"><i class="fas fa-submit"></i></div>
+                                ><div class="sb-nav-link-icon"><i class="fas fa-paper-plane"></i></div>
                                 Submit
                             </a>
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
