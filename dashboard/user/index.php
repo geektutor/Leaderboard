@@ -94,10 +94,11 @@ if(isset( $_SESSION['login_user'])){
                                 <div class="sb-nav-link-icon"><i class="fas fa-comments"></i></div>
                             Support Group
                             </a>
-                            <a class="nav-link" href=" https://twitter.com/intent/tweet?url=https%3A%2F%2F30daysofcodes.xyz&via=codon&text=Hello%2C%20I%20just%20finished%20my%20task%20for%20....&hashtags=30DaysOfCode%2C%20ECX">
+                            <a class="nav-link" href="https://twitter.com/intent/tweet?url=https%3A%2F%2F30daysofcode.xyz%2F&via=ecxunilag&text=Hi%2C%20i%20currently%20have%20<?php echo $user_score;?>%20points%20and%20my%20ranking%20is%20<?php echo $rank;?>&hashtags=30DaysOfCode%2C%2030DaysOfDesign%2C%20ecxunilag">
                                 <div class="sb-nav-link-icon"><i class="fas fa-share"></i></div>
                                 Tweet
                             </a>
+                            <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2F30daysofcode.xyz%2F&via=ecxunilag&text=Hi%2C%20i%20currently%20have%20THIS%20points%20and%20my%20ranking%20is%20this&hashtags=30DaysOfCode%2C%2030DaysOfDesign%2C%20ecxunilag"></a>
                             <a class="nav-link" href="submit.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-submit"></i></div>
                                 Submit
