@@ -61,6 +61,24 @@ if(isset( $_SESSION['login_user'])){
                                     echo '<center><div>'.$user_score.'&nbsp; points</div></center>';
                                 }
                                 ?>
+                                <?php
+                                global $conn;
+                                $ranking_sql = "SELECT * FROM user WHERE `isAdmin` = '0' ORDER BY `score` DESC";
+                                $ranking_result = mysqli_query($conn,$ranking_sql);
+                                if ($ranking_result) {
+                                    $rank = 1;
+                                    while ($row = mysqli_fetch_assoc($ranking_result)) {
+                                        if($row['email'] == $email){
+                                            echo '<center><div> Overall ranking: '.$rank.'&nbsp;</div></center>';
+                                        }else {
+                                            $rank++;
+                                        }
+                                    }
+                                    
+                                }else {
+                                    echo "error fetching from database";
+                                }
+                                ?>
                             </div> 
                             <a class="nav-link" href="index.php"
                                 ><div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
