@@ -154,23 +154,33 @@ if(isset( $_SESSION['login_user'])){
                                                     VALUES('$user','$track', '$url','$task_day', '$comment', NOW())";
                                             if($conn->query($sql)){
                                                 $error = "Submitted Successfully";
+                                                $submit = 1;
                                             }else{
                                             die('could not enter data: '. $conn->error);
                                             }
                                         }else{
-                                            die("You've submitted already, wait for tomorrow's challenge");
+                                            $error = "You've submitted already, wait for tomorrow's challenge";
+                                            $submit = 0;
                                         }
                                     }
                                 ?>
                                 <?php if($error !== ''){ ?>
                                 <div class="alert alert-primary alert-dismissable">
-                                    <?= $error?>
+                                    <?php 
+                                        echo $error;
+                                        if($submit == 1){
+                                    ?>
+                                    <p>Tweet about this:</p>
+                                    <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2F30daysofcode.xyz%2F&via=ecxunilag&text=<?php echo $task_day;?>%20of%2030%3A%20Check%20out%20my%20solution%20at%3A%20<?php echo $url;?>&hashtags=30DaysOfCode%2C%2030DaysOfDesign%2C%20ecxunilag">
+                                        <button class="btn btn-primary"><i class="fas fa-twitter"></i> Tweet</button>
+                                    </a>
+                                    <?php }?>
                                 </div>
                                 <?php }?>
                                 <form method="POST">
                                     <div class="form-group">
                                       <label for="URL">URL</label>
-                                      <input name="url" type="url" class="form-control" id="url" aria-describedby="emailHelp" placeholder="Enter URL" value="" required="">
+                                      <input name="url" type="url" class="form-control" id="url" aria-describedby="emailHelp" placeholder="Enter URL" value="" required>
                                       <small id="emailHelp" class="form-text text-muted">Python - Repl.it Url, Backend - Github repo Url, Frontend - Github repo Url(put link to your Github Pages in the readme), UI/UX - Figma/Adobe XD Url, Engineering Design - Google Drive Url</small>
                                     </div>
                                     <div class="form-group">
