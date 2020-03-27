@@ -114,11 +114,6 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                                     
                                 ?>
                                 <div class="table-responsive">
-                                    <?php
-                                        if ($_GET['message'] == 'success') {
-                                            echo "<div id='success' class='alert alert-success'>Score has been assigned successfully</div>";
-                                        }
-                                    ?>
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
