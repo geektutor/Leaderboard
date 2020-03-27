@@ -1,5 +1,4 @@
 <?php
-
   $userRanking = [];
   function getUSerRankings($fetched_array)
   {
@@ -37,11 +36,11 @@
   }
   getUSerRankings($userRanking);
  ?>
-
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="../public/css/index.css">
+        <link rel="stylesheet" href="./index.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     </head>
     <body>
       <div class="center">
@@ -86,8 +85,6 @@
           <div class="list">
           </div>
         </div>
-
-      <script src="../public/js/jquery-2.2.3.min.js"></script>
       <script>
       $.ajax({
         url : "./results.json",
@@ -97,22 +94,25 @@
         },
       })
       function updateRankings(ranks) {
+        function trim(url){
+          return url.split(' ').join('');
+        }
         //update first position
         var first = ranks[0];
         $('div.one .name').text(first.nickname);
-        $('div.one .pic').css({"background-image": `url(https://robohash.org/${first.nickname+first.track})`});
+        $('div.one .pic').css({"background-image": `url(https://robohash.org/${trim(first.nickname+first.track)})`});
         $('div.one .score').text(first.score);
 
         //update second Position
         var second = ranks[1];
         $('div.two .name').text(second.nickname);
-        $('div.two .pic').css({"background-image": `url(https://robohash.org/${second.nickname+second.track})`});
+        $('div.two .pic').css({"background-image": `url(https://robohash.org/${trim(second.nickname+second.track)})`});
         $('div.two .score').text(second.score);
 
         //update third position
         var third = ranks[2];
         $('div.three .name').text(third.nickname);
-        $('div.three .pic').css({"background-image": `url(https://robohash.org/${third.nickname+third.track})`});
+        $('div.three .pic').css({"background-image": `url(https://robohash.org/${trim(third.nickname+third.track)})`});
         $('div.three .score').text(third.score);
 
         //update the rest
@@ -123,7 +123,7 @@
               <div class="pos">
                 ${starter}
               </div>
-              <div class="pic" style="background-image: url(https://robohash.org/${ranks[i].nickname+ranks[i].track})"></div>
+              <div class="pic" style="background-image: url(https://robohash.org/${trim(ranks[i].nickname+ranks[i].track)})"></div>
               <div class="name">
                 ${ranks[i].nickname}
               </div>
@@ -135,7 +135,8 @@
           starter++
         }
       }
-
+    //   $("body").css("overflow-y", "auto");
+    //   $("html").css("overflow-y", "auto");
       </script>
     </body>
 </html>
