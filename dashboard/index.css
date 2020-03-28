@@ -31,7 +31,7 @@ body, html {
   position: relative;
   background: white;
   width: 9rem;
-  height: 10rem;
+  height: 11.5rem;
   text-align: center;
   padding: 2.8rem 0 0;
   margin: 1rem 1rem 2rem;
@@ -76,7 +76,7 @@ body, html {
 }
 .top3 .item.one {
   width: 10rem;
-  height: 11rem;
+  height: 12.5rem;
   padding-top: 3.5rem;
 }
 .top3 .item.one .pic {
@@ -155,4 +155,9 @@ body, html {
 }
 .list .item:hover .pos {
   opacity: 0.8;
+}
+
+.others .track{
+  position: absolute;
+  left: 50%;
 }
