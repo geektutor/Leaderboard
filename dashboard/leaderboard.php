@@ -19,7 +19,7 @@
     }
 
     //fetch user ranking
-    $sql = "SELECT * FROM user WHERE `isAdmin` = 0 ORDER BY `score` DESC LIMIT 20";
+    $sql = "SELECT * FROM user WHERE `isAdmin` = 0 ORDER BY `score` DESC";
     $result = mysqli_query($conn,$sql);
     if (mysqli_num_rows($result) > 0) {
       while ($row = mysqli_fetch_assoc($result)) {
@@ -88,64 +88,20 @@
           <div class="list others">
           </div>
         </div>
-      <script>
-      $.ajax({
-        url : "./results.json",
-        success : function(result) {
-          //result);
-          updateRankings(result);
-        },
-      })
-      function updateRankings(ranks) {
-        function trim(url){
-          return url.split(' ').join('');
-        }
-        //update first position
-        var first = ranks[0];
-        $('div.one .name').text(first.nickname);
-        $('div.one .pic').css({"background-image": `url(https://robohash.org/${trim(first.nickname+first.track)})`});
-        $('div.one .track').text(first.track);
-        $('div.one .score').text(first.score);
-        $('div.one').addClass(first.track);
-
-        //update second Position
-        var second = ranks[1];
-        $('div.two .name').text(second.nickname);
-        $('div.two .pic').css({"background-image": `url(https://robohash.org/${trim(second.nickname+second.track)})`});
-        $('div.two .track').text(second.track);
-        $('div.two .score').text(second.score);
-        $('div.two').addClass(second.track);
-
-        //update third position
-        var third = ranks[2];
-        $('div.three .name').text(third.nickname);
-        $('div.three .pic').css({"background-image": `url(https://robohash.org/${trim(third.nickname+third.track)})`});
-        $('div.three .track').text(third.track);
-        $('div.three .score').text(third.score);
-        $('div.three').addClass(third.track);
-
-        //update the rest
-        var starter = 4
-        for (let i = 3; i < ranks.length; i++) {
-          var markup =`
-          <div class="item ${ranks[i].track}">
-              <div class="pos">
-                ${starter}
-              </div>
-              <div class="pic" style="background-image: url(https://robohash.org/${trim(ranks[i].nickname+ranks[i].track)})"></div>
-              <div class="name">
-                ${ranks[i].nickname}
-              </div>
-              <div class="score">
-                ${ranks[i].score}
-              </div>
-            </div>`;
-          $('div.list').append(markup);
-          starter++
-        }
-      }
-    //   $("body").css("overflow-y", "auto");
-    //   $("html").css("overflow-y", "auto");
-      </script>
+      <div class="filter">
+        <form id="filterform">
+          <select name="" id="filter">
+            <option value="Overall Rankings">Overall Rankings</option>
+            <option value="Frontend">Frontend</option>
+            <option value="Backend">Backend</option>
+            <option value="Design">Design</option>
+            <option value="UI/UX">UI/UX</option>
+            <option value="Python">Python</option>
+            <option value="Android">Android</option>
+          </select>
+          <button type="submit">Filter</button>
+        </form>
+      </div>
+      <script src="leaderboard.js"></script>
     </body>
 </html>
