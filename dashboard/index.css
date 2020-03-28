@@ -162,19 +162,25 @@ body, html {
 
 .python{
   background: #333 !important;
+  color:#fff;
 }
 .ui{
   background: #fe413c !important;
+  color:#fff;
 }
 .android{
   background: #a4c639 !important;
+  color:#fff;
 }
 .backend{
   background: #a4d !important;
+  color:#fff;
 }
 .frontend{
   background: #26a8fe !important;
+  color:#fff;
 }
 .design{
   background: #feaf30 !important;
+  color:#fff;
 }
