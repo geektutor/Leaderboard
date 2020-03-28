@@ -194,6 +194,7 @@ if(isset( $_SESSION['login_user'])){
                                       <option value="Day 1">Day 1</option>
                                       <option value="Day 2">Day 2</option>
                                       <option value="Day 3">Day 3</option>
+                                      <option value="Day 4">Day 4</option>
                                     </select>
                                     </div>
                                     <div class="form-group">
