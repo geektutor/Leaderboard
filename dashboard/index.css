@@ -31,7 +31,7 @@ body, html {
   position: relative;
   background: white;
   width: 9rem;
-  height: 10rem;
+  height: 11.5rem;
   text-align: center;
   padding: 2.8rem 0 0;
   margin: 1rem 1rem 2rem;
@@ -76,7 +76,7 @@ body, html {
 }
 .top3 .item.one {
   width: 10rem;
-  height: 11rem;
+  height: 12.5rem;
   padding-top: 3.5rem;
 }
 .top3 .item.one .pic {
@@ -99,11 +99,9 @@ body, html {
   display: flex;
   -webkit-box-align: center;
           align-items: center;
-  background: white;
   height: 3rem;
   border-radius: 4rem;
   margin-bottom: 2rem;
-  background: #EAA786;
   -webkit-transform-origin: left;
           transform-origin: left;
   cursor: pointer;
@@ -155,4 +153,34 @@ body, html {
 }
 .list .item:hover .pos {
   opacity: 0.8;
+}
+
+.others .track{
+  position: absolute;
+  left: 50%;
+}
+
+.python{
+  background: #333 !important;
+  color:#fff;
+}
+.ui{
+  background: #fe413c !important;
+  color:#fff;
+}
+.android{
+  background: #a4c639 !important;
+  color:#fff;
+}
+.backend{
+  background: #a4d !important;
+  color:#fff;
+}
+.frontend{
+  background: #26a8fe !important;
+  color:#fff;
+}
+.design{
+  background: #feaf30 !important;
+  color:#fff;
 }
