@@ -61,5 +61,7 @@ document.getElementById('filterform').onsubmit = (e)=>{
     e.preventDefault();
     let filter = document.getElementById('filter').value.toLowerCase();
 
-    const newRanks = ranks.filter(obj =>)
+    const newRanks = ranks.filter(obj => obj.track == filter)
+
+    updateRankings(newRanks);
 }
