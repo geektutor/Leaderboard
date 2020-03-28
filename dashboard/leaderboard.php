@@ -106,6 +106,7 @@
         $('div.one .pic').css({"background-image": `url(https://robohash.org/${trim(first.nickname+first.track)})`});
         $('div.one .track').text(first.track);
         $('div.one .score').text(first.score);
+        $('div.one').addClass(first.track);
 
         //update second Position
         var second = ranks[1];
@@ -113,6 +114,7 @@
         $('div.two .pic').css({"background-image": `url(https://robohash.org/${trim(second.nickname+second.track)})`});
         $('div.two .track').text(second.track);
         $('div.two .score').text(second.score);
+        $('div.two').addClass(second.track);
 
         //update third position
         var third = ranks[2];
@@ -120,19 +122,19 @@
         $('div.three .pic').css({"background-image": `url(https://robohash.org/${trim(third.nickname+third.track)})`});
         $('div.three .track').text(third.track);
         $('div.three .score').text(third.score);
+        $('div.three').addClass(third.track);
 
         //update the rest
         var starter = 4
         for (let i = 3; i < ranks.length; i++) {
           var markup =`
-          <div class="item">
+          <div class="item ${ranks[i].track}">
               <div class="pos">
                 ${starter}
               </div>
               <div class="pic" style="background-image: url(https://robohash.org/${trim(ranks[i].nickname+ranks[i].track)})"></div>
               <div class="name">
                 ${ranks[i].nickname}
-                <span class='track'>${ranks[i].track}</span class='track'>
               </div>
               <div class="score">
                 ${ranks[i].score}

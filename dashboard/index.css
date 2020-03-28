@@ -99,11 +99,9 @@ body, html {
   display: flex;
   -webkit-box-align: center;
           align-items: center;
-  background: white;
   height: 3rem;
   border-radius: 4rem;
   margin-bottom: 2rem;
-  background: #EAA786;
   -webkit-transform-origin: left;
           transform-origin: left;
   cursor: pointer;
@@ -160,4 +158,23 @@ body, html {
 .others .track{
   position: absolute;
   left: 50%;
+}
+
+.python{
+  background: #333 !important;
+}
+.ui{
+  background: #fe413c !important;
+}
+.android{
+  background: #a4c639 !important;
+}
+.backend{
+  background: #a4d !important;
+}
+.frontend{
+  background: #26a8fe !important;
+}
+.design{
+  background: #feaf30 !important;
 }
