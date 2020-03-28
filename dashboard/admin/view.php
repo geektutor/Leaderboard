@@ -39,7 +39,7 @@ if(isset( $_SESSION['login_user'])){
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                         <a class="dropdown-item" href="#">Settings</a><a class="dropdown-item" href="#">Activity Log</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="login.html">Logout</a>
+                        <a class="dropdown-item" href="../../logout.php">Logout</a>
                     </div>
                 </li>
             </ul>
@@ -68,6 +68,7 @@ if(isset( $_SESSION['login_user'])){
                             <div class="card-header"><i class="fas fa-table mr-1"></i>View A Submission</div>
                             <div class="card-body">
                             <?php
+                            $error = "";
                                 if($count > 0){
                                     while($row = $result->fetch_assoc()) {
 
@@ -87,13 +88,14 @@ if(isset( $_SESSION['login_user'])){
                                             $sql = "UPDATE user SET score = '$newPoint' WHERE email = '$u'";
                                             $result = mysqli_query($conn, $sql);
                                             if($result){
-                                                header("location: view.php?id=$id");
+                                                $error = "Submitted Successfully";
+                                                header('location:./index.php?message=success');
                                             }else{
-                                                die("Could not update user");
+                                               $error = "Could not update user";
                                             }
 
                                         } else {
-                                            die("Could not update sub");
+                                            $error = "Could not update sub";
 
                                         }
                                     }
@@ -102,9 +104,9 @@ if(isset( $_SESSION['login_user'])){
                                 <form method="POST">
                                     <div class="form-group">
                                     <label for="Url">Url: </label> <span class="alert alert-primary"><a href="<?= $row['url'];?>" target="_blank"><?= $row['url'];?></a></span> 
-                                    <br><br>
+                                    <br><br><br>
                                     <label for="comments">Comment: </label> <span class="alert alert-primary"><?= $row['comments'];?></span>
-                                    <br><label for="point">Point</label>
+                                    <br><br><label for="point">Point</label> <br>
                                     <input type="number" name="point" class="form-control" id="point" placeholder="Enter Point for This Submissions" value="<?= $row['points'];?>">
                                     <input type="text" name="user" class="form-control" id="user" value="<?= $row['user'];?>" hidden>
                                     <small id="emailHelp" class="form-text text-muted">Enter Points for This Submission</small>

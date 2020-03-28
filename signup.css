@@ -19,9 +19,15 @@ body {
   padding: 50px 100px;
   border: 2px solid black;
   box-shadow: 15px 15px 1px #ffa580, 15px 15px 1px 2px black;
+  position: relative;
 }
-
-input {
+.msg{
+  position: absolute !important;
+  top: 0;
+  left:0;
+  width: 100%;
+}
+input, select {
   display: block;
   width: 100%;
   font-size: 14pt;
@@ -37,7 +43,7 @@ input {
   color: black;
 }
 
-input:focus {
+input:focus, select:focus {
   border-bottom: 5px solid #ffa580;
 }
 

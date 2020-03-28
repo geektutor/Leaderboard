@@ -1,7 +1,8 @@
 <?php
 require('../../config/connect.php');
 require('../../config/session.php');
-if(isset( $_SESSION['login_user'])){
+if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,7 +20,7 @@ if(isset( $_SESSION['login_user'])){
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <a class="navbar-brand" href="index.html">30DaysOfCode.xyz</a><button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button
-            ><!-- Navbar Search-->
+            ><!-- Navbar Search-=
             <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
                 <div class="input-group">
                     <input class="form-control" type="text" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
@@ -35,7 +36,7 @@ if(isset( $_SESSION['login_user'])){
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                         <a class="dropdown-item" href="#">Settings</a><a class="dropdown-item" href="#">Activity Log</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="login.html">Logout</a>
+                        <a class="dropdown-item" href="../../logout.php">Logout</a>
                     </div>
                 </li>
             </ul>
@@ -62,7 +63,7 @@ if(isset( $_SESSION['login_user'])){
                         <h1 class="mt-4">Dashboard</h1>
                        <!-- <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">Dashboard</li>
-                        </ol>-->
+                        </ol>
                         <div class="row">
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-primary text-white mb-4">
@@ -100,7 +101,7 @@ if(isset( $_SESSION['login_user'])){
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>-->
                         <div class="card mb-4">
                             <div class="card-header"><i class="fas fa-table mr-1"></i>Submissions</div>
                             <div class="card-body">
@@ -111,12 +112,19 @@ if(isset( $_SESSION['login_user'])){
                                     
                                 ?>
                                 <div class="table-responsive">
+                                    <?php
+                                        if ($_GET['message'] == 'success') {
+                                            echo "<div id='success' class='alert alert-success'>Score has been assigned successfully</div>";
+                                        }
+                                    ?>
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
                                                 <th>S/N</th>
                                                 <th>user</th>
                                                 <th>Url</th>
+                                                <th>Track</th>
+                                                <th>Submission for Day</th>
                                                 <th>Date</th>                                            
                                                 <th>Points</th>
                                             </tr>
@@ -126,6 +134,8 @@ if(isset( $_SESSION['login_user'])){
                                                 <th>S/N</th>
                                                 <th>user</th>
                                                 <th>Url</th>
+                                                <th>Track</th>
+                                                <th>Submission for Day</th>
                                                 <th>Date</th>                                            
                                                 <th>Points</th>                                            
                                             </tr>
@@ -140,6 +150,8 @@ if(isset( $_SESSION['login_user'])){
                                                 <td><?=$j?></td>
                                                 <td><a href="view.php?id=<?= $row['id'];?>"><?= $row['user'];?></a></td>
                                                 <td><?= $row['url'];?></td>
+                                                <td><?= $row['track'];?></td>
+                                                <td><?= $row['task_day'];?></td>
                                                 <td><?= $row['sub_date'];?></td>
                                                 <td><?= $row['points'];?></td>
                                             </tr>
@@ -176,6 +188,11 @@ if(isset( $_SESSION['login_user'])){
         <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
         <script src="../assets/demo/datatables-demo.js"></script>
+        <script>
+            setTimeout(() => {
+                $('#success').hide(1000);
+            }, 2000);
+        </script>
     </body>
 </html>
 <?php

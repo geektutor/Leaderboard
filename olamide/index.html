@@ -1,41 +1,51 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<meta charset="UTF-8">
 	<title>30 Days of code</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-	<ul class="nav">
-	  <li class="nav-item">
-	    <a class="navbar-brand active" href="#">30DaysOfCode</a>
-	  </li>
-	  <li class="nav-item">
-	    <a class="nav-link" href="#">Task</a>
-	  </li>
-	  <li class="nav-item">
-	    <a class="nav-link" href="#">About</a>
-	  </li>
-	</ul>
+	<!--<div class="topnav" id="myTopnav">
+		<a class="active" href="#">30DaysOfCode</a>
+		<div class="topnav-right">
+			<a class="nav-link" href="http://30DaysOfCode.xyz/task">Task</a>
+			<a class="nav-link" href="#">About</a>
+		</div>
+	</div>-->
 	<div class="container">
 		<h1 class="text-center text-danger mt-5">30DaysOfCode</h1>
 		<form>
 			<div class="form-group">
-		    <label for="exampleInputName1">Name</label>
-		    <input type="text" class="form-control" id="exampleInputName1">
-		  </div>
-		  <div class="form-group">
-		    <label for="exampleInputEmail1">Email address</label>
-		    <input type="email" class="form-control" id="exampleInputEmail1">
-		  </div>
-		  <div class="form-group">
-		    <label for="exampleInputPassword1">Password</label>
-		    <input type="password" class="form-control" id="exampleInputPassword1">
-		  </div>
-		  <button type="submit" class="btn btn-block bg-warning">SIGN UP</button>
-		  <p class="text-center">Already a user? <a href="login.html">Login here</a></p>
+				<input name="nick" placeholder="Nickname" required="" type="text" />
+			</div>
+			<div class="form-group">
+				<input name="email" placeholder="Email" type="email" />
+			</div>
+			<div class="form-group">
+				<input placeholder="Password" required="" name="password" type="password" />
+			</div>
+			<div class="form-group">
+				<input name="phone" placeholder="Phone" type="tel" />
+			</div>
+			<div class="form-group">
+				<select name="track" id="track">
+					<option value="">Track</option>
+					<option value="python">Python</option>
+					<option value="frontend">Front End</option>
+					<option value="backend">Back End</option>
+					<option value="uiux">UI/UX</option>
+					<option value="engineeringdesign">Engineering Design</option>
+					<option value="mobile">Mobile Development</option>
+				</select>
+			</div>
+			<button type="submit" class="but">SIGN UP</button>
+			<p class="text-center">Already a user? <a href="login.html">Login here</a></p>
 		</form>
 	</div>
 </body>

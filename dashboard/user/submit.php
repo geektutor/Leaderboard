@@ -2,6 +2,12 @@
 require('../../config/connect.php');
 require('../../config/session.php');
 if(isset( $_SESSION['login_user'])){
+    $tt = $_SESSION['login_user'];
+    $sql = "SELECT track FROM user WHERE email = '$tt'";
+    $result = mysqli_query($conn, $sql);
+    $row =mysqli_fetch_assoc($result);
+    $track = $row['track'];
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,6 +56,53 @@ if(isset( $_SESSION['login_user'])){
                                 ><div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
+                            <a class="nav-link" href="submit.php"
+                                ><div class="sb-nav-link-icon"><i class="fas fa-submit"></i></div>
+                                Submit
+                            </a>
+                            <div class="sb-sidenav-menu-heading"></div>
+
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                            aria-expanded="false" aria-controls="collapsePages">
+                            <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                            All Tasks
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapsePages" aria-labelledby="headingTwo"
+                            data-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                                <a class="nav-link active" href="day0.html">Day o</a>
+                                <a class="nav-link active" href="day1.html">Day 1</a>
+                                <a class="nav-link active" href="day2.html">Day 2</a>
+                                <a class="nav-link collapsed" href="day3.html">Day 3</a>
+                                <a class="nav-link collapsed" href="day4.html">Day 4</a>
+                                <a class="nav-link collapsed" href="day5.html">Day 5</a>
+                                <a class="nav-link collapsed" href="#">Day 6</a>
+                                <a class="nav-link collapsed" href="#">Day 7</a>
+                                <a class="nav-link collapsed" href="#">Day 8</a>
+                                <a class="nav-link collapsed" href="#">Day 9</a>
+                                <a class="nav-link collapsed" href="#">Day 10</a>
+                                <a class="nav-link collapsed" href="#">Day 11</a>
+                                <a class="nav-link collapsed" href="#">Day 12</a>
+                                <a class="nav-link collapsed" href="#">Day 13</a>
+                                <a class="nav-link collapsed" href="#">Day 14</a>
+                                <a class="nav-link collapsed" href="#">Day 15</a>
+                                <a class="nav-link collapsed" href="#">Day 16</a>
+                                <a class="nav-link collapsed" href="#">Day 17</a>
+                                <a class="nav-link collapsed" href="#">Day 18</a>
+                                <a class="nav-link collapsed" href="#">Day 19</a>
+                                <a class="nav-link collapsed" href="#">Day 20</a>
+                                <a class="nav-link collapsed" href="#">Day 21</a>
+                                <a class="nav-link collapsed" href="#">Day 22</a>
+                                <a class="nav-link collapsed" href="#">Day 23</a>
+                                <a class="nav-link collapsed" href="#">Day 24</a>
+                                <a class="nav-link collapsed" href="#">Day 25</a>
+                                <a class="nav-link collapsed" href="#">Day 26</a>
+                                <a class="nav-link collapsed" href="#">Day 27</a>
+                                <a class="nav-link collapsed" href="#">Day 28</a>
+                                <a class="nav-link collapsed" href="#">Day 29</a>
+                            </nav>
+                            </div>
                            
                     <div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>
@@ -69,28 +122,31 @@ if(isset( $_SESSION['login_user'])){
                             <div class="card-header"><i class="fas fa-table mr-1"></i>Make a New Submission</div>
                             <div class="card-body">
                                 <?php
-                                    function check(){	
-                                        global $conn;
-                                        $date = date('Y-m-d');
-                                        $queryURL = "SELECT sub_date FROM submissions WHERE user = '".$_SESSION['login_user']."' AND sub_date = '$date'";
-                                        $resultURL = mysqli_query($conn, $queryURL);
-                                        $countURL = mysqli_num_rows($resultURL);
-                                        if ($countURL > 0) {
-                                            return 1;
-                                        }else{
-                                            return 0;
-                                        }
+                                $error = "";
+                                function check(){	
+                                    global $conn;
+                                    $task_day = mysqli_real_escape_string($conn, $_POST['task_day']);
+                                    $queryURL = "SELECT task_day FROM submissions WHERE user = '".$_SESSION['login_user']."' AND task_day = '$task_day'";
+                                    $resultURL = mysqli_query($conn, $queryURL);
+                                    $countURL = mysqli_num_rows($resultURL);
+                                    if ($countURL > 0) {
+                                        return 1;
+                                    }else{
+                                        return 0;
                                     }
+                                }
                                     if(isset($_POST['submit'])){
                                         $url = mysqli_real_escape_string($conn, $_POST['url']);
+                                        $task_day = mysqli_real_escape_string($conn, $_POST['task_day']);
+                                        $track = $_SESSION['user_track'];
                                         $user =  mysqli_real_escape_string($conn, $_SESSION['login_user']);
                                         $comment =  mysqli_real_escape_string($conn, $_POST['comment']);
                                         $check = check();
-                                        if($check == 0){
-                                            $sql = "INSERT INTO submissions(user, url, comments, sub_date) 
-                                                    VALUES('$user', '$url', '$comment', NOW())";
+                                        if(check() == 0){
+                                            $sql = "INSERT INTO submissions(user, track, url, task_day, comments, sub_date) 
+                                                    VALUES('$user','$track', '$url','$task_day', '$comment', NOW())";
                                             if($conn->query($sql)){
-                                                header("location:index.php");
+                                                $error = "Submitted Successfully";
                                             }else{
                                             die('could not enter data: '. $conn->error);
                                             }
@@ -99,11 +155,24 @@ if(isset( $_SESSION['login_user'])){
                                         }
                                     }
                                 ?>
+                                <?php if($error !== ''){ ?>
+                                <div class="alert alert-primary alert-dismissable">
+                                    <?= $error?>
+                                </div>
+                                <?php }?>
                                 <form method="POST">
                                     <div class="form-group">
                                       <label for="URL">URL</label>
                                       <input name="url" type="url" class="form-control" id="url" aria-describedby="emailHelp" placeholder="Enter URL" value="">
                                       <small id="emailHelp" class="form-text text-muted">Submit the url to your code. Please, add the URL to the demo in the readme</small>
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="day">Day?</label>
+                                      <select name="task_day" class="form-control" aria-describedby="emailHelp" value="">
+                                      <option value="day0">Day 0</option>
+                                      <option value="day1">Day 1</option>
+                                      <option value="day2">Day 2</option>
+                                    </select>
                                     </div>
                                     <div class="form-group">
                                       <label for="comments">Comments</label>
@@ -131,7 +200,7 @@ if(isset( $_SESSION['login_user'])){
         </div>
         <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="../js/scripts.js"></script>
+        <script src="../dist/js/scripts.js"></script>
         <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
         <script src="../assets/demo/datatables-demo.js"></script>
