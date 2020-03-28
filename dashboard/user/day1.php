@@ -1,7 +1,3 @@
-<?php
-    require('../../config/connect.php');
-    require('../../config/session.php');
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -115,9 +111,6 @@
                     <div class="card mb-4">
                         <div class="card-header"><i class="fas fa-table mr-1"></i>Day 1 Task</div>
                         <div class="card-body">
-                            <?php
-                                $sql = "SELECT * FROM task";
-                            ?>
                             <div class="alert alert-primary" role="alert">
                                 <a
                                     href="https://geektutor.github.io/Leaderboard/ecx/Day%201%20-%20FrontEnd%20-%2030DaysOfCode.pdf">Front
