@@ -57,6 +57,14 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                         <div class="small">Logged in as:</div>
                         <?=$_SESSION['login_user'];?>
                     </div>
+                    <?php
+                    if (isset($_SESSION['isSuperAdmin'])) {
+                        echo "<a class='nav-link' href='prize.php'>Gift Prize</a>";
+                    }else{
+                        return true;
+                    }
+                    ?>
+                    
                 </nav>
             </div>
             <div id="layoutSidenav_content">

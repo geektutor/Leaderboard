@@ -43,14 +43,30 @@
                             $_SESSION['user_track'] = $track['track'];
                         }
                     }
-                    if($row['isAdmin'] == 0){
-                        header("location: dashboard/user/index.php");
-                    }else{
+                    if ($row['isAdmin'] == 2) {
+                        //superAdmin priviledges
+                        $_SESSION['isAdmin'] = true;
+                        $_SESSION['isSuperAdmin'] = true;
+                        $_SESSION['track'] = $_SESSION['user_track'];
+                        $_SESSION['login_user'] = $username.'_';
+                        header("location: dashboard/admin/index.php?superadmin=true");
+                    }elseif ($row['isAdmin'] == 1) {
+                        //basic admin priviledges
                         $_SESSION['isAdmin'] = true;
                         $_SESSION['track'] = $_SESSION['user_track'];
                         $_SESSION['login_user'] = $username.'_';
                         header("location: dashboard/admin/index.php");
+                    }else {
+                        header("location: dashboard/user/index.php");
                     }
+                    // if($row['isAdmin'] == 0){
+                    //     header("location: dashboard/user/index.php");
+                    // }else{
+                    //     $_SESSION['isAdmin'] = true;
+                    //     $_SESSION['track'] = $_SESSION['user_track'];
+                    //     $_SESSION['login_user'] = $username.'_';
+                    //     header("location: dashboard/admin/index.php");
+                    // }
                 }else {
                     $error = "Your Login Name or Password is invalid";
                 }
