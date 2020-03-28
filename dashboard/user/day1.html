@@ -28,38 +28,7 @@
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading">User</div>
                         <div class="avatar">
-                            <?php
-                            global $conn;
-                            $email = $_SESSION['login_user'];
-                            $sql = "SELECT * FROM user WHERE email='$email' ";
-                            $result = mysqli_query($conn,$sql);
-                            while($row = mysqli_fetch_assoc($result)) {
-                                $user_nickname = $row['nickname'];
-                                $user_score = $row['score'];
-                                $user_track = $row['track'];
-                                echo '<center><img style=\'width:120px;height:120px;\' src=\'https://robohash.org/'.$user_nickname.$user_track.'\'/></center>';
-                                echo '<center><div>'.$user_nickname.'</div></center>';
-                                echo '<center><div>'.$user_score.'&nbsp; points</div></center>';
-                            }
-                            ?>
-                            <?php
-                            global $conn;
-                            $ranking_sql = "SELECT * FROM user WHERE `isAdmin` = '0' ORDER BY `score` DESC";
-                            $ranking_result = mysqli_query($conn,$ranking_sql);
-                            if ($ranking_result) {
-                                $rank = 1;
-                                while ($row = mysqli_fetch_assoc($ranking_result)) {
-                                    if($row['email'] == $email){
-                                        echo '<center><div> Overall ranking: '.$rank.'&nbsp;</div></center>';
-                                    }else {
-                                        $rank++;
-                                    }
-                                }
-                                
-                            }else {
-                                echo "error fetching from database";
-                            }
-                            ?>
+                        
                         </div> 
                         <a class="nav-link" href="index.php"
                             ><div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
@@ -94,11 +63,11 @@
                         <div class="collapse" id="collapsePages" aria-labelledby="headingTwo"
                             data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                <a class="nav-link active" href="day0.html">Day o</a>
+                                <a class="nav-link active" href="day0.html">Day 0</a>
                                 <a class="nav-link active" href="day1.html">Day 1</a>
                                 <a class="nav-link active" href="day2.html">Day 2</a>
                                 <a class="nav-link active" href="day3.html">Day 3</a>
-                                <a class="nav-link collapsed" href="day4.html">Day 4</a>
+                                <a class="nav-link active" href="day4.html">Day 4</a>
                                 <a class="nav-link collapsed" href="day5.html">Day 5</a>
                                 <a class="nav-link collapsed" href="#">Day 6</a>
                                 <a class="nav-link collapsed" href="#">Day 7</a>
@@ -198,5 +167,4 @@
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
     <script src="../assets/demo/datatables-demo.js"></script>
 </body>
-
 </html>
