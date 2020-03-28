@@ -1,7 +1,7 @@
  <?php
 $error = "";
     if($count > 0){
-        while($row = $result->fetch_assoc()) {
+        while($row = $result->fetch_assoc()){
 
             if (isset($_POST['submit'])) {
                 $u = $_POST['user'];
