@@ -36,7 +36,8 @@ require('config/connect.php');
                                         $sql = "SELECT url FROM task WHERE day = '$task_day' AND track = '$track'";
                                         $result = mysqli_query($conn,$sql);
                                             while($row = mysqli_fetch_assoc($result)) {
-                                                header("location:{$row['url']}");
+                                                <iframe src="<?php echo $path.$pdf; ?>" width="90%" height="500px"></iframe>
+
                                         }
                                     }
                             ?>
@@ -44,10 +45,10 @@ require('config/connect.php');
                                     <div class="form-group">
                                       <label for="day">Day?</label>
                                       <select name="task_day" class="form-control" aria-describedby="emailHelp" value="">
-                                      <option value="day0">Day 0</option>
-                                      <option value="day1">Day 1</option>
-                                      <option value="day2">Day 2</option>
-                                      <option value="day3">Day 3</option>
+                                      <option value="Day 0">Day 0</option>
+                                      <option value="Day 1">Day 1</option>
+                                      <option value="Day 2">Day 2</option>
+                                      <option value="Day 3">Day 3</option>
                                     </select>
                                     </div>
                                     <div class="form-group">

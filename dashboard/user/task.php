@@ -1,3 +1,7 @@
+<?php
+require('config/connect.php');
+// require('../../config/session.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -114,26 +118,47 @@
                 <div class="container-fluid">
                     <h1 class="mt-4">Dashboard</h1>
                     <div class="card mb-4">
-                    <div class="card-header"><i class="fas fa-table mr-1"></i>Day 0 Task</div>
+                    <div class="card-header"><i class="fas fa-table mr-1"></i>View Task</div>
                     <div class="card-body">
-                        <div class="alert alert-primary" role="alert">
-                            <a href="../../ecx/Day 0 - FrontEnd - 30DaysOfCode.pdf">Front End - Day 0</a>
-                        </div>
-                        <div class="alert alert-primary" role="alert">
-                            <a href="../../ecx/Day 0 - Backend - 30DaysOfCode.pdf">Back End - Day 0</a>
-                        </div>
-                        <div class="alert alert-primary" role="alert">
-                            <a href="../../ecx/Day 0 - UIUX - 30DaysOfCode.pdf">UI/UX - Day 0</a>
-                        </div>
-                        <div class="alert alert-primary" role="alert">
-                            <a href="../../ecx/Day 0 - Mobile - 30DaysOfCode.pdf">Mobile Development - Day 0</a>
-                        </div>
-                        <div class="alert alert-primary" role="alert">
-                            <a href="../../ecx/Day 0 - Python - 30DaysOfCode.pdf">Python - Day 0</a>
-                        </div>
-                        <div class="alert alert-primary" role="alert">
-                            <a href="../../ecx/Day 0 - Design - 30DaysOfCode.pdf">Engineering Design - Day 0</a>
-                        </div>
+                    <?php
+                                    if(isset($_POST['submit'])){
+                                        $task_day = mysqli_real_escape_string($conn, $_POST['task_day']);
+                                        $track = mysqli_real_escape_string($conn, $_POST['track']);
+                                       
+                                        $sql = "SELECT url FROM task WHERE day = '$task_day' AND track = '$track'";
+                                        $result = mysqli_query($conn,$sql);
+                                            while($row = mysqli_fetch_assoc($result)) {
+                                                <iframe src="<?php echo $path.$pdf; ?>" width="90%" height="500px"></iframe>
+
+                                        }
+                                    }
+                            ?>
+                                <form method="POST">
+                                    <div class="form-group">
+                                      <label for="day">Day?</label>
+                                      <select name="task_day" class="form-control" aria-describedby="emailHelp" value="">
+                                      <option value="Day 0">Day 0</option>
+                                      <option value="Day 1">Day 1</option>
+                                      <option value="Day 2">Day 2</option>
+                                      <option value="Day 3">Day 3</option>
+                                      <option value="Day 4">Day 4</option>
+                                      <option value="Day 5">Day 5</option>
+                                      <option value="Day 6">Day 6</option>
+                                    </select>
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="day">Track</label>
+                                      <select name="track" class="form-control" aria-describedby="emailHelp" value="">
+                                        <option value="frontend">Front End</option>
+                                        <option value="backend">Back End</option>
+                                        <option value="android">Mobile</option>
+                                        <option value="ui">UI/UX</option>
+                                        <option value="python">Python</option>
+                                        <option value="design">Engineering Design</option>
+                                    </select>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary" name="submit">View Task</button>
+                                  </form>
                     </div>
                     </div>
                 </div>
