@@ -6,7 +6,7 @@ require('../../config/connect.php');
         $task_day = mysqli_real_escape_string($conn, $_POST['task_day']);
         $track = mysqli_real_escape_string($conn, $_POST['track']);
        
-        $sql = "SELECT url FROM task WHERE day = '$task_day' AND track = '$track'";
+        $sql = "SELECT url FROM task WHERE task_day = '$task_day' AND track = '$track'";
         $result = mysqli_query($conn,$sql);
         $count = mysqli_num_rows($result);
         if($count > 0){
@@ -79,7 +79,7 @@ require('../../config/connect.php');
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                             aria-expanded="false" aria-controls="collapsePages">
                             <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                            All Tasks
+                            Download Tasks
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
                         <a class="nav-link collapsed" href="submit.php" >
@@ -158,7 +158,6 @@ require('../../config/connect.php');
     <script src="../dist/js/scripts.js"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-    <script src="../assets/demo/datatables-demo.js"></script>
 </body>
 
 </html>
