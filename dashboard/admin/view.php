@@ -80,7 +80,7 @@ if(isset( $_SESSION['login_user'])){
                                                 $feedback = "Marked";
                                             }
 
-                                        $sql = "UPDATE submissions SET points = '$point', feedback = '$feedback' WHERE id = $id";
+                                        $sql = "UPDATE submissions SET points = '$point', feedback = '$feedback' WHERE id = '$id'";
                                         $result = mysqli_query($conn, $sql);
                                         if($result){
                                             $sql = "SELECT score FROM user WHERE email = '$u'";
