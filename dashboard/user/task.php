@@ -1,6 +1,23 @@
 <?php
 require('../../config/connect.php');
 // require('../../config/session.php');
+    if(isset($_POST['submit'])){
+        $error = '';
+        $task_day = mysqli_real_escape_string($conn, $_POST['task_day']);
+        $track = mysqli_real_escape_string($conn, $_POST['track']);
+       
+        $sql = "SELECT url FROM task WHERE day = '$task_day' AND track = '$track'";
+        $result = mysqli_query($conn,$sql);
+        $count = mysqli_num_rows($result);
+        if($count > 0){
+            while($row = mysqli_fetch_assoc($result)) {
+                header("location: {$row['url']}");
+            }
+        }else{
+            $error =  "No task for the selected options";
+        }
+    }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -85,45 +102,38 @@ require('../../config/connect.php');
                     <div class="card mb-4">
                     <div class="card-header"><i class="fas fa-table mr-1"></i>View Task</div>
                     <div class="card-body">
-                    <?php
-                                    if(isset($_POST['submit'])){
-                                        $task_day = mysqli_real_escape_string($conn, $_POST['task_day']);
-                                        $track = mysqli_real_escape_string($conn, $_POST['track']);
-                                       
-                                        $sql = "SELECT url FROM task WHERE day = '$task_day' AND track = '$track'";
-                                        $result = mysqli_query($conn,$sql);
-                                            while($row = $result->fetch_assoc()) {
-                                                header("location:{$row['url']}");
-
-                                        }
-                                    }
-                            ?>
-                                <form method="POST">
-                                    <div class="form-group">
-                                      <label for="day">Day?</label>
-                                      <select name="task_day" class="form-control" aria-describedby="emailHelp" value="">
-                                      <option value="Day 0">Day 0</option>
-                                      <option value="Day 1">Day 1</option>
-                                      <option value="Day 2">Day 2</option>
-                                      <option value="Day 3">Day 3</option>
-                                      <option value="Day 4">Day 4</option>
-                                      <option value="Day 5">Day 5</option>
-                                      <option value="Day 6">Day 6</option>
-                                    </select>
-                                    </div>
-                                    <div class="form-group">
-                                      <label for="track">Track</label>
-                                      <select name="track" class="form-control" aria-describedby="emailHelp" value="">
-                                        <option value="FrontEnd">Front End</option>
-                                        <option value="Backend">Back End</option>
-                                        <option value="Mobile">Mobile</option>
-                                        <option value="UIUX">UI/UX</option>
-                                        <option value="Python">Python</option>
-                                        <option value="Design">Engineering Design</option>
-                                    </select>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary" name="submit">View Task</button>
-                                  </form>
+                    
+                     <?php if($error !== ''){ ?>
+                        <div class="alert alert-primary alert-dismissable">
+                            <?php echo $error?>
+                        </div>
+                    <?php }?>
+                    <form method="POST">
+                        <div class="form-group">
+                          <label for="day">Day?</label>
+                          <select name="task_day" class="form-control" value="">
+                          <option value="Day 0">Day 0</option>
+                          <option value="Day 1">Day 1</option>
+                          <option value="Day 2">Day 2</option>
+                          <option value="Day 3">Day 3</option>
+                          <option value="Day 4">Day 4</option>
+                          <option value="Day 5">Day 5</option>
+                          <option value="Day 6">Day 6</option>
+                        </select>
+                        </div>
+                        <div class="form-group">
+                          <label for="track">Track</label>
+                          <select name="track" class="form-control" value="">
+                            <option value="FrontEnd">Front End</option>
+                            <option value="Backend">Back End</option>
+                            <option value="Mobile">Mobile</option>
+                            <option value="UIUX">UI/UX</option>
+                            <option value="Python">Python</option>
+                            <option value="Design">Engineering Design</option>
+                        </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary" name="submit">View Task</button>
+                      </form>
                     </div>
                     </div>
                 </div>
