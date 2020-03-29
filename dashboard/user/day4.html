@@ -17,9 +17,31 @@
 
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <a class="navbar-brand" href="index.php">30DaysOfCode.xyz</a><button
+        <a class="navbar-brand" href="index.html">30DaysOfCode.xyz</a><button
             class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i
-            class="fas fa-bars"></i></button>
+                class="fas fa-bars"></i></button>
+        <!-- Navbar Search
+        <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+            <div class="input-group">
+                <input class="form-control" type="text" placeholder="Search for..." aria-label="Search"
+                    aria-describedby="basic-addon2" />
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+        </form>-->
+        <!-- Navbar
+        <ul class="navbar-nav ml-auto ml-md-0">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                    <a class="dropdown-item" href="#">Settings</a><a class="dropdown-item" href="#">Activity Log</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="login.html">Logout</a>
+                </div>
+            </li>
+        </ul>-->
     </nav>
     <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
@@ -27,30 +49,9 @@
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading">User</div>
-                        <div class="avatar">
-                        
-                        </div> 
-                        <a class="nav-link" href="index.php"
-                            ><div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                        <a class="nav-link" href="index.php">
+                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Dashboard
-                        </a>
-                        <a class="nav-link" href="https://30daysofcode.xyz/dashboard/"
-                            >
-                            <div class="sb-nav-link-icon"><i class="fas fa-plane"></i></div>
-                        Leaderboard
-                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-paper-plane"></i></div>
-                        </a>
-                        <a class="nav-link" href="https://30daysofcode.xyz/whatsapp">
-                            <div class="sb-nav-link-icon"><i class="fas fa-comments"></i></div>
-                        Support Group
-                        </a>
-                        <a class="nav-link" href=" https://twitter.com/intent/tweet?url=https%3A%2F%2F30daysofcodes.xyz&via=codon&text=Hello%2C%20I%20just%20finished%20my%20task%20for%20....&hashtags=30DaysOfCode%2C%20ECX">
-                            <div class="sb-nav-link-icon"><i class="fas fa-share"></i></div>
-                            Tweet
-                        </a>
-                        <a class="nav-link" href="submit.php">
-                            <div class="sb-nav-link-icon"><i class="fas fa-submit"></i></div>
-                            Submit
                         </a>
                         <div class="sb-sidenav-menu-heading"></div>
 
@@ -68,7 +69,7 @@
                                 <a class="nav-link active" href="day2.html">Day 2</a>
                                 <a class="nav-link active" href="day3.html">Day 3</a>
                                 <a class="nav-link active" href="day4.html">Day 4</a>
-                                <a class="nav-link collapsed" href="day5.html">Day 5</a>
+                                <a class="nav-link collapsed" href="#">Day 5</a>
                                 <a class="nav-link collapsed" href="#">Day 6</a>
                                 <a class="nav-link collapsed" href="#">Day 7</a>
                                 <a class="nav-link collapsed" href="#">Day 8</a>
@@ -94,13 +95,18 @@
                                 <a class="nav-link collapsed" href="#">Day 28</a>
                                 <a class="nav-link collapsed" href="#">Day 29</a>
                             </nav>
-                        </div> 
-                        <div class="sb-sidenav-footer">
-                            <div class="small">Logged in as:</div>
-                           <?php echo $_SESSION['login_user'];?>
                         </div>
+                        <a class="nav-link collapsed" href="submit.php" >
+                            <div class="sb-nav-link-icon"><i class="fas fa-book-close"></i></div>
+                            Submit Tasks
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
                     </div>
                 </div>
+               <!-- <div class="sb-sidenav-footer">
+                    <div class="small">Logged in as:</div>
+                    Geektutor
+                </div>-->
             </nav>
         </div>
         <div id="layoutSidenav_content">
@@ -109,37 +115,37 @@
                     <h1 class="mt-4">Dashboard</h1>
 
                     <div class="card mb-4">
-                        <div class="card-header"><i class="fas fa-table mr-1"></i>Day 1 Task</div>
+                        <div class="card-header"><i class="fas fa-table mr-1"></i>Day 4 Task</div>
                         <div class="card-body">
                             <div class="alert alert-primary" role="alert">
                                 <a
-                                    href="https://geektutor.github.io/Leaderboard/ecx/Day%201%20-%20FrontEnd%20-%2030DaysOfCode.pdf">Front
-                                    End - Day 1</a>
+                                    href="https://github.com/geektutor/Leaderboard/raw/ecx/ecx/Day%204%20-%20FrontEnd%20-%2030DaysOfCode.pdf">Front
+                                    End - Day 4</a>
                             </div>
                             <div class="alert alert-primary" role="alert">
                                 <a
-                                    href="https://geektutor.github.io/Leaderboard/ecx/Day%201%20-%20Backend%20-%2030DaysOfCode.pdf">Back
-                                    End - Day 1</a>
+                                    href="https://github.com/geektutor/Leaderboard/raw/ecx/ecx/Day%204%20-%20Backend%20-%2030DaysOfCode.pdf">Back
+                                    End - Day 4</a>
                             </div>
                             <div class="alert alert-primary" role="alert">
                                 <a
-                                    href="https://geektutor.github.io/Leaderboard/ecx/Day%201%20-%20UIUX%20-%2030DaysOfCode.pdf">UI/UX
-                                    - Day 1</a>
+                                    href="https://github.com/geektutor/Leaderboard/raw/ecx/ecx/Day%204%20-%20UIUX%20-%2030DaysOfCode.pdf">UI/UX
+                                    - Day 4</a>
                             </div>
                             <div class="alert alert-primary" role="alert">
                                 <a
-                                    href="https://geektutor.github.io/Leaderboard/ecx/Day%201%20-%20Mobile%20-%2030DaysOfCode.pdf">Mobile
-                                    Development - Day 1</a>
+                                    href="https://github.com/geektutor/Leaderboard/raw/ecx/ecx/Day%204%20-%20Mobile%20-%2030DaysOfCode.pdf">Mobile
+                                    Development - Day 4</a>
                             </div>
                             <div class="alert alert-primary" role="alert">
                                 <a
-                                    href="https://geektutor.github.io/Leaderboard/ecx/Day%201%20-%20Python%20-%2030DaysOfCode.pdf">Python
-                                    - Day 1</a>
+                                    href="https://github.com/geektutor/Leaderboard/raw/ecx/ecx/Day%204%20-%20Python%20-%2030DaysOfCode.pdf">Python
+                                    - Day 4</a>
                             </div>
                             <div class="alert alert-primary" role="alert">
                                 <a
-                                    href="https://geektutor.github.io/Leaderboard/ecx/Day%201%20-%20Design%20-%2030DaysOfCode.pdf">Engineering
-                                    Design - Day 1</a>
+                                    href="https://github.com/geektutor/Leaderboard/raw/ecx/ecx/Day%204%20-%20Design%20-%2030DaysOfCode.pdf">Engineering
+                                    Design - Day 4</a>
                             </div>
                         </div>
                     </div>
@@ -165,6 +171,6 @@
     <script src="../dist/js/scripts.js"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-    <script src="../assets/demo/datatables-demo.js"></script>
 </body>
+
 </html>

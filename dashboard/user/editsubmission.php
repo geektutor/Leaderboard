@@ -1,13 +1,33 @@
 <?php
 require('../../config/connect.php');
-require('../../config/session.php');
-if(isset( $_SESSION['login_user'])){
-    $tt = $_SESSION['login_user'];
-    $sql = "SELECT track FROM user WHERE email = '$tt'";
-    $result = mysqli_query($conn, $sql);
-    $row =mysqli_fetch_assoc($result);
-    $track = $row['track'];
-
+session_start();
+if (!isset($_SESSION['login_user']) || empty($_SESSION['login_user'])) {
+    
+?>
+ <script>
+    document.write('You must be logged in first, redirecting to login page ...');
+    setTimeout(() => {
+        window.location.href = "../../login.php"
+    }, 3000);
+ </script>
+<?php
+}else{
+    $email = $_GET['user'];
+    $day = $_GET['day'];
+    if (isset($_POST['submit'])) {
+        global $conn;
+        $url = mysqli_real_escape_string($conn, $_POST['url']);
+        $comment =  mysqli_real_escape_string($conn, $_POST['comment']);
+        //$editSql = "UPDATE submissions SET `url`='$url' AND `comments`='$comment' WHERE `user` = '$email' AND `task_day`='$day'";
+        //$find_sql= "SELECT * FROM submisions WHERE 'user' = '$email'";
+        $edit_sql = "UPDATE submissions SET `url`='$url',comments = '$comment' WHERE user = '$email' AND task_day = '$day'";
+        $result = mysqli_query($conn,$edit_sql);
+        if ($result) {
+            header('location: index.php?editSubmissionReport=success');
+        }else {
+            header('location: index.php?editSubmissionReport=failed');;
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -65,12 +85,8 @@ if(isset( $_SESSION['login_user'])){
                                 <div class="sb-nav-link-icon"><i class="fas fa-comments"></i></div>
                             Support Group
                             </a>
-                            <a class="nav-link" href=" https://twitter.com/intent/tweet?url=https%3A%2F%2F30daysofcodes.xyz&via=codon&text=Hello%2C%20I%20just%20finished%20my%20task%20for%20....&hashtags=30DaysOfCode%2C%20ECX">
-                                <div class="sb-nav-link-icon"><i class="fas fa-share"></i></div>
-                                Tweet
-                            </a>
                             <a class="nav-link" href="submit.php"
-                                ><div class="sb-nav-link-icon"><i class="fas fa-paper-plane"></i></div>
+                                ><div class="sb-nav-link-icon"><i class="fas fa-submit"></i></div>
                                 Submit
                             </a>
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
@@ -82,7 +98,7 @@ if(isset( $_SESSION['login_user'])){
                         <div class="collapse" id="collapsePages" aria-labelledby="headingTwo"
                             data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                <a class="nav-link active" href="day0.html">Day 0</a>
+                                <a class="nav-link active" href="day0.html">Day o</a>
                                 <a class="nav-link active" href="day1.html">Day 1</a>
                                 <a class="nav-link active" href="day2.html">Day 2</a>
                                 <a class="nav-link active" href="day3.html">Day 3</a>
@@ -130,71 +146,18 @@ if(isset( $_SESSION['login_user'])){
                         </ol>-->
                         
                         <div class="card mb-4">
-                            <div class="card-header"><i class="fas fa-table mr-1"></i>Make a New Submission</div>
+                            <div class="card-header"><i class="fas fa-table mr-1"></i>Edit Submission for <?php echo $day;?></div>
                             <div class="card-body">
-                                <?php
-                                $error = "";
-                                function check(){	
-                                    global $conn;
-                                    $task_day = mysqli_real_escape_string($conn, $_POST['task_day']);
-                                    $queryURL = "SELECT task_day FROM submissions WHERE user = '".$_SESSION['login_user']."' AND task_day = '$task_day'";
-                                    $resultURL = mysqli_query($conn, $queryURL);
-                                    $countURL = mysqli_num_rows($resultURL);
-                                    if ($countURL > 0) {
-                                        return 1;
-                                    }else{
-                                        return 0;
-                                    }
-                                }
-                                    if(isset($_POST['submit'])){
-                                        $url = mysqli_real_escape_string($conn, $_POST['url']);
-                                        $task_day = mysqli_real_escape_string($conn, $_POST['task_day']);
-                                        $track = $_SESSION['user_track'];
-                                        $user =  mysqli_real_escape_string($conn, $_SESSION['login_user']);
-                                        $comment =  mysqli_real_escape_string($conn, $_POST['comment']);
-                                        $check = check();
-                                        if(check() == 0){
-                                            $sql = "INSERT INTO submissions(user, track, url, task_day, comments, sub_date) 
-                                                    VALUES('$user','$track', '$url','$task_day', '$comment', NOW())";
-                                            if($conn->query($sql)){
-                                                $error = "Submitted Successfully";
-                                                $submit = 1;
-                                            }else{
-                                            die('could not enter data: '. $conn->error);
-                                            }
-                                        }else{
-                                            $error = "You've submitted already, wait for tomorrow's challenge";
-                                            $submit = 0;
-                                        }
-                                    }
-                                ?>
-                                <?php if($error !== ''){ ?>
-                                <div class="alert alert-primary alert-dismissable">
-                                    <?php 
-                                        echo $error;
-                                        if($submit == 1){
-                                    ?>
-                                    <p>Tweet about this:</p>
-                                    <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2F30daysofcode.xyz%2F&via=ecxunilag&text=<?php echo $task_day;?>%20of%2030%3A%20Check%20out%20my%20solution%20at%3A%20<?php echo $url;?>&hashtags=30DaysOfCode%2C%2030DaysOfDesign%2C%20ecxunilag">
-                                        <button class="btn btn-primary"><i class="fas fa-twitter"></i> Tweet</button>
-                                    </a>
-                                    <?php }?>
-                                </div>
-                                <?php }?>
                                 <form method="POST">
                                     <div class="form-group">
                                       <label for="URL">URL</label>
-                                      <input name="url" type="url" class="form-control" id="url" aria-describedby="emailHelp" placeholder="Enter URL" value="" required>
+                                      <input name="url" type="url" class="form-control" id="url" aria-describedby="emailHelp" placeholder="Enter New URL" value="" required>
                                       <small id="emailHelp" class="form-text text-muted">Python - Repl.it Url, Backend - Github repo Url, Frontend - Github repo Url(put link to your Github Pages in the readme), UI/UX - Figma/Adobe XD Url, Engineering Design - Google Drive Url</small>
                                     </div>
                                     <div class="form-group">
                                       <label for="day">Day?</label>
                                       <select name="task_day" class="form-control" aria-describedby="emailHelp" value="">
-                                      <option value="Day 0">Day 0</option>
-                                      <option value="Day 1">Day 1</option>
-                                      <option value="Day 2">Day 2</option>
-                                      <option value="Day 3">Day 3</option>
-                                      <option value="Day 4">Day 4</option>
+                                      <option value=""><?php echo $day;?></option>
                                     </select>
                                     </div>
                                     <div class="form-group">
@@ -229,7 +192,5 @@ if(isset( $_SESSION['login_user'])){
     </body>
 </html>
 <?php
-}else{
-    header("location:../../login.php"); 
 }
 ?>

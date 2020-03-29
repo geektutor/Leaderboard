@@ -1,5 +1,4 @@
 <?php
-
   $userRanking = [];
   function getUSerRankings($fetched_array)
   {
@@ -20,7 +19,7 @@
     }
 
     //fetch user ranking
-    $sql = "SELECT * FROM user WHERE `isAdmin` = 0 ORDER BY `score` DESC LIMIT 20";
+    $sql = "SELECT * FROM user WHERE `isAdmin` = 0 ORDER BY `score` DESC";
     $result = mysqli_query($conn,$sql);
     if (mysqli_num_rows($result) > 0) {
       while ($row = mysqli_fetch_assoc($result)) {
@@ -37,12 +36,11 @@
   }
   getUSerRankings($userRanking);
  ?>
-
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="../index.css">
-        <title>Leaderboard - 30 Days Of Code</title>
+        <link rel="stylesheet" href="./index.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     </head>
     <body>
       <div class="center">
@@ -55,6 +53,7 @@
             <div class="name">
               Ifihan Olusheye
             </div>
+            <div class="track">empty</div>
             <div class="score">
               30
             </div>
@@ -67,6 +66,7 @@
             <div class="name">
               Geektutor
             </div>
+            <div class="track"></div>
             <div class="score">
               10
             </div>
@@ -79,64 +79,29 @@
             <div class="name">
               Akin Aguda
             </div>
+            <div class="track"></div>
             <div class="score">
               50
             </div>
           </div>
         </div>
-          <div class="list">
+          <div class="list others">
           </div>
         </div>
-
-      <script src="../dashboard/scripts/jquery-2.2.3.min.js"></script>
-      <script>
-      $.ajax({
-        url : "./results.json",
-        success : function(result) {
-          //result);
-          updateRankings(result);
-        },
-      })
-      function updateRankings(ranks) {
-        //update first position
-        var first = ranks[0];
-        $('div.one .name').text(first.nickname);
-        $('div.one .pic').css({"background-image": `url(https://robohash.org/${first.nickname+first.track})`});
-        $('div.one .score').text(first.score);
-
-        //update second Position
-        var second = ranks[1];
-        $('div.two .name').text(second.nickname);
-        $('div.two .pic').css({"background-image": `url(https://robohash.org/${second.nickname+second.track})`});
-        $('div.two .score').text(second.score);
-
-        //update third position
-        var third = ranks[2];
-        $('div.three .name').text(third.nickname);
-        $('div.three .pic').css({"background-image": `url(https://robohash.org/${third.nickname+third.track})`});
-        $('div.three .score').text(third.score);
-
-        //update the rest
-        var starter = 4
-        for (let i = 3; i < ranks.length; i++) {
-          var markup =`
-          <div class="item">
-              <div class="pos">
-                ${starter}
-              </div>
-              <div class="pic" style="background-image: url(https://robohash.org/${ranks[i].nickname+ranks[i].track})"></div>
-              <div class="name">
-                ${ranks[i].nickname}
-              </div>
-              <div class="score">
-                ${ranks[i].score}
-              </div>
-            </div>`;
-          $('div.list').append(markup);
-          starter++
-        }
-      }
-
-      </script>
+      <div class="filter">
+        <form id="filterform">
+          <select name="" id="filter">
+            <option value="Overall Rankings">Overall Rankings</option>
+            <option value="Frontend">Frontend</option>
+            <option value="Backend">Backend</option>
+            <option value="Design">Design</option>
+            <option value="UI/UX">UI/UX</option>
+            <option value="Python">Python</option>
+            <option value="Android">Android</option>
+          </select>
+          <button type="submit">Filter</button>
+        </form>
+      </div>
+      <script src="leaderboard.js"></script>
     </body>
 </html>

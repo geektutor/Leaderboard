@@ -18,8 +18,8 @@ if(isset( $_SESSION['login_user'])){
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            <a class="navbar-brand" href="index.html">30DaysOfCode.xyz</a><button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button
-            ><!-- Navbar Search
+           <a class="navbar-brand" href="index.php">30DaysOfCode.xyz</a><button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
+           <!-- Navbar Search
             <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
                 <div class="input-group">
                     <input class="form-control" type="text" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
@@ -28,7 +28,7 @@ if(isset( $_SESSION['login_user'])){
                     </div>
                 </div>
             </form>
-            <!-- Navbar-
+            <!- Navbar-->
             <ul class="navbar-nav ml-auto ml-md-0">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
@@ -38,7 +38,7 @@ if(isset( $_SESSION['login_user'])){
                         <a class="dropdown-item" href="../../logout.php">Logout</a>
                     </div>
                 </li>
-            </ul>-->
+            </ul>
         </nav>
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
@@ -61,68 +61,118 @@ if(isset( $_SESSION['login_user'])){
                                     echo '<center><div>'.$user_score.'&nbsp; points</div></center>';
                                 }
                                 ?>
+                                <?php
+                                global $conn;
+                                $ranking_sql = "SELECT * FROM user WHERE `isAdmin` = '0' ORDER BY `score` DESC";
+                                $ranking_result = mysqli_query($conn,$ranking_sql);
+                                if ($ranking_result) {
+                                    $rank = 1;
+                                    while ($row = mysqli_fetch_assoc($ranking_result)) {
+                                        if($row['email'] == $email){
+                                            echo '<center><div> Overall ranking: '.$rank.'&nbsp;</div></center>';
+                                        }else {
+                                            $rank++;
+                                        }
+                                    }
+                                    
+                                }else {
+                                    echo "error fetching from database";
+                                }
+                                ?>
                             </div> 
                             <a class="nav-link" href="index.php"
                                 ><div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
-                            <a class="nav-link" href="submit.php"
-                                ><div class="sb-nav-link-icon"><i class="fas fa-submit"></i></div>
+                            <a class="nav-link" href="https://30daysofcode.xyz/dashboard/"
+                                >
+                                <div class="sb-nav-link-icon"><i class="fas fa-plane"></i></div>
+                            Leaderboard
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-paper-plane"></i></div>
+                            </a>
+                            <a class="nav-link" href="https://30daysofcode.xyz/whatsapp">
+                                <div class="sb-nav-link-icon"><i class="fas fa-comments"></i></div>
+                            Support Group
+                            </a>
+                            <a class="nav-link" href="https://twitter.com/intent/tweet?url=https%3A%2F%2F30daysofcode.xyz%2F&via=ecxunilag&text=Hi%2C%20i%20currently%20have%20<?php echo $user_score;?>%20points%20and%20my%20ranking%20is%20<?php echo $rank;?>&hashtags=30DaysOfCode%2C%2030DaysOfDesign%2C%20ecxunilag">
+                                <div class="sb-nav-link-icon"><i class="fas fa-share"></i></div>
+                                Tweet
+                            </a>
+                            <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2F30daysofcode.xyz%2F&via=ecxunilag&text=Hi%2C%20i%20currently%20have%20THIS%20points%20and%20my%20ranking%20is%20this&hashtags=30DaysOfCode%2C%2030DaysOfDesign%2C%20ecxunilag"></a>
+                            <a class="nav-link" href="submit.php">
+                                <div class="sb-nav-link-icon"><i class="fas fa-submit"></i></div>
                                 Submit
                             </a>
                             <div class="sb-sidenav-menu-heading"></div>
 
-                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                            aria-expanded="false" aria-controls="collapsePages">
-                            <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                            All Tasks
-                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                        </a>
-                        <div class="collapse" id="collapsePages" aria-labelledby="headingTwo"
-                            data-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                <a class="nav-link active" href="day0.html">Day o</a>
-                                <a class="nav-link active" href="day1.html">Day 1</a>
-                                <a class="nav-link active" href="day2.html">Day 2</a>
-                                <a class="nav-link collapsed" href="day3.html">Day 3</a>
-                                <a class="nav-link collapsed" href="day4.html">Day 4</a>
-                                <a class="nav-link collapsed" href="day5.html">Day 5</a>
-                                <a class="nav-link collapsed" href="#">Day 6</a>
-                                <a class="nav-link collapsed" href="#">Day 7</a>
-                                <a class="nav-link collapsed" href="#">Day 8</a>
-                                <a class="nav-link collapsed" href="#">Day 9</a>
-                                <a class="nav-link collapsed" href="#">Day 10</a>
-                                <a class="nav-link collapsed" href="#">Day 11</a>
-                                <a class="nav-link collapsed" href="#">Day 12</a>
-                                <a class="nav-link collapsed" href="#">Day 13</a>
-                                <a class="nav-link collapsed" href="#">Day 14</a>
-                                <a class="nav-link collapsed" href="#">Day 15</a>
-                                <a class="nav-link collapsed" href="#">Day 16</a>
-                                <a class="nav-link collapsed" href="#">Day 17</a>
-                                <a class="nav-link collapsed" href="#">Day 18</a>
-                                <a class="nav-link collapsed" href="#">Day 19</a>
-                                <a class="nav-link collapsed" href="#">Day 20</a>
-                                <a class="nav-link collapsed" href="#">Day 21</a>
-                                <a class="nav-link collapsed" href="#">Day 22</a>
-                                <a class="nav-link collapsed" href="#">Day 23</a>
-                                <a class="nav-link collapsed" href="#">Day 24</a>
-                                <a class="nav-link collapsed" href="#">Day 25</a>
-                                <a class="nav-link collapsed" href="#">Day 26</a>
-                                <a class="nav-link collapsed" href="#">Day 27</a>
-                                <a class="nav-link collapsed" href="#">Day 28</a>
-                                <a class="nav-link collapsed" href="#">Day 29</a>
-                            </nav>
+                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                                aria-expanded="false" aria-controls="collapsePages">
+                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                                All Tasks
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapsePages" aria-labelledby="headingTwo"
+                                data-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                                    <a class="nav-link active" href="day0.html">Day o</a>
+                                    <a class="nav-link active" href="day1.html">Day 1</a>
+                                    <a class="nav-link active" href="day2.html">Day 2</a>
+                                    <a class="nav-link active" href="day3.html">Day 3</a>
+                                    <a class="nav-link collapsed" href="day4.html">Day 4</a>
+                                    <a class="nav-link collapsed" href="day5.html">Day 5</a>
+                                    <a class="nav-link collapsed" href="#">Day 6</a>
+                                    <a class="nav-link collapsed" href="#">Day 7</a>
+                                    <a class="nav-link collapsed" href="#">Day 8</a>
+                                    <a class="nav-link collapsed" href="#">Day 9</a>
+                                    <a class="nav-link collapsed" href="#">Day 10</a>
+                                    <a class="nav-link collapsed" href="#">Day 11</a>
+                                    <a class="nav-link collapsed" href="#">Day 12</a>
+                                    <a class="nav-link collapsed" href="#">Day 13</a>
+                                    <a class="nav-link collapsed" href="#">Day 14</a>
+                                    <a class="nav-link collapsed" href="#">Day 15</a>
+                                    <a class="nav-link collapsed" href="#">Day 16</a>
+                                    <a class="nav-link collapsed" href="#">Day 17</a>
+                                    <a class="nav-link collapsed" href="#">Day 18</a>
+                                    <a class="nav-link collapsed" href="#">Day 19</a>
+                                    <a class="nav-link collapsed" href="#">Day 20</a>
+                                    <a class="nav-link collapsed" href="#">Day 21</a>
+                                    <a class="nav-link collapsed" href="#">Day 22</a>
+                                    <a class="nav-link collapsed" href="#">Day 23</a>
+                                    <a class="nav-link collapsed" href="#">Day 24</a>
+                                    <a class="nav-link collapsed" href="#">Day 25</a>
+                                    <a class="nav-link collapsed" href="#">Day 26</a>
+                                    <a class="nav-link collapsed" href="#">Day 27</a>
+                                    <a class="nav-link collapsed" href="#">Day 28</a>
+                                    <a class="nav-link collapsed" href="#">Day 29</a>
+                                </nav>
                             </div> 
-                    <div class="sb-sidenav-footer">
-                        <div class="small">Logged in as:</div>
-                       <?=$_SESSION['login_user'];?>
+                            <div class="sb-sidenav-footer">
+                                <div class="small">Logged in as:</div>
+                               <?php echo $_SESSION['login_user'];?>
+                            </div>
+                        </div>
                     </div>
                 </nav>
             </div>
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
+                        
                         <h1 class="mt-4">Dashboard</h1>
+                        <?php
+                           if (isset($_GET['editSubmissionReport']) && !empty($_GET['editSubmissionReport'])) {
+                               $report = $_GET['editSubmissionReport'];
+                               if ($report == 'success') {
+                                   echo "<div id='report' class='alert alert-success'>Submission edit successful</div>";
+                               }elseif ($report == 'failure') {
+                                echo "<div id='report' class='alert alert-danger'>Submission edit failed</div>";
+                               }else{
+                                   echo "error";
+                                   session_destroy();
+                                   header('location: ../../index.php');
+                               }
+                           }
+                        ?>
                        <!-- <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">Dashboard</li>
                         </ol>-->
@@ -142,15 +192,21 @@ if(isset( $_SESSION['login_user'])){
                                         <thead>
                                             <tr>
                                                 <th>S/N</th>
+                                                <th>Day</th>
                                                 <th>Url</th>
                                                 <th>Points</th>
+                                                <th>Reviews</th>
+                                                <th>Actions</th>
                                             </tr>
                                         </thead>
                                         <tfoot>
                                             <tr>
                                                 <th>S/N</th>
+                                                <th>Day</th>
                                                 <th>Url</th>
-                                                <th>Points</th>                                            
+                                                <th>Points</th>
+                                                <th>Reviews</th>
+                                                <th>Actions</th>
                                             </tr>
                                         </tfoot>
                                         <tbody>
@@ -161,9 +217,17 @@ if(isset( $_SESSION['login_user'])){
                                                 while($row = $result->fetch_assoc()) {
                                             ?>
                                             <tr>
-                                                <td><?=$j?></td>
-                                                <td><?= $row['url'];?></td>
-                                                <td><?= $row['points'];?></td>
+                                                <td><?php echo $j?></td>
+                                                <td><?php echo $row['task_day'];?></td>
+                                                <td><?php echo $row['url'];?></td>
+                                                <td><?php echo $row['points'];?></td>
+                                                <td><?php echo $row['feedback'];?></td>
+                                                <td><?php
+                                                     if (empty($row['feedback'])) {
+                                                         echo "<a href='editsubmission.php?user=".$_SESSION['login_user'].'&day='.$row['task_day']."'>Edit submission</a>";
+                                                     }
+                                                ?></td>
+
                                             </tr>
                                             <?php 
                                                 $j++;
@@ -197,6 +261,9 @@ if(isset( $_SESSION['login_user'])){
         <script src="../dist/js/scripts.js"></script>
         <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+        <script>
+            $('#report').hide(2000);
+        </script>
     </body>
 </html>
 <?php

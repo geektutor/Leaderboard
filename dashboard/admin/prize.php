@@ -1,11 +1,29 @@
 <?php
 require('../../config/connect.php');
 require('../../config/session.php');
-if(isset( $_SESSION['login_user'])){
-    $id = $_GET['id'];
-    $sql = "SELECT * FROM submissions WHERE id = '$id'";
-    $result = mysqli_query($conn, $sql);
-    $count = mysqli_num_rows($result);
+$msg = '';
+if (isset($_SESSION['isSuperAdmin']) && $_SESSION['isSuperAdmin'] == true) {
+    if (isset($_POST['submit'])) {
+        $email = $_POST['winner'];
+        $points = $_POST['point'];
+        $sql = "SELECT `score` FROM user WHERE `email`= '$email'";
+        $result = mysqli_query($conn,$sql);
+        if ($result) {
+            if (mysqli_num_rows($result) == 1) {
+               while ($row = mysqli_fetch_assoc($result)) {
+                   $score = $row['score'] + $points; 
+                   $update_score_sql = "UPDATE user SET `score` = '$score' WHERE `email` = '$email'";
+                   if (mysqli_query($conn,$update_score_sql)) {
+                    $msg = "<div class='alert alert-success'>You have successfully gifted user ".$email." with ".$points." points</div>";
+                   }else{
+                    $msg = "<div class='alert alert-warning'>user not found</div>";
+                   }
+               }
+            }else {
+                $msg = "<div class='alert alert-warning'>user not found</div>";
+            }
+        }
+    }           
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -65,72 +83,20 @@ if(isset( $_SESSION['login_user'])){
                     <div class="container-fluid">
                         <h1 class="mt-4">Dashboard</h1>
                         <div class="card mb-4">
-                            <div class="card-header"><i class="fas fa-table mr-1"></i>View A Submission</div>
+                            <div class="card-header"><i class="fas fa-table mr-1"></i>Gift Prize</div>
                             <div class="card-body">
-                            <?php
-                            $error = "";
-                                if($count > 0){
-                                    while($row = $result->fetch_assoc()) {
-
-                                        if (isset($_POST['submit'])) {
-                                            $u = $_POST['user'];
-                                            $point = $_POST['point'];
-                                            $feedback = $_POST['feedback'];
-                                            if ($feedback == '') {
-                                                $feedback = "Marked";
-                                            }
-
-                                        $sql = "UPDATE submissions SET points = '$point', feedback = '$feedback' WHERE id = $id";
-                                        $result = mysqli_query($conn, $sql);
-                                        if($result){
-                                            $sql = "SELECT score FROM user WHERE email = '$u'";
-                                            $result = mysqli_query($conn, $sql);
-                                            $count = mysqli_num_rows($result);
-                                            $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-                                            $newPoint = $point + intval($row['score']);
-                                            
-                                            $sql = "UPDATE user SET score = '$newPoint' WHERE email = '$u'";
-                                            $result = mysqli_query($conn, $sql);
-                                            if($result){
-                                                $error = "Submitted Successfully";
-                                                header('location:./index.php?message=success');
-                                            }else{
-                                               $error = "Could not update user";
-                                            }
-
-                                        } else {
-                                            $error = "Could not update sub";
-
-                                        }
-                                    }
-                                        
-                            ?>
-                                <?php if($error !== ''){ ?>
-                                    <div class="alert alert-primary alert-dismissable">
-                                        <?php echo $error?>
-                                    </div>
-                                <?php }?>
-                                <form method="POST">
+                                <?php echo $msg;?>
+                                <form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>">
                                     <div class="form-group">
-                                    <label for="Url">Url: </label> <span class="alert alert-primary"><a href="<?php echo $row['url'];?>" target="_blank"><?php echo $row['url'];?></a></span> 
-                                    <br><br><br>
-                                    <label for="comments">Comment: </label> <span class="alert alert-primary"><?php echo $row['comments'];?></span>
+                                    <label for="point">Email</label> <br>
+                                    <input type="email" name="winner" class="form-control" id="email" placeholder="Enter Email Of Prize Winner" required>
+                                    <small id="emailHelp" class="form-text text-muted">Enter Email Of Prize Winner</small>
                                     <br><br><label for="point">Point</label> <br>
-                                    <input type="number" name="point" class="form-control" id="point" placeholder="Enter Point for This Submissions" required value="<?= $row['points'];?>">
-                                    <input type="text" name="user" class="form-control" id="user" value="<?php echo $row['user'];?>" hidden>
+                                    <input type="number" name="point" class="form-control" id="point" placeholder="Enter Point for This Submissions" required>
                                     <small id="emailHelp" class="form-text text-muted">Enter Points for This Submission</small>
-                                    <br><br><label for="point">Feedback</label> <br>
-                                    <input type="text" name="feedback" class="form-control" id="feedback" placeholder="Enter Feedback for This Submissions" value="<?php echo $row['feedback'];?>">
-                                    <small id="emailHelp" class="form-text text-muted">Enter Feedback for This Submission</small>
                                     </div>
                                     <button type="submit" class="btn btn-primary" name="submit">Submit</button>
-                                </form>
-                            <?php 
-                                }}else{
-                                    echo `<p>No Submissions yet</p>`;
-                                }
-                            ?>
-                    
+                                </form>                    
                             </div>
                         </div>
                     </div>
@@ -155,10 +121,16 @@ if(isset( $_SESSION['login_user'])){
         <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
         <script src="../assets/demo/datatables-demo.js"></script>
+        <script src="../src/js/fetch.js"></script>
     </body>
 </html>
 <?php
 }else{
-    header("location:../../login.php"); 
+    echo "<script>
+        document.write('you do not have access to this page, redirecting to login page ...');
+        setTimeout(()=>{
+            window.location.href = '../../login.php'
+        },2000)
+    </script>";
 }
 ?>
