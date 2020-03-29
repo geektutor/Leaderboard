@@ -1,5 +1,5 @@
 <?php
-require('config/connect.php');
+require('../../config/connect.php');
 // require('../../config/session.php');
 ?>
 <!DOCTYPE html>
@@ -65,41 +65,6 @@ require('config/connect.php');
                             All Tasks
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
-                        <div class="collapse" id="collapsePages" aria-labelledby="headingTwo"
-                            data-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                <a class="nav-link active" href="day0.html">Day o</a>
-                                <a class="nav-link active" href="day1.html">Day 1</a>
-                                <a class="nav-link active" href="day2.html">Day 2</a>
-                                <a class="nav-link active" href="day3.html">Day 3</a>
-                                <a class="nav-link active" href="day4.html">Day 4</a>
-                                <a class="nav-link active" href="day5.html">Day 5</a>
-                                <a class="nav-link collapsed" href="#">Day 6</a>
-                                <a class="nav-link collapsed" href="#">Day 7</a>
-                                <a class="nav-link collapsed" href="#">Day 8</a>
-                                <a class="nav-link collapsed" href="#">Day 9</a>
-                                <a class="nav-link collapsed" href="#">Day 10</a>
-                                <a class="nav-link collapsed" href="#">Day 11</a>
-                                <a class="nav-link collapsed" href="#">Day 12</a>
-                                <a class="nav-link collapsed" href="#">Day 13</a>
-                                <a class="nav-link collapsed" href="#">Day 14</a>
-                                <a class="nav-link collapsed" href="#">Day 15</a>
-                                <a class="nav-link collapsed" href="#">Day 16</a>
-                                <a class="nav-link collapsed" href="#">Day 17</a>
-                                <a class="nav-link collapsed" href="#">Day 18</a>
-                                <a class="nav-link collapsed" href="#">Day 19</a>
-                                <a class="nav-link collapsed" href="#">Day 20</a>
-                                <a class="nav-link collapsed" href="#">Day 21</a>
-                                <a class="nav-link collapsed" href="#">Day 22</a>
-                                <a class="nav-link collapsed" href="#">Day 23</a>
-                                <a class="nav-link collapsed" href="#">Day 24</a>
-                                <a class="nav-link collapsed" href="#">Day 25</a>
-                                <a class="nav-link collapsed" href="#">Day 26</a>
-                                <a class="nav-link collapsed" href="#">Day 27</a>
-                                <a class="nav-link collapsed" href="#">Day 28</a>
-                                <a class="nav-link collapsed" href="#">Day 29</a>
-                            </nav>
-                        </div>
                         <a class="nav-link collapsed" href="submit.php" >
                             <div class="sb-nav-link-icon"><i class="fas fa-book-close"></i></div>
                             Submit Tasks
@@ -127,8 +92,8 @@ require('config/connect.php');
                                        
                                         $sql = "SELECT url FROM task WHERE day = '$task_day' AND track = '$track'";
                                         $result = mysqli_query($conn,$sql);
-                                            while($row = mysqli_fetch_assoc($result)) {
-                                                <iframe src="<?php echo $path.$pdf; ?>" width="90%" height="500px"></iframe>
+                                            while($row = $result->fetch_assoc()) {
+                                                header("location:{$row['url']}");
 
                                         }
                                     }
@@ -147,14 +112,14 @@ require('config/connect.php');
                                     </select>
                                     </div>
                                     <div class="form-group">
-                                      <label for="day">Track</label>
+                                      <label for="track">Track</label>
                                       <select name="track" class="form-control" aria-describedby="emailHelp" value="">
-                                        <option value="frontend">Front End</option>
-                                        <option value="backend">Back End</option>
-                                        <option value="android">Mobile</option>
-                                        <option value="ui">UI/UX</option>
-                                        <option value="python">Python</option>
-                                        <option value="design">Engineering Design</option>
+                                        <option value="FrontEnd">Front End</option>
+                                        <option value="Backend">Back End</option>
+                                        <option value="Mobile">Mobile</option>
+                                        <option value="UIUX">UI/UX</option>
+                                        <option value="Python">Python</option>
+                                        <option value="Design">Engineering Design</option>
                                     </select>
                                     </div>
                                     <button type="submit" class="btn btn-primary" name="submit">View Task</button>
