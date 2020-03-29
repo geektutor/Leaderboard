@@ -11,7 +11,7 @@ body, html {
 
 .center {
   position: absolute;
-  top:10%;
+  top:15% !important;
   width: 50%;
   left: 25%;
   font-family: 'Red Hat Display', sans-serif;
@@ -177,10 +177,17 @@ body, html {
   color:#fff;
 }
 .frontend{
-  background: #26a8fe !important;
+  background: #1480c7 !important;
   color:#fff;
 }
 .design{
   background: #feaf30 !important;
   color:#fff;
+}
+
+div.filter{
+  position: absolute;
+  top: 3%;
+  left: 25%;
+  width: 50%;
 }
