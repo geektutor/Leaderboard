@@ -1,4 +1,5 @@
-$.ajax({
+function getOverallRanking(){
+  $.ajax({
     url : "./results.json",
     success : function(result) {
       //result)
@@ -6,6 +7,8 @@ $.ajax({
       localStorage.setItem('ranks',JSON.stringify(result))
     },
   })
+}
+  getOverallRanking();
   function updateRankings(ranks) {
     function trim(url){
       return url.split(' ').join('');
@@ -57,11 +60,32 @@ $.ajax({
 //Rankings Array
 let ranks = JSON.parse(localStorage.getItem('ranks'));
 localStorage.removeItem('ranks');
+
+function filterRanks(filter) {
+  const newRanks = ranks.filter(obj => obj.track == filter)
+
+  console.log(newRanks);
+  //updateRankings(newRanks);
+}
+
 document.getElementById('filterform').onsubmit = (e)=>{
     e.preventDefault();
     let filter = document.getElementById('filter').value.toLowerCase();
+    switch (filter) {
+      case 'ui/ux':
+        filterRanks('ui')
+        break;
 
-    const newRanks = ranks.filter(obj => obj.track == filter)
+      case 'engineering design':
+        filterRanks('design')
+        break;
 
-    updateRankings(newRanks);
+      case 'overall ranking':
+        getOverallRanking();
+        break;
+
+      default:
+        filterRanks(filter);
+        break;
+    }
 }
