@@ -29,7 +29,7 @@ require('../../config/connect.php');
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Dashboard - 30 Days Of Code</title>
-    <link rel="shortcut icon" type="image/jpg" href="http://30daysofcode.xyz/favicon.jpg"/>
+    <link rel="shortcut icon" type="image/jpg" href="https://30daysofcode.xyz/favicon.jpg"/>
     <link href="../../dist/css/styles.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet"
         crossorigin="anonymous" />
