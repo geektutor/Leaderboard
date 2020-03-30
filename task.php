@@ -36,7 +36,7 @@ require('config/connect.php');
                                         $sql = "SELECT url FROM task WHERE day = '$task_day' AND track = '$track'";
                                         $result = mysqli_query($conn,$sql);
                                             while($row = mysqli_fetch_assoc($result)) {
-                                                <iframe src="<?php echo $path.$pdf; ?>" width="90%" height="500px"></iframe>
+                                               
 
                                         }
                                     }

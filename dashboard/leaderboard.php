@@ -1,5 +1,5 @@
 <?php
-  $userRanking = [];
+  $userRanking = array();
   function getUSerRankings($fetched_array)
   {
     include "../config/connect.php";

@@ -1,8 +1,11 @@
 <?php
 require('../../config/connect.php');
 // require('../../config/session.php');
+    $error = 'err';
     if(isset($_POST['submit'])){
-        $error = '';
+        $error = 'err';
+        $ifr = 0;
+        $show = 0;
         $task_day = mysqli_real_escape_string($conn, $_POST['task_day']);
         $track = mysqli_real_escape_string($conn, $_POST['track']);
        
@@ -11,7 +14,8 @@ require('../../config/connect.php');
         $count = mysqli_num_rows($result);
         if($count > 0){
             while($row = mysqli_fetch_assoc($result)) {
-                header("location: {$row['url']}");
+                $ifr = $row['url'];
+                $show = 1;
             }
         }else{
             $error =  "No task for the selected options";
@@ -98,17 +102,19 @@ require('../../config/connect.php');
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid">
+                </div>
+                <div class="container-fluid">
                     <h1 class="mt-4">Dashboard</h1>
                     <div class="card mb-4">
                     <div class="card-header"><i class="fas fa-table mr-1"></i>View Task</div>
                     <div class="card-body">
                     
-                     <?php if($error !== ''){ ?>
+                     <?php if($error !== 'err'){ ?>
                         <div class="alert alert-primary alert-dismissable">
                             <?php echo $error?>
                         </div>
                     <?php }?>
-                    <form method="POST">
+                    <form method="POST" class="<?php if($show == 1)echo 'd-none'; else echo '';?> ">
                         <div class="form-group">
                           <label for="day">Day?</label>
                           <select name="task_day" class="form-control" value="">
@@ -135,6 +141,9 @@ require('../../config/connect.php');
                         <button type="submit" class="btn btn-primary" name="submit">View Task</button>
                       </form>
                     </div>
+                    <div class="card-body <?php if($show == 1)echo ''; else echo 'd-none';?> ">
+                        <iframe height="100%" width="100%" src="<?php if($ifr == 1) echo ''; else echo $ifr; ?>"></iframe>
+                    </div>
                     </div>
                 </div>
             </main>
@@ -159,6 +168,9 @@ require('../../config/connect.php');
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
     <script src="../assets/demo/datatables-demo.js"></script>
+    <script type="text/javascript">
+        
+    </script>
 </body>
 
 </html>
