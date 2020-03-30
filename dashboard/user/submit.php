@@ -52,7 +52,41 @@ if(isset( $_SESSION['login_user'])){
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
-                            <div class="sb-sidenav-menu-heading">Core</div>
+                            <div class="sb-sidenav-menu-heading">User</div>
+                            <div class="avatar">
+                                <?php
+                                global $conn;
+                                $email = $_SESSION['login_user'];
+                                $sql = "SELECT * FROM user WHERE email='$email' ";
+                                $result = mysqli_query($conn,$sql);
+                                while($row = mysqli_fetch_assoc($result)) {
+                                    $user_nickname = $row['nickname'];
+                                    $user_score = $row['score'];
+                                    $user_track = $row['track'];
+                                    echo '<center><img style=\'width:120px;height:120px;\' src=\'https://robohash.org/'.$user_nickname.$user_track.'\'/></center>';
+                                    echo '<center><div>'.$user_nickname.'</div></center>';
+                                    echo '<center><div>'.$user_score.'&nbsp; points</div></center>';
+                                }
+                                ?>
+                                <?php
+                                global $conn;
+                                $ranking_sql = "SELECT * FROM user WHERE `isAdmin` = '0' ORDER BY `score` DESC";
+                                $ranking_result = mysqli_query($conn,$ranking_sql);
+                                if ($ranking_result) {
+                                    $rank = 1;
+                                    while ($row = mysqli_fetch_assoc($ranking_result)) {
+                                        if($row['email'] == $email){
+                                            echo '<center><div> Overall ranking: '.$rank.'&nbsp;</div></center>';
+                                        }else {
+                                            $rank++;
+                                        }
+                                    }
+                                    
+                                }else {
+                                    echo "error fetching from database";
+                                }
+                                ?>
+                            </div> 
                             <a class="nav-link" href="index.php"
                                 ><div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
@@ -74,8 +108,7 @@ if(isset( $_SESSION['login_user'])){
                                 ><div class="sb-nav-link-icon"><i class="fas fa-paper-plane"></i></div>
                                 Submit
                             </a>
-                        <a class="nav-link collapsed" href="task.php" data-toggle="collapse" data-target="#collapsePages"
-                            aria-expanded="false" aria-controls="collapsePages">
+                        <a class="nav-link collapsed" href="task.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                             All Tasks
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
