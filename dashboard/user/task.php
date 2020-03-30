@@ -9,7 +9,7 @@ require('../../config/connect.php');
         $task_day = mysqli_real_escape_string($conn, $_POST['task_day']);
         $track = mysqli_real_escape_string($conn, $_POST['track']);
        
-        $sql = "SELECT url FROM task WHERE day = '$task_day' AND track = '$track'";
+        $sql = "SELECT url FROM task WHERE task_day = '$task_day' AND track = '$track'";
         $result = mysqli_query($conn,$sql);
         $count = mysqli_num_rows($result);
         if($count > 0){
