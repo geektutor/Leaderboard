@@ -48,7 +48,7 @@ require('../../config/connect.php');
                 </div>
             </div>
         </form>-->
-        <!-- Navbar
+        <!-- Navbar-->
         <ul class="navbar-nav ml-auto ml-md-0">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown"
@@ -59,7 +59,7 @@ require('../../config/connect.php');
                     <a class="dropdown-item" href="login.html">Logout</a>
                 </div>
             </li>
-        </ul>-->
+</ul>
     </nav>
     <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
@@ -67,7 +67,7 @@ require('../../config/connect.php');
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading">User</div>
-                        <a class="nav-link" href="index.php">
+                        <a class="nav-link" href="https://30daysofcode.xyz/dashboard/user/index.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Dashboard
                         </a>
@@ -78,7 +78,7 @@ require('../../config/connect.php');
                             <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                             Download Tasks
                         </a>
-                        <a class="nav-link collapsed" href="submit.php" >
+                        <a class="nav-link collapsed" href="https://30daysofcode.xyz/dashboard/user/submit.php" >
                             <div class="sb-nav-link-icon"><i class="fas fa-book-close"></i></div>
                             Submit Tasks
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
