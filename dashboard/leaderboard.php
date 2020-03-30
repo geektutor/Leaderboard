@@ -54,6 +54,20 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     </head>
     <body>
+      <div class="filter">
+        <form id="filterform">
+          <select name="" id="filter" class="form-control">
+            <option id="overall" value="Overall">Overall Rankings</option>
+            <option id="frontend" value="Frontend">Frontend</option>
+            <option id="backend" value="Backend">Backend</option>
+            <option id="design" value="Design">Engineering Design</option>
+            <option id="ui" value="UI">UI/UX</option>
+            <option id="python" value="Python">Python</option>
+            <option id="android" value="Android">Android</option>
+          </select>
+          <button type="submit" class="btn btn-warning">Filter</button>
+        </form>
+      </div>
       <div class="center">
         <div class="top3">
           <div class="two item">
@@ -98,21 +112,7 @@
         </div>
           <div class="list others">
           </div>
-        </div>
-      <div class="filter">
-        <form id="filterform">
-          <select name="" id="filter" class="form-control">
-            <option id="overall" value="Overall">Overall Rankings</option>
-            <option id="frontend" value="Frontend">Frontend</option>
-            <option id="backend" value="Backend">Backend</option>
-            <option id="design" value="Design">Engineering Design</option>
-            <option id="ui" value="UI">UI/UX</option>
-            <option id="python" value="Python">Python</option>
-            <option id="android" value="Android">Android</option>
-          </select>
-          <button type="submit" class="btn btn-warning">Filter</button>
-        </form>
-      </div>
+        </div>      
       <script src="leaderboard.js"></script>
     </body>
 </html>
