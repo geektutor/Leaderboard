@@ -19,8 +19,8 @@ if(isset( $_SESSION['login_user'])){
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-           <a class="navbar-brand" href="index.php">30DaysOfCode.xyz</a><button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
-           <!-- Navbar Search
+            <a class="navbar-brand" href="index.php">30DaysOfCode.xyz</a><button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button
+            ><!-- Navbar Search-->
             <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
                 <div class="input-group">
                     <input class="form-control" type="text" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
@@ -29,7 +29,7 @@ if(isset( $_SESSION['login_user'])){
                     </div>
                 </div>
             </form>
-            <!- Navbar-->
+            <!-- Navbar-->
             <ul class="navbar-nav ml-auto ml-md-0">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
@@ -46,47 +46,12 @@ if(isset( $_SESSION['login_user'])){
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
-                            <div class="sb-sidenav-menu-heading">User</div>
-                            <div class="avatar">
-                                <?php
-                                global $conn;
-                                $email = $_SESSION['login_user'];
-                                $sql = "SELECT * FROM user WHERE email='$email' ";
-                                $result = mysqli_query($conn,$sql);
-                                while($row = mysqli_fetch_assoc($result)) {
-                                    $user_nickname = $row['nickname'];
-                                    $user_score = $row['score'];
-                                    $user_track = $row['track'];
-                                    echo '<center><img style=\'width:120px;height:120px;\' src=\'https://robohash.org/'.$user_nickname.$user_track.'\'/></center>';
-                                    echo '<center><div>'.$user_nickname.'</div></center>';
-                                    echo '<center><div>'.$user_score.'&nbsp; points</div></center>';
-                                }
-                                ?>
-                                <?php
-                                global $conn;
-                                $ranking_sql = "SELECT * FROM user WHERE `isAdmin` = '0' ORDER BY `score` DESC";
-                                $ranking_result = mysqli_query($conn,$ranking_sql);
-                                if ($ranking_result) {
-                                    $rank = 1;
-                                    while ($row = mysqli_fetch_assoc($ranking_result)) {
-                                        if($row['email'] == $email){
-                                            echo '<center><div> Overall ranking: '.$rank.'&nbsp;</div></center>';
-                                        }else {
-                                            $rank++;
-                                        }
-                                    }
-                                    
-                                }else {
-                                    echo "error fetching from database";
-                                }
-                                ?>
-                            </div> 
+                            <div class="sb-sidenav-menu-heading">Core</div>
                             <a class="nav-link" href="index.php"
                                 ><div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
-                            <a class="nav-link" href="https://30daysofcode.xyz/dashboard/"
-                                >
+                            <a class="nav-link" href="../index.html">
                                 <div class="sb-nav-link-icon"><i class="fas fa-plane"></i></div>
                             Leaderboard
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-paper-plane"></i></div>
@@ -95,28 +60,24 @@ if(isset( $_SESSION['login_user'])){
                                 <div class="sb-nav-link-icon"><i class="fas fa-comments"></i></div>
                             Support Group
                             </a>
-                            <a class="nav-link" href="https://twitter.com/intent/tweet?url=https%3A%2F%2F30daysofcode.xyz%2F&via=ecxunilag&text=Hi%2C%20i%20currently%20have%20<?php echo $user_score;?>%20points%20and%20my%20ranking%20is%20<?php echo $rank;?>&hashtags=30DaysOfCode%2C%2030DaysOfDesign%2C%20ecxunilag">
+                            <a class="nav-link" href=" https://twitter.com/intent/tweet?url=https%3A%2F%2F30daysofcodes.xyz&via=codon&text=Hello%2C%20I%20just%20finished%20my%20task%20for%20....&hashtags=30DaysOfCode%2C%20ECX">
                                 <div class="sb-nav-link-icon"><i class="fas fa-share"></i></div>
                                 Tweet
                             </a>
-                            <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2F30daysofcode.xyz%2F&via=ecxunilag&text=Hi%2C%20i%20currently%20have%20THIS%20points%20and%20my%20ranking%20is%20this&hashtags=30DaysOfCode%2C%2030DaysOfDesign%2C%20ecxunilag"></a>
-                            <a class="nav-link" href="submit.php">
-                                <div class="sb-nav-link-icon"><i class="fas fa-submit"></i></div>
+                            <a class="nav-link" href="submit.php"
+                                ><div class="sb-nav-link-icon"><i class="fas fa-paper-plane"></i></div>
                                 Submit
                             </a>
-                            <a class="nav-link" href="https://30daysofcode.xyz/task/"
-                                >
-                                <div class="sb-nav-link-icon"><i class="fas fa-plane"></i></div>
-                            View Task
-                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-paper-plane"></i></div>
-                            </a>
-                            <div class="sb-sidenav-menu-heading"></div>
-                            </div>                            
-                            <div class="sb-sidenav-footer">
-                                <div class="small">Logged in as:</div>
-                               <?php echo $_SESSION['login_user'];?>
-                            </div>
-                        </div>
+                        <a class="nav-link collapsed" href="task.php" data-toggle="collapse" data-target="#collapsePages"
+                            aria-expanded="false" aria-controls="collapsePages">
+                            <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                            All Tasks
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        
+                    <div class="sb-sidenav-footer">
+                        <div class="small">Logged in as:</div>
+                        <?=$_SESSION['login_user'];?>
                     </div>
                 </nav>
             </div>
