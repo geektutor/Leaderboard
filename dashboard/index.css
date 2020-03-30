@@ -11,7 +11,7 @@ body, html {
 
 .center {
   position: absolute;
-  top:15% !important;
+  top:25% !important;
   width: 50%;
   left: 25%;
   font-family: 'Red Hat Display', sans-serif;
@@ -31,7 +31,7 @@ body, html {
   position: relative;
   background: white;
   width: 9rem;
-  height: 11.5rem;
+  height: 12rem;
   text-align: center;
   padding: 2.8rem 0 0;
   margin: 1rem 1rem 2rem;
@@ -76,7 +76,7 @@ body, html {
 }
 .top3 .item.one {
   width: 10rem;
-  height: 12.5rem;
+  height: 13rem;
   padding-top: 3.5rem;
 }
 .top3 .item.one .pic {
@@ -177,7 +177,7 @@ body, html {
   color:#fff;
 }
 .frontend{
-  background: #1480c7 !important;
+  background: #26a8fe !important;
   color:#fff;
 }
 .design{
@@ -190,4 +190,11 @@ div.filter{
   top: 3%;
   left: 25%;
   width: 50%;
+}
+div.filter select{
+  width: 80%;
+  display: inline;
+}
+div.filter btn{
+  width: 20%;
 }

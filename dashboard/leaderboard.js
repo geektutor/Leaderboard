@@ -1,11 +1,13 @@
-$.ajax({
+function getOverallRanking(){
+  $.ajax({
     url : "./results.json",
     success : function(result) {
       //result)
       updateRankings(result);
-      localStorage.setItem('ranks',JSON.stringify(result))
     },
   })
+}
+  getOverallRanking();
   function updateRankings(ranks) {
     function trim(url){
       return url.split(' ').join('');
@@ -57,11 +59,28 @@ $.ajax({
 //Rankings Array
 let ranks = JSON.parse(localStorage.getItem('ranks'));
 localStorage.removeItem('ranks');
+
+function filterRanks(filter) {
+  const newRanks = ranks.filter(obj => obj.track == filter)
+
+  console.log(newRanks);
+  //updateRankings(newRanks);
+}
+
 document.getElementById('filterform').onsubmit = (e)=>{
     e.preventDefault();
     let filter = document.getElementById('filter').value.toLowerCase();
-
-    const newRanks = ranks.filter(obj => obj.track == filter)
-
-    updateRankings(newRanks);
+    let completePageURL =  window.location.href.split('?'),
+    actualURL = completePageURL[0];
+    if (window.location.href === `${actualURL}?filter=${filter}`) {
+      return true;
+    } else{
+      window.location.href = `leaderboard.php?filter=${filter}`
+    }
 }
+
+const id = new URLSearchParams(window.location.search).toString().split('=').pop();
+console.log(id);
+
+const test = id;
+document.getElementById(test).selected = true;

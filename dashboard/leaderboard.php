@@ -18,8 +18,18 @@
       }
     }
 
+    $filter = $_GET['filter'];
     //fetch user ranking
-    $sql = "SELECT * FROM user WHERE `isAdmin` = 0 ORDER BY `score` DESC LIMIT 20";
+    switch ($filter) {
+      case 'overall':
+        $sql = "SELECT * FROM user WHERE `isAdmin` = 0 ORDER BY `score` DESC LIMIT 20";
+        break;
+      
+      default:
+        $sql = "SELECT * FROM user WHERE `isAdmin` = 0 AND `track` ='$filter' ORDER BY `score` DESC LIMIT 20";
+        break;
+    }
+    //$sql = "SELECT * FROM user WHERE `isAdmin` = 0 ORDER BY `score` DESC LIMIT 20";
     $result = mysqli_query($conn,$sql);
     if (mysqli_num_rows($result) > 0) {
       while ($row = mysqli_fetch_assoc($result)) {
@@ -39,8 +49,9 @@
  <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="./index.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+      <link rel="stylesheet" href="./index.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     </head>
     <body>
       <div class="center">
@@ -88,64 +99,20 @@
           <div class="list others">
           </div>
         </div>
-      <script>
-      $.ajax({
-        url : "./results.json",
-        success : function(result) {
-          //result);
-          updateRankings(result);
-        },
-      })
-      function updateRankings(ranks) {
-        function trim(url){
-          return url.split(' ').join('');
-        }
-        //update first position
-        var first = ranks[0];
-        $('div.one .name').text(first.nickname);
-        $('div.one .pic').css({"background-image": `url(https://robohash.org/${trim(first.nickname+first.track)})`});
-        $('div.one .track').text(first.track);
-        $('div.one .score').text(first.score);
-        $('div.one').addClass(first.track);
-
-        //update second Position
-        var second = ranks[1];
-        $('div.two .name').text(second.nickname);
-        $('div.two .pic').css({"background-image": `url(https://robohash.org/${trim(second.nickname+second.track)})`});
-        $('div.two .track').text(second.track);
-        $('div.two .score').text(second.score);
-        $('div.two').addClass(second.track);
-
-        //update third position
-        var third = ranks[2];
-        $('div.three .name').text(third.nickname);
-        $('div.three .pic').css({"background-image": `url(https://robohash.org/${trim(third.nickname+third.track)})`});
-        $('div.three .track').text(third.track);
-        $('div.three .score').text(third.score);
-        $('div.three').addClass(third.track);
-
-        //update the rest
-        var starter = 4
-        for (let i = 3; i < ranks.length; i++) {
-          var markup =`
-          <div class="item ${ranks[i].track}">
-              <div class="pos">
-                ${starter}
-              </div>
-              <div class="pic" style="background-image: url(https://robohash.org/${trim(ranks[i].nickname+ranks[i].track)})"></div>
-              <div class="name">
-                ${ranks[i].nickname}
-              </div>
-              <div class="score">
-                ${ranks[i].score}
-              </div>
-            </div>`;
-          $('div.list').append(markup);
-          starter++
-        }
-      }
-    //   $("body").css("overflow-y", "auto");
-    //   $("html").css("overflow-y", "auto");
-      </script>
+      <div class="filter">
+        <form id="filterform">
+          <select name="" id="filter" class="form-control">
+            <option id="overall" value="Overall">Overall Rankings</option>
+            <option id="frontend" value="Frontend">Frontend</option>
+            <option id="backend" value="Backend">Backend</option>
+            <option id="design" value="Design">Engineering Design</option>
+            <option id="ui" value="UI">UI/UX</option>
+            <option id="python" value="Python">Python</option>
+            <option id="android" value="Android">Android</option>
+          </select>
+          <button type="submit" class="btn btn-warning">Filter</button>
+        </form>
+      </div>
+      <script src="leaderboard.js"></script>
     </body>
 </html>
