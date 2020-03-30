@@ -30,11 +30,7 @@ require('../../config/connect.php');
     <meta name="author" content="" />
     <title>Dashboard - 30 Days Of Code</title>
     <link rel="shortcut icon" type="image/jpg" href="https://30daysofcode.xyz/favicon.png"/>
-    <link href="../../dist/css/styles.css" rel="stylesheet" />
-    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet"
-        crossorigin="anonymous" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js"
-        crossorigin="anonymous"></script>
+    <link href="../dist/css/styles.css" rel="stylesheet" />
 </head>
 
 <body class="sb-nav-fixed">
@@ -81,7 +77,6 @@ require('../../config/connect.php');
                             aria-expanded="false" aria-controls="collapsePages">
                             <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                             Download Tasks
-                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
                         <a class="nav-link collapsed" href="submit.php" >
                             <div class="sb-nav-link-icon"><i class="fas fa-book-close"></i></div>
