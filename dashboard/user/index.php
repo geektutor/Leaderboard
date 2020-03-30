@@ -84,7 +84,8 @@ if(isset( $_SESSION['login_user'])){
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
-                        
+</div>
+<div class="container-fluid">
                         <h1 class="mt-4">Dashboard</h1>
                         <?php
                            if (isset($_GET['editSubmissionReport']) && !empty($_GET['editSubmissionReport'])) {
