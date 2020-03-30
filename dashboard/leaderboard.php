@@ -19,7 +19,6 @@
     }
 
     $filter = $_GET['filter'];
-    echo $filter;
     //fetch user ranking
     switch ($filter) {
       case 'overall':
@@ -30,7 +29,6 @@
         $sql = "SELECT * FROM user WHERE `isAdmin` = 0 AND `track` ='$filter' ORDER BY `score` DESC LIMIT 20";
         break;
     }
-    echo $sql;
     //$sql = "SELECT * FROM user WHERE `isAdmin` = 0 ORDER BY `score` DESC LIMIT 20";
     $result = mysqli_query($conn,$sql);
     if (mysqli_num_rows($result) > 0) {
@@ -51,8 +49,9 @@
  <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="./index.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+      <link rel="stylesheet" href="./index.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     </head>
     <body>
       <div class="center">
@@ -102,7 +101,7 @@
         </div>
       <div class="filter">
         <form id="filterform">
-          <select name="" id="filter">
+          <select name="" id="filter" class="form-control">
             <option value="Overall">Overall Rankings</option>
             <option value="Frontend">Frontend</option>
             <option value="Backend">Backend</option>
@@ -111,7 +110,7 @@
             <option value="Python">Python</option>
             <option value="Android">Android</option>
           </select>
-          <button type="submit">Filter</button>
+          <button type="submit" class="btn btn-warning">Filter</button>
         </form>
       </div>
       <script src="leaderboard.js"></script>

@@ -11,7 +11,7 @@ body, html {
 
 .center {
   position: absolute;
-  top:15% !important;
+  top:25% !important;
   width: 50%;
   left: 25%;
   font-family: 'Red Hat Display', sans-serif;
@@ -190,4 +190,11 @@ div.filter{
   top: 3%;
   left: 25%;
   width: 50%;
+}
+div.filter select{
+  width: 80%;
+  display: inline;
+}
+div.filter btn{
+  width: 20%;
 }
