@@ -102,13 +102,13 @@
       <div class="filter">
         <form id="filterform">
           <select name="" id="filter" class="form-control">
-            <option value="Overall">Overall Rankings</option>
-            <option value="Frontend">Frontend</option>
-            <option value="Backend">Backend</option>
-            <option value="Design">Engineering Design</option>
-            <option value="UI">UI/UX</option>
-            <option value="Python">Python</option>
-            <option value="Android">Android</option>
+            <option id="overall" value="Overall">Overall Rankings</option>
+            <option id="frontend" value="Frontend">Frontend</option>
+            <option id="backend" value="Backend">Backend</option>
+            <option id="design" value="Design">Engineering Design</option>
+            <option id="ui" value="UI">UI/UX</option>
+            <option id="python" value="Python">Python</option>
+            <option id="android" value="Android">Android</option>
           </select>
           <button type="submit" class="btn btn-warning">Filter</button>
         </form>

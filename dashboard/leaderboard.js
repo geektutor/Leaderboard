@@ -69,7 +69,6 @@ function filterRanks(filter) {
 
 document.getElementById('filterform').onsubmit = (e)=>{
     e.preventDefault();
-    //console.log(new URLSearchParams(window.location.search).toString().split('=').pop());
     let filter = document.getElementById('filter').value.toLowerCase();
     let completePageURL =  window.location.href.split('?'),
     actualURL = completePageURL[0];
@@ -79,3 +78,9 @@ document.getElementById('filterform').onsubmit = (e)=>{
       window.location.href = `leaderboard.php?filter=${filter}`
     }
 }
+
+const id = new URLSearchParams(window.location.search).toString().split('=').pop();
+console.log(id);
+
+const test = id;
+document.getElementById(test).selected = true;

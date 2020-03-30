@@ -31,7 +31,7 @@ body, html {
   position: relative;
   background: white;
   width: 9rem;
-  height: 11.5rem;
+  height: 12rem;
   text-align: center;
   padding: 2.8rem 0 0;
   margin: 1rem 1rem 2rem;
@@ -76,7 +76,7 @@ body, html {
 }
 .top3 .item.one {
   width: 10rem;
-  height: 12.5rem;
+  height: 13rem;
   padding-top: 3.5rem;
 }
 .top3 .item.one .pic {
