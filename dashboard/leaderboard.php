@@ -18,8 +18,20 @@
       }
     }
 
+    $filter = $_GET['filter'];
+    echo $filter;
     //fetch user ranking
-    $sql = "SELECT * FROM user WHERE `isAdmin` = 0 ORDER BY `score` DESC";
+    switch ($filter) {
+      case 'overall':
+        $sql = "SELECT * FROM user WHERE `isAdmin` = 0 ORDER BY `score` DESC LIMIT 20";
+        break;
+      
+      default:
+        $sql = "SELECT * FROM user WHERE `isAdmin` = 0 AND `track` ='$filter' ORDER BY `score` DESC LIMIT 20";
+        break;
+    }
+    echo $sql;
+    //$sql = "SELECT * FROM user WHERE `isAdmin` = 0 ORDER BY `score` DESC LIMIT 20";
     $result = mysqli_query($conn,$sql);
     if (mysqli_num_rows($result) > 0) {
       while ($row = mysqli_fetch_assoc($result)) {
@@ -91,11 +103,11 @@
       <div class="filter">
         <form id="filterform">
           <select name="" id="filter">
-            <option value="Overall Rankings">Overall Rankings</option>
+            <option value="Overall">Overall Rankings</option>
             <option value="Frontend">Frontend</option>
             <option value="Backend">Backend</option>
-            <option value="Design">Design</option>
-            <option value="UI/UX">UI/UX</option>
+            <option value="Design">Engineering Design</option>
+            <option value="UI">UI/UX</option>
             <option value="Python">Python</option>
             <option value="Android">Android</option>
           </select>

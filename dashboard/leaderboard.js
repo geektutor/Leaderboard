@@ -4,7 +4,6 @@ function getOverallRanking(){
     success : function(result) {
       //result)
       updateRankings(result);
-      localStorage.setItem('ranks',JSON.stringify(result))
     },
   })
 }
@@ -70,22 +69,13 @@ function filterRanks(filter) {
 
 document.getElementById('filterform').onsubmit = (e)=>{
     e.preventDefault();
+    //console.log(new URLSearchParams(window.location.search).toString().split('=').pop());
     let filter = document.getElementById('filter').value.toLowerCase();
-    switch (filter) {
-      case 'ui/ux':
-        filterRanks('ui')
-        break;
-
-      case 'engineering design':
-        filterRanks('design')
-        break;
-
-      case 'overall ranking':
-        getOverallRanking();
-        break;
-
-      default:
-        filterRanks(filter);
-        break;
+    let completePageURL =  window.location.href.split('?'),
+    actualURL = completePageURL[0];
+    if (window.location.href === `${actualURL}?filter=${filter}`) {
+      return true;
+    } else{
+      window.location.href = `leaderboard.php?filter=${filter}`
     }
 }
