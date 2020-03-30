@@ -30,7 +30,7 @@ require('../../config/connect.php');
     <meta name="author" content="" />
     <title>Dashboard - 30 Days Of Code</title>
     <link rel="shortcut icon" type="image/jpg" href="https://30daysofcode.xyz/favicon.png"/>
-    <link href="../dist/css/styles.css" rel="stylesheet" />
+    <link href="../../dist/css/styles.css" rel="stylesheet" />
 </head>
 
 <body class="sb-nav-fixed">
