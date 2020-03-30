@@ -200,7 +200,8 @@ if(isset( $_SESSION['login_user'])){
                                     </div>
                                     <div class="form-group">
                                       <label for="comments">Comments</label>
-                                      <input name="comment" type="text" class="form-control" id="comment" placeholder="Any comments?" value="">
+                                      <textarea class="form-control" name="comment" placeholder="Any comment?"></textarea>
+                                      <!-- <input name="comment" type="text" class="form-control" id="comment" placeholder="Any comments?" value=""> -->
                                     </div>
                                     <button type="submit" class="btn btn-primary" name="submit">Submit</button>
                                   </form>
