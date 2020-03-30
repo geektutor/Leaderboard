@@ -103,15 +103,14 @@ if(isset( $_SESSION['login_user'])){
                                 <div class="sb-nav-link-icon"><i class="fas fa-submit"></i></div>
                                 Submit
                             </a>
-                            <div class="sb-sidenav-menu-heading"></div>
-
-                            <a class="nav-link collapsed" href="task.php" data-toggle="collapse" data-target="#collapsePages"
-                                aria-expanded="false" aria-controls="collapsePages">
-                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                                All Tasks
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            <a class="nav-link" href="https://30daysofcode.xyz/task/"
+                                >
+                                <div class="sb-nav-link-icon"><i class="fas fa-plane"></i></div>
+                            View Task
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-paper-plane"></i></div>
                             </a>
-                            
+                            <div class="sb-sidenav-menu-heading"></div>
+                            </div>                            
                             <div class="sb-sidenav-footer">
                                 <div class="small">Logged in as:</div>
                                <?php echo $_SESSION['login_user'];?>
