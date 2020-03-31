@@ -1,5 +1,5 @@
 <?php
 
-header('location: ./leaderboard.php?filter=overall');
+header('location: ./leaderboard.php');
 
 ?>

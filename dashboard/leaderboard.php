@@ -31,7 +31,7 @@
       }
     }else{
       $sql = "SELECT * FROM user WHERE `isAdmin` = 0 ORDER BY `score` DESC LIMIT 20";
-    } 
+    }
     $result = mysqli_query($conn,$sql);
     if (mysqli_num_rows($result) > 0) {
       while ($row = mysqli_fetch_assoc($result)) {
