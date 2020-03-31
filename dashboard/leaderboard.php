@@ -18,18 +18,20 @@
       }
     }
 
-    $filter = $_GET['filter'];
-    //fetch user ranking
-    switch ($filter) {
-      case 'overall':
-        $sql = "SELECT * FROM user WHERE `isAdmin` = 0 ORDER BY `score` DESC LIMIT 20";
-        break;
-      
-      default:
-        $sql = "SELECT * FROM user WHERE `isAdmin` = 0 AND `track` ='$filter' ORDER BY `score` DESC LIMIT 20";
-        break;
-    }
-    //$sql = "SELECT * FROM user WHERE `isAdmin` = 0 ORDER BY `score` DESC LIMIT 20";
+    if (isset($_GET['filter']) && !empty($_GET['filter'])) {
+      $filter = $_GET['filter'];
+      switch ($filter) {
+        case 'overall':
+          $sql = "SELECT * FROM user WHERE `isAdmin` = 0 ORDER BY `score` DESC LIMIT 20";
+          break;
+        
+        default:
+          $sql = "SELECT * FROM user WHERE `isAdmin` = 0 AND `track` ='$filter' ORDER BY `score` DESC LIMIT 20";
+          break;
+      }
+    }else{
+      $sql = "SELECT * FROM user WHERE `isAdmin` = 0 ORDER BY `score` DESC LIMIT 20";
+    } 
     $result = mysqli_query($conn,$sql);
     if (mysqli_num_rows($result) > 0) {
       while ($row = mysqli_fetch_assoc($result)) {

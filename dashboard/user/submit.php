@@ -18,6 +18,7 @@ if(isset( $_SESSION['login_user'])){
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Dashboard - 30 Days Of Code</title>
+        <link rel="shortcut icon" type="image/jpg" href="https://30daysofcode.xyz/favicon.png"/>
         <link href="../dist/css/styles.css" rel="stylesheet" />
         <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
@@ -51,7 +52,41 @@ if(isset( $_SESSION['login_user'])){
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
-                            <div class="sb-sidenav-menu-heading">Core</div>
+                            <div class="sb-sidenav-menu-heading">User</div>
+                            <div class="avatar">
+                                <?php
+                                global $conn;
+                                $email = $_SESSION['login_user'];
+                                $sql = "SELECT * FROM user WHERE email='$email' ";
+                                $result = mysqli_query($conn,$sql);
+                                while($row = mysqli_fetch_assoc($result)) {
+                                    $user_nickname = $row['nickname'];
+                                    $user_score = $row['score'];
+                                    $user_track = $row['track'];
+                                    echo '<center><img style=\'width:120px;height:120px;\' src=\'https://robohash.org/'.$user_nickname.$user_track.'\'/></center>';
+                                    echo '<center><div>'.$user_nickname.'</div></center>';
+                                    echo '<center><div>'.$user_score.'&nbsp; points</div></center>';
+                                }
+                                ?>
+                                <?php
+                                global $conn;
+                                $ranking_sql = "SELECT * FROM user WHERE `isAdmin` = '0' ORDER BY `score` DESC";
+                                $ranking_result = mysqli_query($conn,$ranking_sql);
+                                if ($ranking_result) {
+                                    $rank = 1;
+                                    while ($row = mysqli_fetch_assoc($ranking_result)) {
+                                        if($row['email'] == $email){
+                                            echo '<center><div> Overall ranking: '.$rank.'&nbsp;</div></center>';
+                                        }else {
+                                            $rank++;
+                                        }
+                                    }
+                                    
+                                }else {
+                                    echo "error fetching from database";
+                                }
+                                ?>
+                            </div> 
                             <a class="nav-link" href="index.php"
                                 ><div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
@@ -73,48 +108,12 @@ if(isset( $_SESSION['login_user'])){
                                 ><div class="sb-nav-link-icon"><i class="fas fa-paper-plane"></i></div>
                                 Submit
                             </a>
-                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                            aria-expanded="false" aria-controls="collapsePages">
+                        <a class="nav-link collapsed" href="task.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                             All Tasks
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
-                        <div class="collapse" id="collapsePages" aria-labelledby="headingTwo"
-                            data-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                <a class="nav-link active" href="day0.html">Day 0</a>
-                                <a class="nav-link active" href="day1.html">Day 1</a>
-                                <a class="nav-link active" href="day2.html">Day 2</a>
-                                <a class="nav-link active" href="day3.html">Day 3</a>
-                                <a class="nav-link collapsed" href="day4.html">Day 4</a>
-                                <a class="nav-link collapsed" href="day5.html">Day 5</a>
-                                <a class="nav-link collapsed" href="#">Day 6</a>
-                                <a class="nav-link collapsed" href="#">Day 7</a>
-                                <a class="nav-link collapsed" href="#">Day 8</a>
-                                <a class="nav-link collapsed" href="#">Day 9</a>
-                                <a class="nav-link collapsed" href="#">Day 10</a>
-                                <a class="nav-link collapsed" href="#">Day 11</a>
-                                <a class="nav-link collapsed" href="#">Day 12</a>
-                                <a class="nav-link collapsed" href="#">Day 13</a>
-                                <a class="nav-link collapsed" href="#">Day 14</a>
-                                <a class="nav-link collapsed" href="#">Day 15</a>
-                                <a class="nav-link collapsed" href="#">Day 16</a>
-                                <a class="nav-link collapsed" href="#">Day 17</a>
-                                <a class="nav-link collapsed" href="#">Day 18</a>
-                                <a class="nav-link collapsed" href="#">Day 19</a>
-                                <a class="nav-link collapsed" href="#">Day 20</a>
-                                <a class="nav-link collapsed" href="#">Day 21</a>
-                                <a class="nav-link collapsed" href="#">Day 22</a>
-                                <a class="nav-link collapsed" href="#">Day 23</a>
-                                <a class="nav-link collapsed" href="#">Day 24</a>
-                                <a class="nav-link collapsed" href="#">Day 25</a>
-                                <a class="nav-link collapsed" href="#">Day 26</a>
-                                <a class="nav-link collapsed" href="#">Day 27</a>
-                                <a class="nav-link collapsed" href="#">Day 28</a>
-                                <a class="nav-link collapsed" href="#">Day 29</a>
-                            </nav>
-                            </div>
-                           
+                        
                     <div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>
                         <?=$_SESSION['login_user'];?>
@@ -195,11 +194,13 @@ if(isset( $_SESSION['login_user'])){
                                       <option value="Day 2">Day 2</option>
                                       <option value="Day 3">Day 3</option>
                                       <option value="Day 4">Day 4</option>
+                                      <option value="Day 5">Day 5</option>
+                                      <option value="Day 6">Day 6</option>
                                     </select>
                                     </div>
                                     <div class="form-group">
                                       <label for="comments">Comments</label>
-                                      <input name="comment" type="text" class="form-control" id="comment" placeholder="Any comments?" value="">
+                                      <textarea name="comment" type="text" class="form-control" id="comment" placeholder="Any comments?" value=""></textarea>
                                     </div>
                                     <button type="submit" class="btn btn-primary" name="submit">Submit</button>
                                   </form>

@@ -1,3 +1,28 @@
+<?php
+require('../../config/connect.php');
+// require('../../config/session.php');
+    $error = 'err';
+    if(isset($_POST['submit'])){
+        $error = 'err';
+        $ifr = 0;
+        $show = 0;
+        $task_day = mysqli_real_escape_string($conn, $_POST['task_day']);
+        $track = mysqli_real_escape_string($conn, $_POST['track']);
+       
+        $sql = "SELECT url FROM task WHERE task_day = '$task_day' AND track = '$track'";
+        $result = mysqli_query($conn,$sql);
+        $count = mysqli_num_rows($result);
+        if($count > 0){
+            while($row = mysqli_fetch_assoc($result)) {
+                $ifr = $row['url'];
+                $show = 1;
+            }
+        }else{
+            $error =  "No task for the selected options";
+        }
+    }
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,9 +33,8 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Dashboard - 30 Days Of Code</title>
+    <link rel="shortcut icon" type="image/png" href="https://30daysofcode.xyz/favicon.png"/>
     <link href="../dist/css/styles.css" rel="stylesheet" />
-    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet"
-        crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js"
         crossorigin="anonymous"></script>
 </head>
@@ -53,49 +77,11 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Dashboard
                         </a>
-                        <div class="sb-sidenav-menu-heading"></div>
-
-                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                            aria-expanded="false" aria-controls="collapsePages">
+                        <a class="nav-link collapsed" href="#">
                             <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                             All Tasks
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
-                        <div class="collapse" id="collapsePages" aria-labelledby="headingTwo"
-                            data-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                <a class="nav-link active" href="day0.html">Day o</a>
-                                <a class="nav-link active" href="day1.html">Day 1</a>
-                                <a class="nav-link active" href="day2.html">Day 2</a>
-                                <a class="nav-link active" href="day3.html">Day 3</a>
-                                <a class="nav-link active" href="day4.html">Day 4</a>
-                                <a class="nav-link collapsed" href="#">Day 5</a>
-                                <a class="nav-link collapsed" href="#">Day 6</a>
-                                <a class="nav-link collapsed" href="#">Day 7</a>
-                                <a class="nav-link collapsed" href="#">Day 8</a>
-                                <a class="nav-link collapsed" href="#">Day 9</a>
-                                <a class="nav-link collapsed" href="#">Day 10</a>
-                                <a class="nav-link collapsed" href="#">Day 11</a>
-                                <a class="nav-link collapsed" href="#">Day 12</a>
-                                <a class="nav-link collapsed" href="#">Day 13</a>
-                                <a class="nav-link collapsed" href="#">Day 14</a>
-                                <a class="nav-link collapsed" href="#">Day 15</a>
-                                <a class="nav-link collapsed" href="#">Day 16</a>
-                                <a class="nav-link collapsed" href="#">Day 17</a>
-                                <a class="nav-link collapsed" href="#">Day 18</a>
-                                <a class="nav-link collapsed" href="#">Day 19</a>
-                                <a class="nav-link collapsed" href="#">Day 20</a>
-                                <a class="nav-link collapsed" href="#">Day 21</a>
-                                <a class="nav-link collapsed" href="#">Day 22</a>
-                                <a class="nav-link collapsed" href="#">Day 23</a>
-                                <a class="nav-link collapsed" href="#">Day 24</a>
-                                <a class="nav-link collapsed" href="#">Day 25</a>
-                                <a class="nav-link collapsed" href="#">Day 26</a>
-                                <a class="nav-link collapsed" href="#">Day 27</a>
-                                <a class="nav-link collapsed" href="#">Day 28</a>
-                                <a class="nav-link collapsed" href="#">Day 29</a>
-                            </nav>
-                        </div>
                         <a class="nav-link collapsed" href="submit.php" >
                             <div class="sb-nav-link-icon"><i class="fas fa-book-close"></i></div>
                             Submit Tasks
@@ -112,28 +98,48 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid">
+                </div>
+                <div class="container-fluid">
                     <h1 class="mt-4">Dashboard</h1>
                     <div class="card mb-4">
-                    <div class="card-header"><i class="fas fa-table mr-1"></i>Day 0 Task</div>
+                    <div class="card-header"><i class="fas fa-table mr-1"></i>View Task</div>
                     <div class="card-body">
-                        <div class="alert alert-primary" role="alert">
-                            <a href="../../ecx/Day 0 - FrontEnd - 30DaysOfCode.pdf">Front End - Day 0</a>
+                    
+                     <?php if($error !== 'err'){ ?>
+                        <div class="alert alert-primary alert-dismissable">
+                            <?php echo $error?>
                         </div>
-                        <div class="alert alert-primary" role="alert">
-                            <a href="../../ecx/Day 0 - Backend - 30DaysOfCode.pdf">Back End - Day 0</a>
+                    <?php }?>
+                    <form method="POST" class="<?php if($show == 1)echo 'd-none'; else echo '';?> ">
+                        <div class="form-group">
+                          <label for="day">Day?</label>
+                          <select name="task_day" class="form-control" value="">
+                          <option value="Day 0">Day 0</option>
+                          <option value="Day 1">Day 1</option>
+                          <option value="Day 2">Day 2</option>
+                          <option value="Day 3">Day 3</option>
+                          <option value="Day 4">Day 4</option>
+                          <option value="Day 5">Day 5</option>
+                          <option value="Day 6">Day 6</option>
+                          <option value="Day 7">Day 7</option>
+                        </select>
                         </div>
-                        <div class="alert alert-primary" role="alert">
-                            <a href="../../ecx/Day 0 - UIUX - 30DaysOfCode.pdf">UI/UX - Day 0</a>
+                        <div class="form-group">
+                          <label for="track">Track</label>
+                          <select name="track" class="form-control" value="">
+                            <option value="FrontEnd">Front End</option>
+                            <option value="Backend">Back End</option>
+                            <option value="Mobile">Mobile</option>
+                            <option value="UIUX">UI/UX</option>
+                            <option value="Python">Python</option>
+                            <option value="Design">Engineering Design</option>
+                        </select>
                         </div>
-                        <div class="alert alert-primary" role="alert">
-                            <a href="../../ecx/Day 0 - Mobile - 30DaysOfCode.pdf">Mobile Development - Day 0</a>
-                        </div>
-                        <div class="alert alert-primary" role="alert">
-                            <a href="../../ecx/Day 0 - Python - 30DaysOfCode.pdf">Python - Day 0</a>
-                        </div>
-                        <div class="alert alert-primary" role="alert">
-                            <a href="../../ecx/Day 0 - Design - 30DaysOfCode.pdf">Engineering Design - Day 0</a>
-                        </div>
+                        <button type="submit" class="btn btn-primary" name="submit">View Task</button>
+                      </form>
+                    </div>
+                    <div class="card-body <?php if($show == 1)echo ''; else echo 'd-none';?> ">
+                        <iframe height="100%" width="100%" src="<?php if($ifr == 1) echo ''; else echo $ifr; ?>"></iframe>
                     </div>
                     </div>
                 </div>
@@ -156,9 +162,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
         crossorigin="anonymous"></script>
     <script src="../dist/js/scripts.js"></script>
-    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-    <script src="../assets/demo/datatables-demo.js"></script>
 </body>
 
 </html>
