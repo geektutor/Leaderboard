@@ -103,7 +103,7 @@ if(isset($_POST['submit'])){
                     
                      <?php if($error !== 'err'){ ?>
                         <div class="alert alert-primary alert-dismissable">
-                            <?php echo $error?>
+                            <a href="<?php echo $error?>">Download Task</a>
                         </div>
                     <?php }?>
                     <form method="POST" class="<?php if($show == 1)echo 'd-none'; else echo '';?> ">
