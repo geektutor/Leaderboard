@@ -6,7 +6,7 @@ if(isset($_POST['submit'])){
     $task_day = mysqli_real_escape_string($conn, $_POST['task_day']);
     $track = mysqli_real_escape_string($conn, $_POST['track']);
    
-    $sql = "SELECT url FROM task WHERE day = '$task_day' AND track = '$track'";
+    $sql = "SELECT url FROM task WHERE task_day = '$task_day' AND track = '$track'";
     $result = mysqli_query($conn,$sql);
     $count = mysqli_num_rows($result);
     if($count > 0){
@@ -103,7 +103,7 @@ if(isset($_POST['submit'])){
                     
                      <?php if($error !== 'err'){ ?>
                         <div class="alert alert-primary alert-dismissable">
-                            <a href="<?php echo $error?>">Download Task</a>
+                            <?php echo $error?>
                         </div>
                     <?php }?>
                     <form method="POST" class="<?php if($show == 1)echo 'd-none'; else echo '';?> ">
@@ -136,7 +136,7 @@ if(isset($_POST['submit'])){
                       </form>
                     </div>
                     <div class="card-body <?php if($show == 1)echo ''; else echo 'd-none';?> ">
-                        <iframe height="100%" width="100%" src="<?php if($ifr == 1) echo ''; else echo $ifr; ?>"></iframe>
+                        <a href="<?php echo $error?>">Download Task</a>
                     </div>
                     </div>
                 </div>
