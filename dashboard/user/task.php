@@ -12,6 +12,7 @@ if(isset($_POST['submit'])){
     if($count > 0){
         while($row = mysqli_fetch_assoc($result)) {
            $error = $row['url'];
+           $show = 1;
         }
     }else{
         $error =  "No task for the selected options";
