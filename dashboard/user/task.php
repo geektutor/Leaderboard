@@ -3,9 +3,9 @@ require('../../config/connect.php');
 // require('../../config/session.php');
 if(isset($_POST['submit'])){
     $error = '';
+    $show = 0;
     $task_day = mysqli_real_escape_string($conn, $_POST['task_day']);
     $track = mysqli_real_escape_string($conn, $_POST['track']);
-   
     $sql = "SELECT url FROM task WHERE task_day = '$task_day' AND track = '$track'";
     $result = mysqli_query($conn,$sql);
     $count = mysqli_num_rows($result);
@@ -102,7 +102,7 @@ if(isset($_POST['submit'])){
                     <div class="card-header"><i class="fas fa-table mr-1"></i>View Task</div>
                     <div class="card-body">
                     
-                     <?php if($error !== 'err'){ ?>
+                     <?php if($show == 1){ ?>
                         <div class="alert alert-primary alert-dismissable">
                             <a href="<?php echo $error?>">Download Task</a>
                         </div>
@@ -135,9 +135,6 @@ if(isset($_POST['submit'])){
                         </div>
                         <button type="submit" class="btn btn-primary" name="submit">View Task</button>
                       </form>
-                    </div>
-                    <div class="card-body <?php if($show == 1)echo ''; else echo 'd-none';?> ">
-                        <a href="<?php echo $error?>">Download Task</a>
                     </div>
                     </div>
                 </div>
