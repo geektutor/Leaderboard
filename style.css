@@ -1,0 +1,355 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: #444;
+    font-family: cali;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: whitesmoke;
+   
+}
+
+
+.login{
+    text-align: center;
+    position: relative;
+    width: 280px;
+    background-color: white;
+    border: 5px solid white;
+    border-radius: 20px;
+    box-shadow: white;
+    padding: 10px;
+
+}
+
+input, button{
+    width: 100%;
+    border: 0;
+    border-radius: 20px;
+}
+
+input{
+    border-bottom: 2px solid #444;
+    padding: 12px 40px 12px 20px;
+}
+
+input, button, .group i,p,a{
+    font-size: 13.333px;
+    font-weight: 600;
+}
+
+.group{
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.group i{
+    position: absolute;
+    top: 15px;
+    right: 20px;
+}
+
+button{
+    padding: 12px;
+    background-image: linear-gradient(to right, #ff1464,purple);
+    margin-bottom: 20px;
+    cursor: pointer;
+
+}
+
+button, button i{
+    color: #fff;
+}
+
+button i{
+    margin-right: 5px;
+}
+
+
+p{
+    margin-bottom: 20px;
+}
+
+i.fa.fa-universal-access, a{
+    color: #ff1464;
+}
+
+i.fa-universal-access{
+    font-size: 60px;
+    margin-bottom: 20px;
+
+}
+h2{
+    margin-bottom: 20px;
+    color: purple;
+}
+
+input:focus, input:focus::placeholder,input:focus+i{
+    color: #ff1464;
+}
+
+input:focus, button:focus{
+    outline: 0;
+
+}
+
+/*sign up*/
+
+body{
+    
+    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Vesper Libre', serif;
+    font-weight: bold;
+    color: black;
+    height: 100vh;
+    background: whitesmoke;
+}
+
+.wrap{
+    text-align: center;
+    max-width: 350px;
+    border-radius: 20px;
+    margin: auto;
+    background: white;
+    border: 5px solid white;
+    box-sizing: border-box;
+    padding: 40px;
+    margin-top: 100px;
+    padding: 10px;
+    box-shadow: white;
+    position: relative;
+}
+
+
+i.fa.fa-universal-access, a{
+    color: #ff1464;
+}
+
+i.fa-universal-access{
+    font-size: 50px;
+    margin-bottom: 20px;
+
+}
+input[type=text],input[type=email],input[type=password],input[type=tel],select{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 5px;
+    outline: none;
+    border: none;
+    border-bottom: 1px dotted #fff;
+    color: black;
+    border-radius: 5px;
+    margin: 10px;
+    font-weight: bold;
+}
+input[type=text],input[type=email],input[type=password],input[type=tel],select{
+    border-bottom: 2px solid #444;
+
+}
+input{
+    width: 100%;
+    border: 0;
+    border-radius: 20px;
+}
+
+input{
+    border-bottom: 2px solid #444;
+    padding: 12px 40px 12px 20px;
+}
+
+input, .group i,p,a{
+    font-size: 13.333px;
+    font-weight: 600;
+}
+  
+a{
+    color: #ff1464;
+}
+
+button{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 0;
+    margin-top: 30px;
+    outline: none;
+    border-radius: 20px;
+    font-size: 20px;
+    color: #fff;
+}
+button{
+    
+    background-image: linear-gradient(to right, #ff1464,purple);
+    margin-bottom: 20px;
+    cursor: pointer;
+
+}
+button:hover{
+    background: purple;
+    
+}
+button i{
+    margin-right: 5px;
+}
+
+
+.group{
+    
+    position: relative;
+}
+
+.group i{
+    position: absolute;
+    top: 25px;
+    right: 5px;
+}
+input:focus, input:focus::placeholder,input:focus+i{
+    color: #ff1464;
+}
+
+input:focus, button:focus{
+    outline: 0;
+
+}
+p{
+    color: black;
+}
+
+h2{
+    margin-bottom: 20px;
+    color: purple;
+}
+
+
+/*forget*/
+
+
+body{
+    
+    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Vesper Libre', serif;
+    font-weight: bold;
+    color: black;
+    height: 100vh;
+    background: whitesmoke;
+}
+
+.wrap{
+    text-align: center;
+    max-width: 350px;
+    border-radius: 20px;
+    margin: auto;
+    background: white;
+    border: 5px solid white;
+    box-sizing: border-box;
+    padding: 40px;
+    margin-top: 100px;
+    padding: 10px;
+    box-shadow: white;
+    position: relative;
+}
+
+
+i.fa.fa-universal-access, a{
+    color: #ff1464;
+}
+
+i.fa-universal-access{
+    font-size: 50px;
+    margin-bottom: 20px;
+
+}
+input[type=text],input[type=email],select{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 5px;
+    outline: none;
+    border: none;
+    border-bottom: 1px dotted #fff;
+    color: black;
+    border-radius: 5px;
+    margin: 10px;
+    font-weight: bold;
+}
+input[type=text],input[type=email],input[type=password],input[type=tel],select{
+    border-bottom: 2px solid #444;
+
+}
+input{
+    width: 100%;
+    border: 0;
+    border-radius: 20px;
+}
+
+input{
+    border-bottom: 2px solid #444;
+    padding: 12px 40px 12px 20px;
+}
+
+input, .group i,p,a{
+    font-size: 13.333px;
+    font-weight: 600;
+}
+  
+a{
+    color: #ff1464;
+}
+
+button{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 0;
+    margin-top: 30px;
+    outline: none;
+    border-radius: 20px;
+    font-size: 20px;
+    color: #fff;
+}
+button{
+    
+    background-image: linear-gradient(to right, #ff1464,purple);
+    margin-bottom: 20px;
+    cursor: pointer;
+
+}
+button:hover{
+    background: purple;
+    
+}
+button i{
+    margin-right: 5px;
+}
+
+
+.group{
+    
+    position: relative;
+}
+
+.group i{
+    position: absolute;
+    top: 25px;
+    right: 5px;
+}
+input:focus, input:focus::placeholder,input:focus+i{
+    color: #ff1464;
+}
+
+input:focus, button:focus{
+    outline: 0;
+
+}
+p{
+    color: black;
+}
+
+h2{
+    margin-bottom: 20px;
+    color: purple;
+}
