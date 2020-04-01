@@ -1,26 +1,22 @@
 <?php
 require('../../config/connect.php');
 // require('../../config/session.php');
-    $error = 'err';
-    if(isset($_POST['submit'])){
-        $error = 'err';
-        $ifr = 0;
-        $show = 0;
-        $task_day = mysqli_real_escape_string($conn, $_POST['task_day']);
-        $track = mysqli_real_escape_string($conn, $_POST['track']);
-       
-        $sql = "SELECT url FROM task WHERE task_day = '$task_day' AND track = '$track'";
-        $result = mysqli_query($conn,$sql);
-        $count = mysqli_num_rows($result);
-        if($count > 0){
-            while($row = mysqli_fetch_assoc($result)) {
-                $ifr = $row['url'];
-                $show = 1;
-            }
-        }else{
-            $error =  "No task for the selected options";
+if(isset($_POST['submit'])){
+    $error = '';
+    $task_day = mysqli_real_escape_string($conn, $_POST['task_day']);
+    $track = mysqli_real_escape_string($conn, $_POST['track']);
+   
+    $sql = "SELECT url FROM task WHERE day = '$task_day' AND track = '$track'";
+    $result = mysqli_query($conn,$sql);
+    $count = mysqli_num_rows($result);
+    if($count > 0){
+        while($row = mysqli_fetch_assoc($result)) {
+           $error = $row['url'];
         }
+    }else{
+        $error =  "No task for the selected options";
     }
+}
 
 ?>
 <!DOCTYPE html>
@@ -107,7 +103,7 @@ require('../../config/connect.php');
                     
                      <?php if($error !== 'err'){ ?>
                         <div class="alert alert-primary alert-dismissable">
-                            <?php echo $error?>
+                            <a href="<?php echo $error?>">Download Task</a>
                         </div>
                     <?php }?>
                     <form method="POST" class="<?php if($show == 1)echo 'd-none'; else echo '';?> ">
@@ -122,6 +118,7 @@ require('../../config/connect.php');
                           <option value="Day 5">Day 5</option>
                           <option value="Day 6">Day 6</option>
                           <option value="Day 7">Day 7</option>
+                          <option value="Day 8">Day 8</option>
                         </select>
                         </div>
                         <div class="form-group">
