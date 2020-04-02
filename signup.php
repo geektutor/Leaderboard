@@ -80,6 +80,7 @@
             <div class="group"><input placeholder="Password" required="" name="password" type="password" /><i class="fa fa-lock"></i></div>
             <div class="group"><input name="phone" placeholder="Phone" type="tel" /><i class="fa fa-phone-square"></i></div>
             <select name="track">
+                <option value="">Track?</option>
                 <option value="frontend">Front End</option>
                 <option value="backend">Back End</option>
                 <option value="android">Mobile</option>
@@ -88,6 +89,7 @@
                 <option value="design">Engineering Design</option>
             </select>
             <select name="university">
+                <option value="">University?</option>
                 <option value="">N/A</option>
                 <option value="JKUAT">JKUAT</option>\
                 <option value="University of TThe Gambia">University of TThe Gambia</option>
