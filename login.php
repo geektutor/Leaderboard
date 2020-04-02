@@ -1,4 +1,4 @@
-<?php include('../config/connect.php'); ?>
+<?php include('config/connect.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -79,7 +79,7 @@
         </div>
         <?php }?>
 
-    <form class="login">
+    <form class="login" method="POST">
         <i class="fa fa-universal-access"></i>
         <h2>30 Days Of Code</h2>
         <div class="group">
@@ -89,7 +89,7 @@
             <input type="password" name="password" placeholder="Password" required><i class="fa fa-lock"></i>
         </div>
         
-        <button type+"submit" name="submit" value="submit"><i class="fa fa-send"></i> Login</button>
+        <button type="submit" name="submit" value="submit"><i class="fa fa-send"></i> Login</button>
         <p >Forgot <a href="forget.php">Password</a>?</p>
         <p >Don't have an account ? <a href="signup.php">Signup</a></p>
     </form>
