@@ -121,7 +121,7 @@ if(isset( $_SESSION['login_user'])){
    </nav>
    <div class="mainWrapper flx col" id="mainWrp">
     <main>
-      <div class="flx row"><h1>Submissions</h1> <button id="newBtn">Add new</button> </div>
+      <div class="flx row"><h1>Submissions</h1> <button id="newBtn" href="submit.php">Add new</button> </div>
       <div class="mainCard">
       <?php
       if (isset($_GET['editSubmissionReport']) && !empty($_GET['editSubmissionReport'])) {
