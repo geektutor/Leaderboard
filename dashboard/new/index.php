@@ -52,11 +52,10 @@ if(isset( $_SESSION['login_user'])){
           $user_score = $row['score'];
           $user_track = $row['track'];
           echo '<div class="avatar"><img style=\'width:120px;height:120px;\' src=\'https://robohash.org/'.$user_nickname.$user_track.'\'/></div>';
+          echo '<span id="username">'.$user_nickname.'</span>';
+          // echo '<span id="username">'.$user_score.'&nbsp; points</div></center>';
       }
       ?>
-      <span id="userName">
-       <?php  echo '<center><div>'.$user_nickname.'</div></center>'; ?>
-      </span>
       <div class="scoresContainer flx row">
         <div class="scoreCard flx col">
          <div class="wLayer"></div>
@@ -66,7 +65,6 @@ if(isset( $_SESSION['login_user'])){
         <div class="scoreCard flx col">
          <div class="wLayer"></div>
          <span class="title">Total rank:</span>
-         <span id="rank">
            <?php
             global $conn;
             $ranking_sql = "SELECT * FROM user WHERE `isAdmin` = '0' ORDER BY `score` DESC";
@@ -75,7 +73,7 @@ if(isset( $_SESSION['login_user'])){
                 $rank = 1;
                 while ($row = mysqli_fetch_assoc($ranking_result)) {
                     if($row['email'] == $email){
-                        echo '<center><div> Overall ranking: '.$rank.'&nbsp;</div></center>';
+                        echo '<span id="rank"> Overall ranking: '.$rank.'&nbsp;</span>';
                     }else {
                         $rank++;
                     }
@@ -84,7 +82,7 @@ if(isset( $_SESSION['login_user'])){
             }else {
                 echo "error fetching from database";
             }
-            ?></span>
+            ?>
         </div>
       </div>
        <ul class="linksContainer">
@@ -135,14 +133,14 @@ if(isset( $_SESSION['login_user'])){
               header('location: ../../index.php');
           }
       }
-  ?>
-  <?php
-  $u = $_SESSION['login_user'];
-  $sql = "SELECT * FROM submissions WHERE user = '$u'";
-  $result = mysqli_query($conn, $sql);
-  $count = mysqli_num_rows($result);
-  
-?>
+      ?>
+      <?php
+      $u = $_SESSION['login_user'];
+      $sql = "SELECT * FROM submissions WHERE user = '$u'";
+      $result = mysqli_query($conn, $sql);
+      $count = mysqli_num_rows($result);
+      
+     ?>
        <div class="table-responsive">
         <table class="table" style="text-align: left;">
          <thead>
