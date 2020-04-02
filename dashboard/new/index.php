@@ -44,6 +44,9 @@ if(isset( $_SESSION['login_user'])){
      <div class="flx col content">
       <?php
       global $conn;
+      $user_nickname = '';
+      $user_score = '';
+      $user_track = '';
       $email = $_SESSION['login_user'];
       $sql = "SELECT * FROM user WHERE email='$email' ";
       $result = mysqli_query($conn,$sql);
