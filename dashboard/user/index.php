@@ -141,7 +141,7 @@ if(isset( $_SESSION['login_user'])){
                         </ol>-->
                         
                         <div class="card mb-4">
-                            <div class="card-header"><i class="fas fa-table mr-1"></i>Submissions <a class="btn btn-primary" href="submit.php">Add New</a></div>
+                            <div class="card-header"><i class="fas fa-table mr-1"></i>Submissions <a class="btn btn-primary" href="submit.php">Add New</a> |  <a class="btn btn-primary" href="../new/index.php">Try Out The New Dashboard!</a></div></div>
                             <div class="card-body">
                                 <?php
                                     $u = $_SESSION['login_user'];
