@@ -88,6 +88,7 @@
                 <option value="design">Engineering Design</option>
             </select>
             <select name="university">
+                <option value="">N/A</option>
                 <option value="JKUAT">JKUAT</option>
             </select>
             
