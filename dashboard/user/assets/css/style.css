@@ -47,6 +47,10 @@ header {
 	border-radius: 3px;
 	padding: 10px 0 10px 0;
 }
+.profile .options a {
+	text-decoration: none;
+	color: black
+}
 .profile:hover .options {
 	visibility: visible;
 }
@@ -111,10 +115,10 @@ nav {
  background: #00000029 0% 0% no-repeat ;
  box-shadow: 0px 4px 10px #00000041;
 }
-#userName {
+#username {
  color: #575454;
  font-weight: bold;
- margin: 15px 0 0 0 ;
+ margin: 10px 0 0 0 ;
 }
 .scoresContainer {
  justify-content: space-around;
@@ -131,7 +135,8 @@ nav {
 .scoresContainer .scoreCard #points, .scoresContainer .scoreCard #rank{
  font-weight: bold;
  text-shadow: 0px 3px 6px #00000069;
- margin: 13px 0 0 8px;
+	margin: 13px 0 0 0px;
+	align-self: center;
 }
 .scoresContainer .scoreCard {
  position: relative;
@@ -262,3 +267,38 @@ footer a {
 .copyw {
 	padding-bottom: 4px ;
 }
+.alert.alert-primary {
+	padding: 10px 5px 10px 10px;
+	margin: 0 0 5px 0;
+	width: auto;
+	color: #004085;
+    background-color: #cce5ff;
+    border: 1px solid #b8daff;
+	border-radius: 5px;
+}
+.alert.alert-primary a {
+	color: #0000EE;
+}
+.notice {
+	padding: 10px 10px 10px 10px;
+	margin-bottom: 8px;
+	width: auto;
+	color: #155724;
+ background-color: #d4edda;
+ border-radius: 4px;
+ border: 2px solid #c3e6cb;    
+}
+.notice p {
+	margin: 6px 5px 0 0;
+}
+.notice button {
+	font-weight: bold;
+	font-size: 14px;
+	background-color:#495057;
+	color: white;
+	margin-top: 4px;
+	padding: 6px 18px 6px 18px;
+	border: none;
+	border-radius: 4px;
+	letter-spacing: 1px
+} 

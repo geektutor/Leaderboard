@@ -139,7 +139,7 @@ if(isset($_POST['submit'])){
       <div class="flx row"><h1>View Tasks</h1></div>
       <div class="mainCard">
       <?php if($show == 1){ ?>
-          <div class="alert alert-primary alert-dismissable">
+          <div class="alert alert-primary alert-dismissable">            
               <a href="<?php echo $error?>">Download Task</a>
           </div>
       <?php }?>
