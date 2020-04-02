@@ -2,15 +2,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link href="https://fonts.googleapis.com/css?family=Vesper+Libre&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="signup.css">
-    <title>30DaysOfCode  - Sign Up</title>
+    <title>Sing Up - 30DaysOfCode</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="rajstyle.css">
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+
 </head>
 <body>
-    <div class="contact-us">
-        <?php
+    <div class="wrap">
+    <?php
             $error = '';
             function keys(){	
                 global $conn;
@@ -33,6 +36,7 @@
                 $password = $_POST['password'];
                 $phone = $_POST['phone'];
                 $track = $_POST['track'];
+                $university = $_POST['university'];
 
                 function check($email){	
                     global $conn;
@@ -49,8 +53,8 @@
                 }
                 $checkIt = check($email);
                 if($checkIt){
-                    $sql = "INSERT INTO user(`user_id`, `nickname`, `email`, `password`, `phone`,`track`) 
-                            VALUES('$user_id', '$nick', '$email', '$password', '$phone','$track')";
+                    $sql = "INSERT INTO user(`user_id`, `nickname`, `email`, `password`, `phone`,`track`,`university`) 
+                            VALUES('$user_id', '$nick', '$email', '$password', '$phone','$track','$university')";
                     if($conn->query($sql)){
                     header("location:login.php?message=success");
                     }else{
@@ -62,26 +66,40 @@
             }
         ?>
         <?php if($error !== ''){ ?>
-            <div class="alert alert-primary alert-dismissable">
+            <div class="group">
                 <?= $error?>
             </div>
         <?php }?>
-        <form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
-          <input name="nick" placeholder="Nickname" required="" type="text" />
-          <input name="email" placeholder="Email" type="email" />
-          <input placeholder="Password" required="" name="password" type="password" />
-          <input name="phone" placeholder="Phone" type="tel" />
-          <select name="track">
-            <option value="frontend">Front End</option>
-            <option value="backend">Back End</option>
-            <option value="android">Mobile</option>
-            <option value="ui">UI/UX</option>
-            <option value="python">Python</option>
-            <option value="design">Engineering Design</option>
-          </select>
-          <button type="submit" name="submit" value="submit">SIGN UP</button>
-        </form><br>
-        <p>Already a user ? <a href="login.php"> Login here </a></p>
-      </div>
+
+        <i class="fa fa-universal-access"></i>
+        <form class="signup" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST">
+            <h2>Sign Up</h2>
+            
+            <div class="group"><input type="email" placeholder="Email" name="email" required><i class="fa fa-envelope-open"></i></div>
+            <div class="group"><input type="text" placeholder="NickName" name="nick" required><i class="fa fa-user"></i></div>
+            <div class="group"><input placeholder="Password" required="" name="password" type="password" /><i class="fa fa-lock"></i></div>
+            <div class="group"><input name="phone" placeholder="Phone" type="tel" /><i class="fa fa-phone-square"></i></div>
+            <select name="track">
+                <option value="frontend">Front End</option>
+                <option value="backend">Back End</option>
+                <option value="android">Mobile</option>
+                <option value="ui">UI/UX</option>
+                <option value="python">Python</option>
+                <option value="design">Engineering Design</option>
+            </select>
+            <select name="university">
+                <option value="">N/A</option>
+                <option value="JKUAT">JKUAT</option>
+            </select>
+            
+          
+           
+            <button type="submit" name="submit" value="submit"><i class="fa fa-send"></i>Submit</button>
+            <p>Already a user ? <a href="login.php"> Login here </a></p>
+        </form>
+
+
+
+    </div>
 </body>
 </html>

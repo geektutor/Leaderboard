@@ -1,33 +1,24 @@
 <?php
 require('../../config/connect.php');
-session_start();
-if (!isset($_SESSION['login_user']) || empty($_SESSION['login_user'])) {
-    
-?>
- <script>
-    document.write('You must be logged in first, redirecting to login page ...');
-    setTimeout(() => {
-        window.location.href = "../../login.php"
-    }, 3000);
- </script>
-<?php
-}else{
-    $email = $_GET['user'];
-    $day = $_GET['day'];
-    if (isset($_POST['submit'])) {
-        global $conn;
-        $url = mysqli_real_escape_string($conn, $_POST['url']);
-        $comment =  mysqli_real_escape_string($conn, $_POST['comment']);
-        //$editSql = "UPDATE submissions SET `url`='$url' AND `comments`='$comment' WHERE `user` = '$email' AND `task_day`='$day'";
-        //$find_sql= "SELECT * FROM submisions WHERE 'user' = '$email'";
-        $edit_sql = "UPDATE submissions SET `url`='$url',comments = '$comment' WHERE user = '$email' AND task_day = '$day'";
-        $result = mysqli_query($conn,$edit_sql);
-        if ($result) {
-            header('location: index.php?editSubmissionReport=success');
-        }else {
-            header('location: index.php?editSubmissionReport=failed');;
+// require('../../config/session.php');
+if(isset($_POST['submit'])){
+    $error = '';
+    $show = 0;
+    $task_day = mysqli_real_escape_string($conn, $_POST['task_day']);
+    $track = mysqli_real_escape_string($conn, $_POST['track']);
+    $sql = "SELECT url FROM task WHERE task_day = '$task_day' AND track = '$track'";
+    $result = mysqli_query($conn,$sql);
+    $count = mysqli_num_rows($result);
+    if($count > 0){
+        while($row = mysqli_fetch_assoc($result)) {
+           $error = $row['url'];
+           $show = 1;
         }
+    }else{
+        $error =  "No task for the selected options";
     }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,9 +27,9 @@ if (!isset($_SESSION['login_user']) || empty($_SESSION['login_user'])) {
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <meta http-equiv="X-UA-Compatible" content="ie=edge">
  <link rel="stylesheet" href="./assets/css/style.css">
- <link rel="stylesheet" href="./assets/css/submit.css">
+ <link rel="stylesheet" href="./assets/css/view.css">
  <link rel="stylesheet" href="./assets/css/responsive.css">
- <title>Edit task - 30 Days Of Code</title>
+ <title>All tasks - 30 Days Of Code</title>
 </head>
 <body class="flx col">
  <header class="flx row">
@@ -66,7 +57,7 @@ if (!isset($_SESSION['login_user']) || empty($_SESSION['login_user'])) {
       </div>
     </div>
      <div class="flx col content">
-      <?php
+     <?php
       global $conn;
       $user_nickname = '';
       $user_score = '';
@@ -113,15 +104,15 @@ if (!isset($_SESSION['login_user']) || empty($_SESSION['login_user'])) {
         </div>
       </div>
       <ul class="linksContainer">
-        <li class="flx row">
+        <li class="flx row ">
          <img src="./assets/img/submsn.png">
          <a href="index.php">Submissions</a>
         </li>
-        <li class="flx row">
+        <li class="flx row active">
          <img src="./assets/img/allTsk.png">
          <a href="view.php">All tasks</a>
         </li>
-        <li class="flx row active">
+        <li class="flx row">
          <img src="./assets/img/add.png">
          <a href="submit.php">Submit task</a>
         </li>
@@ -145,34 +136,47 @@ if (!isset($_SESSION['login_user']) || empty($_SESSION['login_user'])) {
    </nav>
    <div class="mainWrapper flx col" id="mainWrp">
     <main>
-      <div class="flx row"><h1>Submit a task</h1></div>
+      <div class="flx row"><h1>View Tasks</h1></div>
       <div class="mainCard">
-        <form method="POST">
-          <div class="field flx col">
-            <label for="url">URL</label>
-            <input type="url" name="url" placeholder="Enter URL" required>
-            <p style="font-size: 12px; margin-top: 8px; line-height: 110%; color: #646464;">Python - Repl.it Url, Backend - Github repo Url, Frontend - Github repo Url(put link to your Github Pages in the readme), UI/UX - Figma/Adobe XD Url, Engineering Design - Google Drive Url</p>
+      <?php if($show == 1){ ?>
+          <div class="alert alert-primary alert-dismissable">
+              <a href="<?php echo $error?>">Download Task</a>
           </div>
+      <?php }?>
+        <form method="POST" class="<?php if($show == 1)echo 'd-none'; else echo '';?> ">
           <div class="field flx col">
             <label for="day">Day</label>
             <select name="task_day" value="">
-                <option value=""><?php echo $day;?></option>
+              <option value="Day 0">Day 0</option>
+              <option value="Day 1">Day 1</option>
+              <option value="Day 2">Day 2</option>
+              <option value="Day 3">Day 3</option>
+              <option value="Day 4">Day 4</option>
+              <option value="Day 5">Day 5</option>
+              <option value="Day 6">Day 6</option>
+              <option value="Day 7">Day 7</option>
+              <option value="Day 8">Day 8</option>
+              <option value="Day 9">Day 9</option>
             </select>
           </div>
           <div class="field flx col">
-            <label for="comment">Comments?</label>
-            <textarea name="comment" type="text" placeholder="Any comments?" rows="5"></textarea>
+            <label for="track">Track</label>
+            <select name="track" value="">
+              <option value="FrontEnd">Front End</option>
+              <option value="Backend">Back End</option>
+              <option value="Mobile">Mobile</option>
+              <option value="UIUX">UI/UX</option>
+              <option value="Python">Python</option>
+              <option value="Design">Engineering Design</option>
+          </select>
           </div>
-          <button id="submitTask" type="submit" name="submit">Submit task</button>
+          <button id="taskDownload"type="submit" name="submit">Check Task</button>
         </form>
       </div >
      </main>
-     <footer class="flx row"><span class="copyw">Copyright &copy; 30DaysOfCode 2020</span> <div><a href="">Privacy Policy</a><a href="">Terms & Conditions</a></div></footer> 
+     <footer class="flx row"><span class="copyw">Copyright &copy; 30DaysOfCode 2020</span> <div><a href="">Privacy Policy</a><a href="">Terms & Conditions</a></div></footer>
    </div>
  </div>
  <script src="./assets/js/app.js"></script>
 </body>
 </html>
-<?php
-}
-?>

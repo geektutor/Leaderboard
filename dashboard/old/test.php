@@ -11,7 +11,7 @@ require('../../config/connect.php');
         $count = mysqli_num_rows($result);
         if($count > 0){
             while($row = mysqli_fetch_assoc($result)) {
-                //header("location: {$row['url']}");
+                header("location: {$row['url']}");
             }
         }else{
             $error =  "No task for the selected options";
@@ -105,7 +105,7 @@ require('../../config/connect.php');
                     
                      <?php if($error !== ''){ ?>
                         <div class="alert alert-primary alert-dismissable">
-                            <a href="<?php echo $error?>">Download Task</a>
+                        <a href="<?php echo $error?>">Download Task</a>
                         </div>
                     <?php }?>
                     <form method="POST">
