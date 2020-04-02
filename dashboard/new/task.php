@@ -1,3 +1,25 @@
+<?php
+require('../../config/connect.php');
+// require('../../config/session.php');
+if(isset($_POST['submit'])){
+    $error = '';
+    $show = 0;
+    $task_day = mysqli_real_escape_string($conn, $_POST['task_day']);
+    $track = mysqli_real_escape_string($conn, $_POST['track']);
+    $sql = "SELECT url FROM task WHERE task_day = '$task_day' AND track = '$track'";
+    $result = mysqli_query($conn,$sql);
+    $count = mysqli_num_rows($result);
+    if($count > 0){
+        while($row = mysqli_fetch_assoc($result)) {
+           $error = $row['url'];
+           $show = 1;
+        }
+    }else{
+        $error =  "No task for the selected options";
+    }
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,22 +59,50 @@
       </div>
     </div>
      <div class="flx col content">
-      <div class="avatar">
-       <img src="./assets/img/Debuggerfrontend.png">
-      </div>
-      <span id="userName">
-       Geektutor
-      </span>
+     <?php
+      global $conn;
+      $user_nickname = '';
+      $user_score = '';
+      $user_track = '';
+      $email = $_SESSION['login_user'];
+      $sql = "SELECT * FROM user WHERE email='$email' ";
+      $result = mysqli_query($conn,$sql);
+      while($row = mysqli_fetch_assoc($result)) {
+          $user_nickname = $row['nickname'];
+          $user_score = $row['score'];
+          $user_track = $row['track'];
+          echo '<div class="avatar"><img style=\'width:120px;height:120px;\' src=\'https://robohash.org/'.$user_nickname.$user_track.'\'/></div>';
+          echo '<span id="username">'.$user_nickname.'</span>';
+          // echo '<span id="username">'.$user_score.'&nbsp; points</div></center>';
+      }
+      ?>
       <div class="scoresContainer flx row">
         <div class="scoreCard flx col">
          <div class="wLayer"></div>
          <span class="title">Total points:</span>
-         <span id="points">127</span>
+         <span id="points"><?php echo '<center><div>'.$user_score.'&nbsp; points</div></center>';?></span>
         </div>
         <div class="scoreCard flx col">
          <div class="wLayer"></div>
-         <span class="title">Total points:</span>
-         <span id="rank">127</span>
+         <span class="title">Total rank:</span>
+           <?php
+            global $conn;
+            $ranking_sql = "SELECT * FROM user WHERE `isAdmin` = '0' ORDER BY `score` DESC";
+            $ranking_result = mysqli_query($conn,$ranking_sql);
+            if ($ranking_result) {
+                $rank = 1;
+                while ($row = mysqli_fetch_assoc($ranking_result)) {
+                    if($row['email'] == $email){
+                        echo '<span id="rank">'.$rank.'</span>';
+                    }else {
+                        $rank++;
+                    }
+                }
+                
+            }else {
+                echo "error fetching from database";
+            }
+            ?>
         </div>
       </div>
       <ul class="linksContainer">
@@ -83,18 +133,32 @@
          <img class="external" src="./assets/img/external.png" alt="">
         </li>
        </ul>
-       <span id="email">abcd@efgh.ijk</span>
+       <span id="email"><?=$_SESSION['login_user'];?></span>
      </div>   
    </nav>
    <div class="mainWrapper flx col" id="mainWrp">
     <main>
       <div class="flx row"><h1>View Tasks</h1></div>
       <div class="mainCard">
-        <form action="submit">
+      <?php if($show == 1){ ?>
+          <div class="alert alert-primary alert-dismissable">
+              <a href="<?php echo $error?>">Download Task</a>
+          </div>
+      <?php }?>
+        <form method="POST" class="<?php if($show == 1)echo 'd-none'; else echo '';?> ">
           <div class="field flx col">
             <label for="day">Day</label>
-            <select name="day" value="">
+            <select name="task_day" value="">
               <option value="Day 0">Day 0</option>
+              <option value="Day 1">Day 1</option>
+              <option value="Day 2">Day 2</option>
+              <option value="Day 3">Day 3</option>
+              <option value="Day 4">Day 4</option>
+              <option value="Day 5">Day 5</option>
+              <option value="Day 6">Day 6</option>
+              <option value="Day 7">Day 7</option>
+              <option value="Day 8">Day 8</option>
+              <option value="Day 9">Day 9</option>
             </select>
           </div>
           <div class="field flx col">
@@ -108,7 +172,7 @@
               <option value="Design">Engineering Design</option>
           </select>
           </div>
-          <button id="taskDownload">Download Task</button>
+          <button id="taskDownload"type="submit" name="submit">Check Task</button>
         </form>
       </div >
      </main>
