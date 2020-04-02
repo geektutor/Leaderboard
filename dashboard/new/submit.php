@@ -211,3 +211,8 @@ if(isset( $_SESSION['login_user'])){
  <script src="./assets/js/app.js"></script>
 </body>
 </html>
+<?php
+      }else{
+        header("location:../../login.php");
+      }
+      ?>
