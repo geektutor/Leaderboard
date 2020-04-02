@@ -91,15 +91,15 @@ if(isset( $_SESSION['login_user'])){
        <ul class="linksContainer">
         <li class="flx row active">
          <img src="./assets/img/submsn.png">
-         <a href="/index.php">Submissions</a>
+         <a href="index.php">Submissions</a>
         </li>
         <li class="flx row">
          <img src="./assets/img/allTsk.png">
-         <a href="/view.php">All tasks</a>
+         <a href="view.php">All tasks</a>
         </li>
         <li class="flx row">
          <img src="./assets/img/add.png">
-         <a href="/submit.php">Submit task</a>
+         <a href="submit.php">Submit task</a>
         </li>
         <li class="flx row">
          <img src="./assets/img/lead.png">
