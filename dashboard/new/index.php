@@ -148,7 +148,6 @@ if(isset( $_SESSION['login_user'])){
         <table class="table" style="text-align: left;">
          <thead>
           <tr>
-            <th scope="col">#</th>
             <th scope="col">Day</th>
             <th scope="col">Url</th>
             <th scope="col">Points</th>
@@ -164,7 +163,6 @@ if(isset( $_SESSION['login_user'])){
               while($row = $result->fetch_assoc()) {
           ?>
           <tr>
-              <td><?php echo $j?></td>
               <td><?php echo $row['task_day'];?></td>
               <td><?php echo $row['url'];?></td>
               <td><?php echo $row['points'];?></td>
