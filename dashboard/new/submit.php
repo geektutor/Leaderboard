@@ -176,6 +176,8 @@ if(isset( $_SESSION['login_user'])){
               <button class="btn btn-primary"><i class="fas fa-twitter"></i> Tweet</button>
           </a>
           <?php }?>
+          </div>
+              <?php }?>
         <form method="POST">
           <div class="field flx col">
             <label for="url">URL</label>
@@ -212,7 +214,7 @@ if(isset( $_SESSION['login_user'])){
 </body>
 </html>
 <?php
-      }else{
-        header("location:../../login.php");
-      }
-      ?>
+}else{
+  header("location:../../login.php");
+}
+?>
