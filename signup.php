@@ -36,6 +36,7 @@
                 $password = $_POST['password'];
                 $phone = $_POST['phone'];
                 $track = $_POST['track'];
+                $university = $_POST['university'];
 
                 function check($email){	
                     global $conn;
@@ -52,8 +53,8 @@
                 }
                 $checkIt = check($email);
                 if($checkIt){
-                    $sql = "INSERT INTO user(`user_id`, `nickname`, `email`, `password`, `phone`,`track`) 
-                            VALUES('$user_id', '$nick', '$email', '$password', '$phone','$track')";
+                    $sql = "INSERT INTO user(`user_id`, `nickname`, `email`, `password`, `phone`,`track`,`university`) 
+                            VALUES('$user_id', '$nick', '$email', '$password', '$phone','$track','$university')";
                     if($conn->query($sql)){
                     header("location:login.php?message=success");
                     }else{
@@ -85,6 +86,9 @@
                 <option value="ui">UI/UX</option>
                 <option value="python">Python</option>
                 <option value="design">Engineering Design</option>
+            </select>
+            <select name="university">
+                <option value="JKUAT">JKUAT</option>
             </select>
             
           
