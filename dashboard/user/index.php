@@ -26,9 +26,7 @@ if(isset( $_SESSION['login_user'])){
   <div class="profile flx col">
     <img src="./assets/img/profile.png">
     <ul class="options">
-      <li>Settings</li>
-      <li>Activity log</li>
-      <li id="logout">Logout</li>
+      <li id="logout"><a href="../../config/connect.php">Logout</a></li>
     </ul>
   </div>
  </header>
