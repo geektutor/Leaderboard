@@ -76,7 +76,7 @@ if(isset( $_SESSION['login_user'])){
                 $rank = 1;
                 while ($row = mysqli_fetch_assoc($ranking_result)) {
                     if($row['email'] == $email){
-                        echo '<span id="rank"> Overall ranking: '.$rank.'&nbsp;</span>';
+                        echo '<span id="rank">'.$rank.'</span>';
                     }else {
                         $rank++;
                     }
@@ -148,7 +148,7 @@ if(isset( $_SESSION['login_user'])){
         <table class="table" style="text-align: left;">
          <thead>
           <tr>
-            <!-- <th scope="col">#</th> -->
+            <th scope="col">#</th>
             <th scope="col">Day</th>
             <th scope="col">Url</th>
             <th scope="col">Points</th>
