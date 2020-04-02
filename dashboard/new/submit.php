@@ -210,7 +210,8 @@ if(isset( $_SESSION['login_user'])){
  </div>
  <script src="./assets/js/app.js"></script>
 </body>
-</html><?php
+</html>
+<?php
 }else{
     header("location:../../login.php"); 
 }
