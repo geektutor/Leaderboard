@@ -89,7 +89,8 @@
             </select>
             <select name="university">
                 <option value="">N/A</option>
-                <option value="JKUAT">JKUAT</option>
+                <option value="JKUAT">JKUAT</option>\
+                <option value="University of TThe Gambia">University of TThe Gambia</option>
             </select>
             
           
