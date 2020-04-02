@@ -18,18 +18,20 @@
       }
     }
 
-    $filter = $_GET['filter'];
-    //fetch user ranking
-    switch ($filter) {
-      case 'overall':
-        $sql = "SELECT * FROM user WHERE `isAdmin` = 0 ORDER BY `score` DESC LIMIT 20";
-        break;
-      
-      default:
-        $sql = "SELECT * FROM user WHERE `isAdmin` = 0 AND `track` ='$filter' ORDER BY `score` DESC LIMIT 20";
-        break;
+    if (isset($_GET['filter']) && !empty($_GET['filter'])) {
+      $filter = $_GET['filter'];
+      switch ($filter) {
+        case 'overall':
+          $sql = "SELECT * FROM user WHERE `isAdmin` = 0 ORDER BY `score` DESC LIMIT 20";
+          break;
+        
+        default:
+          $sql = "SELECT * FROM user WHERE `isAdmin` = 0 AND `track` ='$filter' ORDER BY `score` DESC LIMIT 20";
+          break;
+      }
+    }else{
+      $sql = "SELECT * FROM user WHERE `isAdmin` = 0 ORDER BY `score` DESC LIMIT 20";
     }
-    //$sql = "SELECT * FROM user WHERE `isAdmin` = 0 ORDER BY `score` DESC LIMIT 20";
     $result = mysqli_query($conn,$sql);
     if (mysqli_num_rows($result) > 0) {
       while ($row = mysqli_fetch_assoc($result)) {
@@ -54,6 +56,20 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     </head>
     <body>
+      <div class="filter">
+        <form id="filterform">
+          <select name="" id="filter" class="form-control">
+            <option id="overall" value="Overall">Overall Rankings</option>
+            <option id="frontend" value="Frontend">Frontend</option>
+            <option id="backend" value="Backend">Backend</option>
+            <option id="design" value="Design">Engineering Design</option>
+            <option id="ui" value="UI">UI/UX</option>
+            <option id="python" value="Python">Python</option>
+            <option id="android" value="Android">Android</option>
+          </select>
+          <button type="submit" class="btn btn-warning">Filter</button>
+        </form>
+      </div>
       <div class="center">
         <div class="top3">
           <div class="two item">
@@ -98,21 +114,7 @@
         </div>
           <div class="list others">
           </div>
-        </div>
-      <div class="filter">
-        <form id="filterform">
-          <select name="" id="filter" class="form-control">
-            <option id="overall" value="Overall">Overall Rankings</option>
-            <option id="frontend" value="Frontend">Frontend</option>
-            <option id="backend" value="Backend">Backend</option>
-            <option id="design" value="Design">Engineering Design</option>
-            <option id="ui" value="UI">UI/UX</option>
-            <option id="python" value="Python">Python</option>
-            <option id="android" value="Android">Android</option>
-          </select>
-          <button type="submit" class="btn btn-warning">Filter</button>
-        </form>
-      </div>
+        </div>      
       <script src="leaderboard.js"></script>
     </body>
 </html>

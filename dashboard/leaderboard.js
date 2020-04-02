@@ -80,7 +80,6 @@ document.getElementById('filterform').onsubmit = (e)=>{
 }
 
 const id = new URLSearchParams(window.location.search).toString().split('=').pop();
-console.log(id);
 
 const test = id;
 document.getElementById(test).selected = true;
