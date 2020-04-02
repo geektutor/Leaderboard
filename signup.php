@@ -95,9 +95,6 @@
                 <option value="Rongo University">Rongo University</option>
                 <option value="University of TThe Gambia">University of TThe Gambia</option>
             </select>
-            
-          
-           
             <button type="submit" name="submit" value="submit"><i class="fa fa-send"></i>Submit</button>
             <p>Already a user ? <a href="login.php"> Login here </a></p>
         </form>
