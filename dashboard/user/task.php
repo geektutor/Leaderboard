@@ -120,6 +120,7 @@ if(isset($_POST['submit'])){
                           <option value="Day 6">Day 6</option>
                           <option value="Day 7">Day 7</option>
                           <option value="Day 8">Day 8</option>
+                          <option value="Day 9">Day 9</option>
                         </select>
                         </div>
                         <div class="form-group">
