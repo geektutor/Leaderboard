@@ -42,7 +42,6 @@ if(isset( $_SESSION['login_user'])){
       </div>
     </div>
      <div class="flx col content">
-      <div class="avatar">
       <?php
       global $conn;
       $email = $_SESSION['login_user'];
@@ -52,11 +51,9 @@ if(isset( $_SESSION['login_user'])){
           $user_nickname = $row['nickname'];
           $user_score = $row['score'];
           $user_track = $row['track'];
-          echo '<center><img style=\'width:120px;height:120px;\' src=\'https://robohash.org/'.$user_nickname.$user_track.'\'/></center>';
-          echo '<center><div>'.$user_score.'&nbsp; points</div></center>';
+          echo '<div class="avatar"><img style=\'width:120px;height:120px;\' src=\'https://robohash.org/'.$user_nickname.$user_track.'\'/></div>';
       }
       ?>
-      </div>
       <span id="userName">
        <?php  echo '<center><div>'.$user_nickname.'</div></center>'; ?>
       </span>
@@ -69,7 +66,8 @@ if(isset( $_SESSION['login_user'])){
         <div class="scoreCard flx col">
          <div class="wLayer"></div>
          <span class="title">Total rank:</span>
-         <span id="rank"><?php
+         <span id="rank">
+           <?php
             global $conn;
             $ranking_sql = "SELECT * FROM user WHERE `isAdmin` = '0' ORDER BY `score` DESC";
             $ranking_result = mysqli_query($conn,$ranking_sql);
