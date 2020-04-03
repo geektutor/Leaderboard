@@ -94,11 +94,6 @@
             }
         
         ?>
-        <?php if($error !== ''){ ?>
-        <div class="group">
-            <?= $error?>
-        </div>
-        <?php }?>
 
     <form class="login" method="POST">
     <img class="devImg" src="https://img.icons8.com/officel/80/000000/code.png">
@@ -109,7 +104,11 @@
         <div class="group">
             <input type="password" name="password" placeholder="Password" required><i class="fa fa-lock"></i>
         </div>
-        
+        <?php if($error !== ''){ ?>
+        <div class="group" style="color:red;">
+            <?= $error?>
+        </div>
+        <?php }?>
         <button type="submit" name="submit" value="submit"><i class="fa fa-send"></i> Login</button>
         <p >Forgot <a href="forget.php">Password</a>?</p>
         <p >Don't have an account ? <a href="signup.php">Signup</a></p>
