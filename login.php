@@ -99,7 +99,7 @@
     <img class="devImg" src="https://img.icons8.com/officel/80/000000/code.png">
         <h2>30 Days Of Code</h2>
         <?php if($error !== ''){ ?>
-        <div class="group" style="color:red;">
+        <div class="group" style="color: #991111ae;">
             <?= $error?>
         </div>
         <?php }?>
