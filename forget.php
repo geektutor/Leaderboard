@@ -34,7 +34,7 @@ if (isset($_POST['submit'])) {
 </head>
 <body>
     <div class="wrap">
-    <img class="devImg" src="https://img.icons8.com/officel/80/000000/code.png">
+        <i class="fa fa-universal-access"></i>
         <form class="signup" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST">
             <h2>Let's help</h2>
             <p style="color :red; text-align:center;"><?php echo $error_msg?></p> <br><br>

@@ -71,7 +71,7 @@
             </div>
         <?php }?>
 
-        <img class="devImg" src="https://img.icons8.com/officel/80/000000/code.png">
+        <i class="fa fa-universal-access"></i>
         <form class="signup" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST">
             <h2>Sign Up</h2>
             
@@ -93,8 +93,7 @@
                 <option value="">N/A</option>
                 <option value="JKUAT">JKUAT</option>
                 <option value="Rongo University">Rongo University</option>
-                <option value="University of The Gambia">University of The Gambia</option>
-                <option value="University of Ilorin">University of Ilorin</option>
+                <option value="University of TThe Gambia">University of TThe Gambia</option>
             </select>
             <button type="submit" name="submit" value="submit"><i class="fa fa-send"></i>Submit</button>
             <p>Already a user ? <a href="login.php"> Login here </a></p>

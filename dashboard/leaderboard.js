@@ -69,7 +69,8 @@ function filterRanks(filter) {
 
 document.getElementById('filterform').onsubmit = (e)=>{
     e.preventDefault();
-    let filter = document.getElementById('filter').value.toLowerCase();
+    let filter = document.getElementById('filter').value;
+    console.log(filter);
     let completePageURL =  window.location.href.split('?'),
     actualURL = completePageURL[0];
     if (window.location.href === `${actualURL}?filter=${filter}`) {

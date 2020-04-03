@@ -169,9 +169,9 @@ if(isset( $_SESSION['login_user'])){
               echo $error;
               if($submit == 1){
           ?>
-          <p>Share on twitter:</p>
+          <p>Tweet about this:</p>
           <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2F30daysofcode.xyz%2F&via=ecxunilag&text=<?php echo $task_day;?>%20of%2030%3A%20Check%20out%20my%20solution%20at%3A%20<?php echo $url;?>&hashtags=30DaysOfCode%2C%2030DaysOfDesign%2C%20ecxunilag">
-          <button class="flx row"> <img src="./assets/img/tweet2.png"> Tweet</button>
+              <button class="btn btn-primary"><i class="fas fa-twitter"></i> Tweet</button>
           </a>
           <?php }?>
           </div>
@@ -195,7 +195,6 @@ if(isset( $_SESSION['login_user'])){
               <option value="Day 7">Day 7</option>
               <option value="Day 8">Day 8</option>
               <option value="Day 9">Day 9</option>
-              <option value="Day 10">Day 10</option>
             </select>
           </div>
           <div class="field flx col">

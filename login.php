@@ -101,7 +101,7 @@
         <?php }?>
 
     <form class="login" method="POST">
-    <img class="devImg" src="https://img.icons8.com/officel/80/000000/code.png">
+        <i class="fa fa-universal-access"></i>
         <h2>30 Days Of Code</h2>
         <div class="group">
             <input type="email" name="email" placeholder="Email" required><i class="fa fa-user"></i>
