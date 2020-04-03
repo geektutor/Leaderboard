@@ -71,7 +71,7 @@
             </div>
         <?php }?>
 
-        <i class="fa fa-universal-access"></i>
+        <img class="devImg" src="https://img.icons8.com/officel/80/000000/code.png">
         <form class="signup" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST">
             <h2>Sign Up</h2>
             
