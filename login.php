@@ -94,15 +94,15 @@
             }
         
         ?>
-        <?php if($error !== ''){ ?>
-        <div class="group">
-            <?= $error?>
-        </div>
-        <?php }?>
 
     <form class="login" method="POST">
     <img class="devImg" src="https://img.icons8.com/officel/80/000000/code.png">
         <h2>30 Days Of Code</h2>
+        <?php if($error !== ''){ ?>
+        <div class="group" style="color: #991111ae;">
+            <?= $error?>
+        </div>
+        <?php }?>
         <div class="group">
             <input type="email" name="email" placeholder="Email" required><i class="fa fa-user"></i>
         </div>
