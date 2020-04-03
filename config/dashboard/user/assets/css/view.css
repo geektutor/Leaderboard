@@ -1,0 +1,15 @@
+main { 
+ margin-left: 60px; 
+ width: 400px;
+}
+.mainCard {
+ width: auto;
+}
+#taskDownload {
+background-color: #0DAB6C;
+border: none;
+}
+#taskDownload:hover {
+ cursor: pointer;
+ background-color: rgb(15, 156, 109);
+}
