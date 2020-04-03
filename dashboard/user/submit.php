@@ -195,6 +195,7 @@ if(isset( $_SESSION['login_user'])){
               <option value="Day 7">Day 7</option>
               <option value="Day 8">Day 8</option>
               <option value="Day 9">Day 9</option>
+              <option value="Day 10">Day 10</option>
             </select>
           </div>
           <div class="field flx col">
