@@ -58,6 +58,7 @@
     </head>
     <body>
       <div class="filter">
+        <span style="color: white">Day 10 Leaderboard </span>
         <form id="filterform">
           <select name="" id="filter" class="form-control">
             <option id="overall" value="Overall">Overall Rankings</option>
