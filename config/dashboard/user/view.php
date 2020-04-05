@@ -1,12 +1,23 @@
 <?php
 require('../../config/connect.php');
-require('../../config/session.php');
-if(isset( $_SESSION['login_user'])){
-    $tt = $_SESSION['login_user'];
-    $sql = "SELECT track FROM user WHERE email = '$tt'";
-    $result = mysqli_query($conn, $sql);
-    $row =mysqli_fetch_assoc($result);
-    $track = $row['track'];
+// require('../../config/session.php');
+if(isset($_POST['submit'])){
+    $error = '';
+    $show = 0;
+    $task_day = mysqli_real_escape_string($conn, $_POST['task_day']);
+    $track = mysqli_real_escape_string($conn, $_POST['track']);
+    $sql = "SELECT url FROM task WHERE task_day = '$task_day' AND track = '$track'";
+    $result = mysqli_query($conn,$sql);
+    $count = mysqli_num_rows($result);
+    if($count > 0){
+        while($row = mysqli_fetch_assoc($result)) {
+           $error = $row['url'];
+           $show = 1;
+        }
+    }else{
+        $error =  "No task for the selected options";
+    }
+}
 
 ?>
 <!DOCTYPE html>
@@ -16,9 +27,9 @@ if(isset( $_SESSION['login_user'])){
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <meta http-equiv="X-UA-Compatible" content="ie=edge">
  <link rel="stylesheet" href="./assets/css/style.css">
- <link rel="stylesheet" href="./assets/css/submit.css">
+ <link rel="stylesheet" href="./assets/css/view.css">
  <link rel="stylesheet" href="./assets/css/responsive.css">
- <title>Submit task - 30 Days Of Code</title>
+ <title>All tasks - 30 Days Of Code</title>
 </head>
 <body class="flx col">
  <header class="flx row">
@@ -46,7 +57,7 @@ if(isset( $_SESSION['login_user'])){
       </div>
     </div>
      <div class="flx col content">
-      <?php
+     <?php
       global $conn;
       $user_nickname = '';
       $user_score = '';
@@ -93,15 +104,15 @@ if(isset( $_SESSION['login_user'])){
         </div>
       </div>
       <ul class="linksContainer">
-        <li class="flx row">
+        <li class="flx row ">
          <img src="./assets/img/submsn.png">
          <a href="index.php">Submissions</a>
         </li>
-        <li class="flx row">
+        <li class="flx row active">
          <img src="./assets/img/allTsk.png">
          <a href="view.php">All tasks</a>
         </li>
-        <li class="flx row active">
+        <li class="flx row">
          <img src="./assets/img/add.png">
          <a href="submit.php">Submit task</a>
         </li>
@@ -125,63 +136,14 @@ if(isset( $_SESSION['login_user'])){
    </nav>
    <div class="mainWrapper flx col" id="mainWrp">
     <main>
-      <div class="flx row"><h1>Submit a task</h1></div>
+      <div class="flx row"><h1>View Tasks</h1></div>
       <div class="mainCard">
-      <?php
-      $error = "";
-      function check(){	
-          global $conn;
-          $task_day = mysqli_real_escape_string($conn, $_POST['task_day']);
-          $queryURL = "SELECT task_day FROM submissions WHERE user = '".$_SESSION['login_user']."' AND task_day = '$task_day'";
-          $resultURL = mysqli_query($conn, $queryURL);
-          $countURL = mysqli_num_rows($resultURL);
-          if ($countURL > 0) {
-              return 1;
-          }else{
-              return 0;
-          }
-      }
-          if(isset($_POST['submit'])){
-              $url = mysqli_real_escape_string($conn, $_POST['url']);
-              $task_day = mysqli_real_escape_string($conn, $_POST['task_day']);
-              $track = $_SESSION['user_track'];
-              $user =  mysqli_real_escape_string($conn, $_SESSION['login_user']);
-              $comment =  mysqli_real_escape_string($conn, $_POST['comment']);
-              $check = check();
-              if(check() == 0){
-                  $sql = "INSERT INTO submissions(user, track, url, task_day, comments, sub_date) 
-                          VALUES('$user','$track', '$url','$task_day', '$comment', NOW())";
-                  if($conn->query($sql)){
-                      $error = "Submitted Successfully";
-                      $submit = 1;
-                  }else{
-                  die('could not enter data: '. $conn->error);
-                  }
-              }else{
-                  $error = "You've submitted already, wait for tomorrow's challenge";
-                  $submit = 0;
-              }
-          }
-      ?>
-      <?php if($error !== ''){ ?>
-      <div class="notice">
-          <?php 
-              echo $error;
-              if($submit == 1){
-          ?>
-          <p>Tweet about this:</p>
-          <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2F30daysofcode.xyz%2F&via=ecxunilag&text=<?php echo $task_day;?>%20of%2030%3A%20Check%20out%20my%20solution%20at%3A%20<?php echo $url;?>&hashtags=30DaysOfCode%2C%2030DaysOfDesign%2C%20ecxunilag">
-              <button class="btn btn-primary"><i class="fas fa-twitter"></i> Tweet</button>
-          </a>
-          <?php }?>
+      <?php if($show == 1){ ?>
+          <div class="alert alert-primary alert-dismissable">            
+              <a href="<?php echo $error?>">Download Task</a>
           </div>
-              <?php }?>
-        <form method="POST">
-          <div class="field flx col">
-            <label for="url">URL</label>
-            <input type="url" name="url" placeholder="Enter URL" required>
-            <p style="font-size: 12px; margin-top: 8px; line-height: 110%; color: #646464;">Python - Repl.it Url, Backend - Github repo Url, Frontend - Github repo Url(put link to your Github Pages in the readme), UI/UX - Figma/Adobe XD Url, Engineering Design - Google Drive Url</p>
-          </div>
+      <?php }?>
+        <form method="POST" class="<?php if($show == 1)echo 'd-none'; else echo '';?> ">
           <div class="field flx col">
             <label for="day">Day</label>
             <select name="task_day" value="">
@@ -196,27 +158,26 @@ if(isset( $_SESSION['login_user'])){
               <option value="Day 8">Day 8</option>
               <option value="Day 9">Day 9</option>
               <option value="Day 10">Day 10</option>
-              <option value="Day 11">Day 11</option>
-              <option value="Day 12">Day 12</option>
-              <option value="Day 13">Day 13</option>
             </select>
           </div>
           <div class="field flx col">
-            <label for="comment">Comments?</label>
-            <textarea name="comment" type="text" placeholder="Any comments?" rows="5"></textarea>
+            <label for="track">Track</label>
+            <select name="track" value="">
+              <option value="FrontEnd">Front End</option>
+              <option value="Backend">Back End</option>
+              <option value="Mobile">Mobile</option>
+              <option value="UIUX">UI/UX</option>
+              <option value="Python">Python</option>
+              <option value="Design">Engineering Design</option>
+          </select>
           </div>
-          <button id="submitTask" type="submit" name="submit">Submit task</button>
+          <button id="taskDownload"type="submit" name="submit">Check Task</button>
         </form>
       </div >
      </main>
-     <footer class="flx row"><span class="copyw">Copyright &copy; 30DaysOfCode 2020</span> <div><a href="">Privacy Policy</a><a href="">Terms & Conditions</a></div></footer> 
+     <footer class="flx row"><span class="copyw">Copyright &copy; 30DaysOfCode 2020</span> <div><a href="">Privacy Policy</a><a href="">Terms & Conditions</a></div></footer>
    </div>
  </div>
  <script src="./assets/js/app.js"></script>
 </body>
 </html>
-<?php
-}else{
-  header("location:../../login.php");
-}
-?>
