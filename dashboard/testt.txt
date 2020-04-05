@@ -23,18 +23,8 @@
       if ($filter == 'overall') {
         $sql = "SELECT * FROM user WHERE `isAdmin` = 0 ORDER BY `score` DESC LIMIT 20";
       }else {
-        $get_university_SQL = "SELECT * FROM universities WHERE `university_id` = '$filter'";
-        $get_university_SQL_result = mysqli_query($conn,$get_university_SQL);
-        if ($get_university_SQL) {
-          while ($university_id = mysqli_fetch_assoc($get_university_SQL_result)) {
-            $university = $university_id['university'];
-            $sql = "SELECT * FROM user WHERE `isAdmin` = 0 AND `university` = '$university' ORDER BY `score` DESC LIMIT 20";
-          }
-        }
+        $sql = "SELECT * FROM user WHERE `isAdmin` = 0 AND `university` ='$filter' ORDER BY `score` DESC LIMIT 20";
       }
-    }else {
-      $sql = "SELECT * FROM user WHERE `isAdmin` = 0 ORDER BY `score` DESC LIMIT 20";
-    }
       $result = mysqli_query($conn,$sql);
       if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
@@ -48,7 +38,7 @@
       $res =json_encode($fetched_array);
       $file = fopen('results.json','w') or die('error creating file');
       fwrite($file,$res);
-}
+  }
   getUSerRankings($userRanking);
  ?>
  <!DOCTYPE html>
@@ -62,7 +52,6 @@
       <div class="filter">
         <form id="filterform">
           <select name="" id="filter" class="form-control">
-            <option id="overall" value="overall">Overall Rankings</option>
             <?php
               include "../config/connect.php";
               global $conn;
@@ -72,26 +61,11 @@
 
               if ($result) {
                 while ($row = mysqli_fetch_assoc($result)) {
-                  $university = $row;
-                  getUniversityId($university);
-                  
-                }
-              }
-
-              function getUniversityId($university){
-                global $conn;
-                $university = $university['university'];               
-                $query = "SELECT * FROM universities WHERE `university` = '$university'";
-                $query_result = mysqli_query($conn,$query);
-                if ($query_result) {
-                  while ($universities_id = mysqli_fetch_assoc($query_result)) {
-                    $id = $universities_id['university_id'];
-                    echo '<option id=\''.$id.'\' value=\''.$id.'\'>'.$university.'</option>';
-                  }
+                  echo '<option id='.$row['university'].' value='.$row['university'].'>'.$row['university'].'</option>';
                 }
               }
             ?>
-           </select>
+          </select>
           <button type="submit" class="btn btn-warning">Filter</button>
         </form>
       </div>
@@ -99,7 +73,7 @@
         <div class="top3">
           <div class="two item">
             <div class="pos">
-              
+              2
             </div>
             <div class="pic"></div>
             <div class="name">
