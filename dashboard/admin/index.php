@@ -112,7 +112,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                                     if ($_SESSION['isSuperAdmin'] = true){
                                         $sql = "SELECT s.*, u.university FROM submissions AS s
                                             LEFT JOIN user AS u ON s.user = u.email  
-                                            WHERE s.track = '$track' AND u.university = '$university'";
+                                             AND u.university = '$university'";
                                     $result = mysqli_query($conn, $sql);
                                     $count = mysqli_num_rows($result);
                                     }
