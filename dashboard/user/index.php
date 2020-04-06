@@ -26,7 +26,7 @@ if(isset( $_SESSION['login_user'])){
   <div class="profile flx col">
     <img src="./assets/img/profile.png">
     <ul class="options">
-      <li id="logout"><a href="../../config/connect.php">Logout</a></li>
+      <li id="logout"><a href="../../logout.php">Logout</a></li>
     </ul>
   </div>
  </header>
@@ -161,11 +161,11 @@ if(isset( $_SESSION['login_user'])){
               while($row = $result->fetch_assoc()) {
           ?>
           <tr>
-              <td><?php echo $row['task_day'];?></td>
-              <td><?php echo $row['url'];?></td>
-              <td><?php echo $row['points'];?></td>
-              <td><?php echo $row['feedback'];?></td>
-              <td><?php
+              <td data-label="DAY"><?php echo $row['task_day'];?></td>
+              <td data-label="URL"><?php echo $row['url'];?></td>
+              <td data-label="POINTS"><?php echo $row['points'];?></td>
+              <td data-label="REVIEW"><?php echo $row['feedback'];?></td>
+              <td data-label="ACTIONS"><?php
                     if (empty($row['feedback'])) {
                         echo "<a href='editsubmission.php?user=".$_SESSION['login_user'].'&day='.$row['task_day']."'>Edit submission</a>";
                     }

@@ -1,5 +1,6 @@
 var hamBurger = document.getElementById("hamB");
 var navPane = document.getElementById("navPane");
+
 hamBurger.addEventListener("click", function(){
  if(navPane.classList.contains("closed")){
   navPane.classList.remove("closed");
@@ -22,5 +23,10 @@ navPane.addEventListener("click", function(e){
 function resizeEvent () {
 document.getElementById("mainWrp").style.height = navPane.offsetHeight + "px"
 }
+Array.from(document.getElementsByClassName("dismiss")).forEach(function(elm){
+ elm.addEventListener("click", function(e){
+  e.target.parentElement.remove()
+ })
+})
 window.onresize = resizeEvent;
 resizeEvent()

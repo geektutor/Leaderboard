@@ -9,7 +9,9 @@ main #newBtn {
  }
  main #newBtn:hover {
   background-color: #8e8eee;
-  transform: scale(1.02);
+  -webkit-transform: scale(1.02);
+      -ms-transform: scale(1.02);
+          transform: scale(1.02);
  }
  .mainCard {
   padding: 30px;
