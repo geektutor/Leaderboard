@@ -1,6 +1,6 @@
 <?php
 require('../../config/connect.php');
-// require('../../config/session.php');
+require('../../config/session.php');
 if(isset($_POST['submit'])){
     $error = '';
     $show = 0;
@@ -57,12 +57,50 @@ if(isset($_POST['submit'])){
       </div>
     </div>
      <div class="flx col content">
+     <?php
+      global $conn;
+      $user_nickname = '';
+      $user_score = '';
+      $user_track = '';
+      $email = $_SESSION['login_user'];
+      $sql = "SELECT * FROM user WHERE email='$email' ";
+      $result = mysqli_query($conn,$sql);
+      while($row = mysqli_fetch_assoc($result)) {
+          $user_nickname = $row['nickname'];
+          $user_score = $row['score'];
+          $user_track = $row['track'];
+          echo '<div class="avatar"><img style=\'width:120px;height:120px;\' src=\'https://robohash.org/'.$user_nickname.$user_track.'\'/></div>';
+          echo '<span id="username">'.$user_nickname.'</span>';
+          // echo '<span id="username">'.$user_score.'&nbsp; points</div></center>';
+      }
+      ?>
       <div class="scoresContainer flx row">
         <div class="scoreCard flx col">
          <div class="wLayer"></div>
+         <span class="title">Total points:</span>
+         <span id="points"><?php echo '<center><div>'.$user_score.'&nbsp; points</div></center>';?></span>
         </div>
         <div class="scoreCard flx col">
          <div class="wLayer"></div>
+         <span class="title">Total rank:</span>
+           <?php
+            global $conn;
+            $ranking_sql = "SELECT * FROM user WHERE `isAdmin` = '0' ORDER BY `score` DESC";
+            $ranking_result = mysqli_query($conn,$ranking_sql);
+            if ($ranking_result) {
+                $rank = 1;
+                while ($row = mysqli_fetch_assoc($ranking_result)) {
+                    if($row['email'] == $email){
+                        echo '<span id="rank">'.$rank.'</span>';
+                    }else {
+                        $rank++;
+                    }
+                }
+                
+            }else {
+                echo "error fetching from database";
+            }
+            ?>
         </div>
       </div>
       <ul class="linksContainer">
@@ -93,6 +131,7 @@ if(isset($_POST['submit'])){
          <img class="external" src="./assets/img/external.png" alt="">
         </li>
        </ul>
+       <span id="email"><?=$_SESSION['login_user'];?></span>
      </div>   
    </nav>
    <div class="mainWrapper flx col" id="mainWrp">
