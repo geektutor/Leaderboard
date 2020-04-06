@@ -18,17 +18,17 @@
             echo "<div class='group'>Registration Successful </div>";
         }
         if (@$_GET['message'] == 'success' && $resetPassword == 'newpassword.php') {
-            echo "<div class='group'>Password reset Successful. kindly log into your account.</div>";
+            echo "<div class='group'>Password reset successful. Kindly log into your account.</div>";
         }
         ?>
         <?php
         $ref = substr(@$_SERVER['HTTP_REFERER'],strlen(@$_SERVER['HTTP_REFERER']) - 10, 10);
         $resetPassword = substr(@$_SERVER['HTTP_REFERER'],strlen(@$_SERVER['HTTP_REFERER']) - 15, 15);
         if (@$_GET['message'] == 'success' && $ref == 'signup.php') {
-            echo "<div class='msg alert-success alert-dismissable'>Registration Successful </div>";
+            echo "<div class='group'>Registration Successful </div>";
         }
         if (@$_GET['message'] == 'success' && $resetPassword == 'newpassword.php') {
-            echo "<div class='msg alert-success alert-dismissable'>Password reset Successful. kindly log into your account.</div>";
+            echo "<div class='group'>Password reset successful. Kindly log into your account.</div>";
         }
         ?>
         <?php
