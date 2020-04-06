@@ -160,6 +160,7 @@ if(isset($_POST['submit'])){
               <option value="Day 10">Day 10</option>
               <option value="Day 11">Day 11</option>
               <option value="Day 12">Day 12</option>
+              <option value="Day 13">Day 13</option>
             </select>
           </div>
           <div class="field flx col">
