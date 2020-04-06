@@ -18,15 +18,15 @@ if(isset( $_SESSION['login_user'])){
  <header class="flx row">
   <span>#30DaysOfCode</span>
   <div class="techSymb flx row">
-   <img src="./assets/img/htm.png">
-   <img src="./assets/img/crly.png">
-   <img src="./assets/img/prts.png">
-   <img src="./assets/img/dsg.png">
+   <img src="https://github.com/nerdyphil/Leaderboard/raw/master/dashboard/user/assets/img/htm.png">
+   <img src="https://github.com/nerdyphil/Leaderboard/raw/master/dashboard/user/assets/img/crly.png">
+   <img src="https://github.com/nerdyphil/Leaderboard/raw/master/dashboard/user/assets/img/prts.png">
+   <img src="https://github.com/nerdyphil/Leaderboard/raw/master/dashboard/user/assets/img/dsg.png">
   </div>
   <div class="profile flx col">
-    <img src="./assets/img/profile.png">
+    <img src="https://github.com/nerdyphil/Leaderboard/raw/master/dashboard/user/assets/img/profile.png">
     <ul class="options">
-      <li id="logout"><a href="../../config/connect.php">Logout</a></li>
+      <li id="logout"><a href="../../logout.php">Logout</a></li>
     </ul>
   </div>
  </header>
