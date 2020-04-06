@@ -119,7 +119,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                                     else{
                                         $sql = "SELECT s.*, u.university FROM submissions AS s
                                             LEFT JOIN user AS u ON s.user = u.email  
-                                            AND s.points = 0 AND u.university = '$university'";
+                                            WHERE s.points = 0 AND u.university = '$university'";
                                     $result = mysqli_query($conn, $sql);
                                     $count = mysqli_num_rows($result);
                                     }
