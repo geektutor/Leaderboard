@@ -5,9 +5,6 @@ require('../../config/session.php');
 if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
     $track = $_SESSION['track'];
     $university = $_SESSION['university'];
-else if(isset( $_SESSION['login_user']) && $_SESSION['isSuperAdmin'] == true){
-    $university = 'admin';
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
