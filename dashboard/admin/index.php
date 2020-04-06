@@ -4,7 +4,7 @@ require('../../config/session.php');
 
 if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
     $track = $_SESSION['track'];
-    
+    $university = $_SESSION['university'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -109,7 +109,9 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                             <div class="card-header"><i class="fas fa-table mr-1"></i>Submissions</div>
                             <div class="card-body">
                                 <?php
-                                    $sql = "SELECT * FROM submissions WHERE track = '$track' AND points = 0";
+                                    $sql = "SELECT s.*, u.university FROM submissions AS s
+                                            LEFT JOIN user AS u ON s.user = u.email  
+                                            WHERE s.track = '$track' AND s.points = 0 AND u.university = '$university'";
                                     $result = mysqli_query($conn, $sql);
                                     $count = mysqli_num_rows($result);
                                     
@@ -125,6 +127,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                                                 <th>Submission for Day</th>
                                                 <th>Date</th>                                            
                                                 <th>Points</th>
+                                                <th>University</th>
                                             </tr>
                                         </thead>
                                         <tfoot>
@@ -135,7 +138,8 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                                                 <th>Track</th>
                                                 <th>Submission for Day</th>
                                                 <th>Date</th>                                            
-                                                <th>Points</th>                                            
+                                                <th>Points</th>
+                                                <th>University</th>
                                             </tr>
                                         </tfoot>
                                         <tbody>
@@ -153,6 +157,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                                                 <td><?php echo $row['task_day'];?></td>
                                                 <td><?php echo $row['sub_date'];?></td>
                                                 <td><?php echo $row['points'];?></td>
+                                                <td><?php echo $row['university'];?></td>
                                             </tr>
                                             <?php 
                                                 $j++;
