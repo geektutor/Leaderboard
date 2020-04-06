@@ -109,12 +109,20 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                             <div class="card-header"><i class="fas fa-table mr-1"></i>Submissions</div>
                             <div class="card-body">
                                 <?php
-                                    $sql = "SELECT s.*, u.university FROM submissions AS s
+                                    if ($university = ''){
+                                        $sql = "SELECT s.*, u.university FROM submissions AS s
                                             LEFT JOIN user AS u ON s.user = u.email  
                                             WHERE s.track = '$track' AND s.points = 0 AND u.university = '$university'";
                                     $result = mysqli_query($conn, $sql);
                                     $count = mysqli_num_rows($result);
-                                    
+                                    }
+                                    else{
+                                        $sql = "SELECT s.*, u.university FROM submissions AS s
+                                            LEFT JOIN user AS u ON s.user = u.email  
+                                            AND s.points = 0 AND u.university = '$university'";
+                                    $result = mysqli_query($conn, $sql);
+                                    $count = mysqli_num_rows($result);
+                                    }
                                 ?>
                                 <div class="table-responsive">
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
