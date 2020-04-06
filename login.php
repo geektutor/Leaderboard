@@ -76,7 +76,7 @@
                         $_SESSION['track'] = $_SESSION['user_track'];
                         $_SESSION['login_user'] = $username.'_';
                         $_SESSION['university'] = $_SESSION['user_university'];
-                        header("location: dashboard/admin/uniadmin.php");
+                        header("location: dashboard/admin/index.php");
                     }else {
                         header("location: dashboard/user/index.php");
                     }
