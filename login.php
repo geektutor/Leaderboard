@@ -61,6 +61,7 @@
                         $_SESSION['isSuperAdmin'] = true;
                         $_SESSION['track'] = $_SESSION['user_track'];
                         $_SESSION['login_user'] = $username.'_';
+                        $_SESSION['university'] = $_SESSION['user_university'];
                         header("location: dashboard/admin/index.php?superadmin=true");
                     }elseif ($row['isAdmin'] == 1) {
                         //basic admin priviledges
