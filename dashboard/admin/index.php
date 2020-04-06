@@ -5,6 +5,9 @@ require('../../config/session.php');
 if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
     $track = $_SESSION['track'];
     $university = $_SESSION['university'];
+else if(isset( $_SESSION['login_user']) && $_SESSION['isSuperAdmin'] == true){
+    $university = 'admin';
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -116,7 +119,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                                     $result = mysqli_query($conn, $sql);
                                     $count = mysqli_num_rows($result);
                                     }
-                                    else if ($_SESSION['isSuperAdmin'] == true){
+                                    else if ($university == 'admin'){
                                         $sql = "SELECT s.*, u.university FROM submissions AS s
                                             LEFT JOIN user AS u ON s.user = u.email  
                                              AND u.university = '$university'";
