@@ -116,20 +116,25 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                                     $result = mysqli_query($conn, $sql);
                                     $count = mysqli_num_rows($result);
                                     }
-                                    else if ($university != '') {
+                                    else {
                                         $sql = "SELECT s.*, u.university FROM submissions AS s
                                             LEFT JOIN user AS u ON s.user = u.email  
                                             WHERE s.points = 0 AND u.university = '$university'";
                                     $result = mysqli_query($conn, $sql);
                                     $count = mysqli_num_rows($result);
                                     }
-                                    else if ($_SESSION['isSuperAdmin'] = true){
-                                        $sql = "SELECT s.*, u.university FROM submissions AS s
-                                            LEFT JOIN user AS u ON s.user = u.email  
-                                             AND u.university = '$university'";
-                                    $result = mysqli_query($conn, $sql);
-                                    $count = mysqli_num_rows($result);
-                                    }
+                                ?>
+                                <?php 
+                                if ($_SESSION['isSuperAdmin'] = true){
+                                    $sql = "SELECT s.*, u.university FROM submissions AS s
+                                        LEFT JOIN user AS u ON s.user = u.email  
+                                         AND u.university = '$university'";
+                                $result = mysqli_query($conn, $sql);
+                                $count = mysqli_num_rows($result);
+                                }
+                                else {
+                                    echo 'Silence is golden';
+                                }
                                 ?>
                                 <div class="table-responsive">
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
