@@ -19,20 +19,35 @@
     }
 
     if (isset($_GET['filter']) && !empty($_GET['filter'])) {
+      //preparing the query parameter
       $filter = $_GET['filter'];
+      $filter = explode('+',$filter);
+      function myfunction($v1,$v2)
+      {
+      return $v1 . " " . $v2;
+      }
+      $filter = array_reduce($filter,"myfunction");
+      $filter = trim($filter);
+
+
       switch ($filter) {
-        case 'overall':
-          $sql = "SELECT * FROM user WHERE `isAdmin` = 0 ORDER BY `score` DESC LIMIT 20";
+        case 'Other':
+          $val = '';
+          $sql = "SELECT * FROM user WHERE `isAdmin` = 0 And `university`='$val' ORDER BY `score` DESC LIMIT 20";
           break;
 
         default:
-          $sql = "SELECT * FROM user WHERE `isAdmin` = 0 AND `track` ='$filter' ORDER BY `score` DESC LIMIT 20";
+          $sql = "SELECT * FROM user WHERE `isAdmin` = 0 AND `university` ='$filter' ORDER BY `score` DESC LIMIT 20";
           break;
       }
     }else{
-      $sql = "SELECT * FROM user WHERE `isAdmin` = 0 ORDER BY `score` DESC LIMIT 20";
+      $val = '';
+      $sql = "SELECT * FROM user WHERE `isAdmin` = 0 And `university` = '$val' ORDER BY `score` DESC LIMIT 20";
     }
     $result = mysqli_query($conn,$sql);
+    if ($result) {
+      echo "worked";
+    }
     if (mysqli_num_rows($result) > 0) {
       while ($row = mysqli_fetch_assoc($result)) {
           $nickname = $row['nickname'];
@@ -69,7 +84,6 @@
                 echo "<option value='".$row['university']."' id='".$row['university']."'>".$row['university']."</option>";
               }
             }
-
              ?>
           </select>
           <button type="submit" class="btn btn-warning">Filter</button>

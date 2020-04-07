@@ -69,7 +69,7 @@ function filterRanks(filter) {
 
 document.getElementById('filterform').onsubmit = (e)=>{
     e.preventDefault();
-    let filter = document.getElementById('filter').value.toLowerCase();
+    let filter = document.getElementById('filter').value.split(' ').join('+');
     let completePageURL =  window.location.href.split('?'),
     actualURL = completePageURL[0];
     if (window.location.href === `${actualURL}?filter=${filter}`) {
@@ -79,7 +79,7 @@ document.getElementById('filterform').onsubmit = (e)=>{
     }
 }
 
-const id = new URLSearchParams(window.location.search).toString().split('=').pop();
-
+const queryParam = new URLSearchParams(window.location.search).toString().split('=').pop();
+const id = queryParam.split('+').join(' ');
 const test = id;
 document.getElementById(test).selected = true;
