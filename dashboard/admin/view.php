@@ -111,14 +111,13 @@ if(isset( $_SESSION['login_user'])){
                                     <div class="form-group">
                                     <label for="Url">Url: </label> <span class="alert alert-primary"><a href="<?php echo $row['url'];?>" target="_blank"><?php echo $row['url'];?></a></span> 
                                     <br><br><br>
-                                    <label for="comments">Comment: </label> <span class="alert alert-primary"><?php echo $row['comments'];?></span>
+                                    <label for="comments">Comment: </label> <p class="alert alert-primary"><?php echo $row['comments'];?></p>
                                     <br><br><label for="point">Point</label> <br>
                                     <input type="number" name="point" class="form-control" id="point" placeholder="Enter Point for This Submissions" required value="<?php echo $row['points'];?>">
                                     <input type="text" name="user" class="form-control" id="user" value="<?php echo $row['user'];?>" hidden>
                                     <small id="emailHelp" class="form-text text-muted">Enter Points for This Submission</small>
                                     <br><br><label for="point">Feedback</label> <br>
                                     <textarea name="feedback" class="form-control" id="feedback" placeholder="Enter Feedback for This Submissions" value="<?php echo $row['feedback'];?>"></textarea>
-                                    <!-- <input type="text" > -->
                                     <small id="emailHelp" class="form-text text-muted">Enter Feedback for This Submission</small>
                                     </div>
                                     <button type="submit" class="btn btn-primary" name="submit">Submit</button>

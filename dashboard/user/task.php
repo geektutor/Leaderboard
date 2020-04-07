@@ -1,6 +1,7 @@
 <?php
 require('../../config/connect.php');
 // require('../../config/session.php');
+<<<<<<< HEAD
     $error = 'err';
     if(isset($_POST['submit'])){
         $error = 'err';
@@ -19,8 +20,25 @@ require('../../config/connect.php');
             }
         }else{
             $error =  "No task for the selected options";
+=======
+if(isset($_POST['submit'])){
+    $error = '';
+    $show = 0;
+    $task_day = mysqli_real_escape_string($conn, $_POST['task_day']);
+    $track = mysqli_real_escape_string($conn, $_POST['track']);
+    $sql = "SELECT url FROM task WHERE task_day = '$task_day' AND track = '$track'";
+    $result = mysqli_query($conn,$sql);
+    $count = mysqli_num_rows($result);
+    if($count > 0){
+        while($row = mysqli_fetch_assoc($result)) {
+           $error = $row['url'];
+           $show = 1;
+>>>>>>> 246a5c3d35d70c766ca91553d76f8385cf9f3def
         }
+    }else{
+        $error =  "No task for the selected options";
     }
+}
 
 ?>
 <!DOCTYPE html>
@@ -33,9 +51,8 @@ require('../../config/connect.php');
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Dashboard - 30 Days Of Code</title>
+    <link rel="shortcut icon" type="image/png" href="https://30daysofcode.xyz/favicon.png"/>
     <link href="../dist/css/styles.css" rel="stylesheet" />
-    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet"
-        crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js"
         crossorigin="anonymous"></script>
 </head>
@@ -45,17 +62,17 @@ require('../../config/connect.php');
         <a class="navbar-brand" href="index.php">30DaysOfCode.xyz</a><button
             class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i
                 class="fas fa-bars"></i></button>
-        <!-- Navbar Search
+        <!-- Navbar Search-->
         <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
             <div class="input-group">
-                <input class="form-control" type="text" placeholder="Search for..." aria-label="Search"
-                    aria-describedby="basic-addon2" />
+                <!--<input class="form-control" type="text" placeholder="Search for..." aria-label="Search"
+                    aria-describedby="basic-addon2" />-->
                 <div class="input-group-append">
-                    <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
+                    <!--<button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>-->
                 </div>
             </div>
-        </form>-->
-        <!-- Navbar
+        </form>
+        <!-- Navbar-->
         <ul class="navbar-nav ml-auto ml-md-0">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown"
@@ -66,7 +83,7 @@ require('../../config/connect.php');
                     <a class="dropdown-item" href="login.html">Logout</a>
                 </div>
             </li>
-        </ul>-->
+        </ul>
     </nav>
     <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
@@ -78,10 +95,7 @@ require('../../config/connect.php');
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Dashboard
                         </a>
-                        <div class="sb-sidenav-menu-heading"></div>
-
-                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                            aria-expanded="false" aria-controls="collapsePages">
+                        <a class="nav-link collapsed" href="#">
                             <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                             All Tasks
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
@@ -109,9 +123,13 @@ require('../../config/connect.php');
                     <div class="card-header"><i class="fas fa-table mr-1"></i>View Task</div>
                     <div class="card-body">
                     
+<<<<<<< HEAD
                      <?php if($error !== 'err'){ ?>
+=======
+                     <?php if($show == 1){ ?>
+>>>>>>> 246a5c3d35d70c766ca91553d76f8385cf9f3def
                         <div class="alert alert-primary alert-dismissable">
-                            <?php echo $error?>
+                            <a href="<?php echo $error?>">Download Task</a>
                         </div>
                     <?php }?>
                     <form method="POST" class="<?php if($show == 1)echo 'd-none'; else echo '';?> ">
@@ -125,6 +143,8 @@ require('../../config/connect.php');
                           <option value="Day 4">Day 4</option>
                           <option value="Day 5">Day 5</option>
                           <option value="Day 6">Day 6</option>
+                          <option value="Day 7">Day 7</option>
+                          <option value="Day 8">Day 8</option>
                         </select>
                         </div>
                         <div class="form-group">
@@ -165,12 +185,15 @@ require('../../config/connect.php');
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
         crossorigin="anonymous"></script>
     <script src="../dist/js/scripts.js"></script>
+<<<<<<< HEAD
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
     <script src="../assets/demo/datatables-demo.js"></script>
     <script type="text/javascript">
         
     </script>
+=======
+>>>>>>> 246a5c3d35d70c766ca91553d76f8385cf9f3def
 </body>
 
 </html>
