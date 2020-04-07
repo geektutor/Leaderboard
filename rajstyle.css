@@ -1,0 +1,180 @@
+*{
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    color: #4d4b4b;
+    font-family: Arial, Helvetica, sans-serif;
+}
+body{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    min-height: 100vh;
+    width: 100vw;
+    background-color: #e5e7e8;
+}
+.login{
+    text-align: center;
+    position: relative;
+    width: 400px;
+    background-color: white;
+    border: 5px solid white;
+    border-radius: 6px;
+    -webkit-box-shadow: white;
+            box-shadow: white;
+    padding: 20px 25px 10px 25px;
+    -webkit-box-shadow: 0px 0px 19px 0px rgba(0,0,0,0.45);
+box-shadow: 0px 0px 19px 0px rgba(0,0,0,0.45);
+display: -webkit-box;
+display: -ms-flexbox;
+display: flex;
+-webkit-box-orient: vertical;
+-webkit-box-direction: normal;
+    -ms-flex-direction: column;
+        flex-direction: column;
+-webkit-box-align: center;
+    -ms-flex-align: center;
+        align-items: center;
+}
+
+.group{
+    width: 100%;
+    margin-bottom: 10px;
+    position: relative;
+}
+.group i, select i{
+    position: absolute;
+    top: 20px;
+    right: 10px;
+}
+input:focus, button:focus{
+    outline-color: none;
+}
+
+input, select{
+    background-color: #e8f0fe;;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    padding: 12px 5px;    
+    border-radius: 9px;
+    border: 0.5px solid #b9a7a7;
+    margin: 5px 0 5px 0;
+    letter-spacing: 0.5px;
+    font-size: 14px;
+    font-weight: 400;
+    outline: none;
+    padding: 12px 40px 12px 20px;
+}
+select {
+    margin-bottom: 10px;;
+}
+input:focus::-webkit-input-placeholder{
+    color: #53bde2;
+}
+input:focus::-moz-placeholder{
+    color: #53bde2;
+}
+input:focus:-ms-input-placeholder{
+    color: #53bde2;
+}
+input:focus::-ms-input-placeholder{
+    color: #53bde2;
+}
+input:focus, input:focus::placeholder,input:focus+i{
+    color: #53bde2;
+}
+.group i, select i, p, a{
+    font-weight: normal;
+    font-size: 14px
+}
+
+button{
+    font-weight: bold;
+    font-size: 18px;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    width: 100%;
+    border: 0;
+    border-radius: 4px;
+    padding: 12px;
+    background-color: #527797;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    background-color: 527797;
+    cursor: pointer;
+}
+button, button i{
+    color: #fff;
+}
+button i{
+    margin-right: 10px;
+}
+button:hover{  
+    -webkit-transition-duration: 150ms;  
+         -o-transition-duration: 150ms;  
+            transition-duration: 150ms;
+    -webkit-transform: translateY(-3px);
+        -ms-transform: translateY(-3px);
+            transform: translateY(-3px);  
+}
+p{
+    margin-bottom: 20px;
+}
+h2
+{
+    text-align: left;
+    font-size: 25px;
+    font-weight: 600;
+    margin-right: auto;
+    margin-bottom: 30px;
+    color: #424e5c;
+}
+.wrap{
+    text-align: center;
+     position: relative;
+     display: -webkit-box;
+     display: -ms-flexbox;
+     display: flex;
+     -webkit-box-orient: vertical;
+     -webkit-box-direction: normal;
+         -ms-flex-direction: column;
+             flex-direction: column;
+    width: 400px;
+    border-radius: 10px;
+    margin: auto;
+    background: white;
+    border: 5px solid white;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    padding: 40px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    padding: 30px 25px 10px 25px;
+    -webkit-box-shadow: 0px 0px 19px 0px rgba(0,0,0,0.45);
+box-shadow: 0px 0px 19px 0px rgba(0,0,0,0.45);
+}
+p {
+    font-size: 14px;
+    color: #484545;
+}
+a
+{
+    font-size: 14px;
+    color: #5a789a;
+}
+.devImg {
+    -ms-flex-item-align: start;
+        align-self: flex-start;
+    -webkit-transform: scale(0.85);
+        -ms-transform: scale(0.85);
+            transform: scale(0.85);
+    margin-bottom: 10px;
+}

@@ -109,11 +109,31 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                             <div class="card-header"><i class="fas fa-table mr-1"></i>Submissions</div>
                             <div class="card-body">
                                 <?php
-                                    $sql = "SELECT s.*, u.university FROM submissions AS s
+
+                                    $sql = "SELECT s.*, u.university FROM submissions AS s";
+
+                                    if ($university == ''){
+                                        $sql = "SELECT s.*, u.university FROM submissions AS s
+
                                             LEFT JOIN user AS u ON s.user = u.email  
                                             WHERE s.track = '$track' AND s.points = 0 AND u.university = '$university'";
                                     $result = mysqli_query($conn, $sql);
                                     $count = mysqli_num_rows($result);
+                                    }
+                                    else if ($university == 'admin'){
+                                        $sql = "SELECT s.*, u.university FROM submissions AS s
+                                            LEFT JOIN user AS u ON s.user = u.email  
+                                             AND u.university = '$university' ORDER BY s.points";
+                                    $result = mysqli_query($conn, $sql);
+                                    $count = mysqli_num_rows($result);
+                                    }
+                                    else {
+                                        $sql = "SELECT s.*, u.university FROM submissions AS s
+                                            LEFT JOIN user AS u ON s.user = u.email  
+                                            WHERE s.points = 0 AND u.university = '$university'";
+                                    $result = mysqli_query($conn, $sql);
+                                    $count = mysqli_num_rows($result);
+                                    }
                                     
                                 ?>
                                 <div class="table-responsive">
@@ -170,17 +190,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                                 </div>
                             </div>
                         </div>
-                        <?php
-                            $file = fopen("titlecv.docx", "r");
-
-                            //Output lines until EOF is reached
-                            while(! feof($file)) {
-                              $line = fgets($file);
-                              echo $line. "<br>";
-                            }
-
-                            fclose($file);
-                        ?>
+                       
                     </div>
                 </main>
                 <footer class="py-4 bg-light mt-auto">
