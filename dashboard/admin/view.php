@@ -69,42 +69,38 @@ if(isset( $_SESSION['login_user'])){
                             <div class="card-body">
                             <?php
                             $error = "";
-                                if($count > 0){
-                                    while($row = $result->fetch_assoc()) {
+                            if($count > 0){
+                                while($row = $result->fetch_assoc()) {
 
-                                        if (isset($_POST['submit'])) {
-                                            $u = $_POST['user'];
-                                            $point = $_POST['point'];
-                                            $feedback = mysqli_real_escape_string($conn, $_POST['feedback']);
-                                            if ($feedback == '') {
-                                                $feedback = "Marked";
-                                            }
-
-                                        $sql = "UPDATE submissions SET points = '$point', feedback = '$feedback' WHERE id = '$id'";
-                                        // var_dump($sql); die;
+                                    if (isset($_POST['submit'])) {
+                                        $u = $_POST['user'];
+                                        $point = $_POST['point'];
+                                        $feedback = mysqli_real_escape_string($conn, $_POST['feedback']);
+                                        if ($feedback == '') {
+                                            $feedback = "Marked";
+                                        }
+                                    $sql = "UPDATE submissions SET points = '$point', feedback = '$feedback' WHERE id = '$id'";
+                                    // var_dump($sql); die;
+                                    $result = mysqli_query($conn, $sql);
+                                    if($result){
+                                        $sql = "SELECT score FROM user WHERE email = '$u'";
+                                        $result = mysqli_query($conn, $sql);
+                                        $count = mysqli_num_rows($result);
+                                        $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+                                        $newPoint = $point + intval($row['score']);
+                                        
+                                        $sql = "UPDATE user SET score = '$newPoint' WHERE email = '$u'";
                                         $result = mysqli_query($conn, $sql);
                                         if($result){
-                                            $sql = "SELECT score FROM user WHERE email = '$u'";
-                                            $result = mysqli_query($conn, $sql);
-                                            $count = mysqli_num_rows($result);
-                                            $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-                                            $newPoint = $point + intval($row['score']);
-                                            
-                                            $sql = "UPDATE user SET score = '$newPoint' WHERE email = '$u'";
-                                            $result = mysqli_query($conn, $sql);
-                                            if($result){
-                                                $error = "Submitted Successfully";
-                                                header('refresh: 2; url=./index.php?message=success'); 
-                                            }else{
-                                               $error = "Could not update user";
-                                            }
-
-                                        } else {
-                                            $error = "Could not update sub";
-
+                                            $error = "Submitted Successfully";
+                                            header('refresh: 2; url=./index.php?message=success'); 
+                                        }else{
+                                           $error = "Could not update user";
                                         }
+                                    } else {
+                                        $error = "Could not update sub";
                                     }
-                                        
+                                }
                             ?>
                                 <?php if($error !== ''){ ?>
                                     <div class="alert alert-primary alert-dismissable">
@@ -121,7 +117,7 @@ if(isset( $_SESSION['login_user'])){
                                     <input type="text" name="user" class="form-control" id="user" value="<?php echo $row['user'];?>" hidden>
                                     <small id="emailHelp" class="form-text text-muted">Enter Points for This Submission</small>
                                     <br><br><label for="point">Feedback</label> <br>
-                                    <textarea type="text" name="feedback" class="form-control" id="feedback" placeholder="Enter Feedback for This Submissions" value="<?php echo $row['feedback'];?>"></textarea>
+                                    <textarea name="feedback" class="form-control" id="feedback" placeholder="Enter Feedback for This Submissions" value="<?php echo $row['feedback'];?>"></textarea>
                                     <small id="emailHelp" class="form-text text-muted">Enter Feedback for This Submission</small>
                                     </div>
                                     <button type="submit" class="btn btn-primary" name="submit">Submit</button>

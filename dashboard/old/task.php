@@ -1,6 +1,26 @@
 <?php
 require('../../config/connect.php');
 // require('../../config/session.php');
+<<<<<<< HEAD
+    $error = 'err';
+    if(isset($_POST['submit'])){
+        $error = 'err';
+        $ifr = 0;
+        $show = 0;
+        $task_day = mysqli_real_escape_string($conn, $_POST['task_day']);
+        $track = mysqli_real_escape_string($conn, $_POST['track']);
+       
+        $sql = "SELECT url FROM task WHERE day = '$task_day' AND track = '$track'";
+        $result = mysqli_query($conn,$sql);
+        $count = mysqli_num_rows($result);
+        if($count > 0){
+            while($row = mysqli_fetch_assoc($result)) {
+                $ifr = $row['url'];
+                $show = 1;
+            }
+        }else{
+            $error =  "No task for the selected options";
+=======
 if(isset($_POST['submit'])){
     $error = '';
     $show = 0;
@@ -13,6 +33,7 @@ if(isset($_POST['submit'])){
         while($row = mysqli_fetch_assoc($result)) {
            $error = $row['url'];
            $show = 1;
+>>>>>>> 246a5c3d35d70c766ca91553d76f8385cf9f3def
         }
     }else{
         $error =  "No task for the selected options";
@@ -102,7 +123,11 @@ if(isset($_POST['submit'])){
                     <div class="card-header"><i class="fas fa-table mr-1"></i>View Task</div>
                     <div class="card-body">
                     
+<<<<<<< HEAD
+                     <?php if($error !== 'err'){ ?>
+=======
                      <?php if($show == 1){ ?>
+>>>>>>> 246a5c3d35d70c766ca91553d76f8385cf9f3def
                         <div class="alert alert-primary alert-dismissable">
                             <a href="<?php echo $error?>">Download Task</a>
                         </div>
@@ -137,6 +162,9 @@ if(isset($_POST['submit'])){
                         <button type="submit" class="btn btn-primary" name="submit">View Task</button>
                       </form>
                     </div>
+                    <div class="card-body <?php if($show == 1)echo ''; else echo 'd-none';?> ">
+                        <iframe height="100%" width="100%" src="<?php if($ifr == 1) echo ''; else echo $ifr; ?>"></iframe>
+                    </div>
                     </div>
                 </div>
             </main>
@@ -158,6 +186,15 @@ if(isset($_POST['submit'])){
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
         crossorigin="anonymous"></script>
     <script src="../dist/js/scripts.js"></script>
+<<<<<<< HEAD
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+    <script src="../assets/demo/datatables-demo.js"></script>
+    <script type="text/javascript">
+        
+    </script>
+=======
+>>>>>>> 246a5c3d35d70c766ca91553d76f8385cf9f3def
 </body>
 
 </html>
