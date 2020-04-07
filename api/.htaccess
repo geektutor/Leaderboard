@@ -1,0 +1,4 @@
+RewriteEngine On
+
+RewriteCond $1 !^(index\.php)
+RewriteRule ^(.*)$ index.php?redirect=$1 [L]

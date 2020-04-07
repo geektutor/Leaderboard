@@ -5,7 +5,7 @@
     include "../config/connect.php";
 
     //user class for each fetched user
-    class User 
+    class User
     {
       public $nickname;
       public $track;
@@ -24,7 +24,7 @@
         case 'overall':
           $sql = "SELECT * FROM user WHERE `isAdmin` = 0 ORDER BY `score` DESC LIMIT 20";
           break;
-        
+
         default:
           $sql = "SELECT * FROM user WHERE `isAdmin` = 0 AND `track` ='$filter' ORDER BY `score` DESC LIMIT 20";
           break;
@@ -37,7 +37,7 @@
       while ($row = mysqli_fetch_assoc($result)) {
           $nickname = $row['nickname'];
           $track = $row['track'];
-          $score = $row['score'];        
+          $score = $row['score'];
           $user = new User($nickname,$track,$score);
           array_push($fetched_array,$user);
       }
@@ -59,13 +59,18 @@
       <div class="filter">
         <form id="filterform">
           <select name="" id="filter" class="form-control">
-            <option id="overall" value="Overall">Overall Rankings</option>
-            <option id="frontend" value="Frontend">Frontend</option>
-            <option id="backend" value="Backend">Backend</option>
-            <option id="design" value="Design">Engineering Design</option>
-            <option id="ui" value="UI">UI/UX</option>
-            <option id="python" value="Python">Python</option>
-            <option id="android" value="Android">Android</option>
+            <?php
+            include "../config/connect.php";
+            $sql = "SELECT DISTINCT `university` FROM user";
+            $result = mysqli_query($conn,$sql);
+            if ($result && mysqli_num_rows($result) > 0) {
+              while ($row = mysqli_fetch_assoc($result)) {
+                $row['university'] == ''?$row['university'] = 'Other' : true;
+                echo "<option value='".$row['university']."' id='".$row['university']."'>".$row['university']."</option>";
+              }
+            }
+
+             ?>
           </select>
           <button type="submit" class="btn btn-warning">Filter</button>
         </form>
@@ -114,7 +119,7 @@
         </div>
           <div class="list others">
           </div>
-        </div>      
+        </div>
       <script src="leaderboard.js"></script>
     </body>
 </html>
