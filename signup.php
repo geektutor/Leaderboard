@@ -96,6 +96,7 @@
                 <option value="University of The Gambia">University of The Gambia</option>
                 <option value="University of Ilorin">University of Ilorin</option>
                 <option value="University of Eldoret">University of Eldoret</option>
+                <option value="ESUT">Enugu State University of Science and Technology</option>
             </select>
             <button type="submit" name="submit" value="submit"><i class="fa fa-send"></i>Submit</button>
             <p>Already a user ? <a href="login.php"> Login here </a></p>
