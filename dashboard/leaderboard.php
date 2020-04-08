@@ -31,7 +31,7 @@
 
 
       switch ($filter) {
-        case 'Other':
+        case 'General':
           $val = '';
           $sql = "SELECT * FROM user WHERE `isAdmin` = 0 And `university`='$val' ORDER BY `score` DESC LIMIT 20";
           break;
@@ -80,7 +80,7 @@
             $result = mysqli_query($conn,$sql);
             if ($result && mysqli_num_rows($result) > 0) {
               while ($row = mysqli_fetch_assoc($result)) {
-                $row['university'] == ''?$row['university'] = 'Other' : true;
+                $row['university'] == ''?$row['university'] = 'General' : true;
                 echo "<option value='".$row['university']."' id='".$row['university']."'>".$row['university']."</option>";
               }
             }
