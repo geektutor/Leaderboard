@@ -53,19 +53,19 @@ if (isset($_SESSION['isSuperAdmin']) && $_SESSION['isSuperAdmin'] == true) {
                                 ><div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard</a
                             >
+                            <a class='nav-link' href='prize.php'>Gift Prize</a>
                     <div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>
                         <?=$_SESSION['login_user'];?>
                     </div>
                 </nav>
-                <a class='nav-link' href='prize.php'>Gift Prize</a>
             </div>
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
                         <h1 class="mt-4">Dashboard</h1>
                         <div class="card mb-4">
-                            <div class="card-header"><i class="fas fa-table mr-1"></i>Gift Prize</div>
+                            <div class="card-header"><i class="fas fa-table mr-1"></i>Superadmin</div>
                             <div class="card-body">
                             <?php
                             $sql = "SELECT s.*, u.university FROM submissions AS s
