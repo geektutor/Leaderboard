@@ -110,10 +110,23 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                             <div class="card-body">
                                 <?php
                                     $current = date('Y-m-d');
-                                    $sql = "SELECT s.*, u.university 
+                                    if ($university == ''){
+                                        $sql = "SELECT task_day FROM task WHERE track = '$track' ORDER BY task_day DESC LIMIT 1";
+                                        $result = mysqli_query($conn, $sql);
+                                        $row = mysqli_fetch_assoc($result);
+                                        $day = $row['task_day'];
+                                        // var_dump($day);
+
+
+                                        $sql = "SELECT s.*, u.university 
                                             FROM submissions AS s 
                                             LEFT JOIN user AS u ON s.user = u.email  
-                                            WHERE s.track = '$track' AND s.points = 0 AND u.university = '$university' AND s.sub_date = '$current'";
+                                            WHERE s.track = '$track' AND s.points = 0 AND u.university = '$university' AND s.task_day = '$day'";
+                                    }else{
+                                        $sql = "SELECT s.*, u.university FROM submissions AS s
+                                            LEFT JOIN user AS u ON s.user = u.email  
+                                            WHERE s.points = 0 AND u.university = '$university'";
+                                    }
                                     $result = mysqli_query($conn, $sql);
                                     $count = mysqli_num_rows($result);
                                 ?>
