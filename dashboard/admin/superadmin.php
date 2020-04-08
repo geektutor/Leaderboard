@@ -4,8 +4,7 @@ require('../../config/session.php');
 $msg = '';
 if (isset($_SESSION['isSuperAdmin']) && $_SESSION['isSuperAdmin'] == true) {
     $track = $_SESSION['track'];
-    $university = $_SESSION['university'];
-    }           
+    $university = $_SESSION['university'];         
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,6 +58,7 @@ if (isset($_SESSION['isSuperAdmin']) && $_SESSION['isSuperAdmin'] == true) {
                         <?=$_SESSION['login_user'];?>
                     </div>
                 </nav>
+                <a class='nav-link' href='prize.php'>Gift Prize</a>
             </div>
             <div id="layoutSidenav_content">
                 <main>
@@ -68,7 +68,7 @@ if (isset($_SESSION['isSuperAdmin']) && $_SESSION['isSuperAdmin'] == true) {
                             <div class="card-header"><i class="fas fa-table mr-1"></i>Gift Prize</div>
                             <div class="card-body">
                             <?php
-                                $sql = "SELECT s.*, u.university FROM submissions AS s
+                            $sql = "SELECT s.*, u.university FROM submissions AS s
                                     LEFT JOIN user AS u ON s.user = u.email  
                                     AND u.university = '$university' ORDER BY s.points";
                             $result = mysqli_query($conn, $sql);
