@@ -33,7 +33,10 @@ if(isset($_POST['check_task'])){
     if($count > 0){
         while($row = mysqli_fetch_assoc($result)) {
           $error = 1;
-          $tasks[] = array('url'=> $row['url'], 'day' => $row['day']);  
+          $tasks[] = array('url'=> $row['url'], 'day' => $row['task_day']);
+          if ($row['task_day'] == 'Current Day') {
+            break;
+          }  
         }
     }else{
         $error =  "No task for the selected options";
@@ -214,7 +217,7 @@ if(isset($_POST['check_task'])){
       <?php if($error == 1){ ?>
       <div class="mainCard">
          <div class="table-responsive">
-        <table class="table" style="text-align: left;" border="1">
+        <table class="table" style="text-align: left;">
           <thead>
             <tr>
               <th scope="col">Day</th>
@@ -225,7 +228,7 @@ if(isset($_POST['check_task'])){
           <?php  foreach ($tasks as $task):?>
           <tr>
             <td data-label="DAY"><?php echo $task['day'];?></td>
-            <td data-label="URL"><a href="<?php echo $task['url']; ?>"><?php echo $task['url']; ?></a></td>
+            <td data-label="URL"><a href="<?php echo $task['url']; ?>"><button class="bbb">View Task</button></a></td>
           </tr>
           <?php endforeach; }?>
           </tbody>
