@@ -205,7 +205,7 @@ if(isset($_POST['check_task'])){
         </form>
       </div>
       <?php if($error == 1){ ?>
-      <div class="mainCard">
+      <div class="taskList">
          <div class="table-responsive">
         <table class="table" style="text-align: left;">
           <thead>
