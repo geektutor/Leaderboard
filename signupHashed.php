@@ -1,4 +1,4 @@
-<?php include('config/connect.php');include_once('sanivalidate.php') ?>
+<?php include('config/connect.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,6 +37,7 @@
                 $phone = validateString($_POST['phone'],"phone",$error);
                 $track = $_POST['track'];
                 $university = $_POST['university'];
+                //hashed here
                 $hashed_password = password_hash($password,PASSWORD_DEFAULT,array('cost'=>12));
                 
                 function check($email){	
@@ -60,7 +61,7 @@
                     $result = $stmt->execute();
                     if($result){
                         $error = "";
-                        //please change redirect url back to normal, this is for testing only
+                        //please modify the loginHashed.php to login.php as with other redirect and links
                       header("location:loginHashed.php?message=success");
                     }else{
                     die('could not enter data: ');
@@ -104,7 +105,7 @@
                 <option value="University of Eldoret">University of Eldoret</option>
             </select>
             <button type="submit" name="submit" value="submit"><i class="fa fa-send"></i>Submit</button>
-            <p>Already a user ? <a href="login.php"> Login here </a></p>
+            <p>Already a user ? <a href="loginHashed.php"> Login here </a></p>
         </form>
 
 

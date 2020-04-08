@@ -37,6 +37,7 @@
                 $phone = validateString($_POST['phone'],"phone",$error);
                 $track = $_POST['track'];
                 $university = $_POST['university'];
+                //hashed here
                 $hashed_password = password_hash($password,PASSWORD_DEFAULT,array('cost'=>12));
                 
                 function check($email){	

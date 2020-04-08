@@ -13,7 +13,6 @@
    // $stmt->bind_param("ss",$hash_password,$rows[$i]['id']);
     //$status = $stmt->execute(); 
     }
-    echo $sql;
     $conn->multi_query($sql);
     echo  $conn->error;
 }

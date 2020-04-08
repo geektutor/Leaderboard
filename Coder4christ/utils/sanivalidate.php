@@ -4,14 +4,14 @@ function validateEmail($email,$error){
       if ((empty($email)) || (!filter_var($email, FILTER_VALIDATE_EMAIL))) {
          $error .= 'email input is wrong, please check\n';
         }
-        return $email;
+      return $email;
 }
 function validateString($str,$description,$error){
      $str = filter_var(trim($str),FILTER_SANITIZE_STRING);
      if(empty($str)){
         $error .= " $description  is wrong, please check\n";
      }
-     return $str;
+   return $str;
 }
 
 

@@ -43,7 +43,7 @@
                 //$active = $row['active'];
                 $count = mysqli_num_rows($result);
                 $error = "";
-              // If result matched $myusername and $mypassword, table row must be 1 row
+              // If result matched $myusername , table row must be 1 row, and $myPassword matches hatched password should be true
               if(($count == 1) && password_verify($myPassword,$row['password'])) {
                     $_SESSION['login_user'] = $username;
                     $track_sql = "SELECT track, university FROM user WHERE email = '$username'";
