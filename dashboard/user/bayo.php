@@ -23,9 +23,7 @@ if(isset($_POST['check_task'])){
     $show = 0;
     $task_day = mysqli_real_escape_string($conn, $_POST['task_day']);
     $track = mysqli_real_escape_string($conn, $_POST['track']);
-    if($task_day == "current"){
-      $sql = "SELECT * FROM task WHERE track = '$track' ORDER BY id DESC LIMIT 1";
-    }else{
+    if($task_day == "all"){
       $sql = "SELECT * FROM task WHERE track = '$track'";
     }
     $result = mysqli_query($conn,$sql);
@@ -34,7 +32,7 @@ if(isset($_POST['check_task'])){
         while($row = mysqli_fetch_assoc($result)) {
           $error = 1;
           $tasks[] = array('url'=> $row['url'], 'day' => $row['task_day']);
-          if ($row['task_day'] == 'Current Day') {
+          if ($row['task_day'] == 'Day 15') {
             break;
           }  
         }
@@ -171,12 +169,7 @@ if(isset($_POST['check_task'])){
         <form method="POST" class="<?php if($show == 1)echo 'd-none'; else echo '';?> ">
           <div class="field flx col">
             <label for="day">Day</label>
-               <?php if ($university == "") {?>
-                <select name="task_day" value="">
-                  <option value="previous">Previous Track</option>
-                  <option value="current">Current Task</option>
-                </select>
-                <?php }else{ ?>
+               <?php if ($university == "ESUT") {?>
                 <select name="task_day" value="">
                   <option value="Day 0">Day 0</option>
                   <option value="Day 1">Day 1</option>
@@ -186,13 +179,10 @@ if(isset($_POST['check_task'])){
                   <option value="Day 5">Day 5</option>
                   <option value="Day 6">Day 6</option>
                   <option value="Day 7">Day 7</option>
-                  <option value="Day 8">Day 8</option>
-                  <option value="Day 9">Day 9</option>
-                  <option value="Day 10">Day 10</option>
-                  <option value="Day 11">Day 11</option>
-                  <option value="Day 12">Day 12</option>
-                  <option value="Day 13">Day 13</option>
-                  <option value="Day 14">Day 14</option>
+                </select>
+                <?php }else{ ?>
+                <select name="task_day" value="">
+                  <option value="all">All Task</option>
                 </select>
                 <?php } ?>
           </div>
@@ -207,10 +197,10 @@ if(isset($_POST['check_task'])){
               <option value="Design">Engineering Design</option>
           </select>
           </div>
-          <?php if ($university == "") {?>
-          <button id="taskDownload" type="submit" name="check_task">Check Task</button>
-          <?php }else{ ?>
+          <?php if ($university == "ESUT") {?>
           <button id="taskDownload" type="submit" name="submit">Check Task</button>
+          <?php }else{ ?>
+          <button id="taskDownload" type="submit" name="check_task">Check Task</button>
           <?php } ?>
         </form>
       </div>
