@@ -88,7 +88,7 @@
           </select>
           <button type="submit" class="btn btn-warning">Filter</button>
         </form>
-        <a href="track.php" class="btn btn-warning">Filter By Track</button>
+        <a href="track.php" class="btn btn-warning">Filter By Track</a>
       </div>
       <div class="center">
         <div class="top3">
