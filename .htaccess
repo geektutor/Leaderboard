@@ -2,4 +2,4 @@ Redirect /whatsapp https://chat.whatsapp.com/GmoZwE6RUPa4Px4RvreSww
 Redirect /task /dashboard/user/view.php
 Redirect /day10 /dashboard/day10.php
 Redirect /leaderboard https://30daysofcode.xyz/dashboard/leaderboard.php
-RedirectMatch 404 https://30daysofcode.xyz/dashboard/dist/404.html
+ErrorDocument 404 https://30daysofcode.xyz/dashboard/dist/404.html
