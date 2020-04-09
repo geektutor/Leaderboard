@@ -1,24 +1,22 @@
 <?php include('config/connect.php'); 
-$error_msg ='';
+ session_start();
+ //echo  $_SESSION['password_session'];
+if (!isset($_SESSION['password_session']) || empty($_SESSION['password_session'])) {
+    header('location:index.php');
+}
 if (isset($_POST['submit'])) {
-    $nickname = $_POST['nickname'];
-    $email = $_POST['email'];
-    $track = $_POST['track'];
-
-    $sql = "SELECT * FROM  user WHERE `nickname`='$nickname' AND `email`='$email' AND `track`='$track'";
+    $password = $_POST['password'];
+    $email = $_SESSION['password_session'];
+    $sql = "UPDATE `user` SET `password` = '$password' WHERE `email`='$email'";
     $result = mysqli_query($conn,$sql);
-    if (mysqli_num_rows($result) > 0) {
-        while($row = mysqli_fetch_assoc($result)) {
-            session_start();
-            $_SESSION['password_session'] = $row['email'];
-            header('location: newpassword.php');
-        }
+    if ($result) {
+       header('location:login.php?message=success');
     }else{
-        $error_msg = "Error : no match found";
+        echo "error updating password. Try again later";
     }
 }
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,24 +28,15 @@ if (isset($_POST['submit'])) {
 </head>
 <body>
     <div class="contact-us">
-        
+        <p>input new password for user with email : <?php echo $_SESSION['password_session']?></p>
         <form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
-        <p style="color :red; text-align:center;"><?php echo $error_msg?></p> <br><br>
-        <p><center><b>Forgot Password ?</b> Let's know if you're an actual user</center></p> <br><br>
-            <input name="nickname" placeholder="Nickname" required="" type="text" />
-            <input name="email" placeholder="Email" type="email" />
-            <select name="track">
-            <option value="frontend">Front End</option>
-            <option value="backend">Back End</option>
-            <option value="android">Mobile</option>
-            <option value="ui">UI/UX</option>
-            <option value="python">Python</option>
-            <option value="design">Engineering Design</option>
-            </select>
-            <button type="submit" name="submit" value="submit">SIGN UP</button>
-        </form><br> <br>
-        <center><a href="login.php"> Login here </a> |
-        <a href="signup.php"> Signup here </a></center>
-    </div>
+          <input id="password" placeholder="New password" required="" name="password" type="password" />
+          <input id="cpassword" placeholder="Confirm new password" required="" type="password" />
+          <p id="response"></p><br>
+          <button type="submit" name="submit" id="btn" value="submit">SIGN UP</button>
+        </form><br>
+        <p>Already a user ? <a href="login.php"> Login here </a></p>
+      </div>
+      <script src="check.js"></script>
 </body>
 </html>
