@@ -24,23 +24,15 @@ if(isset($_POST['check_task'])){
     $task_day = mysqli_real_escape_string($conn, $_POST['task_day']);
     $track = mysqli_real_escape_string($conn, $_POST['track']);
     if($task_day == "all"){
-      $sql = "SELECT * FROM task WHERE track = '$track'";
+      $sql = "SELECT * FROM task WHERE track = '$track' ORDER BY id ASC";
     }
     $result = mysqli_query($conn,$sql);
     $count = mysqli_num_rows($result);
     if($count > 0){
         while($row = mysqli_fetch_assoc($result)) {
           $error = 1;
-          $day = strtotime("2020-03-24");
-          $currdates = date("Y-m-d");
-          $currdate = strtotime($currdates);
-          $diff = abs($currdate - $day);
-          $years = floor($diff / (365*60*60*24));
-          $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
-          $days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24)); 
-          $days +=1;
           $tasks[] = array('url'=> $row['url'], 'day' => $row['task_day']);
-          if ($row['task_day'] == 'Day '.$days) {
+          if ($row['task_day'] == 'Day 15') {
             break;
           }  
         }
@@ -60,6 +52,11 @@ if(isset($_POST['check_task'])){
  <link rel="stylesheet" href="./assets/css/view.css">
  <link rel="stylesheet" href="./assets/css/responsive.css">
  <title>All tasks - 30 Days Of Code</title>
+ <style type="text/css">
+   p{
+    text-transform: u
+   }
+ </style>
 </head>
 <body class="flx col">
  <header class="flx row">
@@ -213,7 +210,7 @@ if(isset($_POST['check_task'])){
         </form>
       </div>
       <?php if($error == 1){ ?>
-      <div class="taskList">
+      <div class="mainCard">
          <div class="table-responsive">
         <table class="table" style="text-align: left;">
           <thead>
