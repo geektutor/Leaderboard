@@ -115,6 +115,6 @@
           <div class="list others">
           </div>
         </div>      
-      <script src="leaderboard.js"></script>
+      <script src="track.js"></script>
     </body>
 </html>
