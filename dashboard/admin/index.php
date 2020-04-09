@@ -54,12 +54,14 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                                 Dashboard
                             </a>
                             <a class='nav-link' href='waiting_room.php'>Waiting Room</a> 
-                            <a class='nav-link' href='superadmin.php'>Super Admin</a>                   
-                </nav>
-                <div class="sb-sidenav-footer">
+                            <a class='nav-link' href='superadmin.php'>Super Admin</a>
+                        </div>
+                    </div>
+                    <div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>
                         <?=$_SESSION['login_user'];?>
-                </div>  
+                    </div> 
+                </nav> 
             </div>
             <div id="layoutSidenav_content">
                 <main>
