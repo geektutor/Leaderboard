@@ -4,6 +4,7 @@ require('../../config/session.php');
 
 if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
     $track = $_SESSION['track'];
+    $admin = $_SESSION['login_user'];
     $university = $_SESSION['university'];
 ?>
 <!DOCTYPE html>
@@ -115,7 +116,14 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
 
                                     $sql = "SELECT s.*, u.university FROM submissions AS s";
 
-                                    if ($university == ''){
+                                    if ($admin == 'sodiq.akinjobi@gmail.com'){
+                                        $sql = "SELECT s.*, u.university FROM submissions AS s LEFT JOIN user AS u ON s.user = u.email  
+                                        AND s.points = 0 AND u.university = '$university' ORDER BY s.task_day";
+                                    $result = mysqli_query($conn, $sql);
+                                    $count = mysqli_num_rows($result);
+                                    }
+                                    
+                                    else if ($university == ''){
                                         $sql = "SELECT s.*, u.university FROM submissions AS s LEFT JOIN user AS u ON s.user = u.email  
                                             WHERE s.track = '$track' AND s.points = 0 AND u.university = '$university' ORDER BY s.task_day";
                                     $result = mysqli_query($conn, $sql);
@@ -135,25 +143,15 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                                         <thead>
                                             <tr>
                                                 <th>S/N</th>
-                                                <th>user</th>
                                                 <th>Url</th>
-                                                <th>Track</th>
                                                 <th>Submission for Day</th>
-                                                <th>Date</th>                                            
-                                                <th>Points</th>
-                                                <th>University</th>
                                             </tr>
                                         </thead>
                                         <tfoot>
                                             <tr>
                                                 <th>S/N</th>
-                                                <th>user</th>
                                                 <th>Url</th>
-                                                <th>Track</th>
-                                                <th>Submission for Day</th>
-                                                <th>Date</th>                                            
-                                                <th>Points</th>
-                                                <th>University</th>
+                                                <th>Submission for Day</th>                                            
                                             </tr>
                                         </tfoot>
                                         <tbody>
@@ -165,13 +163,8 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                                             ?>
                                             <tr>
                                                 <td><?php echo $j?></td>
-                                                <td><a href="view.php?id=<?php echo $row['id'];?>"><?php echo $row['user'];?></a></td>
-                                                <td><?php echo $row['url'];?></td>
-                                                <td><?php echo $row['track'];?></td>
+                                                <td><a href="view.php?id=<?php echo $row['id'];?>"><?php echo $row['url'];?></a></td>
                                                 <td><?php echo $row['task_day'];?></td>
-                                                <td><?php echo $row['sub_date'];?></td>
-                                                <td><?php echo $row['points'];?></td>
-                                                <td><?php echo $row['university'];?></td>
                                             </tr>
                                             <?php 
                                                 $j++;
