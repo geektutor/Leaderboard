@@ -6,6 +6,7 @@
     return $nfo['algo'] != 0 &&  (($password === $password) && !password_verify($password,$password));
 }
  if(isset($_POST["submit"]) && $_POST["submit"]!=""){
+     //check if ids were sent
      if(isset($_POST['id'])){
         $count = count($_POST['id']);
         for($i=0; $i<$count; $i++){
@@ -13,6 +14,7 @@
             $result = $conn->query($sql);
             $rows = mysqli_num_rows($result);
             $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+            //if the user actually exist, and his paasword has not been hashed then hash it
         if($rows > 0 && !password_is_hash($row['password'])){
            $hash_password =  $hashed_password = password_hash($row['password'],PASSWORD_DEFAULT,array('cost'=>12));
            $sql ="UPDATE user SET password ='$hash_password'  WHERE user.id=".$row['id'].";";
