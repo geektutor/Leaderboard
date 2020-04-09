@@ -53,12 +53,13 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                                 ><div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
-                    <div class="sb-sidenav-footer">
+                            <a class='nav-link' href='waiting_room.php'>Waiting Room</a> 
+                            <a class='nav-link' href='superadmin.php'>Super Admin</a>                   
+                </nav>
+                <div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>
                         <?=$_SESSION['login_user'];?>
-                    </div>
-                   <a class='nav-link' href='superadmin.php'>Super Admin</a>                    
-                </nav>
+                </div>  
             </div>
             <div id="layoutSidenav_content">
                 <main>
@@ -111,7 +112,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                                 <?php
                                     $current = date('Y-m-d');
                                     if ($university == ''){
-                                        $sql = "SELECT task_day FROM task WHERE track = '$track' ORDER BY task_day DESC LIMIT 1";
+                                        $sql = "SELECT task_day FROM submissions WHERE track = '$track' ORDER BY task_day DESC LIMIT 1";
                                         $result = mysqli_query($conn, $sql);
                                         $row = mysqli_fetch_assoc($result);
                                         $day = $row['task_day'];
