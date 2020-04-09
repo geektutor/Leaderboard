@@ -24,7 +24,7 @@ if(isset($_POST['check_task'])){
     $task_day = mysqli_real_escape_string($conn, $_POST['task_day']);
     $track = mysqli_real_escape_string($conn, $_POST['track']);
     if($task_day == "all"){
-      $sql = "SELECT * FROM task WHERE track = '$track' ORDER BY id DESC";
+      $sql = "SELECT * FROM task WHERE track = '$track'";
     }
     $result = mysqli_query($conn,$sql);
     $count = mysqli_num_rows($result);
