@@ -52,13 +52,17 @@ if(isset( $_SESSION['login_user'])){
                             <div class="sb-sidenav-menu-heading">Core</div>
                             <a class="nav-link" href="index.php"
                                 ><div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Dashboard</a
-                            >
+                                Dashboard
+                            </a>
+                            <a class='nav-link' href='waiting_room.php'>Waiting Room</a> 
+                            <a class='nav-link' href='superadmin.php'>Super Admin</a>
+                        </div>
+                    </div>
                     <div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>
                         <?=$_SESSION['login_user'];?>
-                    </div>
-                </nav>
+                    </div> 
+                </nav> 
             </div>
             <div id="layoutSidenav_content">
                 <main>
@@ -148,7 +152,7 @@ if(isset( $_SESSION['login_user'])){
         </div>
         <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="../js/scripts.js"></script>
+        <script src="../dist/js/scripts.js"></script>
         <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
         <script src="../assets/demo/datatables-demo.js"></script>
