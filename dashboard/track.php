@@ -1,5 +1,5 @@
 <?php
-  $userRanking = array();
+  $userRanking = [];
   function getUSerRankings($fetched_array)
   {
     include "../config/connect.php";
@@ -31,7 +31,7 @@
 
 
       switch ($filter) {
-        case 'General':
+        case 'Other':
           $val = '';
           $sql = "SELECT * FROM user WHERE `isAdmin` = 0 And `university`='$val' ORDER BY `score` DESC LIMIT 20";
           break;
@@ -80,7 +80,7 @@
             $result = mysqli_query($conn,$sql);
             if ($result && mysqli_num_rows($result) > 0) {
               while ($row = mysqli_fetch_assoc($result)) {
-                $row['university'] == ''?$row['university'] = 'General' : true;
+                $row['university'] == ''?$row['university'] = 'Other' : true;
                 echo "<option value='".$row['university']."' id='".$row['university']."'>".$row['university']."</option>";
               }
             }
@@ -88,7 +88,6 @@
           </select>
           <button type="submit" class="btn btn-warning">Filter</button>
         </form>
-        <a href="track.php" class="btn btn-warning">Filter By Track</button>
       </div>
       <div class="center">
         <div class="top3">
