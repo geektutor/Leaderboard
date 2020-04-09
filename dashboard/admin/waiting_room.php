@@ -116,7 +116,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
 
                                     $sql = "SELECT s.*, u.university FROM submissions AS s";
 
-                                    if ($admin == 'sodiq.akinjobi@gmail.com'){
+                                    if ($admin == 'sodiq.akinjobi@gmail.com_'){
                                         $sql = "SELECT s.*, u.university FROM submissions AS s LEFT JOIN user AS u ON s.user = u.email  
                                         AND s.points = 0 AND u.university = '$university' ORDER BY s.task_day";
                                     $result = mysqli_query($conn, $sql);
