@@ -5,7 +5,7 @@
     <link href="https://fonts.googleapis.com/css?family=Vesper+Libre&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sing Up - 30DaysOfCode</title>
+    <title>Sign Up - 30DaysOfCode</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="rajstyle.css">
     <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
@@ -101,9 +101,6 @@
             <button type="submit" name="submit" value="submit"><i class="fa fa-send"></i>Submit</button>
             <p>Already a user ? <a href="login.php"> Login here </a></p>
         </form>
-
-
-
     </div>
 </body>
 </html>

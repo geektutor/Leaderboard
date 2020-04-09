@@ -23,19 +23,20 @@ if (isset($_POST['submit'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="signup.css">
-    <title>30DaysOfCode  - Sign Up</title>
+    <link rel="stylesheet" href="rajstyle.css">
+    <title>Forgot Password - 30DaysOfCode</title>
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
 </head>
 <body>
-    <div class="contact-us">
+    <div class="wrap">
         <p>input new password for user with email : <?php echo $_SESSION['password_session']?></p>
-        <form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
-          <input id="password" placeholder="New password" required="" name="password" type="password" />
-          <input id="cpassword" placeholder="Confirm new password" required="" type="password" />
+        <form class="signup" method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
+          <input id="password" class="group" placeholder="New password" required="" name="password" type="password" />
+          <input id="cpassword" class="group" placeholder="Confirm new password" required="" type="password" />
           <p id="response"></p><br>
-          <button type="submit" name="submit" id="btn" value="submit">SIGN UP</button>
+          <button type="submit" name="submit" id="btn" value="submit">Change Password</button>
         </form><br>
-        <p>Already a user ? <a href="login.php"> Login here </a></p>
+        <p>Already a user? <a href="login.php"> Login here </a></p>
       </div>
       <script src="check.js"></script>
 </body>
