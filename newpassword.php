@@ -29,7 +29,7 @@ if (isset($_POST['submit'])) {
 </head>
 <body>
     <div class="wrap">
-        <p>input new password for user with email : <?php echo $_SESSION['password_session']?></p>
+        <p>Input new password for user with email : <?php echo $_SESSION['password_session']?></p>
         <form class="signup" method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
           <input id="password" class="group" placeholder="New password" required="" name="password" type="password" />
           <input id="cpassword" class="group" placeholder="Confirm new password" required="" type="password" />

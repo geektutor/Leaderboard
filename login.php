@@ -11,26 +11,6 @@
     <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
 </head>
 <body>
-<?php
-        $ref = substr(@$_SERVER['HTTP_REFERER'],strlen(@$_SERVER['HTTP_REFERER']) - 10, 10);
-        $resetPassword = substr(@$_SERVER['HTTP_REFERER'],strlen(@$_SERVER['HTTP_REFERER']) - 15, 15);
-        if (@$_GET['message'] == 'success' && $ref == 'signup.php') {
-            echo "<div class='group'>Registration Successful </div>";
-        }
-        if (@$_GET['message'] == 'success' && $resetPassword == 'newpassword.php') {
-            echo "<div class='group'>Password reset successful. Kindly log into your account.</div>";
-        }
-        ?>
-        <?php
-        $ref = substr(@$_SERVER['HTTP_REFERER'],strlen(@$_SERVER['HTTP_REFERER']) - 10, 10);
-        $resetPassword = substr(@$_SERVER['HTTP_REFERER'],strlen(@$_SERVER['HTTP_REFERER']) - 15, 15);
-        if (@$_GET['message'] == 'success' && $ref == 'signup.php') {
-            echo "<div class='group'>Registration Successful </div>";
-        }
-        if (@$_GET['message'] == 'success' && $resetPassword == 'newpassword.php') {
-            echo "<div class='group'>Password reset successful. Kindly log into your account.</div>";
-        }
-        ?>
         <?php
             $error = "";
             session_start();
@@ -99,6 +79,16 @@
     <form class="login" method="POST">
     <img class="devImg" src="https://img.icons8.com/officel/80/000000/code.png">
         <h2>30 Days Of Code</h2>
+        <?php
+        $ref = substr(@$_SERVER['HTTP_REFERER'],strlen(@$_SERVER['HTTP_REFERER']) - 10, 10);
+        $resetPassword = substr(@$_SERVER['HTTP_REFERER'],strlen(@$_SERVER['HTTP_REFERER']) - 15, 15);
+        if (@$_GET['message'] == 'success' && $ref == 'signup.php') {
+            echo "<div class='group'>Registration Successful </div>";
+        }
+        if (@$_GET['message'] == 'success' && $resetPassword == 'newpassword.php') {
+            echo "<div class='group'>Password reset successful. Kindly log into your account.</div>";
+        }
+        ?>
         <?php if($error !== ''){ ?>
         <div class="group" style="color: #991111ae;">
             <?= $error?>
