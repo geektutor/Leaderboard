@@ -118,7 +118,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
 
                                     if ($admin == 'sodiq.akinjobi@gmail.com_'){
                                         $sql = "SELECT s.*, u.university FROM submissions AS s LEFT JOIN user AS u ON s.user = u.email  
-                                        WHERE s.points = 0 AND u.university = '$university' ORDER BY s.task_day";
+                                        WHERE s.points = 0 AND u.university = '$university' ORDER BY s.task_day, s.track";
                                     $result = mysqli_query($conn, $sql);
                                     $count = mysqli_num_rows($result);
                                     }
@@ -144,6 +144,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                                             <tr>
                                                 <th>S/N</th>
                                                 <th>Url</th>
+                                                <th>Track</th>
                                                 <th>Submission for Day</th>
                                             </tr>
                                         </thead>
@@ -151,6 +152,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                                             <tr>
                                                 <th>S/N</th>
                                                 <th>Url</th>
+                                                <th>Track</th>
                                                 <th>Submission for Day</th>                                            
                                             </tr>
                                         </tfoot>
@@ -164,6 +166,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                                             <tr>
                                                 <td><?php echo $j?></td>
                                                 <td><a href="view.php?id=<?php echo $row['id'];?>"><?php echo $row['url'];?></a></td>
+                                                <td><?php echo $row['track'];?></td>
                                                 <td><?php echo $row['task_day'];?></td>
                                             </tr>
                                             <?php 
