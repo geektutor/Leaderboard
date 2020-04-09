@@ -1,0 +1,4 @@
+Redirect /whatsapp https://chat.whatsapp.com/GmoZwE6RUPa4Px4RvreSww
+Redirect /task /dashboard/user/view.php
+Redirect /day10 /dashboard/day10.php
+Redirect /leaderboard https://30daysofcode.xyz/dashboard/leaderboard.php
