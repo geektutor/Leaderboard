@@ -32,7 +32,7 @@ if(isset($_POST['check_task'])){
         while($row = mysqli_fetch_assoc($result)) {
           $error = 1;
           $tasks[] = array('url'=> $row['url'], 'day' => $row['task_day']);
-          if ($row['task_day'] == 'Day 16') {
+          if ($row['task_day'] == 'Day 17') {
             break;
           }  
         }
