@@ -87,7 +87,8 @@
             }
              ?>
           </select>
-          <button type="submit" class="btn btn-warning">Filter</button>
+          <button type="submit" class="btn btn-warning">Filter</button>          
+          <a href="track.php" class="btn btn-warning">Filter By Track</a>
         </form>
       </div>
       <div class="center">
@@ -135,7 +136,6 @@
           <div class="list others">
           </div>
         </div>
-        <a href="track.php" class="btn btn-warning">Filter By Track</a>
       <script src="leaderboard.js"></script>
     </body>
 </html>
