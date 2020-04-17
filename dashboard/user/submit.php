@@ -184,21 +184,6 @@ if(isset( $_SESSION['login_user'])){
           <div class="field flx col">
             <label for="day">Day</label>
             <select name="task_day" value="">
-              <option value="Day 000">Day 0</option>
-              <option value="Day 001">Day 1</option>
-              <option value="Day 002">Day 2</option>
-              <option value="Day 003">Day 3</option>
-              <option value="Day 004">Day 4</option>
-              <option value="Day 005">Day 5</option>
-              <option value="Day 006">Day 6</option>
-              <option value="Day 007">Day 7</option>
-              <option value="Day 008">Day 8</option>
-              <option value="Day 009">Day 9</option>
-              <option value="Day 010">Day 10</option>
-              <option value="Day 011">Day 11</option>
-              <option value="Day 012">Day 12</option>
-              <option value="Day 013">Day 13</option>
-              <option value="Day 014">Day 14</option>
               <option value="Day 015">Day 15</option>
               <option value="Day 016">Day 16</option>
               <option value="Day 017">Day 17</option>
