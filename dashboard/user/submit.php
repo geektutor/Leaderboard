@@ -210,7 +210,7 @@ if(isset( $_SESSION['login_user'])){
               <option value="Day 023">Day 23</option>
               <option value="Day 024">Day 24</option>
               <option value="Day 025">Day 25</option>
-              <option value="Day 026" disabled>Day 26</option>
+              <option value="Day 026">Day 26</option>
               <option value="Day 027" disabled>Day 27</option>
               <option value="Day 028" disabled>Day 28</option>
               <option value="Day 029" disabled>Day 29</option>
