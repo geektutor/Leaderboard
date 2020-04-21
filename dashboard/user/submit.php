@@ -140,7 +140,6 @@ if(isset( $_SESSION['login_user'])){
               return 0;
           }
       }
-      if ($track != 'frontend'){
           if(isset($_POST['submit'])){
               $url = mysqli_real_escape_string($conn, $_POST['url']);
               $task_day = mysqli_real_escape_string($conn, $_POST['task_day']);
@@ -148,6 +147,7 @@ if(isset( $_SESSION['login_user'])){
               $user =  mysqli_real_escape_string($conn, $_SESSION['login_user']);
               $comment =  mysqli_real_escape_string($conn, $_POST['comment']);
               $check = check();
+              if ($track != 'frontend'){
               if(check() == 0){
                   $sql = "INSERT INTO submissions(user, track, url, task_day, comments, sub_date) 
                           VALUES('$user','$track', '$url','$task_day', '$comment', NOW())";
@@ -163,7 +163,8 @@ if(isset( $_SESSION['login_user'])){
               }
           }
       }
-      else{
+}
+    else{
           $error = "Submission is disabled for your track. Talk to your instructors";
                   $submit = 0;
       }
