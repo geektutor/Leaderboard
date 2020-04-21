@@ -109,7 +109,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                             </div>
                         </div>-->
                         <div class="card mb-4">
-                            <div class="card-header"><i class="fas fa-table mr-1"></i>Submissions</div>
+                            <div class="card-header"><i class="fas fa-table mr-1"></i>You have to complete Submissions for Previous Days before Others will be unlocked</div>
                             <div class="card-body">
                                 <?php
                                     $current = date('Y-m-d');
@@ -124,7 +124,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                                         $sql = "SELECT s.*, u.university 
                                             FROM submissions AS s 
                                             LEFT JOIN user AS u ON s.user = u.email  
-                                            WHERE s.track = '$track' AND s.points = 0 AND u.university = '$university' AND s.task_day = '$day'";
+                                            WHERE s.track = '$track' AND s.points = 0 AND u.university = '$university' AND s.task_day < 'Day 028'";
                                     }else{
                                         $sql = "SELECT s.*, u.university FROM submissions AS s
                                             LEFT JOIN user AS u ON s.user = u.email  
