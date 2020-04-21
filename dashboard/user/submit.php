@@ -140,7 +140,7 @@ if(isset( $_SESSION['login_user'])){
               return 0;
           }
       }
-      if ($track == 'python' || $track == 'backend'){
+      if ($track == 'python' or $track == 'backend'){
           if(isset($_POST['submit'])){
               $url = mysqli_real_escape_string($conn, $_POST['url']);
               $task_day = mysqli_real_escape_string($conn, $_POST['task_day']);
