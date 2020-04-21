@@ -147,7 +147,6 @@ if(isset( $_SESSION['login_user'])){
               $user =  mysqli_real_escape_string($conn, $_SESSION['login_user']);
               $comment =  mysqli_real_escape_string($conn, $_POST['comment']);
               $check = check();
-              if ($track != 'frontend'){
               if(check() == 0){
                   $sql = "INSERT INTO submissions(user, track, url, task_day, comments, sub_date) 
                           VALUES('$user','$track', '$url','$task_day', '$comment', NOW())";
@@ -162,12 +161,6 @@ if(isset( $_SESSION['login_user'])){
                   $submit = 0;
               }
           }
-      }
-}
-    else{
-          $error = "Submission is disabled for your track. Talk to your instructors";
-                  $submit = 0;
-      }
       ?>
       <?php if($error !== ''){ ?>
       <div class="notice">
@@ -182,7 +175,7 @@ if(isset( $_SESSION['login_user'])){
           <?php }?>
           </div>
               <?php }?>
-        <form method="POST">
+       <form method="POST">
           <div class="field flx col">
             <label for="url">URL</label>
             <input type="url" name="url" placeholder="Enter URL" required>
@@ -191,7 +184,26 @@ if(isset( $_SESSION['login_user'])){
           <div class="field flx col">
             <label for="day">Day</label>
             <select name="task_day" value="">
-             
+              <option value="Day 000">Day 0</option>
+              <option value="Day 001">Day 1</option>
+              <option value="Day 002">Day 2</option>
+              <option value="Day 003">Day 3</option>
+              <option value="Day 004">Day 4</option>
+              <option value="Day 005">Day 5</option>
+              <option value="Day 006">Day 6</option>
+              <option value="Day 007">Day 7</option>
+              <option value="Day 008">Day 8</option>
+              <option value="Day 009">Day 9</option>
+              <option value="Day 010">Day 10</option>
+              <option value="Day 011">Day 11</option>
+              <option value="Day 012">Day 12</option>
+              <option value="Day 013">Day 13</option>
+              <option value="Day 014">Day 14</option>
+              <option value="Day 015">Day 15</option>
+              <option value="Day 016">Day 16</option>
+              <option value="Day 017">Day 17</option>
+              <option value="Day 018">Day 18</option>
+              <option value="Day 019">Day 19</option>
               <option value="Day 020">Day 20</option>
               <option value="Day 021">Day 21</option>
               <option value="Day 022">Day 22</option>
@@ -211,7 +223,7 @@ if(isset( $_SESSION['login_user'])){
           </div>
           <button id="submitTask" type="submit" name="submit">Submit task</button>
         </form> 
-      </div >
+</div >
      </main>
      <footer class="flx row"><span class="copyw">Copyright &copy; 30DaysOfCode 2020</span> <div><a href="">Privacy Policy</a><a href="">Terms & Conditions</a></div></footer> 
    </div>
