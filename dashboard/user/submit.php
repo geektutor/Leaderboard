@@ -175,7 +175,7 @@ if(isset( $_SESSION['login_user'])){
           <?php }?>
           </div>
               <?php }?>
-        <form method="POST">
+       <!-- <form method="POST">
           <div class="field flx col">
             <label for="url">URL</label>
             <input type="url" name="url" placeholder="Enter URL" required>
@@ -222,7 +222,8 @@ if(isset( $_SESSION['login_user'])){
             <textarea name="comment" type="text" placeholder="Any comments?" rows="5"></textarea>
           </div>
           <button id="submitTask" type="submit" name="submit">Submit task</button>
-        </form>
+        </form> -->
+Submisisons disabled till 9pm
       </div >
      </main>
      <footer class="flx row"><span class="copyw">Copyright &copy; 30DaysOfCode 2020</span> <div><a href="">Privacy Policy</a><a href="">Terms & Conditions</a></div></footer> 
