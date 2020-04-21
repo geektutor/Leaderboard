@@ -174,7 +174,7 @@ if(isset( $_SESSION['login_user'])){
           </a>
           <?php }?>
           </div>
-              <?php if ($track != 'frontend') {}?>
+              <?php }?>
         <form method="POST">
           <div class="field flx col">
             <label for="url">URL</label>
