@@ -172,6 +172,13 @@ if(isset( $_SESSION['login_user'])){
                     }
               ?></td>
           </tr>
+          
+          <?php 
+              $j++;
+              }}else{
+                  echo `<p>No Submissions yet</p>`;
+              }
+          ?>
           <tr>
           
           <td data-label="DAY">Day 30</td>
@@ -180,12 +187,6 @@ if(isset( $_SESSION['login_user'])){
               <td data-label="REVIEW"></td>
               <td data-label="ACTIONS"><a href='submit30.php'>Submit The Last Straw</a></td>
               </tr>
-          <?php 
-              $j++;
-              }}else{
-                  echo `<p>No Submissions yet</p>`;
-              }
-          ?>
         </tbody>
         </table>
       </div>
