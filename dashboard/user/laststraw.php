@@ -12,7 +12,7 @@ if(isset( $_SESSION['login_user'])){
  <link rel="stylesheet" href="./assets/css/style.css">
  <link rel="stylesheet" href="./assets/css/submissions.css">
  <link rel="stylesheet" href="./assets/css/responsive.css">
- <title>Submissions - 30 Days Of Code</title>
+ <title>The Last Straw - 30 Days Of Code</title>
 </head>
 <body class="flx col">
  <header class="flx row">
@@ -97,10 +97,6 @@ if(isset( $_SESSION['login_user'])){
          <a href="view.php">All tasks</a>
         </li>
         <li class="flx row">
-         <img src="./assets/img/allTsk.png">
-         <a href="laststraw.php">The Last Straw</a>
-        </li>
-        <li class="flx row">
          <img src="./assets/img/add.png">
          <a href="submit.php">Submit task</a>
         </li>
@@ -176,6 +172,12 @@ if(isset( $_SESSION['login_user'])){
                     }
               ?></td>
 
+
+            <td data-label="DAY">Day 30</td>
+              <td data-label="URL"></td>
+              <td data-label="POINTS"><a href='submit30.php'>View Task</a></td>
+              <td data-label="REVIEW"></td>
+              <td data-label="ACTIONS"><a href='submit30.php'>Submit The Last Straw</a></td>
           </tr>
           <?php 
               $j++;
