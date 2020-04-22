@@ -52,6 +52,5 @@
           <div class="list others">
           </div>
         </div>
-      <script src="leaderboard.js"></script>
     </body>
 </html>
