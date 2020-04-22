@@ -171,14 +171,15 @@ if(isset( $_SESSION['login_user'])){
                         echo "<a href='editsubmission.php?user=".$_SESSION['login_user'].'&day='.$row['task_day']."'>Edit submission</a>";
                     }
               ?></td>
-
-
-            <td data-label="DAY">Day 30</td>
+          </tr>
+          <tr>
+          
+          <td data-label="DAY">Day 30</td>
               <td data-label="URL"></td>
               <td data-label="POINTS"><a href='submit30.php'>View Task</a></td>
               <td data-label="REVIEW"></td>
               <td data-label="ACTIONS"><a href='submit30.php'>Submit The Last Straw</a></td>
-          </tr>
+              </tr>
           <?php 
               $j++;
               }}else{
