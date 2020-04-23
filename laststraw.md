@@ -1,5 +1,3 @@
-# Design
-
 # Mobile
 
 Corona Virus Tracking App
@@ -33,6 +31,3 @@ print(nester('302')) #Output: (((3)))0((2))
 print(nester('111000')) #Output: (111)000
 
 print(nester('4215')) #Output: ((((4))2)1((((5)))))
-
-
-# Backend
