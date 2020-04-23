@@ -114,6 +114,11 @@ if(isset( $_SESSION['login_user'])){
          <img class="external" style="float: right;" src="./assets/img/external.png" alt="">
         </li>
         <li class="flx row">
+         <img src="./assets/img/tweet.png">
+         <a href="submit30.php">Wasilisha</a>
+         <img class="external" style="float: right;" src="./assets/img/external.png" alt="">
+        </li>
+        <li class="flx row">
          <img src="./assets/img/wa.png">
          <a href="https://30daysofcode.xyz/whatsapp">Support group</a>
          <img class="external" src="./assets/img/external.png" alt="">
