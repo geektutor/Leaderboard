@@ -106,7 +106,7 @@ if(isset( $_SESSION['login_user'])){
         </li>
         <li class="flx row">
          <img src="./assets/img/tweet.png">
-         <a href=" https://twitter.com/intent/tweet?url=https%3A%2F%2F30daysofcodes.xyz&via=codon&text=Hello%2C%20I%20just%20finished%20my%20task%20for%20....&hashtags=30DaysOfCode%2C%20ECX">Tweet</a>
+         <a href="submit30.php">Wasilisha</a>
          <img class="external" style="float: right;" src="./assets/img/external.png" alt="">
         </li>
         <li class="flx row">
@@ -179,12 +179,12 @@ if(isset( $_SESSION['login_user'])){
                   echo `<p>No Submissions yet</p>`;
               }
           ?>
-          <tr> 
+         <tr> 
           <td data-label="DAY">Day 30</td>
               <td data-label="URL">The Last Straw</td>
               <td data-label="POINTS">~50 points</td>
               <td data-label="REVIEW"><a href='https://github.com/geektutor/Leaderboard/blob/master/laststraw.md'>View Task</a></td>
-              <td data-label="ACTIONS"><a href='submit30.php'>Submit The Last Straw</a></td>
+              <td data-label="ACTIONS"><a href='https://www.google.com/search?q=submit+in+swahili&oq=submit+in+swahili&aqs=chrome..69i57.3598j0j7&sourceid=chrome&ie=UTF-8'>Submit The Last Straw</a></td>
               </tr>
         </tbody>
         </table>
