@@ -97,10 +97,6 @@ if(isset( $_SESSION['login_user'])){
          <a href="view.php">All tasks</a>
         </li>
         <li class="flx row">
-         <img src="./assets/img/allTsk.png">
-         <a href="laststraw.php">The Last Straw</a>
-        </li>
-        <li class="flx row">
          <img src="./assets/img/add.png">
          <a href="submit.php">Submit task</a>
         </li>
@@ -183,6 +179,13 @@ if(isset( $_SESSION['login_user'])){
                   echo `<p>No Submissions yet</p>`;
               }
           ?>
+          <tr> 
+          <td data-label="DAY">Day 30</td>
+              <td data-label="URL">The Last Straw</td>
+              <td data-label="POINTS">~50 points</td>
+              <td data-label="REVIEW"><a href='submit30.php'>View Task</a></td>
+              <td data-label="ACTIONS"><a href='submit30.php'>Submit The Last Straw</a></td>
+              </tr>
         </tbody>
         </table>
       </div>
