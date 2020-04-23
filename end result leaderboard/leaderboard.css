@@ -13,6 +13,9 @@
 .col {
  flex-direction: column;
 }
+.dispM {
+ display: none;
+}
 body {
  background-color: #3F3F41;
  width: 100vw;
@@ -47,6 +50,7 @@ main h1 {
  height: 502px;
  overflow: hidden;
  border-radius: 8px;
+ flex-direction: row;
 }
 .top3-card {
  position: relative;
@@ -112,6 +116,10 @@ main h1 {
  align-items: center;
  position: relative;
  z-index: 1;
+}
+.top-avatar {
+ width: 150px;
+ height: 150px;
 }
 .podium .contestant-detail .group {
  align-items: center;
@@ -229,4 +237,98 @@ main h1 {
  right: 15px;
  font-weight: 800;
  color: #0b9207;
+}
+@media only screen and (max-width: 1050px) {
+ .dispM {
+  display: inline-block;
+ }
+ .theRest-card h2 {
+  display: none;
+ }
+ body {
+  justify-content: flex-start;
+ }
+ main {
+  margin-top: 20px;
+  align-items: center;
+  width: 80%;
+  height: fit-content;
+ }
+ main h1 {
+  margin-bottom: 10px;
+  font-size: 20px;
+  text-align: center;
+ }
+ .card {
+  flex-direction: column;
+  height: fit-content;
+  width: 100%;
+  align-items: center;
+ }
+ .podium {
+  position: relative;
+  width: 100%;
+ }
+ .top3-card{
+  width: 100%;
+ }
+ .crown {
+  margin-top: 30px;
+ }
+ .theRest-card  {
+  margin-top: 20px;
+  padding-top: 15px;
+  min-height: 200px;
+  height: fit-content;
+ }
+}
+@media only screen and (max-width: 720px) {
+ main {
+  width: 98%;
+ }
+ .top3-card {
+  overflow: hidden;
+ }
+ .first .stand {
+  height: 136px;
+ }
+ .second .stand {
+  height: 110px;
+ }
+ .third .stand {
+  height: 90px;
+ }
+ .filter-form {
+  width: 100%;
+  justify-content: center;
+ }
+ .filter-select {
+  width: 200px;
+ }
+ .theRest-card {
+  width: 100%;
+  align-items: center;
+  padding: 10px 10px 10px 10px;
+ }
+ .stand-container, .stand {
+  width: 100px;
+ }
+ .podium .contestant-detail .name {
+  font-size: 16px;
+ }
+ .podium .contestant-detail .track {
+  margin-top: 0;
+ }
+}
+@media only screen and (max-width: 380px) {
+ .person .rank {
+  margin-right: 10px;
+ }
+ .top-avatar {
+  width: 120px;
+  height: 120px;
+ }
+ .stand-container, .stand {
+  width: 80px;
+ }
 }
