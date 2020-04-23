@@ -183,7 +183,7 @@ if(isset( $_SESSION['login_user'])){
           <td data-label="DAY">Day 30</td>
               <td data-label="URL">The Last Straw</td>
               <td data-label="POINTS">~50 points</td>
-              <td data-label="REVIEW"><a href='submit30.php'>View Task</a></td>
+              <td data-label="REVIEW"><a href='https://github.com/geektutor/Leaderboard/blob/master/laststraw.md'>View Task</a></td>
               <td data-label="ACTIONS"><a href='submit30.php'>Submit The Last Straw</a></td>
               </tr>
         </tbody>
