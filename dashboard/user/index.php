@@ -75,7 +75,7 @@ if(isset( $_SESSION['login_user'])){
                 $rank = 1;
                 while ($row = mysqli_fetch_assoc($ranking_result)) {
                     if($row['email'] == $email){
-                        echo '<span id="rank">'.$rank.'</span>';
+                        echo '<!--<span id="rank">'.$rank.'</span>-->';
                     }else {
                         $rank++;
                     }
@@ -99,6 +99,10 @@ if(isset( $_SESSION['login_user'])){
         <li class="flx row">
          <img src="./assets/img/add.png">
          <a href="submit.php">Submit task</a>
+        </li>
+        <li class="flx row">
+         <img src="./assets/img/add.png">
+         <a href="certification.php">Certificate</a>
         </li>
         <li class="flx row">
          <img src="./assets/img/lead.png">
