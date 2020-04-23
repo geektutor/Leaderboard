@@ -17,7 +17,7 @@ if(isset( $_SESSION['login_user'])){
  <link rel="stylesheet" href="./assets/css/style.css">
  <link rel="stylesheet" href="./assets/css/submit.css">
  <link rel="stylesheet" href="./assets/css/responsive.css">
- <title>Submit task - 30 Days Of Code</title>
+ <title>Certification - 30 Days Of Code</title>
 </head>
 <body class="flx col">
  <header class="flx row">
@@ -57,6 +57,7 @@ if(isset( $_SESSION['login_user'])){
           $user_nickname = $row['nickname'];
           $user_score = $row['score'];
           $user_track = $row['track'];
+          $performance = "$row['score'];
           echo '<div class="avatar"><img style=\'width:120px;height:120px;\' src=\'https://robohash.org/'.$user_nickname.$user_track.'\'/></div>';
           echo '<span id="username">'.$user_nickname.'</span>';
           // echo '<span id="username">'.$user_score.'&nbsp; points</div></center>';
@@ -125,14 +126,14 @@ if(isset( $_SESSION['login_user'])){
    <div class="mainWrapper flx col" id="mainWrp">
     <main>
          <div class="mainCard">
-      <form method="POST">
+      <form method="GET">
           <div class="field flx col">
           <?php
             $user = $_SESSION['login_user'];
             $sql = "SELECT DISTINCT `sub_date` FROM submissions WHERE `user` = '$user'";
             $result = mysqli_query($conn,$sql);
             if ($result) {
-                if(mysqli_num_rows($result) < 15){ ?>
+                if(mysqli_num_rows($result) >= 0){ ?>
                     <p>You're not eligible to be certified</p>
                 <?php }else { ?>
                     <p style='font-size: 1em; margin-top: 8px; line-height: 110%; color: #646464;'>
@@ -140,7 +141,22 @@ if(isset( $_SESSION['login_user'])){
                     
                     </p>
                     </div>
-                    <button id='submitTask' type='submit' name='submit'>Get Certificate   </button>
+          <div class="field flx col">
+            <label for="firstname">First Name</label>
+            <input type="name" name="first" placeholder="First Name" required>
+          </div>
+          <div class="field flx col">
+            <label for="lastname">Last Name</label>
+            <input type="name" name="last" placeholder="Last Name" required>
+          </div>
+          <div class="field flx col">
+            <label for="day">Day</label>
+            <select name="participation" value="">
+              <option value="1">Certificate of Participation</option>
+              <option value="$performance">Certificate of Performance</option>
+            </select>
+          </div>
+          <button id="submitTask" type="submit" name="submit">Receive Certificate</button>
                     
             <?php   }
               }
