@@ -175,14 +175,7 @@ if(isset( $_SESSION['login_user'])){
                   echo `<p>No Submissions yet</p>`;
               }
           ?>
-         <tr> 
-          <td data-label="DAY">Day 30</td>
-              <td data-label="URL">The Last Straw</td>
-              <td data-label="POINTS">~50 points</td>
-              <td data-label="REVIEW"><a href='https://github.com/geektutor/Leaderboard/blob/master/laststraw.md'>View Task</a></td>
-              <td data-label="ACTIONS"><a href='https://www.google.com/search?q=submit+in+swahili&oq=submit+in+swahili&aqs=chrome..69i57.3598j0j7&sourceid=chrome&ie=UTF-8'>Submit The Last Straw</a></td>
-              </tr>
-        </tbody>
+       </tbody>
         </table>
       </div>
       </div >

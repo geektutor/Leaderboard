@@ -124,7 +124,7 @@ if(isset( $_SESSION['login_user'])){
    </nav>
    <div class="mainWrapper flx col" id="mainWrp">
     <main>
-      <div class="flx row"><h1>Submit a task</h1></div>
+      <div class="flx row"><a href="https://github.com/geektutor/Leaderboard/blob/laststraw/laststraw.md">The Last Straw</a></div>
       <div class="mainCard">
       <?php
       $error = "";
