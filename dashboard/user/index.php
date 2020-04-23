@@ -120,7 +120,7 @@ if(isset( $_SESSION['login_user'])){
    </nav>
    <div class="mainWrapper flx col" id="mainWrp">
     <main>
-      <div class="flx row"><h1>Submissions</h1> <a id="newBtn" href="submit.php">Add new</a> </div>
+      <div class="flx row"><h1>Submissions</h1> <a id="newBtn" href="https://github.com/geektutor/Leaderboard/blob/laststraw/laststraw.md">Add new</a> </div>
       <div class="mainCard">
       <?php
       if (isset($_GET['editSubmissionReport']) && !empty($_GET['editSubmissionReport'])) {
