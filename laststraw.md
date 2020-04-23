@@ -1,3 +1,16 @@
+# Design
+
+Make a scene conveying the need for automation, assets can be gotten from 3D websites. Pay special concentration to lighting. Must use Eevie render to generate an image. Submission format is in the form of assets used + PNG/JPG + .Blend file
+
+# Backend
+
+Wolverstore Beta
+
+Wolverstore is an e-commerce platform where users can buy products online. You will be implementing its backend.
+Your server is complete,  deploy on Heroku using a cloud MongoDB instance.
+Publish an API Documentation of the routes implemented.
+Have your deployed server and documentation ready as your task for the day. Links to be added in a ReadMe file.
+
 # UI/UX
 
 Corona Virus Tracking App
