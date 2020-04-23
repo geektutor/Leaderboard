@@ -1,5 +1,3 @@
-# Design
-
 # Mobile
 
 Corona Virus Tracking App
@@ -27,9 +25,9 @@ Given a string of digits s, find another string S, comprised of parentheses and 
 
 Test cases:
 print(nester('0000')) #Output: 0000
+
 print(nester('302')) #Output: (((3)))0((2))
+
 print(nester('111000')) #Output: (111)000
+
 print(nester('4215')) #Output: ((((4))2)1((((5)))))
-
-
-# Backend
