@@ -151,7 +151,6 @@ if(isset( $_SESSION['login_user'])){
             <th scope="col">Url</th>
             <th scope="col">Points</th>
             <th scope="col">Reviews</th>
-            <th scope="col">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -166,7 +165,6 @@ if(isset( $_SESSION['login_user'])){
               <td data-label="URL"><?php echo $row['url'];?></td>
               <td data-label="POINTS"><?php echo $row['points'];?></td>
               <td data-label="REVIEW"><?php echo $row['feedback'];?></td>
-              <td data-label="ACTIONS"></td>
 
           </tr>
           <?php 
