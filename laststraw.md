@@ -1,3 +1,5 @@
+``` Submission hint - Swahili ```
+
 # Design
 
 Make a scene conveying the need for automation, assets can be gotten from 3D websites. Pay special attention to lighting. Must use Eevie render to generate an image. Submission format is in the form of assets used + PNG/JPG + .Blend file
