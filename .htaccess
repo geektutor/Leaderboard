@@ -3,4 +3,5 @@ Redirect /task /dashboard/user/view.php
 Redirect /day10 /dashboard/day10.php
 Redirect /day20 /dashboard/day20.php
 Redirect /leaderboard https://30daysofcode.xyz/dashboard/leaderboard.php
+Redirect https://30daysofcode.xyz/dashboard/track.php https://30daysofcode.xyz/dashboard/dist/404.html
 ErrorDocument 404 https://30daysofcode.xyz/dashboard/dist/404.html
