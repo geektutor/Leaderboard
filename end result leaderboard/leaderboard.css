@@ -1,0 +1,232 @@
+*{
+ margin: 0;
+ padding: 0;
+ font-family: Nunito, sans-serif;
+ box-sizing: border-box;
+}
+.flex {
+ display: flex;
+}
+.row {
+ flex-direction: row;
+}
+.col {
+ flex-direction: column;
+}
+body {
+ background-color: #3F3F41;
+ width: 100vw;
+ max-width: 100vw;
+ min-height: 100vh;
+ justify-content: center;
+ align-items: center;
+}
+main {
+ height: fit-content;
+ width: fit-content;
+}
+main h1 {
+ font-family: sans-serif;
+ color: #ebebeb;
+ font-size: 26px;
+ margin-bottom: 30px;
+ font-weight: 800;
+ text-shadow: 2px 2px 2px rgb(26, 25, 25);
+}
+.curtain {
+ position: absolute;
+ z-index: 3;
+}
+.leftCurtain {
+ left: 0;
+}
+.rightCurtain {
+ right: 0;
+}
+.card {
+ height: 502px;
+ overflow: hidden;
+ border-radius: 8px;
+}
+.top3-card {
+ position: relative;
+ background-color: #4C5454;
+ width: 430px;
+ box-shadow: 0px 5px 25px #000000;
+}
+
+.podium {
+ position: absolute;
+ bottom: 0;
+ width: 100%;
+ height: fit-content;
+ flex-direction: row;
+ justify-content: center;
+ align-items: flex-end;
+}
+.stand-container {
+ max-width: 120px;
+ overflow-x: visible;
+}
+.stand {
+ align-items: center;
+ justify-content: center;
+ width: 120px;
+ position: relative;
+}
+.top {
+ height: 0;
+ top: 0;
+ z-index: 0;
+ position: absolute;
+ width: inherit;
+ transform: translateY(-18px)
+}
+ .first .stand {
+ height: 165px;
+ background-color: #A2C338;
+}
+.first .top{
+ border-bottom: 18px solid #557001;
+ border-left: 15px solid transparent;
+ border-right: 15px solid transparent;
+}
+.second .stand {
+ height: 142px;
+ background-color: #A942DB;
+}
+.second .top {
+ border-bottom: 18px solid #5A0085;
+ border-left: 15px solid transparent;
+}
+.third .stand {
+ height: 126px;
+ background-color: #1480C8;
+}
+.third .top {
+ border-bottom: 18px solid #0B588B;
+ border-right: 15px solid transparent;
+}
+.contestant-detail {
+ margin-bottom: 9px;
+ align-items: center;
+ position: relative;
+ z-index: 1;
+}
+.podium .contestant-detail .group {
+ align-items: center;
+ margin-bottom: -20px;
+}
+.contestant-detail span {
+ white-space: nowrap;
+}
+.podium .contestant-detail .name {
+ font-weight: 800;
+ color: #c5e4df;
+ font-size: 18px;
+}
+.first .contestant-detail .name {
+ margin-top: 10px;
+}
+.podium .contestant-detail .track {
+ margin-top: 6px;
+ color: rgb(226, 222, 222);
+ font-weight: 500;
+ font-size: 16px;
+}
+.podium .stand .points {
+ color: #ffffffd2;
+ font-weight: 600;
+ position: absolute;
+ bottom: 5px;
+ margin-left: auto;
+ margin-right: auto;
+}
+.podium .stand .position {
+ color:  white;
+ font-size: 48px;
+ font-weight: 600;
+ text-shadow: 0px 3px 6px #00000070;
+}
+.theRest-card {
+ width: 580px;
+ height: inherit;
+ background-color: #FCFCFC;
+ box-shadow: 0px 3px 30px #3A373730;
+ padding: 38px 5px 20px 60px;
+}
+.theRest-card h2 {
+ font-size: 15px;
+ margin-bottom: 20px;
+ color: #0E0E0F;
+}
+.filter-form{
+ width: 400px;
+ margin-bottom: 12px;
+ align-items: center;
+ justify-content: flex-start;
+}
+.filter-select {
+ border: 0.5px solid #686565;
+ border-radius: 2px;
+ text-indent: 4px;
+ width: 260px;
+ font-size: 16px;
+ padding: 4px 2px 4px 2px;
+ color: #535353;
+}
+#filterBtn {
+ color: white;
+ border: none;
+ background-color: #2D2B2B;
+ width: 80px;
+ height: 30px;
+ margin-left: 10px;
+ border-radius: 4px;
+ font-weight: 600;
+}
+#filterBtn:hover {
+ background-color: #4d4747;
+ border: 2px solid #9c9595;
+ cursor: pointer;
+}
+.theRest-card .theRest {
+ border-top: 0.5px solid #a3a3a3;
+ border-bottom: 0.5px solid #a3a3a3;
+ height: 100%;
+ max-height: 100%;
+ overflow-y: scroll;
+ width: 100%;
+}
+.theRest .person {
+ width: 100%;
+ height: 60px;
+ border-bottom: 0.5px solid #CECECE;
+ align-items: center;
+ position: relative;
+}
+.person .rank {
+ margin-right: 20px;
+ background-color: rgb(63, 62, 62);
+ height: 31px;
+ width: 31px;
+ border-radius: 50%;
+ color: white;
+ align-items: center;
+ justify-content: center;
+ font-weight: 600;
+}
+.person .name {
+ font-weight: 400;
+ font-size: 18px;
+}
+.person .track {
+ margin-top: 5px;
+ font-weight: 600;
+}
+.person .score {
+ position: absolute;
+ right: 15px;
+ font-weight: 800;
+ color: #0b9207;
+}
