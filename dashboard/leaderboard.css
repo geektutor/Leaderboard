@@ -78,7 +78,7 @@ main h1 {
 .top3-card {
  position: relative;
  background-color: #4C5454;
- width: 430px;
+ width: 450px;
  -webkit-box-shadow: 0px 5px 25px #000000;
          box-shadow: 0px 5px 25px #000000;
 }
@@ -189,8 +189,8 @@ main h1 {
  z-index: 1;
 }
 .top-avatar {
- width: 150px;
- height: 150px;
+ width: 130px;
+ height: 130px;
 }
 .podium .contestant-detail .group {
  -webkit-box-align: center;
@@ -219,9 +219,10 @@ main h1 {
  color: #ffffffd2;
  font-weight: 600;
  position: absolute;
- bottom: 5px;
+ bottom: 3px;
  margin-left: auto;
  margin-right: auto;
+ font-size: 16px;
 }
 .podium .stand .position {
  color:  white;
@@ -413,13 +414,13 @@ main h1 {
   overflow: hidden;
  }
  .first .stand {
-  height: 136px;
+  height: 140px;
  }
  .second .stand {
-  height: 110px;
+  height: 100px;
  }
  .third .stand {
-  height: 90px;
+  height: 95px;
  }
  .filter-form {
   width: 100%;
@@ -447,16 +448,30 @@ main h1 {
   margin-top: 0;
  }
 }
-@media only screen and (max-width: 380px) {
+
+@media only screen and (max-width: 410px) {
+  .podium .contestant-detail .name {
+    font-size: 15px;
+    max-width: 85px;
+    text-align: center;
+    white-space: normal;
+    }
+   .podium .contestant-detail .group {
+     margin-bottom: -10px;
+   }
+   .podium .stand .points  {
+     font-size: 14px;
+   }
+
  .person .rank {
   margin-right: 10px;
  }
  .top-avatar {
-  width: 120px;
-  height: 120px;
+  width: 110px;
+  height: 110px;
  }
  .stand-container, .stand {
-  width: 80px;
+  width: 90px;
  }
 }
 ::-webkit-scrollbar {
