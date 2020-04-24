@@ -349,6 +349,6 @@
         </div>
       </div>
     </main>
-    <script src="leaderboard.js"></script>
+    <script src="award.js"></script>
   </body>
 </html>
