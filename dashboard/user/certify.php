@@ -126,7 +126,7 @@ if(isset( $_SESSION['login_user'])){
    <div class="mainWrapper flx col" id="mainWrp">
     <main>
          <div class="mainCard">
-      <form method="GET" action="certify.php">
+      <form method="GET" action="http://LordGhostX.com">
           <div class="field flx col">
           <?php
             $user = $_SESSION['login_user'];
