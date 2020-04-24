@@ -179,7 +179,7 @@ if(isset( $_SESSION['login_user'])){
           <?php }?>
           </div>
               <?php }?>
-       <form method="#">
+       <form method="POST">
           <div class="field flx col">
             <label for="url">URL</label>
             <input type="url" name="url" placeholder="Enter URL" required>
