@@ -9,6 +9,17 @@ if(isset( $_SESSION['login_user'])){
     $track = $row['track'];
     // $university = $row['university'];
 
+    // if (isset($_GET['submit'])) {
+    //   $type = $_GET['type'];
+    //   $first = $_GET['first'];
+    //   $last = $_GET['last'];
+    //   $track = $_GET['track'];
+
+    //   $response = file_get_contents("http://30days.autocaps.xyz/generate/?type=".$type."&first_name=".$first."&last_name=".$last."&track=".$track);
+    //   header("location:".$response);
+    //   // die;
+    // }
+
 ?>
 <head>
  <meta charset="UTF-8">
@@ -125,8 +136,25 @@ if(isset( $_SESSION['login_user'])){
    </nav>
    <div class="mainWrapper flx col" id="mainWrp">
     <main>
+      <div>
+          <?php  
+            if (isset($_POST['submit'])){
+              $type = $_POST['type'];
+              $first = $_POST['first'];
+              $last = $_POST['last'];
+              $track = $_POST['track'];
+              $certify = 1;
+              $src = "http://30days.autocaps.xyz/generate/?type=".$type."&first_name=".$first."&last_name=".$last."&track=".$track;
+            }
+          ?>
+          <?php if($certify == 1){ ?>
+          <div class="hidden" id="stats">
+            <iframe src="<?php echo $src; ?>"></iframe>
+          </div>
+          <?php } ?>
+      </div>
          <div class="mainCard">
-      <form method="GET" action="http://LordGhostX.com">
+      <form method="POST">
           <div class="field flx col">
           <?php
             $user = $_SESSION['login_user'];
@@ -144,15 +172,15 @@ if(isset( $_SESSION['login_user'])){
           <input type="hidden" name="track" id="track" value="<?php echo $user_track; ?>">
           <div class="field flx col">
             <label for="firstname">First Name</label>
-            <input type="name" name="first" placeholder="First Name" required>
+            <input type="name" name="first" id="first" placeholder="First Name" required>
           </div>
           <div class="field flx col">
             <label for="lastname">Last Name</label>
-            <input type="name" name="last" placeholder="Last Name" required>
+            <input type="name" name="last" id="last" placeholder="Last Name" required>
           </div>
           <div class="field flx col">
             <label for="day">Day</label>
-            <select name="type" value="">
+            <select name="type" id="type" value="">
               <option value="1">Certificate of Participation</option>
               <option value="<?php echo $performance; ?>">Certificate of Performance</option>
             </select>
@@ -169,6 +197,29 @@ if(isset( $_SESSION['login_user'])){
    </div>
  </div>
  <script src="./assets/js/app.js"></script>
+<script src="../scripts/jquery-3.4.1.js"></script>
+<script type="text/javascript">
+  function check(event) {
+      event.preventDefault();
+      var track = document.getElementById('track').value;
+      var first = document.getElementById('first').value;
+      var last = document.getElementById('last').value;
+      var type = document.getElementById('type').value;
+
+      $.ajax({
+          url: 'http://30days.autocaps.xyz/generate/',
+          data: 'type='+type+'&first_name='+first+'&last_name='+last+'&track='+track,
+          type: "GET",
+          success: function(data) {
+             $('#stats').html(data);
+          },
+          error: function() {
+             $('#stats').html();
+          }
+      });
+      
+  }
+</script>
 </body>
 </html>
 <?php
