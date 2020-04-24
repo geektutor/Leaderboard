@@ -1,4 +1,4 @@
-<?php
+<!-- <?php
   $userRanking = array();
   function getUSerRankings($fetched_array)
   {
@@ -62,10 +62,11 @@
     fwrite($file,$res);
   }
   getUSerRankings($userRanking);
- ?>
- <!DOCTYPE html>
+ ?> -->
+<!DOCTYPE html>
 <html lang="en">
   <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -76,7 +77,8 @@
     />
     <title>30DOC Awards</title>
   </head>
-  <body class="flex col">
+  <body class="flex col"> 
+     <div id="startAnimate"></div>
     <main class="flex col">
       <h1 class="txt reg">
         30 Days Of Code <span class="dispM">- FINAL RANKINGS</span>
@@ -230,68 +232,206 @@
             />
           </svg>
           <div class="podium flex">
-           <div class="stand-container second flex col">
-            <div class="contestant-detail flex col">
-             <div class="group flex col">
-              <span class="name fade">Tega</span>
-             <span class="track fade"> UI/UX</span>
-             </div>
-             <img src="./lb_assets/avatar.png" class="top-avatar class fade" alt="contestant-avatar">
+            <div class="stand-container second flex col">
+              <div class="contestant-detail flex col">
+                <div class="group flex col">
+                  <span class="name fade"></span>
+                  <span class="track fade"></span>
+                </div>
+                <img
+                  src="./lb_assets/avatar.png"
+                  class="top-avatar class fade"
+                  alt="contestant-avatar"
+                />
+              </div>
+              <div class="stand flex col">
+                <div class="top"></div>
+                <span class="position"></span>
+                <span class="points fade"></span>
+              </div>
             </div>
-            <div class="stand flex col">             
-             <div class="top"></div>
-             <span class="position">2</span>
-             <span class="points fade">0 points</span>
+            <div class="stand-container first flex col">
+              <div class="contestant-detail flex col">
+                <div class="group flex col">
+                  <svg
+                    class="crown"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="36.874"
+                    height="31.064"
+                    viewBox="0 0 36.874 31.064"
+                  >
+                    <defs>
+                      <style>
+                        .a {
+                          fill: #ca842a;
+                        }
+                        .b {
+                          fill: #edb20f;
+                        }
+                        .c {
+                          fill: #ffc50b;
+                        }
+                        .d {
+                          opacity: 0.4;
+                        }
+                        .e {
+                          fill: #f6e568;
+                        }
+                        .f {
+                          fill: #a8213b;
+                        }
+                        .g {
+                          fill: #951d38;
+                        }
+                        .h {
+                          fill: #c0355a;
+                        }
+                        .i {
+                          fill: #b72d4c;
+                        }
+                      </style>
+                    </defs>
+                    <g transform="translate(-342.212 -312.803)">
+                      <g transform="translate(343.92 322.219)">
+                        <path
+                          class="a"
+                          d="M79.953,169.516l-12.489-2.132,9.4,6.722Z"
+                          transform="translate(-67.464 -167.384)"
+                        />
+                        <path
+                          class="a"
+                          d="M278.623,169.516l12.489-2.132-9.4,6.722Z"
+                          transform="translate(-257.657 -167.384)"
+                        />
+                      </g>
+                      <path
+                        class="b"
+                        d="M99.748,105.126s-8.79,5.174-9.4,4.569c-.673-.672-6.545-11.429-7.39-11.432s-6.59,10.76-7.264,11.432c-.6.605-9.4-4.569-9.4-4.569-1.18.646,6.209,18.99,6.209,18.99a2.658,2.658,0,0,0,2.658,2.658h15.71a2.658,2.658,0,0,0,2.657-2.658S100.928,105.773,99.748,105.126Z"
+                        transform="translate(277.615 217.092)"
+                      />
+                      <g transform="translate(343.792 312.803)">
+                        <path
+                          class="c"
+                          d="M82.964,98.262c-.843,0-6.59,10.76-7.264,11.432-.6.605-9.4-4.569-9.4-4.569-1.18.647,6.209,18.99,6.209,18.99a2.658,2.658,0,0,0,2.658,2.658h7.792V98.262Z"
+                          transform="translate(-66.178 -95.71)"
+                        />
+                        <circle
+                          class="c"
+                          cx="2.552"
+                          cy="2.552"
+                          r="2.552"
+                          transform="translate(14.17)"
+                        />
+                      </g>
+                      <g class="d" transform="translate(358.269 313.107)">
+                        <path
+                          class="e"
+                          d="M212.157,78.369c-.448-.448.043-1.69.493-2.139s1.534-.874,1.982-.425S212.605,78.818,212.157,78.369Z"
+                          transform="translate(-211.98 -75.614)"
+                        />
+                      </g>
+                      <g transform="translate(342.212 320.669)">
+                        <circle
+                          class="c"
+                          cx="1.678"
+                          cy="1.678"
+                          r="1.678"
+                          transform="translate(33.518)"
+                        />
+                        <path
+                          class="c"
+                          d="M390,155.616c-.295-.295.029-1.112.324-1.406s1.009-.574,1.3-.28S390.291,155.911,390,155.616Z"
+                          transform="translate(-356.159 -153.604)"
+                        />
+                        <circle class="c" cx="1.678" cy="1.678" r="1.678" />
+                      </g>
+                      <g class="d" transform="translate(342.413 320.87)">
+                        <path
+                          class="e"
+                          d="M52.4,155.616c-.295-.295.029-1.112.324-1.406s1.009-.574,1.3-.28S52.7,155.911,52.4,155.616Z"
+                          transform="translate(-52.288 -153.805)"
+                        />
+                      </g>
+                      <path
+                        class="f"
+                        d="M208.367,210.3l-2.926,5.185,2.926,5.185,2.925-5.185Z"
+                        transform="translate(152.178 116.182)"
+                      />
+                      <path
+                        class="g"
+                        d="M205.441,262.514l2.926,5.185,2.925-5.185Z"
+                        transform="translate(152.178 69.15)"
+                      />
+                      <path
+                        class="h"
+                        d="M208.367,210.3l-2.926,5.185,2.926,5.185Z"
+                        transform="translate(152.178 116.182)"
+                      />
+                      <path
+                        class="i"
+                        d="M208.367,262.514h-2.926l2.926,5.185Z"
+                        transform="translate(152.178 69.15)"
+                      />
+                    </g>
+                  </svg>
+                  <span class="name spin"></span>
+                  <span class="track fade"></span>
+                </div>
+                <img
+                  src="./lb_assets/avatar.png"
+                  class="top-avatar fade"
+                  alt="contestant-avatar"
+                />
+              </div>
+              <div class="stand flex col">
+                <div class="top"></div>
+                <span class="position">1</span>
+                <span class="points fade"></span>
+              </div>
             </div>
-           </div>
-           <div class="stand-container first flex col">
-            <div class="contestant-detail flex col">
-          <div class="group flex col">
-              <svg class="crown" xmlns="http://www.w3.org/2000/svg" width="36.874" height="31.064" viewBox="0 0 36.874 31.064"><defs><style>.a{fill:#ca842a;}.b{fill:#edb20f;}.c{fill:#ffc50b;}.d{opacity:0.4;}.e{fill:#f6e568;}.f{fill:#a8213b;}.g{fill:#951d38;}.h{fill:#c0355a;}.i{fill:#b72d4c;}</style></defs><g transform="translate(-342.212 -312.803)"><g transform="translate(343.92 322.219)"><path class="a" d="M79.953,169.516l-12.489-2.132,9.4,6.722Z" transform="translate(-67.464 -167.384)"/><path class="a" d="M278.623,169.516l12.489-2.132-9.4,6.722Z" transform="translate(-257.657 -167.384)"/></g><path class="b" d="M99.748,105.126s-8.79,5.174-9.4,4.569c-.673-.672-6.545-11.429-7.39-11.432s-6.59,10.76-7.264,11.432c-.6.605-9.4-4.569-9.4-4.569-1.18.646,6.209,18.99,6.209,18.99a2.658,2.658,0,0,0,2.658,2.658h15.71a2.658,2.658,0,0,0,2.657-2.658S100.928,105.773,99.748,105.126Z" transform="translate(277.615 217.092)"/><g transform="translate(343.792 312.803)"><path class="c" d="M82.964,98.262c-.843,0-6.59,10.76-7.264,11.432-.6.605-9.4-4.569-9.4-4.569-1.18.647,6.209,18.99,6.209,18.99a2.658,2.658,0,0,0,2.658,2.658h7.792V98.262Z" transform="translate(-66.178 -95.71)"/><circle class="c" cx="2.552" cy="2.552" r="2.552" transform="translate(14.17)"/></g><g class="d" transform="translate(358.269 313.107)"><path class="e" d="M212.157,78.369c-.448-.448.043-1.69.493-2.139s1.534-.874,1.982-.425S212.605,78.818,212.157,78.369Z" transform="translate(-211.98 -75.614)"/></g><g transform="translate(342.212 320.669)"><circle class="c" cx="1.678" cy="1.678" r="1.678" transform="translate(33.518)"/><path class="c" d="M390,155.616c-.295-.295.029-1.112.324-1.406s1.009-.574,1.3-.28S390.291,155.911,390,155.616Z" transform="translate(-356.159 -153.604)"/><circle class="c" cx="1.678" cy="1.678" r="1.678"/></g><g class="d" transform="translate(342.413 320.87)"><path class="e" d="M52.4,155.616c-.295-.295.029-1.112.324-1.406s1.009-.574,1.3-.28S52.7,155.911,52.4,155.616Z" transform="translate(-52.288 -153.805)"/></g><path class="f" d="M208.367,210.3l-2.926,5.185,2.926,5.185,2.925-5.185Z" transform="translate(152.178 116.182)"/><path class="g" d="M205.441,262.514l2.926,5.185,2.925-5.185Z" transform="translate(152.178 69.15)"/><path class="h" d="M208.367,210.3l-2.926,5.185,2.926,5.185Z" transform="translate(152.178 116.182)"/><path class="i" d="M208.367,262.514h-2.926l2.926,5.185Z" transform="translate(152.178 69.15)"/></g></svg>
-             <span class="name spin">Geektutor</span>
-             <span class="track fade">Backend</span>
-          </div>
-             <img src="./lb_assets/avatar.png" class="top-avatar fade" alt="contestant-avatar">
+            <div class="stand-container third flex col">
+              <div class="contestant-detail flex col">
+                <div class="group flex col">
+                  <span class="name fade"></span>
+                  <span class="track fade"></span>
+                </div>
+                <img
+                  src="./lb_assets/avatar.png"
+                  class="top-avatar fade"
+                  alt="contestant-avatar"
+                />
+              </div>
+              <div class="stand flex col">
+                <div class="top"></div>
+                <span class="position"></span>
+                <span class="points fade"></span>
+              </div>
             </div>
-            <div class="stand flex col">
-             <div class="top"></div>
-             <span class="position">1</span>
-             <span class="points fade">0 points</span>
-            </div>
-           </div>
-           <div class="stand-container third flex col">
-            <div class="contestant-detail flex col">
-             <div class="group flex col">
-              <span class="name fade">Ifihan</span>
-              <span class="track fade">Frontend</span>
-             </div>
-             <img src="./lb_assets/avatar.png" class="top-avatar fade" alt="contestant-avatar">
-            </div>
-            <div class="stand flex col">
-             <div class="top"></div>
-             <span class="position">3</span>
-             <span class="points fade">0 points</span>
-            </div>
-           </div>
           </div>
         </div>
         <div class="theRest-card flex col">
-         <h2 class="fade">FINAL RANKINGS</h2>
-         <form class="flex row filter-form fade">
-          <select class="filter-select" name="" id="">
-           <option value="" selected>filter by</option>
-          </select>
-          <button id="filterBtn">
-           Filter
-          </button>
-         </form>
-         <div class="theRest fade">
+          <h2 class="fade">FINAL RANKINGS</h2>
+          <form class="flex row filter-form fade" id="filterform">
+            <select class="filter-select" name="" id="filter">
+              <option id="overall" value="Overall">Overall Rankings</option>
+              <option id="frontend" value="Frontend">Frontend</option>
+              <option id="backend" value="Backend">Backend</option>
+              <option id="design" value="Design">Engineering Design</option>
+              <option id="ui" value="UI">UI/UX</option>
+              <option id="python" value="Python">Python</option>
+              <option id="android" value="Android">Android</option>
+            </select>
+            <button id="filterBtn" type="submit">
+              Filter
+            </button>
+          </form>
+          <div class="theRest fade">
 
-        <div class="list others">
           </div>
-
-      </div>
+        </div>
+      </div>    
     </main>
+  
     <script src="award.js"></script>
   </body>
 </html>
