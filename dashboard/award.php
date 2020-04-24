@@ -246,7 +246,7 @@
               </div>
               <div class="stand flex col">
                 <div class="top"></div>
-                <span class="position"></span>
+                <span class="position">2</span>
                 <span class="points fade"></span>
               </div>
             </div>
@@ -403,7 +403,7 @@
               </div>
               <div class="stand flex col">
                 <div class="top"></div>
-                <span class="position"></span>
+                <span class="position">3</span>
                 <span class="points fade"></span>
               </div>
             </div>
