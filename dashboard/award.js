@@ -13,7 +13,7 @@ function getOverallRanking(){
       //update first position
       var first = ranks[0];
       $('.first .name').text(first.nickname);
-      $('.first .top-avatar').attr("src", `url(https://robohash.org/${trim(first.nickname+first.track)})`)
+      $('.first .top-avatar').attr("src", `https://robohash.org/${trim(first.nickname+first.track)}`)
       $('.first .track').text(first.track);
       $('.first .points').text(first.score + ' points');
       // $('div.one').addClass(first.track);
@@ -21,7 +21,7 @@ function getOverallRanking(){
       //update second Position
       var second = ranks[1];
       $('.second .name').text(second.nickname);
-      $('.second .top-avatar').attr("src", `url(https://robohash.org/${trim(second.nickname+second.track)})`)
+      $('.second .top-avatar').attr("src", `https://robohash.org/${trim(second.nickname+second.track)}`)
       $('.second .track').text(second.track);
       $('.second .points').text(second.score + ' points');
       // $('div.two').addClass(second.track);
@@ -29,7 +29,7 @@ function getOverallRanking(){
       //update third position
       var third = ranks[2];
       $('.third .name').text(third.nickname);
-      $('.third .top-avatar').attr("src", `url(https://robohash.org/${trim(third.nickname+third.track)})`)
+      $('.third .top-avatar').attr("src", `https://robohash.org/${trim(third.nickname+third.track)}`)
       $('.third .track').text(third.track);
       $('.third .points').text(third.score + ' points');
       // $('div.three').addClass(third.track);

@@ -325,7 +325,7 @@ main h1 {
  color: #1480C8;
 }
 .person .backend {
- color: #A4C739;
+ color: #92b621;
 }
 .person .android {
  color: #000000;
@@ -340,7 +340,7 @@ main h1 {
  position: absolute;
  right: 15px;
  font-weight: 800;
- color: #0b9207;
+ color: #077904;
 }
 
 @media only screen and (max-width: 1050px) {
