@@ -299,53 +299,10 @@
            </div>    
           
 -->
+<div class="list others">
+          </div>
 
-          <div class="person flex row">
-           <span class="rank flex row"> 4 </span>
-           <img src="./lb_assets/avatar.png" style="width: 55px; height: 55px; margin-top: -12px;" alt="avatar">
-           <div class="flx col">
-            <div class="name">Kruse</div>
-            <div class="track mobile">Mobile</div>
-           </div> 
-           <div class="score"><span class="value">1290</span> points</div>
-          </div>    
-          <div class="person flex row">
-            <span class="rank flex row"> 5 </span>
-            <img src="./lb_assets/avatar.png" style="width: 55px; height: 55px; margin-top: -12px;" alt="avatar">
-            <div class="flx col">
-             <div class="name">Kruse</div>
-             <div class="track python">Python</div>
-            </div> 
-            <div class="score"><span class="value">1290</span> points</div>
-           </div>      
-          <div class="person flex row">
-            <span class="rank flex row"> 6 </span>
-            <img src="./lb_assets/avatar.png" style="width: 55px; height: 55px; margin-top: -12px;" alt="avatar">
-            <div class="flx col">
-             <div class="name">Kruse</div>
-             <div class="track ui-ux">UI/UX</div>
-            </div> 
-            <div class="score"><span class="value">1290</span> points</div>
-           </div>   
-           <div class="person flex row">
-            <span class="rank flex row"> 100 </span>
-            <img src="./lb_assets/avatar.png" style="width: 55px; height: 55px; margin-top: -12px;" alt="avatar">
-            <div class="flx col">
-             <div class="name">Kruse</div>
-             <div class="track fe">Frontend</div>
-            </div> 
-            <div class="score"><span class="value">1290</span> points</div>
-           </div>   
-           <div class="person flex row">
-            <span class="rank flex row"> 500 </span>
-            <img src="./lb_assets/avatar.png" style="width: 55px; height: 55px; margin-top: -12px;" alt="avatar">
-            <div class="flx col">
-             <div class="name">Kruse</div>
-             <div class="track be">Backend</div>
-            </div> 
-            <div class="score"><span class="value">1290</span> points</div>
-           </div>
-         </div>
+        
         </div>
       </div>
     </main>

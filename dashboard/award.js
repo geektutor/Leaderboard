@@ -40,18 +40,17 @@ function getOverallRanking(){
       var starter = 4
       for (let i = 3; i < ranks.length; i++) {
         var markup =`
-        <div class="item ${ranks[i].track}">
-            <div class="pos">
-              ${starter}
-            </div>
-            <div class="pic" style="background-image: url(https://robohash.org/${trim(ranks[i].nickname+ranks[i].track)})"></div>
-            <div class="name">
-              ${ranks[i].nickname}
-            </div>
-            <div class="score">
-              ${ranks[i].score}
-            </div>
-          </div>`;
+        <div class="person flex row">
+        <span class="rank flex row">
+        ${starter} </span>
+        <img src="./lb_assets/avatar.png" style="width: 55px; height: 55px; margin-top: -12px;" alt="avatar">
+        <div class="flx col">
+         <div class="name">${ranks[i].nickname}</div>
+         <div class="track ${ranks[i].track}">${ranks[i].track}</div>
+         </div> 
+         <div class="score"><span class="value">${ranks[i].score}</span> points</div>
+        </div>
+        </div>`;
         $('div.list').append(markup);
         starter++
       }
