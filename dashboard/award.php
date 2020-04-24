@@ -286,24 +286,10 @@
           </button>
          </form>
          <div class="theRest fade">
-<!-- 
-          <div class="person flex row">
-            <span class="rank flex row"> 4 </span>
-            <img src="./lb_assets/avatar.png" style="width: 55px; height: 55px; margin-top: -12px;" alt="avatar">
-            <div class="flx col">
-             <div class="name">Kruse</div>
 
-             <div class="track + ui-ux or mobile or fe or be or python"> </div>
-            </div> 
-            <div class="score"><span class="value">1290</span> points</div>
-           </div>    
-          
--->
-<div class="list others">
+        <div class="list others">
           </div>
 
-        
-        </div>
       </div>
     </main>
     <script src="award.js"></script>
