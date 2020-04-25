@@ -101,7 +101,7 @@ if(isset( $_SESSION['login_user'])){
          <a href="submit.php">Submit task</a>
         </li>
         <li class="flx row">
-         <img src="./assets/img/add.png">
+         <img src="./assets/img/cert.png">
          <a href="certification.php">Certificate</a>
         </li>
         <li class="flx row">
