@@ -127,11 +127,11 @@ if(isset($_POST['check_task'])){
         </div>
       </div>
       <ul class="linksContainer">
-        <li class="flx row ">
+       <li class="flx row active">
          <img src="./assets/img/submsn.png">
          <a href="index.php">Submissions</a>
         </li>
-        <li class="flx row active">
+        <li class="flx row">
          <img src="./assets/img/allTsk.png">
          <a href="view.php">All tasks</a>
         </li>
@@ -144,23 +144,22 @@ if(isset($_POST['check_task'])){
          <a href="certification.php">Certificate</a>
         </li>
         <li class="flx row">
+         <img src="./assets/img/feedback.png">
+         <a href="feedback.php">Feedback</a>
+        </li>
+        <li class="flx row">
          <img src="./assets/img/lead.png">
          <a href="https://30daysofcode.xyz/dashboard/leaderboard.php">Leaderboard</a>
-        </li>
-        <li class="flx row">
-         <img src="./assets/img/tweet.png">
-         <a href=" https://twitter.com/intent/tweet?url=https%3A%2F%2F30daysofcodes.xyz&via=codon&text=Hello%2C%20I%20just%20finished%20my%20task%20for%20....&hashtags=30DaysOfCode%2C%20ECX">Tweet</a>
-         <img class="external" style="float: right;" src="./assets/img/external.png" alt="">
-        </li>
-        <li class="flx row">
-         <img src="./assets/img/tweet.png">
-         <a href="submit30.php">Wasilisha</a>
-         <img class="external" style="float: right;" src="./assets/img/external.png" alt="">
         </li>
         <li class="flx row">
          <img src="./assets/img/wa.png">
          <a href="https://30daysofcode.xyz/whatsapp">Support group</a>
          <img class="external" src="./assets/img/external.png" alt="">
+        </li>
+          <li class="flx row">
+         <img src="./assets/img/tweet.png">
+         <a href=" https://twitter.com/intent/tweet?url=https%3A%2F%2F30daysofcodes.xyz&via=codon&text=Hello%2C%20I%20just%20finished%20my%20task%20for%20....&hashtags=30DaysOfCode%2C%20ECX">Tweet</a>
+         <img class="external" style="float: right;" src="./assets/img/external.png" alt="">
         </li>
        </ul>
        <span id="email"><?=$_SESSION['login_user'];?></span>
