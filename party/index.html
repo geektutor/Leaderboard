@@ -35,12 +35,9 @@
             roomName: "dscunilag",
             width: 700,
             height: 700,
-            parentNode: undefined,
-            configOverwrite: {},
-            interfaceConfigOverwrite: {
-                filmStripOnly: true
-            },
-        }
+            parentNode: document.querySelector('#meet')
+        };
+    const api = new JitsiMeetExternalAPI(domain, options);
     </script>
 </body>
 </html>
