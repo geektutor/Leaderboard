@@ -7,6 +7,7 @@ if(isset( $_SESSION['login_user'])){
     $result = mysqli_query($conn, $sql);
     $row =mysqli_fetch_assoc($result);
     $track = $row['track'];
+    $performance = $row['performance'];
     // $university = $row['university'];
 
     // if (isset($_GET['submit'])) {
@@ -68,7 +69,7 @@ if(isset( $_SESSION['login_user'])){
           $user_nickname = $row['nickname'];
           $user_score = $row['score'];
           $user_track = $row['track'];
-          $performance = $row['score'];
+          $performance = $row['performance'];
           echo '<div class="avatar"><img style=\'width:120px;height:120px;\' src=\'https://robohash.org/'.$user_nickname.$user_track.'\'/></div>';
           echo '<span id="username">'.$user_nickname.'</span>';
           // echo '<span id="username">'.$user_score.'&nbsp; points</div></center>';
@@ -117,14 +118,6 @@ if(isset( $_SESSION['login_user'])){
          <a href="submit.php">Submit task</a>
         </li>
         <li class="flx row">
-         <img src="./assets/img/cert.png">
-         <a href="certification.php">Certificate</a>
-        </li>
-        <li class="flx row">
-         <img src="./assets/img/feedback.png">
-         <a href="feedback.php">Feedback</a>
-        </li>
-        <li class="flx row">
          <img src="./assets/img/lead.png">
          <a href="https://30daysofcode.xyz/dashboard/leaderboard.php">Leaderboard</a>
         </li>
@@ -153,11 +146,18 @@ if(isset( $_SESSION['login_user'])){
               $track = $_POST['track'];
               $certify = 1;
               $response = file_get_contents("http://30days.autocaps.xyz/generate/?type=".$type."&first_name=".$first."&last_name=".$last."&track=".$track);
+              $file_name = basename($response);
+              if (file_put_contents($file_name, file_get_contents($response))) {
+                echo "Downloaded";
+              } else {
+                echo "Failed to download";
+              }
+              
             }
           ?>
           <?php if($certify == 1){ ?>
           <div id="stats">
-            <p><?php echo $response; ?></p>
+            <a href="<?php echo $response; ?>"><button id="submitTask">Download Certificate</button></a>
           </div>
           <?php } ?>
       </div>
@@ -169,7 +169,7 @@ if(isset( $_SESSION['login_user'])){
             $sql = "SELECT DISTINCT `sub_date` FROM submissions WHERE `user` = '$user'";
             $result = mysqli_query($conn,$sql);
             if ($result) {
-                if(mysqli_num_rows($result) > 0){ ?>
+                if(mysqli_num_rows($result) <= 15){ ?>
                     <p>You're not eligible to be certified</p>
                 <?php }else { ?>
                     <p style='font-size: 1em; margin-top: 8px; line-height: 110%; color: #646464;'>
