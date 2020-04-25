@@ -104,7 +104,7 @@ if(isset( $_SESSION['login_user'])){
         </div>
       </div>
       <ul class="linksContainer">
-      <li class="flx row active">
+        <li class="flx row">
          <img src="./assets/img/submsn.png">
          <a href="index.php">Submissions</a>
         </li>
@@ -112,31 +112,23 @@ if(isset( $_SESSION['login_user'])){
          <img src="./assets/img/allTsk.png">
          <a href="view.php">All tasks</a>
         </li>
-        <li class="flx row">
+        <li class="flx row active">
          <img src="./assets/img/add.png">
          <a href="submit.php">Submit task</a>
-        </li>
-        <li class="flx row">
-         <img src="./assets/img/cert.png">
-         <a href="certification.php">Certificate</a>
-        </li>
-        <li class="flx row">
-         <img src="./assets/img/feedback.png">
-         <a href="feedback.php">Feedback</a>
         </li>
         <li class="flx row">
          <img src="./assets/img/lead.png">
          <a href="https://30daysofcode.xyz/dashboard/leaderboard.php">Leaderboard</a>
         </li>
         <li class="flx row">
-         <img src="./assets/img/wa.png">
-         <a href="https://30daysofcode.xyz/whatsapp">Support group</a>
-         <img class="external" src="./assets/img/external.png" alt="">
-        </li>
-          <li class="flx row">
          <img src="./assets/img/tweet.png">
          <a href=" https://twitter.com/intent/tweet?url=https%3A%2F%2F30daysofcodes.xyz&via=codon&text=Hello%2C%20I%20just%20finished%20my%20task%20for%20....&hashtags=30DaysOfCode%2C%20ECX">Tweet</a>
          <img class="external" style="float: right;" src="./assets/img/external.png" alt="">
+        </li>
+        <li class="flx row">
+         <img src="./assets/img/wa.png">
+         <a href="https://30daysofcode.xyz/whatsapp">Support group</a>
+         <img class="external" src="./assets/img/external.png" alt="">
         </li>
        </ul>
        <span id="email"><?=$_SESSION['login_user'];?></span>
@@ -152,12 +144,12 @@ if(isset( $_SESSION['login_user'])){
               $last = $_POST['last'];
               $track = $_POST['track'];
               $certify = 1;
-              $src = "http://30days.autocaps.xyz/generate/?type=".$type."&first_name=".$first."&last_name=".$last."&track=".$track;
+              $response = file_get_contents("http://30days.autocaps.xyz/generate/?type=".$type."&first_name=".$first."&last_name=".$last."&track=".$track);
             }
           ?>
           <?php if($certify == 1){ ?>
-          <div class="hidden" id="stats">
-            <iframe src="<?php echo $src; ?>"></iframe>
+          <div id="stats">
+            <p><?php echo $response; ?></p>
           </div>
           <?php } ?>
       </div>
@@ -169,12 +161,11 @@ if(isset( $_SESSION['login_user'])){
             $sql = "SELECT DISTINCT `sub_date` FROM submissions WHERE `user` = '$user'";
             $result = mysqli_query($conn,$sql);
             if ($result) {
-                if(mysqli_num_rows($result) < 0){ ?>
+                if(mysqli_num_rows($result) <= 2){ ?>
                     <p>You're not eligible to be certified</p>
                 <?php }else { ?>
                     <p style='font-size: 1em; margin-top: 8px; line-height: 110%; color: #646464;'>
                       Congratulations, on your completion of the 30 days of code challenge.
-                    
                     </p>
           </div>
           <input type="hidden" name="track" id="track" value="<?php echo $user_track; ?>">
