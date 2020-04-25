@@ -196,7 +196,7 @@ main h1 {
  -webkit-box-align: center;
      -ms-flex-align: center;
          align-items: center;
- margin-bottom: -20px;
+ margin-bottom: -4px;
 }
 .contestant-detail span {
  white-space: nowrap;
@@ -456,9 +456,6 @@ main h1 {
     text-align: center;
     white-space: normal;
     }
-   .podium .contestant-detail .group {
-     margin-bottom: -10px;
-   }
    .podium .stand .points  {
      font-size: 14px;
    }
