@@ -18,7 +18,7 @@ def generate():
 
 def make_certificate(first_name, last_name, type, track=None):
     def draw_text(filename, type, first_name, last_name, track=None):
-        font = "PTSans-Regular.ttf"
+        font = "PTSans-Bold.ttf"
         color = "#ff0000"
         size = 50
         track_color = "#000000"
