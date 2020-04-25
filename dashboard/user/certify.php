@@ -144,12 +144,12 @@ if(isset( $_SESSION['login_user'])){
               $last = $_POST['last'];
               $track = $_POST['track'];
               $certify = 1;
-              $src = "http://30days.autocaps.xyz/generate/?type=".$type."&first_name=".$first."&last_name=".$last."&track=".$track;
+              $response = file_get_contents("http://30days.autocaps.xyz/generate/?type=".$type."&first_name=".$first."&last_name=".$last."&track=".$track);
             }
           ?>
           <?php if($certify == 1){ ?>
-          <div class="hidden" id="stats">
-            <iframe src="<?php echo $src; ?>"></iframe>
+          <div id="stats">
+            <p><?php echo $response; ?></p>
           </div>
           <?php } ?>
       </div>
@@ -166,7 +166,6 @@ if(isset( $_SESSION['login_user'])){
                 <?php }else { ?>
                     <p style='font-size: 1em; margin-top: 8px; line-height: 110%; color: #646464;'>
                       Congratulations, on your completion of the 30 days of code challenge.
-                    
                     </p>
           </div>
           <input type="hidden" name="track" id="track" value="<?php echo $user_track; ?>">
