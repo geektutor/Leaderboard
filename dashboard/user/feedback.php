@@ -129,7 +129,7 @@ if(isset( $_SESSION['login_user'])){
       <?php
       $error = "";
         if(isset($_POST['submit'])){
-        $user =  mysqli_real_escape_string($conn, $_SESSION['login_user']);
+        $user =  $_SESSION['login_user'];
         $feedback =  mysqli_real_escape_string($conn, $_POST['feedback']);
         $sql = "INSERT INTO feedback(user, feedback) VALUES('$user','$feedback')";
         if($conn->query($sql)){
