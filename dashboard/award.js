@@ -158,7 +158,7 @@ function getOverallRanking(){
       if (window.location.href === `${actualURL}?filter=${filter}`) {
         return true;
       } else{
-        window.location.href = `leaderboard.php?filter=${filter}`
+        window.location.href = `award.php?filter=${filter}`
       }
   }
   

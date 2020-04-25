@@ -79,7 +79,7 @@ if(isset( $_SESSION['login_user'])){
                 $rank = 1;
                 while ($row = mysqli_fetch_assoc($ranking_result)) {
                     if($row['email'] == $email){
-                        echo '<!--span id="rank">'.$rank.'</span>-->';
+                        echo '<span id="rank">'.$rank.'</span>';
                     }else {
                         $rank++;
                     }
@@ -105,10 +105,6 @@ if(isset( $_SESSION['login_user'])){
          <a href="submit.php">Submit task</a>
         </li>
         <li class="flx row">
-         <img src="./assets/img/cert.png">
-         <a href="certification.php">Certificate</a>
-        </li>
-        <li class="flx row">
          <img src="./assets/img/lead.png">
          <a href="https://30daysofcode.xyz/dashboard/leaderboard.php">Leaderboard</a>
         </li>
@@ -128,7 +124,7 @@ if(isset( $_SESSION['login_user'])){
    </nav>
    <div class="mainWrapper flx col" id="mainWrp">
     <main>
-      <div class="flx row"><a href="https://github.com/geektutor/Leaderboard/blob/laststraw/laststraw.md">The Last Straw</a></div>
+      <div class="flx row"><h1>Submit a task</h1></div>
       <div class="mainCard">
       <?php
       $error = "";
@@ -188,9 +184,35 @@ if(isset( $_SESSION['login_user'])){
           <div class="field flx col">
             <label for="day">Day</label>
             <select name="task_day" value="">
-<option value="Day 009">Day 09</option>
+              <option value="Day 000">Day 0</option>
+              <option value="Day 001">Day 1</option>
+              <option value="Day 002">Day 2</option>
+              <option value="Day 003">Day 3</option>
+              <option value="Day 004">Day 4</option>
+              <option value="Day 005">Day 5</option>
+              <option value="Day 006">Day 6</option>
+              <option value="Day 007">Day 7</option>
+              <option value="Day 008">Day 8</option>
+              <option value="Day 009">Day 9</option>
+              <option value="Day 010">Day 10</option>
+              <option value="Day 011">Day 11</option>
+              <option value="Day 012">Day 12</option>
+              <option value="Day 013">Day 13</option>
+              <option value="Day 014">Day 14</option>
+              <option value="Day 015">Day 15</option>
+              <option value="Day 016">Day 16</option>
               <option value="Day 017">Day 17</option>
+              <option value="Day 018">Day 18</option>
+              <option value="Day 019">Day 19</option>
+              <option value="Day 020">Day 20</option>
+              <option value="Day 021">Day 21</option>
+              <option value="Day 022">Day 22</option>
+              <option value="Day 023">Day 23</option>
+              <option value="Day 024">Day 24</option>
+              <option value="Day 025">Day 25</option>
               <option value="Day 026">Day 26</option>
+              <option value="Day 027">Day 27</option>
+              <option value="Day 028">Day 28</option>
               <option value="Day 029">Day 29</option>
               <option value="Day 030">Day 30</option>
             </select>
@@ -201,7 +223,7 @@ if(isset( $_SESSION['login_user'])){
           </div>
           <button id="submitTask" type="submit" name="submit">Submit task</button>
         </form> 
-</div >
+      </div >
      </main>
      <footer class="flx row"><span class="copyw">Copyright &copy; 30DaysOfCode 2020</span> <div><a href="">Privacy Policy</a><a href="">Terms & Conditions</a></div></footer> 
    </div>
