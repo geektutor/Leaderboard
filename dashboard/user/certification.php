@@ -7,19 +7,20 @@ if(isset( $_SESSION['login_user'])){
     $result = mysqli_query($conn, $sql);
     $row =mysqli_fetch_assoc($result);
     $track = $row['track'];
-?>
-<?php  
-            if (isset($_POST['submit'])){
-              $type = $_POST['type'];
-              $first = $_POST['first'];
-              $last = $_POST['last'];
-              $track = $_POST['track'];
-              $certify = 1;
-              $response = file_get_contents("http://30days.autocaps.xyz/generate/?type={type}&first_name={first}&last_name={last}&track={track}");
-              $file_name = basename($response);              
-            }
-          ?>
+    // $university = $row['university'];
 
+    // if (isset($_GET['submit'])) {
+    //   $type = $_GET['type'];
+    //   $first = $_GET['first'];
+    //   $last = $_GET['last'];
+    //   $track = $_GET['track'];
+
+    //   $response = file_get_contents("http://30days.autocaps.xyz/generate/?type=".$type."&first_name=".$first."&last_name=".$last."&track=".$track);
+    //   header("location:".$response);
+    //   // die;
+    // }
+
+?>
 <head>
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -73,7 +74,7 @@ if(isset( $_SESSION['login_user'])){
           // echo '<span id="username">'.$user_score.'&nbsp; points</div></center>';
       }
       ?>
-       <div class="scoresContainer flx row">
+      <div class="scoresContainer flx row">
         <div class="scoreCard flx col">
          <div class="wLayer"></div>
          <span class="title">Total points:</span>
@@ -135,22 +136,44 @@ if(isset( $_SESSION['login_user'])){
    </nav>
    <div class="mainWrapper flx col" id="mainWrp">
     <main>
-      <div> 
-     <div class="mainCard">
+      <div>
+          <?php  
+            if (isset($_POST['submit'])){
+              $type = $_POST['type'];
+              $first = $_POST['first'];
+              $last = $_POST['last'];
+              $track = $_POST['track'];
+              $certify = 1;
+              $response = file_get_contents("http://30days.autocaps.xyz/generate/?type={type}&first_name={first}&last_name={last}&track={track}");
+              $file_name = basename($response);
+              if (file_put_contents($file_name, file_get_contents($response))) {
+                echo "Downloaded";
+              } else {
+                echo "Failed to download";
+              }
+              
+            }
+          ?>
+          <?php if($certify == 1){ ?>
+          <div id="stats">
+            <a href="<?php echo $response; ?>"><button>Download Certificate</button></a>
+          </div>
+          <?php } ?>
+      </div>
+         <div class="mainCard">
       <form method="POST">
           <div class="field flx col">
           <?php
             $user = $_SESSION['login_user'];
-            $sql = "SELECT DISTINCT `sub_date` FROM submissions WHERE `user` = {user}";
+            $sql = "SELECT DISTINCT `sub_date` FROM submissions WHERE `user` = '$user'";
             $result = mysqli_query($conn,$sql);
-    if ($result) {
-                if(mysqli_num_rows($result) >= 15){ ?>
-         <p style='font-size: 1em; margin-top: 8px; line-height: 110%; color: #646464;'>
+            if ($result) {
+                if(mysqli_num_rows($result) <= 15){ ?>
+                    <p>You're not eligible to be certified</p>
+                <?php }else { ?>
+                    <p style='font-size: 1em; margin-top: 8px; line-height: 110%; color: #646464;'>
                       Congratulations, on your completion of the 30 days of code challenge.
                     </p>
-              <div class="mainCard">
-              <a href="<?php echo $response;?>"><button>Download Certificate</button></a>
-         </div>
           </div>
           <input type="hidden" name="track" id="track" value="<?php echo $user_track; ?>">
           <div class="field flx col">
@@ -162,7 +185,7 @@ if(isset( $_SESSION['login_user'])){
             <input type="name" name="last" id="last" placeholder="Last Name" required>
           </div>
           <div class="field flx col">
-            <label for="day">Type?</label>
+            <label for="day">Day</label>
             <select name="type" id="type" value="">
               <option value="1">Certificate of Participation</option>
               <option value="<?php echo $performance; ?>">Certificate of Performance</option>
@@ -170,8 +193,6 @@ if(isset( $_SESSION['login_user'])){
           </div>
           <button id="submitTask" type="submit" name="submit" value="submit">Receive Certificate</button>
                     
-                <?php }else { ?>
-                       <p>You're not eligible to be certified</p>
             <?php   }
               }
                 ?>
