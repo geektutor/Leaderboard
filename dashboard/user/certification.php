@@ -165,7 +165,7 @@ if(isset( $_SESSION['login_user'])){
           <div class="field flx col">
           <?php
             $user = $_SESSION['login_user'];
-            $sql = "SELECT DISTINCT `sub_date` FROM submissions WHERE `user` = '$user'";
+            $sql = "SELECT * FROM submissions WHERE `user` = '$user'";
             $result = mysqli_query($conn,$sql);
             if ($result) {
                 if(mysqli_num_rows($result) <= 15){ ?>
