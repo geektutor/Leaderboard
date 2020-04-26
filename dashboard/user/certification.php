@@ -155,10 +155,10 @@ if(isset( $_SESSION['login_user'])){
             $user = $_SESSION['login_user'];
             $sql = "SELECT DISTINCT `sub_date` FROM submissions WHERE `user` = {user}";
             $result = mysqli_query($conn,$sql);
-            if(mysqli_num_rows(if $result) <= 15){ ?>
-                <?php echo $user;?>
+    if ($result) {
+                if(mysqli_num_rows($result) <= 2){ ?>
                     <p>You're not eligible to be certified</p>
-            <?php } else { ?>
+                <?php }else { ?>
                     <p style='font-size: 1em; margin-top: 8px; line-height: 110%; color: #646464;'>
                       Congratulations, on your completion of the 30 days of code challenge.
                     </p>
