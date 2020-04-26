@@ -5,9 +5,21 @@ if(isset( $_SESSION['login_user'])){
     $tt = $_SESSION['login_user'];
     $sql = "SELECT track FROM user WHERE email = '$tt'";
     $result = mysqli_query($conn, $sql);
-    $row = mysqli_fetch_assoc($result);
+    $row =mysqli_fetch_assoc($result);
     $track = $row['track'];
-    $performance = $row['performance'];
+    // $university = $row['university'];
+
+    // if (isset($_GET['submit'])) {
+    //   $type = $_GET['type'];
+    //   $first = $_GET['first'];
+    //   $last = $_GET['last'];
+    //   $track = $_GET['track'];
+
+    //   $response = file_get_contents("http://30days.autocaps.xyz/generate/?type=".$type."&first_name=".$first."&last_name=".$last."&track=".$track);
+    //   header("location:".$response);
+    //   // die;
+    // }
+
 ?>
 <head>
  <meta charset="UTF-8">
@@ -56,7 +68,7 @@ if(isset( $_SESSION['login_user'])){
           $user_nickname = $row['nickname'];
           $user_score = $row['score'];
           $user_track = $row['track'];
-          $performance = $row['performance'];
+          $performance = $row['score'];
           echo '<div class="avatar"><img style=\'width:120px;height:120px;\' src=\'https://robohash.org/'.$user_nickname.$user_track.'\'/></div>';
           echo '<span id="username">'.$user_nickname.'</span>';
           // echo '<span id="username">'.$user_score.'&nbsp; points</div></center>';
@@ -105,14 +117,6 @@ if(isset( $_SESSION['login_user'])){
          <a href="submit.php">Submit task</a>
         </li>
         <li class="flx row">
-         <img src="./assets/img/cert.png">
-         <a href="certification.php">Certificate</a>
-        </li>
-        <li class="flx row">
-         <img src="./assets/img/feedback.png">
-         <a href="feedback.php">Feedback</a>
-        </li>
-        <li class="flx row">
          <img src="./assets/img/lead.png">
          <a href="https://30daysofcode.xyz/dashboard/leaderboard.php">Leaderboard</a>
         </li>
@@ -140,19 +144,27 @@ if(isset( $_SESSION['login_user'])){
               $last = $_POST['last'];
               $track = $_POST['track'];
               $certify = 1;
-              $response = file_get_contents("http://30days.autocaps.xyz/generate/?type={$type}&first_name={$first}&last_name={$last}&track={$track}");
+              $response = file_get_contents("http://30days.autocaps.xyz/generate/?type=".$type."&first_name=".$first."&last_name=".$last."&track=".$track);
+              $file_name = basename($response);
+              if (file_put_contents($file_name, file_get_contents($response))) {
+                echo "Working";
+              } else {
+                echo "Failed to download";
+              }
+              
             }
-          ?>
-          
-      </div>
-         <div class="mainCard">
+          ?> 
+          <div class="mainCard">
          <?php if($certify == 1){ ?>
             <a href="<?php echo $response; ?>"><button>Download Certificate</button></a>
           <?php } ?>
+         </div>
+         <div class="mainCard">
       <form method="POST">
           <div class="field flx col">
           <?php
-            $sql = "SELECT DISTINCT `sub_date` FROM submissions WHERE `user` = {tt}";
+            $user = $_SESSION['login_user'];
+            $sql = "SELECT DISTINCT `sub_date` FROM submissions WHERE `user` = '$user'";
             $result = mysqli_query($conn,$sql);
             if ($result) {
                 if(mysqli_num_rows($result) <= 15){ ?>
@@ -172,7 +184,7 @@ if(isset( $_SESSION['login_user'])){
             <input type="name" name="last" id="last" placeholder="Last Name" required>
           </div>
           <div class="field flx col">
-            <label for="day">Type</label>
+            <label for="day">Day</label>
             <select name="type" id="type" value="">
               <option value="1">Certificate of Participation</option>
               <option value="<?php echo $performance; ?>">Certificate of Performance</option>
