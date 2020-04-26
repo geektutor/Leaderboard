@@ -155,7 +155,7 @@ if(isset( $_SESSION['login_user'])){
             $user = $_SESSION['login_user'];
             $sql = "SELECT DISTINCT `sub_date` FROM submissions WHERE `user` = {user}";
             $result = mysqli_query($conn,$sql);
-            if(mysqli_num_rows($result) <= 15){ ?>
+            if(mysqli_num_rows(if $result) <= 15){ ?>
                 <?php echo $user;?>
                     <p>You're not eligible to be certified</p>
             <?php } else { ?>
