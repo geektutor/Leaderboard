@@ -145,31 +145,30 @@ if(isset( $_SESSION['login_user'])){
               $last = $_POST['last'];
               $track = $_POST['track'];
               $certify = 1;
-              $response = file_get_contents("http://30days.autocaps.xyz/generate/?type=".$type."&first_name=".$first."&last_name=".$last."&track=".$track);
+              $response = file_get_contents("http://30days.autocaps.xyz/generate/?type={$type}&first_name={$first}&last_name={$last}&track={$track}");
               $file_name = basename($response);
               if (file_put_contents($file_name, file_get_contents($response))) {
-                echo "Downloaded";
+                echo $response;
               } else {
                 echo "Failed to download";
               }
               
             }
           ?>
-          <?php if($certify == 1){ ?>
-          <div id="stats">
-            <a href="<?php echo $response; ?>"><button id="submitTask">Download Certificate</button></a>
-          </div>
-          <?php } ?>
+          
       </div>
          <div class="mainCard">
       <form method="POST">
+          <?php if($certify == 1){ ?>
+            <a href="<?php echo $response; ?>"><button id="submitTask">Download Certificate</button></a>
+          <?php } ?>
           <div class="field flx col">
           <?php
             $user = $_SESSION['login_user'];
             $sql = "SELECT DISTINCT `sub_date` FROM submissions WHERE `user` = '$user'";
             $result = mysqli_query($conn,$sql);
             if ($result) {
-                if(mysqli_num_rows($result) <= 0){ ?>
+                if(mysqli_num_rows($result) <= 15){ ?>
                     <p>You're not eligible to be certified</p>
                 <?php }else { ?>
                     <p style='font-size: 1em; margin-top: 8px; line-height: 110%; color: #646464;'>
@@ -186,7 +185,7 @@ if(isset( $_SESSION['login_user'])){
             <input type="name" name="last" id="last" placeholder="Last Name" required>
           </div>
           <div class="field flx col">
-            <label for="day">Day</label>
+            <label for="day">Type</label>
             <select name="type" id="type" value="">
               <option value="1">Certificate of Participation</option>
               <option value="<?php echo $performance; ?>">Certificate of Performance</option>

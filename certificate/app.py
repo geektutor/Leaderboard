@@ -56,15 +56,15 @@ def make_certificate(first_name, last_name, type, track=None):
 
     tracks = {"frontend": "Front-End Web Development", "backend": "Back-End Web Development", "python": "Python Programming", "android": "Mobile Development", "ui": "UI/UX Design", "design": "Engineering Design"}
     track = tracks.get(track, None)
-    if type == "1":
-        base_64 = draw_text("average performace.jpg", type, first_name, last_name, track)
-    if type == "2":
-        base_64 = draw_text("good performance.jpg", type, first_name, last_name, track)
     if type == "3":
-        base_64 = draw_text("outstanding.jpg", type, first_name, last_name, track)
+        base_64 = draw_text("average performace.jpg", type, first_name, last_name, track)
     if type == "4":
-        base_64 = draw_text("participated.jpg", type, first_name, last_name)
+        base_64 = draw_text("good performance.jpg", type, first_name, last_name, track)
     if type == "5":
+        base_64 = draw_text("outstanding.jpg", type, first_name, last_name, track)
+    if type == "1":
+        base_64 = draw_text("participated.jpg", type, first_name, last_name)
+    if type == "2":
         base_64 = draw_text("mentor.jpg", type, first_name, last_name)
     return base_64
 
