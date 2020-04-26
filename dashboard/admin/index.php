@@ -54,6 +54,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                                 Dashboard
                             </a>
                             <a class='nav-link' href='waiting_room.php'>Waiting Room</a> 
+                            <a class='nav-link' href='cert.php'>Certificate</a>
                             <a class='nav-link' href='superadmin.php'>Super Admin</a>
                         </div>
                     </div>
