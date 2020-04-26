@@ -26,7 +26,7 @@ def make_certificate(first_name, last_name, type, track=None):
         y = 350
         x = 0
         text = "{} {}".format(first_name, last_name).upper()
-        if type == "5":
+        if type == "2":
             font = "LeagueSpartan-Bold.otf"
             size = 60
             color = "#e05a47"
@@ -50,7 +50,7 @@ def make_certificate(first_name, last_name, type, track=None):
             w, h = draw.textsize(track, font=PIL_font)
             x, y = 183, 450
             draw.text((x, y), track, fill=track_color, font=PIL_font)
-        img_url = os.path.join("static", "{}-{}-30daysofcode.png".format(first_name, last_name))
+        img_url = os.path.join("static", "{}-{}-{}-30daysofcode.png".format(first_name, last_name, type))
         img.save(img_url)
         return request.host_url + img_url
 
