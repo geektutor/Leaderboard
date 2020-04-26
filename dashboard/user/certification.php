@@ -156,7 +156,7 @@ if(isset( $_SESSION['login_user'])){
           ?> 
           <div class="mainCard">
          <?php if($certify == 1){ ?>
-            <a href="<?php echo $response; ? >"><button>Download Certificate</button></a>
+              <a href="<?php echo $response;?>"><button>Download Certificate</button></a>
           <?php } ?>
          </div>
          <div class="mainCard">
