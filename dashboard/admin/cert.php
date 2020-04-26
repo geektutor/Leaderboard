@@ -82,7 +82,7 @@ $count = mysqli_num_rows($result);
             }
           ?>
           <?php if($certify == 1){ ?>
-            <a href="<?php echo $response; ?>"><button>Download Certificate</button></a>
+            <a href="<?php echo $response; ?>"><button class="btn btn-primary mb-2">Download Certificate</button></a>
           <?php } ?>
         <form method="POST">
             <div class="form-group">
@@ -90,7 +90,7 @@ $count = mysqli_num_rows($result);
             <br><br>
             <input type="name" name="last" class="form-control" id="last" placeholder="Last Name" required>
             <br><br>
-            <select name="type" id="type" value="">
+            <select name="type" id="type" value="" class="form-control">
               <option value="1">Certificate of Participation</option>
               <option value="2">Certificate of Mentor</option>
             </select>
