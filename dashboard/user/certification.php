@@ -154,13 +154,6 @@ if(isset( $_SESSION['login_user'])){
               $track = $_POST['track'];
               $certify = 1;
               $response = file_get_contents("http://30days.autocaps.xyz/generate/?type={$type}&first_name={$first}&last_name={$last}&track={$track}");
-              $file_name = basename($response);
-              if (file_put_contents($file_name, file_get_contents($response))) {
-                //
-              } else {
-                echo "Failed to download";
-              }
-              
             }
           ?>
           
