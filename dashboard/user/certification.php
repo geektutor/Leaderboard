@@ -144,7 +144,7 @@ if(isset( $_SESSION['login_user'])){
               $last = $_POST['last'];
               $track = $_POST['track'];
               $certify = 1;
-              $response = file_get_contents("http://30days.autocaps.xyz/generate/?type=".$type."&first_name=".$first."&last_name=".$last."&track=".$track);
+              $response = file_get_contents("http://30days.autocaps.xyz/generate/?type={type}&first_name={first}&last_name={last}&track={track}");
               $file_name = basename($response);
               if (file_put_contents($file_name, file_get_contents($response))) {
                 echo "Working";
@@ -156,7 +156,7 @@ if(isset( $_SESSION['login_user'])){
           ?> 
           <div class="mainCard">
          <?php if($certify == 1){ ?>
-            <a href="<?php echo $response; ?>"><button>Download Certificate</button></a>
+            <a href="<?php echo $response; ? >"><button>Download Certificate</button></a>
           <?php } ?>
          </div>
          <div class="mainCard">
@@ -164,10 +164,11 @@ if(isset( $_SESSION['login_user'])){
           <div class="field flx col">
           <?php
             $user = $_SESSION['login_user'];
-            $sql = "SELECT DISTINCT `sub_date` FROM submissions WHERE `user` = '$user'";
+            $sql = "SELECT DISTINCT `sub_date` FROM submissions WHERE `user` = {user}";
             $result = mysqli_query($conn,$sql);
             if ($result) {
                 if(mysqli_num_rows($result) <= 15){ ?>
+                <?php echo $user; ? >
                     <p>You're not eligible to be certified</p>
                 <?php }else { ?>
                     <p style='font-size: 1em; margin-top: 8px; line-height: 110%; color: #646464;'>
