@@ -276,7 +276,7 @@ color: #444141;
  -webkit-box-shadow: 7px 7px 0px 0px #a29797;
          box-shadow: 7px 7px 0px 0px #a29797;
 }
-.mainCard form button {
+.mainCard form button, .mainCard button {
 margin: 10px 0 10px 0;
 border-radius: 2px;
 border: none;
