@@ -5,22 +5,9 @@ if(isset( $_SESSION['login_user'])){
     $tt = $_SESSION['login_user'];
     $sql = "SELECT track FROM user WHERE email = '$tt'";
     $result = mysqli_query($conn, $sql);
-    $row =mysqli_fetch_assoc($result);
+    $row = mysqli_fetch_assoc($result);
     $track = $row['track'];
     $performance = $row['performance'];
-    // $university = $row['university'];
-
-    // if (isset($_GET['submit'])) {
-    //   $type = $_GET['type'];
-    //   $first = $_GET['first'];
-    //   $last = $_GET['last'];
-    //   $track = $_GET['track'];
-
-    //   $response = file_get_contents("http://30days.autocaps.xyz/generate/?type=".$type."&first_name=".$first."&last_name=".$last."&track=".$track);
-    //   header("location:".$response);
-    //   // die;
-    // }
-
 ?>
 <head>
  <meta charset="UTF-8">
@@ -165,8 +152,7 @@ if(isset( $_SESSION['login_user'])){
       <form method="POST">
           <div class="field flx col">
           <?php
-            $user = $_SESSION['login_user'];
-            $sql = "SELECT DISTINCT `sub_date` FROM submissions WHERE `user` = '$user'";
+            $sql = "SELECT DISTINCT `sub_date` FROM submissions WHERE `user` = {tt}";
             $result = mysqli_query($conn,$sql);
             if ($result) {
                 if(mysqli_num_rows($result) <= 15){ ?>
