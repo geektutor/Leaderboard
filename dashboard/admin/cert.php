@@ -87,13 +87,14 @@ $count = mysqli_num_rows($result);
         <form method="POST">
             <div class="form-group">
             <input type="name" name="first" class="form-control" id="first" placeholder="First Name" required>
-            <br><br>
+            <br>
             <input type="name" name="last" class="form-control" id="last" placeholder="Last Name" required>
-            <br><br>
+            <br>
             <select name="type" id="type" value="" class="form-control">
               <option value="1">Certificate of Participation</option>
               <option value="2">Certificate of Mentor</option>
             </select>
+            <br>
             <button type="submit" class="btn btn-primary" name="submit" value="submit">Receive Certificate</button>
         </form>
             
