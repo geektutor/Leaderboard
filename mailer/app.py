@@ -14,7 +14,7 @@ def index():
     return "Hello World"
 
 
-@app.route("/mail", methods=['GET', 'POST'])
+@app.route("/mail/", methods=['GET', 'POST'])
 def mailed():
     req = json.loads(request.args['users'])
     print(req)
