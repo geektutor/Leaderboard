@@ -7,20 +7,19 @@ if(isset( $_SESSION['login_user'])){
     $result = mysqli_query($conn, $sql);
     $row =mysqli_fetch_assoc($result);
     $track = $row['track'];
-    // $university = $row['university'];
-
-    // if (isset($_GET['submit'])) {
-    //   $type = $_GET['type'];
-    //   $first = $_GET['first'];
-    //   $last = $_GET['last'];
-    //   $track = $_GET['track'];
-
-    //   $response = file_get_contents("http://30days.autocaps.xyz/generate/?type=".$type."&first_name=".$first."&last_name=".$last."&track=".$track);
-    //   header("location:".$response);
-    //   // die;
-    // }
-
 ?>
+<?php  
+            if (isset($_POST['submit'])){
+              $type = $_POST['type'];
+              $first = $_POST['first'];
+              $last = $_POST['last'];
+              $track = $_POST['track'];
+              $certify = 1;
+              $response = file_get_contents("http://30days.autocaps.xyz/generate/?type={type}&first_name={first}&last_name={last}&track={track}");
+              $file_name = basename($response);              
+            }
+          ?>
+
 <head>
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -74,7 +73,7 @@ if(isset( $_SESSION['login_user'])){
           // echo '<span id="username">'.$user_score.'&nbsp; points</div></center>';
       }
       ?>
-      <div class="scoresContainer flx row">
+       <div class="scoresContainer flx row">
         <div class="scoreCard flx col">
          <div class="wLayer"></div>
          <span class="title">Total points:</span>
@@ -136,18 +135,7 @@ if(isset( $_SESSION['login_user'])){
    </nav>
    <div class="mainWrapper flx col" id="mainWrp">
     <main>
-      <div>
-          <?php  
-            if (isset($_POST['submit'])){
-              $type = $_POST['type'];
-              $first = $_POST['first'];
-              $last = $_POST['last'];
-              $track = $_POST['track'];
-              $certify = 1;
-              $response = file_get_contents("http://30days.autocaps.xyz/generate/?type={type}&first_name={first}&last_name={last}&track={track}");
-              $file_name = basename($response);              
-            }
-          ?> 
+      <div> 
      <div class="mainCard">
       <form method="POST">
           <div class="field flx col">
@@ -165,7 +153,6 @@ if(isset( $_SESSION['login_user'])){
               <div class="mainCard">
               <a href="<?php echo $response;?>"><button>Download Certificate</button></a>
          </div>
-              
           </div>
           <input type="hidden" name="track" id="track" value="<?php echo $user_track; ?>">
           <div class="field flx col">
