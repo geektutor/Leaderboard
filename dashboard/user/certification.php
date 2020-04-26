@@ -220,8 +220,3 @@ if(isset( $_SESSION['login_user'])){
 </script>
 </body>
 </html>
-<?php
-}else{
-  header("location:../../login.php");
-}
-?>
