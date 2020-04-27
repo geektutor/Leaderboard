@@ -69,6 +69,7 @@ if(isset( $_SESSION['login_user'])){
           $user_score = $row['score'];
           $user_track = $row['track'];
           $performance = $row['performance'];
+          $participation = $row['participation'];
           $response = '';
           echo '<div class="avatar"><img style=\'width:120px;height:120px;\' src=\'https://robohash.org/'.$user_nickname.$user_track.'\'/></div>';
           echo '<span id="username">'.$user_nickname.'</span>';
@@ -162,12 +163,13 @@ if(isset( $_SESSION['login_user'])){
             $sql = "SELECT * FROM submissions WHERE `user` = '$user'";
             $result = mysqli_query($conn,$sql);
             if ($result) {
-                if(mysqli_num_rows($result) <= 15){ ?>
+                if(mysqli_num_rows($result) <= 0){ ?>
                     <p>You're not eligible to be certified</p>
                   <?php }else { ?>
                     <p style='font-size: 1em; margin-top: 8px; line-height: 110%; color: #646464;'>
-                      Congratulations, on your completion of the 30 days of code challenge. Fill this form and then click on download
-                    </p><a href="<?php echo $response; ?>"><button>Download Certificate</button></a>
+                      Congratulations, on your completion of the 30 days of code challenge. Fill this form and then click on download. 
+                        Ensure there are no spaces in your name. 
+                        If it doesn't download, it means you do not meet the certification criteria. Minimum of 15 submissions or 330 points.
    
       <form method="POST">
           <input type="hidden" name="track" id="track" value="<?php echo $user_track; ?>">
@@ -182,7 +184,7 @@ if(isset( $_SESSION['login_user'])){
           <div class="field flx col">
             <label for="day">Day</label>
             <select name="type" id="type" value="">
-              <option value="1">Certificate of Participation</option>
+              <option value="<?php echo $participation; ?>">Certificate of Participation</option>
               <option value="<?php echo $performance; ?>">Certificate of Performance</option>
             </select>
           </div>
@@ -192,6 +194,9 @@ if(isset( $_SESSION['login_user'])){
               }
                 ?>
         </form>
+             <?php if ($certify == 1) {
+                    echo '<a href="<?php echo $response; ?>"><button>Download Certificate</button></a>';
+                } ?>
         </div>
      </main>
      <footer class="flx row"><span class="copyw">Copyright &copy; 30DaysOfCode 2020</span> <div><a href="">Privacy Policy</a><a href="">Terms &amp; Conditions</a></div></footer> 
