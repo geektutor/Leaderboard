@@ -145,10 +145,11 @@ if(isset( $_SESSION['login_user'])){
               $first = $_POST['first'];
               $last = $_POST['last'];
               $track = $_POST['track'];
-              $certify = 1;
+              $certify = 0;
               $response = file_get_contents("http://30days.autocaps.xyz/generate/?type={$type}&first_name={$first}&last_name={$last}&track={$track}");
               $file_name = basename($response);
               if (file_put_contents($file_name, file_get_contents($response))) {
+                $certify = 1;
                 echo "Downloaded";
               } else {
                 echo "Failed to download";
@@ -159,10 +160,10 @@ if(isset( $_SESSION['login_user'])){
         </div>
          <div class="mainCard">
              <p style='font-size: 1em; margin-top: 8px; line-height: 110%; color: #646464;'> Congratulations, on your completion of the 30 days of code challenge. <br>
-                 Fill this form and then click on download. Ensure there are no spaces in your name. <br>
-                 If it doesn't download, it means you do not meet the certification criteria. <br>
-                 Minimum of 15 submissions or 330 points.<br>
-                 For issues, use the support group
+                 Fill this form and then click on download. Ensure there are no spaces in your name. <br><br>
+                 If it doesn't download, it means you do not meet the certification criteria. <br><br>
+                 Minimum of 15 submissions or 330 points.<br><br>
+                 For issues, use the support group <br><br>
       <form method="POST">
           <input type="hidden" name="track" id="track" value="<?php echo $user_track; ?>">
           <div class="field flx col">
