@@ -146,7 +146,9 @@ if(isset( $_SESSION['login_user'])){
               $last = $_POST['last'];
               $track = $_POST['track'];
               $certify = 0;
-              $response = file_get_contents("http://30days.autocaps.xyz/generate/?type={$type}&first_name={$first}&last_name={$last}&track={$track}");
+              $sentence = "http://30days.autocaps.xyz/generate/?type={$type}&first_name={$first}&last_name={$last}&track={$track}";
+              $stripped = str_replace(' ', '', $sentence);
+              $response = file_get_contents("$stripped);
               $file_name = basename($response);
               if (file_put_contents($file_name, file_get_contents($response))) {
                 $certify = 1;
@@ -174,7 +176,7 @@ if(isset( $_SESSION['login_user'])){
             <input type="name" name="last" id="last" placeholder="Last Name" required>
           </div>
           <div class="field flx col">
-            <label for="day">Day</label>
+            <label for="day">Task</label>
             <select name="type" id="type" value="">
               <option value="<?php echo $participation; ?>">Certificate of Participation</option>
               <option value="<?php echo $performance; ?>">Certificate of Performance</option>
