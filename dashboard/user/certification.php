@@ -185,9 +185,10 @@ if(isset( $_SESSION['login_user'])){
           <button id="submitTask" type="submit" name="submit" value="submit">Receive Certificate</button>
                     
          </form>
-             <?php if ($certify == 1) {
-                    echo '<a href="<?php echo $response; ?>"><button>Download Certificate</button></a>';
-                } ?>
+         
+             <?php if ($certify == 1){ ?>
+                    <a href="<?php echo $response;?>" target="_blank"><button>Download Certificate</button></a>
+              <?php } ?>
         </div>
      </main>
      <footer class="flx row"><span class="copyw">Copyright &copy; 30DaysOfCode 2020</span> <div><a href="">Privacy Policy</a><a href="">Terms &amp; Conditions</a></div></footer> 
