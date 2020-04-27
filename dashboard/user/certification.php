@@ -158,18 +158,8 @@ if(isset( $_SESSION['login_user'])){
           ?>
         </div>
          <div class="mainCard">
-                   <?php
-            $user = $_SESSION['login_user'];
-            $sql = "SELECT * FROM submissions WHERE `user` = '$user'";
-            $result = mysqli_query($conn,$sql);
-            if ($result) {
-                if(mysqli_num_rows($result) <= 0){ ?>
-                    <p>You're not eligible to be certified</p>
-                  <?php }else { ?>
-                    <p style='font-size: 1em; margin-top: 8px; line-height: 110%; color: #646464;'>
-                      Congratulations, on your completion of the 30 days of code challenge. Fill this form and then click on download. 
-                        Ensure there are no spaces in your name. 
-                        If it doesn't download, it means you do not meet the certification criteria. Minimum of 15 submissions or 330 points.
+          <?php
+            echo "<p style='font-size: 1em; margin-top: 8px; line-height: 110%; color: #646464;'> Congratulations, on your completion of the 30 days of code challenge. Fill this form and then click on download. Ensure there are no spaces in your name. If it doesn't download, it means you do not meet the certification criteria. Minimum of 15 submissions or 330 points.";
    
       <form method="POST">
           <input type="hidden" name="track" id="track" value="<?php echo $user_track; ?>">
