@@ -182,10 +182,7 @@ if(isset( $_SESSION['login_user'])){
           </div>
           <button id="submitTask" type="submit" name="submit" value="submit">Receive Certificate</button>
                     
-            <?php   }
-              }
-                ?>
-        </form>
+         </form>
              <?php if ($certify == 1) {
                     echo '<a href="<?php echo $response; ?>"><button>Download Certificate</button></a>';
                 } ?>
