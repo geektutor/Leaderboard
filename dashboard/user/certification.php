@@ -148,7 +148,7 @@ if(isset( $_SESSION['login_user'])){
               $certify = 0;
               $sentence = "http://30days.autocaps.xyz/generate/?type={$type}&first_name={$first}&last_name={$last}&track={$track}";
               $stripped = str_replace(' ', '', $sentence);
-              $response = file_get_contents("$stripped);
+              $response = file_get_contents("$stripped");
               $file_name = basename($response);
               if (file_put_contents($file_name, file_get_contents($response))) {
                 $certify = 1;
