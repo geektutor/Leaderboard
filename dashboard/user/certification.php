@@ -176,7 +176,7 @@ if(isset( $_SESSION['login_user'])){
             <input type="name" name="last" id="last" placeholder="Last Name" required>
           </div>
           <div class="field flx col">
-            <label for="day">Task</label>
+            <label for="day">Type</label>
             <select name="type" id="type" value="">
               <option value="<?php echo $participation; ?>">Certificate of Participation</option>
               <option value="<?php echo $performance; ?>">Certificate of Performance</option>
