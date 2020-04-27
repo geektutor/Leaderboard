@@ -158,9 +158,11 @@ if(isset( $_SESSION['login_user'])){
           ?>
         </div>
          <div class="mainCard">
-          <?php
-            echo "<p style='font-size: 1em; margin-top: 8px; line-height: 110%; color: #646464;'> Congratulations, on your completion of the 30 days of code challenge. Fill this form and then click on download. Ensure there are no spaces in your name. If it doesn't download, it means you do not meet the certification criteria. Minimum of 15 submissions or 330 points.";
-   
+             <p style='font-size: 1em; margin-top: 8px; line-height: 110%; color: #646464;'> Congratulations, on your completion of the 30 days of code challenge. <br>
+                 Fill this form and then click on download. Ensure there are no spaces in your name. <br>
+                 If it doesn't download, it means you do not meet the certification criteria. <br>
+                 Minimum of 15 submissions or 330 points.<br>
+                 For issues, use the support group
       <form method="POST">
           <input type="hidden" name="track" id="track" value="<?php echo $user_track; ?>">
           <div class="field flx col">
