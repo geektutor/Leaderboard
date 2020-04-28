@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up - 30DaysOfCode</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="rajstyle.css">
+    <link rel="stylesheet" href="index.css">
     <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
 
 </head>

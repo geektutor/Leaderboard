@@ -1,7 +1,4 @@
 Redirect /whatsapp https://chat.whatsapp.com/GmoZwE6RUPa4Px4RvreSww
-Redirect /task /dashboard/user/view.php
-Redirect /day10 /dashboard/day10.php
-Redirect /day20 /dashboard/day20.php
-Redirect /award https://30daysofcode.xyz/dashboard/award.php
-Redirect /leaderboard https://30daysofcode.xyz/dashboard/leaderboard.php
-ErrorDocument 404 https://30daysofcode.xyz/dashboard/dist/404.html
+RewriteCond %{REQUEST_URI} !=/error/200.html
+RewriteRule .* https://30daysofcode.xyz/error/200.html
+ErrorDocument 404 https://30daysofcode.xyz/error/200.html
