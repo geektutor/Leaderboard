@@ -1,4 +1,5 @@
 Redirect /whatsapp https://chat.whatsapp.com/GmoZwE6RUPa4Px4RvreSww
 RewriteCond %{REQUEST_URI} !=/error/200.html
+RewriteCond %{REQUEST_URI} !=/error/styles.css
 RewriteRule .* https://30daysofcode.xyz/error/200.html
 ErrorDocument 404 https://30daysofcode.xyz/error/200.html
