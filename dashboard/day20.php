@@ -1,11 +1,11 @@
 <?php
-  $userRanking = array();
+  $userRanking = [];
   function getUSerRankings($fetched_array)
   {
     include "../config/connect.php";
 
     //user class for each fetched user
-    class User
+    class User 
     {
       public $nickname;
       public $track;
@@ -19,40 +19,25 @@
     }
 
     if (isset($_GET['filter']) && !empty($_GET['filter'])) {
-      //preparing the query parameter
       $filter = $_GET['filter'];
-      $filter = explode('+',$filter);
-      function myfunction($v1,$v2)
-      {
-      return $v1 . " " . $v2;
-      }
-      $filter = array_reduce($filter,"myfunction");
-      $filter = trim($filter);
-
-
       switch ($filter) {
-        case 'General':
-          $val = '';
-          $sql = "SELECT * FROM user WHERE `isAdmin` = 0 And `university`='$val' ORDER BY `score` DESC LIMIT 20";
+        case 'overall':
+          $sql = "SELECT * FROM user20 WHERE `isAdmin` = 0 ORDER BY `score` DESC LIMIT 20";
           break;
-
+        
         default:
-          $sql = "SELECT * FROM user WHERE `isAdmin` = 0 AND `university` ='$filter' ORDER BY `score` DESC LIMIT 20";
+          $sql = "SELECT * FROM user20 WHERE `isAdmin` = 0 AND `track` ='$filter' ORDER BY `score` DESC LIMIT 20";
           break;
       }
     }else{
-      $val = '';
-      $sql = "SELECT * FROM user WHERE `isAdmin` = 0 And `university` = '$val' ORDER BY `score` DESC LIMIT 20";
+      $sql = "SELECT * FROM user20 WHERE `isAdmin` = 0 ORDER BY `score` DESC LIMIT 20";
     }
     $result = mysqli_query($conn,$sql);
-    if ($result) {
-      echo "worked";
-    }
     if (mysqli_num_rows($result) > 0) {
       while ($row = mysqli_fetch_assoc($result)) {
           $nickname = $row['nickname'];
           $track = $row['track'];
-          $score = $row['score'];
+          $score = $row['score'];        
           $user = new User($nickname,$track,$score);
           array_push($fetched_array,$user);
       }
@@ -69,28 +54,9 @@
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
       <link rel="stylesheet" href="./index.css">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-      <link rel="shortcut icon" href="https://30daysofcode.xyz/favicon.png" type="image/x-icon">
+      <title>Day 20</title>
     </head>
     <body>
-      <div class="filter">
-        <form id="filterform">
-          <select name="" id="filter" class="form-control">
-            <?php
-            include "../config/connect.php";
-            $sql = "SELECT DISTINCT `university` FROM user";
-            $result = mysqli_query($conn,$sql);
-            if ($result && mysqli_num_rows($result) > 0) {
-              while ($row = mysqli_fetch_assoc($result)) {
-                $row['university'] == ''?$row['university'] = 'General' : true;
-                echo "<option value='".$row['university']."' id='".$row['university']."'>".$row['university']."</option>";
-              }
-            }
-             ?>
-          </select>
-          <button type="submit" class="btn btn-warning">Filter</button>          
-          <a href="track.php" class="btn btn-warning">Filter By Track</a>
-        </form>
-      </div>
       <div class="center">
         <div class="top3">
           <div class="two item">
@@ -135,7 +101,7 @@
         </div>
           <div class="list others">
           </div>
-        </div>
+        </div>      
       <script src="leaderboard.js"></script>
     </body>
 </html>

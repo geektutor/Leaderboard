@@ -54,6 +54,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                                 Dashboard
                             </a>
                             <a class='nav-link' href='waiting_room.php'>Waiting Room</a> 
+                            <a class='nav-link' href='cert.php'>Certificate</a>
                             <a class='nav-link' href='superadmin.php'>Super Admin</a>
                         </div>
                     </div>
@@ -124,7 +125,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                                         $sql = "SELECT s.*, u.university 
                                             FROM submissions AS s 
                                             LEFT JOIN user AS u ON s.user = u.email  
-                                            WHERE s.track = '$track' AND s.points = 0 AND u.university = '$university' AND s.task_day = '$day'";
+                                            WHERE s.track = '$track' AND s.points = 0 AND u.university = '$university' ORDER BY s.task_day";
                                     }else{
                                         $sql = "SELECT s.*, u.university FROM submissions AS s
                                             LEFT JOIN user AS u ON s.user = u.email  

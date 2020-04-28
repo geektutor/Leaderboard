@@ -79,8 +79,8 @@
             <div class="group"><input type="text" placeholder="NickName" name="nick" required><i class="fa fa-user"></i></div>
             <div class="group"><input placeholder="Password" required="" name="password" type="password" /><i class="fa fa-lock"></i></div>
             <div class="group"><input name="phone" placeholder="Phone" type="tel" /><i class="fa fa-phone-square"></i></div>
-            <select name="track">
-                <option value="">Track?</option>
+            <select name="track" required>
+                <option value="" disabled selected>Track?</option>
                 <option value="frontend">Front End</option>
                 <option value="backend">Back End</option>
                 <option value="android">Mobile</option>
@@ -88,8 +88,8 @@
                 <option value="python">Python</option>
                 <option value="design">Engineering Design</option>
             </select>
-            <select name="university">
-                <option value="">University?</option>
+            <select name="university" required>
+                <option value="" disabled selected>University?</option>
                 <option value="">N/A</option>
                 <option value="JKUAT">JKUAT</option>
                 <option value="Rongo University">Rongo University</option>

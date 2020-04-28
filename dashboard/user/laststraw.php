@@ -1,46 +1,7 @@
 <?php
 require('../../config/connect.php');
 require('../../config/session.php');
-if(isset($_POST['submit'])){
-    $error = '';
-    $show = 0;
-    $task_day = mysqli_real_escape_string($conn, $_POST['task_day']);
-    $track = mysqli_real_escape_string($conn, $_POST['track']);
-    $sql = "SELECT url FROM task WHERE task_day = '$task_day' AND track = '$track'";
-    $result = mysqli_query($conn,$sql);
-    $count = mysqli_num_rows($result);
-    if($count > 0){
-        while($row = mysqli_fetch_assoc($result)) {
-           $error = $row['url'];
-           $show = 1;
-        }
-    }else{
-        $error =  "No task for the selected options";
-    }
-}
-if(isset($_POST['check_task'])){
-    $error = '';
-    $show = 0;
-    $task_day = mysqli_real_escape_string($conn, $_POST['task_day']);
-    $track = mysqli_real_escape_string($conn, $_POST['track']);
-    if($task_day == "all"){
-      $sql = "SELECT * FROM task WHERE track = '$track'";
-    }
-    $result = mysqli_query($conn,$sql);
-    $count = mysqli_num_rows($result);
-    if($count > 0){
-        while($row = mysqli_fetch_assoc($result)) {
-          $error = 1;
-          $tasks[] = array('url'=> $row['url'], 'day' => $row['task_day']);
-          if ($row['task_day'] == 'Day 29') {
-            break;
-          }  
-        }
-    }else{
-        $error =  "No task for the selected options";
-    }
-}
-
+if(isset( $_SESSION['login_user'])){
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -49,9 +10,9 @@ if(isset($_POST['check_task'])){
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <meta http-equiv="X-UA-Compatible" content="ie=edge">
  <link rel="stylesheet" href="./assets/css/style.css">
- <link rel="stylesheet" href="./assets/css/view.css">
+ <link rel="stylesheet" href="./assets/css/submissions.css">
  <link rel="stylesheet" href="./assets/css/responsive.css">
- <title>All tasks - 30 Days Of Code</title>
+ <title>The Last Straw - 30 Days Of Code</title>
 </head>
 <body class="flx col">
  <header class="flx row">
@@ -79,7 +40,7 @@ if(isset($_POST['check_task'])){
       </div>
     </div>
      <div class="flx col content">
-     <?php
+      <?php
       global $conn;
       $user_nickname = '';
       $user_score = '';
@@ -94,7 +55,7 @@ if(isset($_POST['check_task'])){
           $university = $row['university'];
           echo '<div class="avatar"><img style=\'width:120px;height:120px;\' src=\'https://robohash.org/'.$user_nickname.$user_track.'\'/></div>';
           echo '<span id="username">'.$user_nickname.'</span>';
-          // echo '<span id="username">'.$user_score.'&nbsp; points</div></center>';
+          // echo '<span id="username">'.$university.'&nbsp; points</div></center>';
       }
       ?>
       <div class="scoresContainer flx row">
@@ -114,7 +75,7 @@ if(isset($_POST['check_task'])){
                 $rank = 1;
                 while ($row = mysqli_fetch_assoc($ranking_result)) {
                     if($row['email'] == $email){
-                        echo '<!--<span id="rank">'.$rank.'</span>-->';
+                        echo '<span id="rank">'.$rank.'</span>';
                     }else {
                         $rank++;
                     }
@@ -126,8 +87,8 @@ if(isset($_POST['check_task'])){
             ?>
         </div>
       </div>
-      <ul class="linksContainer">
-       <li class="flx row active">
+       <ul class="linksContainer">
+        <li class="flx row active">
          <img src="./assets/img/submsn.png">
          <a href="index.php">Submissions</a>
         </li>
@@ -167,76 +128,86 @@ if(isset($_POST['check_task'])){
    </nav>
    <div class="mainWrapper flx col" id="mainWrp">
     <main>
-      <div class="flx row"><h1>View Tasks</h1></div>
+      <div class="flx row"><h1>Submissions</h1> <a id="newBtn" href="submit.php">Add new</a> </div>
       <div class="mainCard">
-      <?php if($show == 1){ ?>
-          <div class="alert alert-primary alert-dismissable">            
-              <a href="<?php echo $error?>">Download Task</a>
-          </div>
-      <?php }?>
-        <form method="POST" class="<?php if($show == 1)echo 'd-none'; else echo '';?> ">
-          <div class="field flx col">
-            <label for="day">Day</label>
-               <?php if ($university == "ESUT") {?>
-                <select name="task_day" value="">
-                  <option value="Day 0">Day 0</option>
-                  <option value="Day 1">Day 1</option>
-                  <option value="Day 2">Day 2</option>
-                  <option value="Day 3">Day 3</option>
-                  <option value="Day 4">Day 4</option>
-                  <option value="Day 5">Day 5</option>
-                  <option value="Day 6">Day 6</option>
-                  <option value="Day 7">Day 7</option>
-                </select>
-                <?php }else{ ?>
-                <select name="task_day" value="">
-                  <option value="all">All Task</option>
-                </select>
-                <?php } ?>
-          </div>
-          <div class="field flx col">
-            <label for="track">Track</label>
-            <select name="track" value="">
-              <option value="FrontEnd">Front End</option>
-              <option value="Backend">Back End</option>
-              <option value="Mobile">Mobile</option>
-              <option value="UIUX">UI/UX</option>
-              <option value="Python">Python</option>
-              <option value="Design">Engineering Design</option>
-          </select>
-          </div>
-          <?php if ($university == "ESUT") {?>
-          <button id="taskDownload" type="submit" name="submit">Check Task</button>
-          <?php }else{ ?>
-          <button id="taskDownload" type="submit" name="check_task">Check Task</button>
-          <?php } ?>
-        </form>
-      </div>
-      <?php if($error == 1){ ?>
-      <div class="taskList">
-         <div class="table-responsive">
+      <?php
+      if (isset($_GET['editSubmissionReport']) && !empty($_GET['editSubmissionReport'])) {
+          $report = $_GET['editSubmissionReport'];
+          if ($report == 'success') {
+              echo "<div id='report' class='alert alert-success'>Submission edit successful</div>";
+          }elseif ($report == 'failure') {
+          echo "<div id='report' class='alert alert-danger'>Submission edit failed</div>";
+          }else{
+              echo "error";
+              session_destroy();
+              header('location: ../../index.php');
+          }
+      }
+      ?>
+      <?php
+      $u = $_SESSION['login_user'];
+      $sql = "SELECT * FROM submissions WHERE user = '$u'";
+      $result = mysqli_query($conn, $sql);
+      $count = mysqli_num_rows($result);
+      
+     ?>
+       <div class="table-responsive">
         <table class="table" style="text-align: left;">
-          <thead>
-            <tr>
-              <th scope="col">Day</th>
-              <th scope="col">Url</th>
-            </tr>
-          </thead>
-          <tbody>
-          <?php  foreach ($tasks as $task):?>
+         <thead>
           <tr>
-            <td data-label="DAY"><?php echo $task['day'];?></td>
-            <td data-label="URL"><a href="<?php echo $task['url']; ?>"><button class="bbb">View Task</button></a></td>
+            <th scope="col">Day</th>
+            <th scope="col">Url</th>
+            <th scope="col">Points</th>
+            <th scope="col">Reviews</th>
+            <th scope="col">Actions</th>
           </tr>
-          <?php endforeach; }?>
-          </tbody>
+        </thead>
+        <tbody>
+          <?php
+          
+          if($count > 0){
+              $j =1;
+              while($row = $result->fetch_assoc()) {
+          ?>
+          <tr>
+              <td data-label="DAY"><?php echo $row['task_day'];?></td>
+              <td data-label="URL"><?php echo $row['url'];?></td>
+              <td data-label="POINTS"><?php echo $row['points'];?></td>
+              <td data-label="REVIEW"><?php echo $row['feedback'];?></td>
+              <td data-label="ACTIONS"><?php
+                    if (empty($row['feedback'])) {
+                        echo "<a href='editsubmission.php?user=".$_SESSION['login_user'].'&day='.$row['task_day']."'>Edit submission</a>";
+                    }
+              ?></td>
+          </tr>
+          
+          <?php 
+              $j++;
+              }}else{
+                  echo `<p>No Submissions yet</p>`;
+              }
+          ?>
+          <tr>
+          
+          <td data-label="DAY">Day 30</td>
+              <td data-label="URL">The Last Straw</td>
+              <td data-label="POINTS"><a href='https://github.com/geektutor/Leaderboard/blob/master/laststraw.md'>View Task</a></td>
+              <td data-label="REVIEW"></td>
+              <td data-label="ACTIONS"><a href='submit30.php'>Submit The Last Straw</a></td>
+              </tr>
+        </tbody>
         </table>
-       </div>
-     </div>
+      </div>
+      </div >
      </main>
-     <footer class="flx row"><span class="copyw">Copyright &copy; 30DaysOfCode 2020</span> <div><a href="">Privacy Policy</a><a href="">Terms &amp; Conditions</a></div></footer>
+     <footer class="flx row"><span class="copyw">Copyright &copy; 30DaysOfCode 2020</span> <div><a href="">Privacy Policy</a><a href="">Terms & Conditions</a></div></footer>
    </div>
  </div>
  <script src="./assets/js/app.js"></script>
 </body>
 </html>
+<?php
+}else{
+    header("location:../../login.php"); 
+}
+?>

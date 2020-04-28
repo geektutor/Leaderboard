@@ -17,7 +17,7 @@ if(isset( $_SESSION['login_user'])){
  <link rel="stylesheet" href="./assets/css/style.css">
  <link rel="stylesheet" href="./assets/css/submit.css">
  <link rel="stylesheet" href="./assets/css/responsive.css">
- <title>Submit task - 30 Days Of Code</title>
+ <title>Feedback - 30 Days Of Code</title>
 </head>
 <body class="flx col">
  <header class="flx row">
@@ -92,7 +92,7 @@ if(isset( $_SESSION['login_user'])){
         </div>
       </div>
       <ul class="linksContainer">
-<li class="flx row active">
+          <li class="flx row active">
          <img src="./assets/img/submsn.png">
          <a href="index.php">Submissions</a>
         </li>
@@ -132,43 +132,22 @@ if(isset( $_SESSION['login_user'])){
    </nav>
    <div class="mainWrapper flx col" id="mainWrp">
     <main>
-      <div class="flx row"><h1>Submit a task</h1></div>
+      <div class="flx row"><h1>Submit Feedback</h1></div>
       <div class="mainCard">
       <?php
       $error = "";
-      function check(){	
-          global $conn;
-          $task_day = mysqli_real_escape_string($conn, $_POST['task_day']);
-          $queryURL = "SELECT task_day FROM submissions WHERE user = '".$_SESSION['login_user']."' AND task_day = '$task_day'";
-          $resultURL = mysqli_query($conn, $queryURL);
-          $countURL = mysqli_num_rows($resultURL);
-          if ($countURL > 0) {
-              return 1;
-          }else{
-              return 0;
-          }
-      }
-          if(isset($_POST['submit'])){
-              $url = mysqli_real_escape_string($conn, $_POST['url']);
-              $task_day = mysqli_real_escape_string($conn, $_POST['task_day']);
-              $track = $_SESSION['user_track'];
-              $user =  mysqli_real_escape_string($conn, $_SESSION['login_user']);
-              $comment =  mysqli_real_escape_string($conn, $_POST['comment']);
-              $check = check();
-              if(check() == 0){
-                  $sql = "INSERT INTO submissions(user, track, url, task_day, comments, sub_date) 
-                          VALUES('$user','$track', '$url','$task_day', '$comment', NOW())";
-                  if($conn->query($sql)){
-                      $error = "Submitted Successfully";
-                      $submit = 1;
-                  }else{
-                  die('could not enter data: '. $conn->error);
-                  }
-              }else{
-                  $error = "You've submitted already, wait for tomorrow's challenge";
-                  $submit = 0;
-              }
-          }
+        if(isset($_POST['submit'])){
+        $user =  $_SESSION['login_user'];
+        $feedback =  mysqli_real_escape_string($conn, $_POST['feedback']);
+        $sql = "INSERT INTO feedback(user, feedback) VALUES('$user','$feedback')";
+        if($conn->query($sql)){
+            $error = "Submitted Successfully";
+            $submit = 1;
+        }
+        else{
+            die('could not enter data: '. $conn->error);
+        }
+        }
       ?>
       <?php if($error !== ''){ ?>
       <div class="notice">
@@ -177,7 +156,7 @@ if(isset( $_SESSION['login_user'])){
               if($submit == 1){
           ?>
           <p>Share on twitter:</p>
-          <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2F30daysofcode.xyz%2F&via=ecxunilag&text=<?php echo $task_day;?>%20of%2030%3A%20Check%20out%20my%20solution%20at%3A%20<?php echo $url;?>&hashtags=30DaysOfCode%2C%2030DaysOfDesign%2C%20ecxunilag">
+          <a href="https://twitter.com/intent/tweet?url=http%3A%2F%2F30daysofcode.xyz&via=ecxunilag&text=I%20just%20completed%20&hashtags=30DaysOfCode%20">
           <button class="flx row"> <img src="./assets/img/tweet2.png"> Tweet</button>
           </a>
           <?php }?>
@@ -185,51 +164,10 @@ if(isset( $_SESSION['login_user'])){
               <?php }?>
        <form method="POST">
           <div class="field flx col">
-            <label for="url">URL</label>
-            <input type="url" name="url" placeholder="Enter URL" required>
-            <p style="font-size: 12px; margin-top: 8px; line-height: 110%; color: #646464;">Python - Repl.it Url, Backend - Github repo Url, Frontend - <a href="https://steph-crown.github.io/a-guide-on-hosting/">Follow this guide</a>, UI/UX - Figma/Adobe XD Url, Engineering Design - Google Drive Url</p>
+            <label for="feedback">Anonymous Feedback?</label>
+            <textarea name="feedback" type="text" placeholder="Any comments?" rows="8"></textarea>
           </div>
-          <div class="field flx col">
-            <label for="day">Day</label>
-            <select name="task_day" value="">
-              <option value="Day 000">Day 0</option>
-              <option value="Day 001">Day 1</option>
-              <option value="Day 002">Day 2</option>
-              <option value="Day 003">Day 3</option>
-              <option value="Day 004">Day 4</option>
-              <option value="Day 005">Day 5</option>
-              <option value="Day 006">Day 6</option>
-              <option value="Day 007">Day 7</option>
-              <option value="Day 008">Day 8</option>
-              <option value="Day 009">Day 9</option>
-              <option value="Day 010">Day 10</option>
-              <option value="Day 011">Day 11</option>
-              <option value="Day 012">Day 12</option>
-              <option value="Day 013">Day 13</option>
-              <option value="Day 014">Day 14</option>
-              <option value="Day 015">Day 15</option>
-              <option value="Day 016">Day 16</option>
-              <option value="Day 017">Day 17</option>
-              <option value="Day 018">Day 18</option>
-              <option value="Day 019">Day 19</option>
-              <option value="Day 020">Day 20</option>
-              <option value="Day 021">Day 21</option>
-              <option value="Day 022">Day 22</option>
-              <option value="Day 023">Day 23</option>
-              <option value="Day 024">Day 24</option>
-              <option value="Day 025">Day 25</option>
-              <option value="Day 026">Day 26</option>
-              <option value="Day 027">Day 27</option>
-              <option value="Day 028">Day 28</option>
-              <option value="Day 029">Day 29</option>
-              <option value="Day 030">Day 30</option>
-            </select>
-          </div>
-          <div class="field flx col">
-            <label for="comment">Comments?</label>
-            <textarea name="comment" type="text" placeholder="Any comments?" rows="5"></textarea>
-          </div>
-          <button id="submitTask" type="submit" name="submit">Submit task</button>
+          <button id="submitTask" type="submit" name="submit">Submit Feedback</button>
         </form> 
       </div >
      </main>

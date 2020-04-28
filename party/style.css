@@ -1,0 +1,66 @@
+body{
+    text-align: center;
+    background: whitesmoke;
+  font-family: sans-serif;
+  font-weight: 100;
+}
+
+h1{
+  color: rgb(207,19,107);
+  font-weight: 100;
+  font-size: 40px;
+  margin: 40px 0px 20px;
+}
+h3{
+    color: rgb(207,19,107);
+    font-weight: 50;
+   
+    margin: 40px 0px 20px;
+}
+
+#clockdiv{
+    font-family: sans-serif;
+    color: #fff;
+    display: inline-block;
+    font-weight: 100;
+    text-align: center;
+    font-size: 30px;
+
+}
+
+.join{
+    
+    padding: 10px 50px;
+    border: transparent;
+    border-radius: 3px;
+    background: rgb(207,19,107);
+    color: #fff;
+    font-family: "Open Sans", sans-serif;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    -webkit-box-shadow: 0px 0px 14px -3px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 14px -3px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 14px -3px rgba(0, 0, 0, 0.75); 
+    
+}
+
+
+#clockdiv > div{
+    padding: 10px;
+    border-radius: 3px;
+    background:rgb(207,19,107);
+    display: inline-block;
+}
+
+#clockdiv div > span{
+    padding: 15px;
+    border-radius: 3px;
+    background: whitesmoke;
+    display: inline-block;
+    color: rgb(207,19,107);
+}
+
+.smalltext{
+    padding-top: 5px;
+    font-size: 16px;
+}
