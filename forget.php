@@ -26,11 +26,9 @@ if (isset($_POST['submit'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forgot Password - 30DaysOfCode</title>
-    
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="rajstyle.css">
+    <link rel="stylesheet" href="index.css">
     <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
-
 </head>
 <body>
     <div class="wrap">
@@ -40,7 +38,6 @@ if (isset($_POST['submit'])) {
             <p style="color :red; text-align:center;"><?php echo $error_msg?></p> <br><br>
             <div class="group"><input type="text" name="nickname" placeholder="NickName" required><i class="fa fa-user"></i></div>
             <div class="group"><input type="email" name="email" placeholder="Email" required><i class="fa fa-envelope-open"></i></div>
-            
             <select name="track">
                 <option value="frontend">Front End</option>
                 <option value="backend">Back End</option>
@@ -52,9 +49,6 @@ if (isset($_POST['submit'])) {
             <button type="submit" name="submit" value="submit"><i class="fa fa-send"></i>Validate</button>
             <p><a href="signup.php">Sign Up here</a> | <a href="login.php"> Login here </a></p>
         </form>
-
-
-
     </div>
 </body>
 </html>

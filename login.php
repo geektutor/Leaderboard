@@ -7,7 +7,7 @@
     <title>Login - 30DaysOfCode</title>
     <link rel="stylesheet" rel="shortcut icon" type="image/png" href="img/fastreboot_arrow_6026.ico">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="rajstyle.css">
+    <link rel="stylesheet" href="index.css">
     <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
 </head>
 <body>
@@ -42,14 +42,14 @@
                         $_SESSION['track'] = $_SESSION['user_track'];
                         $_SESSION['login_user'] = $username.'_';
                         $_SESSION['university'] = $_SESSION['user_university'];
-                        header("location: dashboard/admin/index.php?superadmin=true");
+                        header("location: admin/index.php?superadmin=true");
                     }elseif ($row['isAdmin'] == 1) {
                         //basic admin priviledges
                         $_SESSION['isAdmin'] = true;
                         $_SESSION['track'] = $_SESSION['user_track'];
                         $_SESSION['login_user'] = $username.'_';
                         $_SESSION['university'] = $_SESSION['user_university'];
-                        header("location: dashboard/admin/index.php");
+                        header("location: admin/index.php");
                     }elseif ($row['isAdmin'] == 5) {
                         //basic admin priviledges
                         $_SESSION['ttt'] = $row['isAdmin'];
@@ -57,9 +57,9 @@
                         $_SESSION['track'] = $_SESSION['user_track'];
                         $_SESSION['login_user'] = $username.'_';
                         $_SESSION['university'] = $_SESSION['user_university'];
-                        header("location: dashboard/admin/index.php");
+                        header("location: admin/index.php");
                     }else {
-                        header("location: dashboard/user/index.php");
+                        header("location: user/index.php");
                     }
                     // if($row['isAdmin'] == 0){
                     //     header("location: dashboard/user/index.php");
