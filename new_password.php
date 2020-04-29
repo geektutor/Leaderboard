@@ -1,4 +1,4 @@
-<?php include('config/connect.php'); 
+<?php include('./config/connect.php'); 
  session_start();
  //echo  $_SESSION['password_session'];
 if (!isset($_SESSION['password_session']) || empty($_SESSION['password_session'])) {

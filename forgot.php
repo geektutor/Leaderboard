@@ -1,4 +1,4 @@
-<?php include('config/connect.php'); 
+<?php include('./config/connect.php'); 
 $error_msg ='';
 if (isset($_POST['submit'])) {
   $nickname = $_POST['nickname'];
