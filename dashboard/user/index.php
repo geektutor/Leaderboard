@@ -75,7 +75,7 @@ if(isset( $_SESSION['login_user'])){
                 $rank = 1;
                 while ($row = mysqli_fetch_assoc($ranking_result)) {
                     if($row['email'] == $email){
-                        echo '<span id="rank">'.$rank.'</span>';
+                        echo '<!--<span id="rank">'.$rank.'</span>-->';
                     }else {
                         $rank++;
                     }
@@ -101,18 +101,26 @@ if(isset( $_SESSION['login_user'])){
          <a href="submit.php">Submit task</a>
         </li>
         <li class="flx row">
-         <img src="./assets/img/lead.png">
-         <a href="https://30daysofcode.xyz/dashboard/leaderboard.php">Leaderboard</a>
+         <img src="./assets/img/cert.png">
+         <a href="certification.php">Certificate</a>
         </li>
         <li class="flx row">
-         <img src="./assets/img/tweet.png">
-         <a href=" https://twitter.com/intent/tweet?url=https%3A%2F%2F30daysofcodes.xyz&via=codon&text=Hello%2C%20I%20just%20finished%20my%20task%20for%20....&hashtags=30DaysOfCode%2C%20ECX">Tweet</a>
-         <img class="external" style="float: right;" src="./assets/img/external.png" alt="">
+         <img src="./assets/img/feedback.png">
+         <a href="feedback.php">Feedback</a>
+        </li>
+        <li class="flx row">
+         <img src="./assets/img/lead.png">
+         <a href="https://30daysofcode.xyz/dashboard/leaderboard.php">Leaderboard</a>
         </li>
         <li class="flx row">
          <img src="./assets/img/wa.png">
          <a href="https://30daysofcode.xyz/whatsapp">Support group</a>
          <img class="external" src="./assets/img/external.png" alt="">
+        </li>
+          <li class="flx row">
+         <img src="./assets/img/tweet.png">
+         <a href=" https://twitter.com/intent/tweet?url=https%3A%2F%2F30daysofcodes.xyz&via=codon&text=Hello%2C%20I%20just%20finished%20my%20task%20for%20....&hashtags=30DaysOfCode%2C%20ECX">Tweet</a>
+         <img class="external" style="float: right;" src="./assets/img/external.png" alt="">
         </li>
        </ul>
        <span id="email"><?=$_SESSION['login_user'];?></span>
@@ -120,7 +128,7 @@ if(isset( $_SESSION['login_user'])){
    </nav>
    <div class="mainWrapper flx col" id="mainWrp">
     <main>
-      <div class="flx row"><h1>Submissions</h1> <a id="newBtn" href="submit.php">Add new</a> </div>
+      <div class="flx row"><h1>Submissions</h1> <a id="newBtn" href="https://github.com/geektutor/Leaderboard/blob/laststraw/laststraw.md">Add new</a> </div>
       <div class="mainCard">
       <?php
       if (isset($_GET['editSubmissionReport']) && !empty($_GET['editSubmissionReport'])) {
@@ -151,7 +159,6 @@ if(isset( $_SESSION['login_user'])){
             <th scope="col">Url</th>
             <th scope="col">Points</th>
             <th scope="col">Reviews</th>
-            <th scope="col">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -166,11 +173,6 @@ if(isset( $_SESSION['login_user'])){
               <td data-label="URL"><?php echo $row['url'];?></td>
               <td data-label="POINTS"><?php echo $row['points'];?></td>
               <td data-label="REVIEW"><?php echo $row['feedback'];?></td>
-              <td data-label="ACTIONS"><?php
-                    if (empty($row['feedback'])) {
-                        echo "<a href='editsubmission.php?user=".$_SESSION['login_user'].'&day='.$row['task_day']."'>Edit submission</a>";
-                    }
-              ?></td>
 
           </tr>
           <?php 
@@ -179,7 +181,7 @@ if(isset( $_SESSION['login_user'])){
                   echo `<p>No Submissions yet</p>`;
               }
           ?>
-        </tbody>
+       </tbody>
         </table>
       </div>
       </div >

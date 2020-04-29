@@ -53,12 +53,16 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                                 ><div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
+                            <a class='nav-link' href='waiting_room.php'>Waiting Room</a> 
+                            <a class='nav-link' href='cert.php'>Certificate</a>
+                            <a class='nav-link' href='superadmin.php'>Super Admin</a>
+                        </div>
+                    </div>
                     <div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>
                         <?=$_SESSION['login_user'];?>
-                    </div>
-                   <a class='nav-link' href='superadmin.php'>Super Admin</a>                    
-                </nav>
+                    </div> 
+                </nav> 
             </div>
             <div id="layoutSidenav_content">
                 <main>
@@ -111,7 +115,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                                 <?php
                                     $current = date('Y-m-d');
                                     if ($university == ''){
-                                        $sql = "SELECT task_day FROM task WHERE track = '$track' ORDER BY task_day DESC LIMIT 1";
+                                        $sql = "SELECT task_day FROM submissions WHERE track = '$track' ORDER BY task_day DESC LIMIT 1";
                                         $result = mysqli_query($conn, $sql);
                                         $row = mysqli_fetch_assoc($result);
                                         $day = $row['task_day'];
@@ -121,11 +125,11 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                                         $sql = "SELECT s.*, u.university 
                                             FROM submissions AS s 
                                             LEFT JOIN user AS u ON s.user = u.email  
-                                            WHERE s.track = '$track' AND s.points = 0 AND u.university = '$university' AND s.task_day = '$day'";
+                                            WHERE s.track = '$track' AND s.points = 0 AND u.university = '$university' ORDER BY s.task_day";
                                     }else{
                                         $sql = "SELECT s.*, u.university FROM submissions AS s
                                             LEFT JOIN user AS u ON s.user = u.email  
-                                            WHERE s.points = 0 AND u.university = '$university'";
+                                            WHERE u.university = '$university' ORDER BY s.points";
                                     }
                                     $result = mysqli_query($conn, $sql);
                                     $count = mysqli_num_rows($result);
@@ -135,25 +139,21 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                                         <thead>
                                             <tr>
                                                 <th>S/N</th>
-                                                <th>user</th>
                                                 <th>Url</th>
+                                                <th>Email</th>
                                                 <th>Track</th>
-                                                <th>Submission for Day</th>
-                                                <th>Date</th>                                            
+                                                <th>Submission for Day</th>                                         
                                                 <th>Points</th>
-                                                <th>University</th>
                                             </tr>
                                         </thead>
                                         <tfoot>
                                             <tr>
                                                 <th>S/N</th>
-                                                <th>user</th>
                                                 <th>Url</th>
+                                                <th>Email</th>
                                                 <th>Track</th>
-                                                <th>Submission for Day</th>
-                                                <th>Date</th>                                            
+                                                <th>Submission for Day</th>                                         
                                                 <th>Points</th>
-                                                <th>University</th>
                                             </tr>
                                         </tfoot>
                                         <tbody>
@@ -165,13 +165,11 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                                             ?>
                                             <tr>
                                                 <td><?php echo $j?></td>
-                                                <td><a href="view.php?id=<?php echo $row['id'];?>"><?php echo $row['user'];?></a></td>
-                                                <td><?php echo $row['url'];?></td>
+                                                <td><a href="view.php?id=<?php echo $row['id'];?>"><?php echo $row['url'];?></a></td>
+                                                <td><?php echo $row['user'];?></td>
                                                 <td><?php echo $row['track'];?></td>
                                                 <td><?php echo $row['task_day'];?></td>
-                                                <td><?php echo $row['sub_date'];?></td>
                                                 <td><?php echo $row['points'];?></td>
-                                                <td><?php echo $row['university'];?></td>
                                             </tr>
                                             <?php 
                                                 $j++;
@@ -203,7 +201,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
         </div>
         <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="../js/scripts.js"></script>
+        <script src="../dist/js/scripts.js"></script>
         <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
         <script src="../assets/demo/datatables-demo.js"></script>

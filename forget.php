@@ -25,7 +25,7 @@ if (isset($_POST['submit'])) {
     <link href="https://fonts.googleapis.com/css?family=Vesper+Libre&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forget Password - 30DaysOfCode</title>
+    <title>Forgot Password - 30DaysOfCode</title>
     
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="rajstyle.css">
@@ -49,10 +49,7 @@ if (isset($_POST['submit'])) {
                 <option value="python">Python</option>
                 <option value="design">Engineering Design</option>
             </select>
-            
-          
-           
-            <button type="submit" name="submit" value="submit"><i class="fa fa-send"></i>Submit</button>
+            <button type="submit" name="submit" value="submit"><i class="fa fa-send"></i>Validate</button>
             <p><a href="signup.php">Sign Up here</a> | <a href="login.php"> Login here </a></p>
         </form>
 

@@ -68,7 +68,9 @@ if(isset( $_SESSION['login_user'])){
           $user_nickname = $row['nickname'];
           $user_score = $row['score'];
           $user_track = $row['track'];
-          $performance = $row['score'];
+          $performance = $row['performance'];
+          $participation = $row['participation'];
+          $response = '';
           echo '<div class="avatar"><img style=\'width:120px;height:120px;\' src=\'https://robohash.org/'.$user_nickname.$user_track.'\'/></div>';
           echo '<span id="username">'.$user_nickname.'</span>';
           // echo '<span id="username">'.$user_score.'&nbsp; points</div></center>';
@@ -143,37 +145,27 @@ if(isset( $_SESSION['login_user'])){
               $first = $_POST['first'];
               $last = $_POST['last'];
               $track = $_POST['track'];
-              $certify = 1;
-              $response = file_get_contents("http://30days.autocaps.xyz/generate/?type=".$type."&first_name=".$first."&last_name=".$last."&track=".$track);
+              $certify = 0;
+              $sentence = "http://30days.autocaps.xyz/generate/?type={$type}&first_name={$first}&last_name={$last}&track={$track}";
+              $stripped = str_replace(' ', '', $sentence);
+              $response = file_get_contents("$stripped");
               $file_name = basename($response);
               if (file_put_contents($file_name, file_get_contents($response))) {
-                echo "Downloaded";
+                $certify = 1;
               } else {
-                echo "Failed to download";
+                echo "Certificate does not exists.";
               }
+              
             }
           ?>
-          <?php if($certify == 1){ ?>
-          <div id="stats">
-            <a href="<?php echo $response; ?>"><button>Download Certificate</button></a>
-          </div>
-          <?php } ?>
-      </div>
+        </div>
          <div class="mainCard">
+             <p style='font-size: 1em; margin-top: 8px; line-height: 110%; color: #646464;'> Congratulations, on your completion of the 30 days of code challenge. <br><br>
+                 Fill this form and then click on download. Ensure there are no spaces in your name. <br><br>
+                 If it doesn't download, it means you do not meet the certification criteria. <br><br>
+                 Minimum of 15 submissions or 330 points.<br><br>
+                 For issues, use the support group <br><br>
       <form method="POST">
-          <div class="field flx col">
-          <?php
-            $user = $_SESSION['login_user'];
-            $sql = "SELECT DISTINCT `sub_date` FROM submissions WHERE `user` = '$user'";
-            $result = mysqli_query($conn,$sql);
-            if ($result) {
-                if(mysqli_num_rows($result) <= 2){ ?>
-                    <p>You're not eligible to be certified</p>
-                <?php }else { ?>
-                    <p style='font-size: 1em; margin-top: 8px; line-height: 110%; color: #646464;'>
-                      Congratulations, on your completion of the 30 days of code challenge.
-                    </p>
-          </div>
           <input type="hidden" name="track" id="track" value="<?php echo $user_track; ?>">
           <div class="field flx col">
             <label for="firstname">First Name</label>
@@ -184,18 +176,19 @@ if(isset( $_SESSION['login_user'])){
             <input type="name" name="last" id="last" placeholder="Last Name" required>
           </div>
           <div class="field flx col">
-            <label for="day">Day</label>
+            <label for="day">Type</label>
             <select name="type" id="type" value="">
-              <option value="1">Certificate of Participation</option>
+              <option value="<?php echo $participation; ?>">Certificate of Participation</option>
               <option value="<?php echo $performance; ?>">Certificate of Performance</option>
             </select>
           </div>
           <button id="submitTask" type="submit" name="submit" value="submit">Receive Certificate</button>
                     
-            <?php   }
-              }
-                ?>
-        </form>
+         </form>
+         
+             <?php if ($certify == 1){ ?>
+                    <a href="<?php echo $response;?>" target="_blank"><button>Download Certificate</button></a>
+              <?php } ?>
         </div>
      </main>
      <footer class="flx row"><span class="copyw">Copyright &copy; 30DaysOfCode 2020</span> <div><a href="">Privacy Policy</a><a href="">Terms &amp; Conditions</a></div></footer> 

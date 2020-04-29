@@ -1,33 +1,7 @@
 <?php
 require('../../config/connect.php');
-session_start();
-if (!isset($_SESSION['login_user']) || empty($_SESSION['login_user'])) {
-    
-?>
- <script>
-    document.write('You must be logged in first, redirecting to login page ...');
-    setTimeout(() => {
-        window.location.href = "../../login.php"
-    }, 3000);
- </script>
-<?php
-}else{
-    $email = $_GET['user'];
-    $day = $_GET['day'];
-    if (isset($_POST['submit'])) {
-        global $conn;
-        $url = mysqli_real_escape_string($conn, $_POST['url']);
-        $comment =  mysqli_real_escape_string($conn, $_POST['comment']);
-        //$editSql = "UPDATE submissions SET `url`='$url' AND `comments`='$comment' WHERE `user` = '$email' AND `task_day`='$day'";
-        //$find_sql= "SELECT * FROM submisions WHERE 'user' = '$email'";
-        $edit_sql = "UPDATE submissions SET `url`='$url',comments = '$comment' WHERE user = '$email' AND task_day = '$day'";
-        $result = mysqli_query($conn,$edit_sql);
-        if ($result) {
-            header('location: index.php?editSubmissionReport=success');
-        }else {
-            header('location: index.php?editSubmissionReport=failed');;
-        }
-    }
+require('../../config/session.php');
+if(isset( $_SESSION['login_user'])){
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,9 +10,9 @@ if (!isset($_SESSION['login_user']) || empty($_SESSION['login_user'])) {
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <meta http-equiv="X-UA-Compatible" content="ie=edge">
  <link rel="stylesheet" href="./assets/css/style.css">
- <link rel="stylesheet" href="./assets/css/submit.css">
+ <link rel="stylesheet" href="./assets/css/submissions.css">
  <link rel="stylesheet" href="./assets/css/responsive.css">
- <title>Edit task - 30 Days Of Code</title>
+ <title>The Last Straw - 30 Days Of Code</title>
 </head>
 <body class="flx col">
  <header class="flx row">
@@ -78,9 +52,10 @@ if (!isset($_SESSION['login_user']) || empty($_SESSION['login_user'])) {
           $user_nickname = $row['nickname'];
           $user_score = $row['score'];
           $user_track = $row['track'];
+          $university = $row['university'];
           echo '<div class="avatar"><img style=\'width:120px;height:120px;\' src=\'https://robohash.org/'.$user_nickname.$user_track.'\'/></div>';
           echo '<span id="username">'.$user_nickname.'</span>';
-          // echo '<span id="username">'.$user_score.'&nbsp; points</div></center>';
+          // echo '<span id="username">'.$university.'&nbsp; points</div></center>';
       }
       ?>
       <div class="scoresContainer flx row">
@@ -112,8 +87,8 @@ if (!isset($_SESSION['login_user']) || empty($_SESSION['login_user'])) {
             ?>
         </div>
       </div>
-      <ul class="linksContainer">
-          <li class="flx row active">
+       <ul class="linksContainer">
+        <li class="flx row active">
          <img src="./assets/img/submsn.png">
          <a href="index.php">Submissions</a>
         </li>
@@ -153,34 +128,86 @@ if (!isset($_SESSION['login_user']) || empty($_SESSION['login_user'])) {
    </nav>
    <div class="mainWrapper flx col" id="mainWrp">
     <main>
-      <div class="flx row"><h1>Submit a task</h1></div>
+      <div class="flx row"><h1>Submissions</h1> <a id="newBtn" href="submit.php">Add new</a> </div>
       <div class="mainCard">
-        <form method="POST">
-          <div class="field flx col">
-            <label for="url">URL</label>
-            <input type="url" name="url" placeholder="Enter URL" required>
-            <p style="font-size: 12px; margin-top: 8px; line-height: 110%; color: #646464;">Python - Repl.it Url, Backend - Github repo Url, Frontend - Github repo Url(put link to your Github Pages in the readme), UI/UX - Figma/Adobe XD Url, Engineering Design - Google Drive Url</p>
-          </div>
-          <div class="field flx col">
-            <label for="day">Day</label>
-            <select name="task_day" value="">
-                <option value=""><?php echo $day;?></option>
-            </select>
-          </div>
-          <div class="field flx col">
-            <label for="comment">Comments?</label>
-            <textarea name="comment" type="text" placeholder="Any comments?" rows="5"></textarea>
-          </div>
-          <button id="submitTask" type="submit" name="submit">Submit task</button>
-        </form>
+      <?php
+      if (isset($_GET['editSubmissionReport']) && !empty($_GET['editSubmissionReport'])) {
+          $report = $_GET['editSubmissionReport'];
+          if ($report == 'success') {
+              echo "<div id='report' class='alert alert-success'>Submission edit successful</div>";
+          }elseif ($report == 'failure') {
+          echo "<div id='report' class='alert alert-danger'>Submission edit failed</div>";
+          }else{
+              echo "error";
+              session_destroy();
+              header('location: ../../index.php');
+          }
+      }
+      ?>
+      <?php
+      $u = $_SESSION['login_user'];
+      $sql = "SELECT * FROM submissions WHERE user = '$u'";
+      $result = mysqli_query($conn, $sql);
+      $count = mysqli_num_rows($result);
+      
+     ?>
+       <div class="table-responsive">
+        <table class="table" style="text-align: left;">
+         <thead>
+          <tr>
+            <th scope="col">Day</th>
+            <th scope="col">Url</th>
+            <th scope="col">Points</th>
+            <th scope="col">Reviews</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php
+          
+          if($count > 0){
+              $j =1;
+              while($row = $result->fetch_assoc()) {
+          ?>
+          <tr>
+              <td data-label="DAY"><?php echo $row['task_day'];?></td>
+              <td data-label="URL"><?php echo $row['url'];?></td>
+              <td data-label="POINTS"><?php echo $row['points'];?></td>
+              <td data-label="REVIEW"><?php echo $row['feedback'];?></td>
+              <td data-label="ACTIONS"><?php
+                    if (empty($row['feedback'])) {
+                        echo "<a href='editsubmission.php?user=".$_SESSION['login_user'].'&day='.$row['task_day']."'>Edit submission</a>";
+                    }
+              ?></td>
+          </tr>
+          
+          <?php 
+              $j++;
+              }}else{
+                  echo `<p>No Submissions yet</p>`;
+              }
+          ?>
+          <tr>
+          
+          <td data-label="DAY">Day 30</td>
+              <td data-label="URL">The Last Straw</td>
+              <td data-label="POINTS"><a href='https://github.com/geektutor/Leaderboard/blob/master/laststraw.md'>View Task</a></td>
+              <td data-label="REVIEW"></td>
+              <td data-label="ACTIONS"><a href='submit30.php'>Submit The Last Straw</a></td>
+              </tr>
+        </tbody>
+        </table>
+      </div>
       </div >
      </main>
-     <footer class="flx row"><span class="copyw">Copyright &copy; 30DaysOfCode 2020</span> <div><a href="">Privacy Policy</a><a href="">Terms & Conditions</a></div></footer> 
+     <footer class="flx row"><span class="copyw">Copyright &copy; 30DaysOfCode 2020</span> <div><a href="">Privacy Policy</a><a href="">Terms & Conditions</a></div></footer>
    </div>
  </div>
  <script src="./assets/js/app.js"></script>
 </body>
 </html>
 <?php
+}else{
+    header("location:../../login.php"); 
 }
 ?>
