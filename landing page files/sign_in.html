@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta http-equiv="X-UA-Compatible" content="ie=edge">
+ <title>Sign in - 30 Days of Code</title>
+ <link rel="stylesheet" href="./assets/css/form.css">
+ <link rel="shortcut icon" href="./assets/img/favicon.png" type="image/x-icon">
+ <meta name="description" content="sign in to 30 days of code">
+ <meta property="og:type" content="website">
+ <meta name="keywords" content="30 days of code, sign in, log, in, engineering career expo, ECX, ecx, dsc unilag, code, design, competition">
+ <meta property="og:url" content="https://30daysofcode.xyz">
+ <meta property="og:site_name" content="30 days of code sign in">
+ <meta property="og:image" content="./assets/img/favicon.png">
+</head>
+<body>
+ <main class="body-content flex col">
+  <h1 id="home">30 DAYS OF CODE & DESIGN</h1>
+  <img src="./assets/img/lbs.png" alt="learnBuildShare"/>
+  <form action="">
+   <fieldset>
+    <legend>Sign in</legend>
+    <div class="field flex col">
+     <label for="user">Email</label>
+     <input type="email" name="user" id="user" required>     
+    </div>
+    <div class="field flex col">
+     <label for="password">Password</label>
+     <input type="password" name="password" id="password" required>     
+    </div>
+   </fieldset>   
+   <button class="flex col">SIGN IN</button>
+   <div class="links">
+    <p>Forgot <a href="./forgot.html">Password</a>?</p>
+   <p>Don't have an account? <a href="./sign_up.html">Sign up</a></p>
+   </div>
+  </form>
+ </main>
+ <script>
+  document.getElementById("home").addEventListener("click", function(){
+   window.location.href = "./index.html"
+  })
+ </script>
+</body>
+</html>
