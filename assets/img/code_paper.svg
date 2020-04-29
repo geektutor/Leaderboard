@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="406.974" height="512" viewBox="0 0 406.974 512">
+  <defs>
+    <style>
+      .cls-1 {
+        opacity: 0.27;
+      }
+
+      .cls-2 {
+        fill: #93c7ef;
+      }
+
+      .cls-3 {
+        fill: #78b9eb;
+      }
+
+      .cls-4 {
+        fill: #c9e3f7;
+      }
+
+      .cls-5 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <g id="code_paper" class="cls-1" transform="translate(-52.513)">
+    <path id="Path_1" data-name="Path 1" class="cls-2" d="M369.182,0H52.513V512H459.487V90.305Z"/>
+    <path id="Path_2" data-name="Path 2" class="cls-3" d="M369.182,0H256V512H459.487V90.305Z"/>
+    <path id="Path_3" data-name="Path 3" class="cls-4" d="M369.182,0V90.585l90.3-.28Z"/>
+    <g id="Group_6" data-name="Group 6">
+      <path id="Path_4" data-name="Path 4" class="cls-5" d="M327.688,218.445,299.84,246.293l33.337,33.338L299.84,312.969l27.848,27.847,61.187-61.185Z"/>
+      <path id="Path_5" data-name="Path 5" class="cls-5" d="M178.823,279.631l33.337-33.338-27.848-27.848-61.186,61.186,61.186,61.185,27.848-27.847Z"/>
+      <path id="Path_6" data-name="Path 6" class="cls-5" d="M294.919,190.359H254.67L217.083,368.9H257.33Z"/>
+    </g>
+  </g>
+</svg>

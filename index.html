@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>30 Days of Code</title>
+    <link rel="stylesheet" href="./assets/css/index.css" />
+     <link rel="shortcut icon" href="./assets/img/favicon.png" type="image/x-icon">
+     <meta name="description" content="30 Days of code and design is an online competition for...">
+     <meta property="og:type" content="website">
+     <meta name="keywords" content="30 days of code, engineering career expo, ECX, ecx, dsc unilag, code, design, competition">
+     <meta property="og:url" content="https://30daysofcode.xyz">
+     <meta property="og:site_name" content="30 days of code">
+     <meta property="og:image" content="./assets/img/favicon.png">
+  </head>
+  <body>
+    <div class="body-content flex col">
+      <header>
+        <nav>
+          <button id="sign-in-btn" class="btn flex row cnt">
+            <a href="./sign_in.php">SIGN IN</a>
+          </button>
+        </nav>
+      </header>
+      <div class="stretch flex col">
+        <main class="main-content flex col">
+          <h1>30 DAYS OF CODE & DESIGN</h1>
+          <img src="./assets/img/lbs.png" alt="learnBuildShare" />
+          <p>
+            <strong>
+              30 days of code monthly program for developers and designers to make
+            beatifil lorem or lipsum as it is sometimes known, is dummy text
+            used in laying out print, raphic or web designs. The passage is
+            </strong>
+          </p>
+          <button id="sign-up-btn" class="btn flex row cnt">
+            <a href="./sign_up.php">SIGN UP TO PARTICIPATE</a>
+          </button>
+        </main>
+        <footer class="flex col">
+          <p class="track">TRACKS</p>
+          <ul class="flex row">
+            <li>FRONT-END</li>
+            <li>BACK-END</li>
+            <li>PYTHON</li>
+            <li>UI/UX</li>
+            <li>MOBILE</li>
+          </ul>
+          <p class="copy">&copy; 30 Days of Code 2020</p>
+        </footer>
+      </div>
+    </div>
+    <script>
+      var btns = Array.from(document.getElementsByClassName("btn"));
+      for (var i = 0; i < btns.length; ++i) {
+        btns[i].addEventListener("click", function (e) {
+          if (e.target.tagName == "BUTTON") {
+            window.location.href = e.target.children[0].href;
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
