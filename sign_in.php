@@ -22,14 +22,14 @@
     if (isset($_POST['submit'])) {
         $username = mysqli_real_escape_string($conn, $_POST['email']);
         $myPassword = mysqli_real_escape_string($conn, $_POST['password']);
-        $sql = "SELECT * FROM user WHERE `email` = '$username' AND `password` = '$myPassword'";
+        $sql = "SELECT * FROM user WHERE `email` = '$username'";
         $result = mysqli_query($conn,$sql);
         $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
         //$active = $row['active'];
         $count = mysqli_num_rows($result);
         $error = "";
         // If result matched $myusername and $mypassword, table row must be 1 row
-        if($count == 1) {
+        if($count == 1 && password_verify($myPassword, $row['password'])) {
             $_SESSION['login_user'] = $username;
             $track_sql = "SELECT track, university FROM user WHERE email = '$username'";
             $result = mysqli_query($conn,$track_sql);
@@ -82,7 +82,7 @@
 ?>
 
  <main class="body-content flex col">
-  <h1 id="home">30 DAYS OF CODE & DESIGN</h1>
+  <h1 id="home">30 DAYS OF CODE &amp; DESIGN</h1>
   <img src="./assets/img/lbs.png" alt="learnBuildShare"/>
   <?php
     $ref = substr(@$_SERVER['HTTP_REFERER'],strlen(@$_SERVER['HTTP_REFERER']) - 10, 10);
@@ -105,14 +105,14 @@
     <legend>Sign in</legend>
     <div class="field flex col">
      <label for="user">Email</label>
-     <input type="email" name="user" id="user" required>     
+     <input type="email" name="email" id="user" required>     
     </div>
     <div class="field flex col">
      <label for="password">Password</label>
      <input type="password" name="password" id="password" required>     
     </div>
    </fieldset>   
-   <button class="flex col">SIGN IN</button>
+   <button type="submit" name="submit" class="flex col">SIGN IN</button>
    <div class="links">
     <p>Forgot <a href="./forgot.php">Password</a>?</p>
    <p>Don't have an account? <a href="./sign_up.php">Sign up</a></p>

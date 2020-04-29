@@ -26,7 +26,7 @@ if(isset( $_SESSION['login_user'])){
   <div class="profile flx col">
     <img src="./assets/img/profile.png">
     <ul class="options">
-      <li id="logout"><a href="../../logout.php">Logout</a></li>
+      <li id="logout"><a href="../logout.php">Logout</a></li>
     </ul>
   </div>
  </header>
@@ -192,6 +192,6 @@ if(isset( $_SESSION['login_user'])){
 </html>
 <?php
 }else{
-    header("location:../../login.php"); 
+    header("location:../sign_in.php"); 
 }
 ?>

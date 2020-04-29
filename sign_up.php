@@ -36,11 +36,11 @@
     if(isset($_POST['submit'])){
         $user_id = keys();
         $nick = $_POST['nick'];
+        $first = $_POST['first'];
+        $last = $_POST['last'];
         $email = $_POST['email'];
-        $password = $_POST['password'];
+        $password =  password_hash($_POST['password'], PASSWORD_DEFAULT);
         $phone = $_POST['phone'];
-        $track = $_POST['track'];
-        $university = $_POST['university'];
 
         function check($email){	
             global $conn;
@@ -48,19 +48,17 @@
             $resultURL = mysqli_query($conn, $queryURL);
             $countURL = mysqli_num_rows($resultURL);
             if ($countURL == 0) {
-                //user doesnt not exist
                 return 1;
             }else{
-                //user exist
                 return 0;
             }
         }
         $checkIt = check($email);
         if($checkIt){
-            $sql = "INSERT INTO user(`user_id`, `nickname`, `email`, `password`, `phone`,`track`,`university`) 
-                    VALUES('$user_id', '$nick', '$email', '$password', '$phone','$track','$university')";
+            $sql = "INSERT INTO user(`user_id`, `first_name`, `last_name`, `nickname`, `email`, `password`, `phone`) 
+                    VALUES('$user_id', '$first', '$last', '$nick', '$email', '$password', '$phone')";
             if($conn->query($sql)){
-            header("location:login.php?message=success");
+            header("location:sign_up.php?message=success");
             }else{
             die('could not enter data: '. $conn->error);
             }
@@ -76,14 +74,22 @@
     <?php }?>
 
 
-  <h1 id="home">30 DAYS OF CODE & DESIGN</h1>
+  <h1 id="home">30 DAYS OF CODE &amp; DESIGN</h1>
   <img src="./assets/img/lbs.png" alt="learnBuildShare"/>
   <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST">
    <fieldset>
     <legend>Sign up</legend>
     <div class="field flex col">
+     <label for="first">First Name</label>
+     <input type="text" name="first" id="first" required>     
+    </div>
+    <div class="field flex col">
+     <label for="last">Second Name</label>
+     <input type="text" name="last" id="last" required>     
+    </div>
+    <div class="field flex col">
      <label for="user">Email</label>
-     <input type="email" name="user" id="user" required>     
+     <input type="email" name="email" id="user" required>     
     </div>
     <div class="field flex col">
      <label for="nick">Nickname</label>
@@ -97,19 +103,9 @@
      <label for="phone">Phone</label>
      <input type="tel" name="phone" id="phone" required>     
     </div>
-    <div class="field flex col">
-     <label for="track">Track</label>
-     <select name="track" id="track" required>
-      <option value="" disabled selected>Track?</option>
-      <option value="frontend">Front End</option>
-      <option value="backend">Back End</option>
-      <option value="android">Mobile</option>
-      <option value="ui">UI/UX</option>
-      <option value="python">Python</option>
-     </select>  
-    </div>
+    <input type="hidden" name="cohort">
    </fieldset>   
-   <button class="flex col">SIGN UP</button>
+   <button type="submit" name="submit" class="flex col">SIGN UP</button>
    <div class="links">
    <p>Already a user? <a href="./sign_in.php">Sign in</a></p>
    </div>
