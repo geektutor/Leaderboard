@@ -28,6 +28,7 @@ if(isset( $_SESSION['login_user'])){
  <link rel="stylesheet" href="./assets/css/style.css">
  <link rel="stylesheet" href="./assets/css/submit.css">
  <link rel="stylesheet" href="./assets/css/responsive.css">
+ <link rel="shortcut icon" href="././assets/img/favicon.png" type="image/x-icon">
  <title>Certification - 30 Days Of Code</title>
 </head>
 <body class="flx col">

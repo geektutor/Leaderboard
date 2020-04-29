@@ -51,6 +51,7 @@ if(isset($_POST['check_task'])){
  <link rel="stylesheet" href="./assets/css/style.css">
  <link rel="stylesheet" href="./assets/css/view.css">
  <link rel="stylesheet" href="./assets/css/responsive.css">
+ <link rel="shortcut icon" href="././assets/img/favicon.png" type="image/x-icon">
  <title>All tasks - 30 Days Of Code</title>
 </head>
 <body class="flx col">
