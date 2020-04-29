@@ -1,6 +1,6 @@
 # Leaderboard
 
-HOW TO USE THIS TOOL LOCALLY
+HOW TO SET UP THIS PROJECT LOCALLY
 
 1. You must have local developer server installed on your machine like XAMPP, WAMP, LAMP
 
@@ -22,4 +22,12 @@ HOW TO USE THIS TOOL LOCALLY
 
 # DEPLOYMENT
 
-Sodiq abeg add additional notes about how to deploy this on a live system
+HOW TO SET UP THIS PROJECT ONLINE (USING CPANEL)
+
+1. Download the project files
+
+2. Upload the project files with file manager in Cpanel
+
+3. Create a mysql database and put the configurations in config/connect.php
+
+4. The project will be live at yourdomain.com
