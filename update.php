@@ -23,7 +23,12 @@
         $first = $_POST['first'];
         $last = $_POST['last'];
         $email = $_POST['email'];
-        $sql = "UPDATE `user` SET user(`first_name`, `last_name`) 
+        $sql = "UPDATE `user` SET 
+       `first_name` = '$first', 
+       `last_name` = '$last'
+        WHERE `email` = '$email' ";
+
+        $sqlg = "UPDATE `user` SET user(`first_name`, `last_name`) 
                 VALUES('$first', '$last') WHERE `email`='$email'";
         $result = mysqli_query($conn,$sql);
         if($result){
