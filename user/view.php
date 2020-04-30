@@ -175,7 +175,8 @@ if(isset($_POST['check_task'])){
               <a href="<?php echo $error?>">Download Task</a>
           </div>
       <?php }?>
-        <form method="POST" class="<?php if($show == 1)echo 'd-none'; else echo '';?> ">
+      Tasks are not ready yet
+        <!--<form method="POST" class="<?php if($show == 1)echo 'd-none'; else echo '';?> ">
           <div class="field flx col">
             <label for="day">Day</label>
                <?php if ($university == "ESUT") {?>
@@ -232,7 +233,7 @@ if(isset($_POST['check_task'])){
           <?php endforeach; }?>
           </tbody>
         </table>
-       </div>
+       </div>-->
      </div>
      </main>
      <footer class="flx row"><span class="copyw">Copyright &copy; 30DaysOfCode 2020</span> <div><a href="">Privacy Policy</a><a href="">Terms &amp; Conditions</a></div></footer>
