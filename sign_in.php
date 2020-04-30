@@ -90,6 +90,9 @@
     if (@$_GET['message'] == 'success' && $ref == 'signup.php') {
         echo "<div class='notify'>Registration Successful </div>";
     }
+    if (@$_GET['message'] == 'update' && $ref == 'update.php') {
+        echo "<div class='notify'>Update Successful </div>";
+    }
     if (@$_GET['message'] == 'success' && $resetPassword == 'newpassword.php') {
         echo "<div class='notify'>Password reset successful. Kindly log into your account.</div>";
     }

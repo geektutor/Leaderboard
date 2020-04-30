@@ -10,7 +10,7 @@ if (isset($_POST['submit'])) {
     $sql = "UPDATE `user` SET `password` = '$password' WHERE `email`='$email'";
     $result = mysqli_query($conn,$sql);
     if ($result) {
-       header('location:login.php?message=success');
+       header('location:sign_in.php?message=success');
     }else{
         echo "error updating password. Try again later";
     }
