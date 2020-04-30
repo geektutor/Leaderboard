@@ -3,9 +3,9 @@ $error_msg ='';
 if (isset($_POST['submit'])) {
   $nickname = $_POST['nickname'];
   $email = $_POST['email'];
-  $track = $_POST['track'];
+  $phone = $_POST['phone'];
 
-  $sql = "SELECT * FROM  user WHERE `nickname`='$nickname' AND `email`='$email' AND `track`='$track'";
+  $sql = "SELECT * FROM  user WHERE `nickname`='$nickname' AND `email`='$email' AND `phone`='$phone'";
   $result = mysqli_query($conn,$sql);
   if (mysqli_num_rows($result) > 0) {
       while($row = mysqli_fetch_assoc($result)) {
@@ -44,15 +44,8 @@ if (isset($_POST['submit'])) {
             <input type="text" name="nick" id="nick" required />
           </div>
           <div class="field flex col">
-            <label for="track">Track</label>
-            <select name="track" id="track" required>
-              <option value="" disabled selected>Track?</option>
-              <option value="frontend">Front End</option>
-              <option value="backend">Back End</option>
-              <option value="android">Mobile</option>
-              <option value="ui">UI/UX</option>
-              <option value="python">Python</option>
-            </select>
+            <label for="phone">Phone</label>
+            <input type="number" name="phone" id="phone" required />
           </div>
         </fieldset>
         <button class="flex col">REQUEST RESET</button>
