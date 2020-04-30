@@ -11,6 +11,8 @@
 
 # Audio playlist
 - https://omololacrea8.github.io/Audio-Playlist/
+- https://mustykhot.github.io/musicplay/index.html
+# Counter
 - https://fasasisherif.github.io/30DaysOf_Code_Day-17_Counter-Project/Counter_Project.html
 
 # Social Media
@@ -25,4 +27,8 @@
 
 # COVID19 Site
 - https://omololacrea8.github.io/covid-web/
+# Weather App
+- https://mustykhot.github.io/weather-app/index.html
+#Last Straw
+- https://mustykhot.github.io/last-straw/index.html
 
