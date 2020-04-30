@@ -29,6 +29,6 @@
 - https://omololacrea8.github.io/covid-web/
 # Weather App
 - https://mustykhot.github.io/weather-app/index.html
-#Last Straw
+# Last Straw
 - https://mustykhot.github.io/last-straw/index.html
 
