@@ -31,18 +31,16 @@
         }else{
         die('could not enter data: '. $conn->error);
         }
-        }
         else{
         $error = "Email incorrect";
+        }
     }
-}
 ?>
     <?php if($error !== ''){ ?>
     <div class="notify">
         <?= $error?>
     </div>
     <?php }?>
-
 
   <h1 id="home">30 DAYS OF CODE</h1>
   <img src="./assets/img/lbs.png" alt="learnBuildShare"/>
