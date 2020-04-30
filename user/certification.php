@@ -3,23 +3,8 @@ require('../../config/connect.php');
 require('../../config/session.php');
 if(isset( $_SESSION['login_user'])){
     $tt = $_SESSION['login_user'];
-    $sql = "SELECT track FROM user WHERE email = '$tt'";
+    $sql = "SELECT * FROM user WHERE email = '$tt'";
     $result = mysqli_query($conn, $sql);
-    $row =mysqli_fetch_assoc($result);
-    $track = $row['track'];
-    // $university = $row['university'];
-
-    // if (isset($_GET['submit'])) {
-    //   $type = $_GET['type'];
-    //   $first = $_GET['first'];
-    //   $last = $_GET['last'];
-    //   $track = $_GET['track'];
-
-    //   $response = file_get_contents("http://30days.autocaps.xyz/generate/?type=".$type."&first_name=".$first."&last_name=".$last."&track=".$track);
-    //   header("location:".$response);
-    //   // die;
-    // }
-
 ?>
 <head>
  <meta charset="UTF-8">
@@ -61,14 +46,12 @@ if(isset( $_SESSION['login_user'])){
       global $conn;
       $user_nickname = '';
       $user_score = '';
-      $user_track = '';
       $email = $_SESSION['login_user'];
       $sql = "SELECT * FROM user WHERE email='$email' ";
       $result = mysqli_query($conn,$sql);
       while($row = mysqli_fetch_assoc($result)) {
           $user_nickname = $row['nickname'];
           $user_score = $row['score'];
-          $user_track = $row['track'];
           $performance = $row['performance'];
           $participation = $row['participation'];
           $response = '';

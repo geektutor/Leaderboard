@@ -4,9 +4,14 @@ if (isset($_POST['submit'])) {
   $nickname = $_POST['nickname'];
   $email = $_POST['email'];
   $phone = $_POST['phone'];
+  $sqlg = "SELECT * FROM `user` WHERE 
+       `nickname` = '$nickname' AND 
+       `email` = '$email' AND
+       `phone` = '$phone' ";
+       $result = mysqli_query($conn,$sql);
   $sql = "SELECT * FROM  user WHERE `nickname`='$nickname' AND `email`='$email' AND `phone`='$phone'";
   $result = mysqli_query($conn,$sql);
-  if (mysqli_num_rows($result)) {
+  if ($result)) {
       while($row = mysqli_fetch_assoc($result)) {
           session_start();
           $_SESSION['password_session'] = $row['email'];
