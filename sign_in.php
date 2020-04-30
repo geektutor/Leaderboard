@@ -30,6 +30,7 @@
         $error = "";
         // If result matched $myusername and $mypassword, table row must be 1 row
         if($count == 1 && password_verify($myPassword, $row['password'])) {
+            print_r($row);
             if ($row['isAdmin'] == 2) {
                 //superAdmin priviledges
                 $_SESSION['isAdmin'] = true;
@@ -43,7 +44,7 @@
                 $_SESSION['track'] = $_SESSION['user_track'];
                 $_SESSION['login_user'] = $username.'_';
                 header("location: admin/index.php");
-            }elseif ($row['isAdmin'] == 5) {
+            }elseif ($row['isAdmin'] == 0) {
                 //basic admin priviledges
                 $_SESSION['ttt'] = $row['isAdmin'];
                 $_SESSION['isAdmin'] = true;
@@ -56,7 +57,7 @@
             }
            
         }else {
-            $error = "Your Login Name or Password is invalid";
+            echo $error = "Your Login Name or Password is invalid";
         }
     }
 
@@ -66,15 +67,15 @@
   <h1 id="home">30 DAYS OF CODE &amp; DESIGN</h1>
   <img src="./assets/img/lbs.png" alt="learnBuildShare"/>
   <?php
-    $ref = substr(@$_SERVER['HTTP_REFERER'],strlen(@$_SERVER['HTTP_REFERER']) - 10, 10);
-    $resetPassword = substr(@$_SERVER['HTTP_REFERER'],strlen(@$_SERVER['HTTP_REFERER']) - 15, 15);
-    if (@$_GET['message'] == 'success' && $ref == 'signup.php') {
+    $ref = substr(@$_SERVER['HTTP_REFERER'],strlen(@$_SERVER['HTTP_REFERER']) - 11, 11);
+    $resetPassword = substr(@$_SERVER['HTTP_REFERER'],strlen(@$_SERVER['HTTP_REFERER']) - 16, 16);
+    if (@$_GET['message'] == 'success' && $ref == 'sign_up.php') {
         echo "<div class='notify'>Registration Successful </div>";
     }
     if (@$_GET['message'] == 'update' && $ref == 'update.php') {
         echo "<div class='notify'> Successful </div>";
     }
-    if (@$_GET['message'] == 'success' && $resetPassword == 'newpassword.php') {
+    if (@$_GET['message'] == 'success' && $resetPassword == 'new_password.php') {
         echo "<div class='notify'>Password reset successful. Kindly log into your account.</div>";
     }
     ?>
@@ -84,7 +85,7 @@
     </div>
     <?php }?>
 
-  <form method="POST">
+  <form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>">
    <fieldset>
     <legend>Sign in</legend>
     <div class="field flex col">
