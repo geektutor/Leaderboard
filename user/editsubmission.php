@@ -136,7 +136,7 @@ if (!isset($_SESSION['login_user']) || empty($_SESSION['login_user'])) {
         </li>
         <li class="flx row">
          <img src="./assets/img/lead.png">
-         <a href="https://30daysofcode.xyz/dashboard/leaderboard.php">Leaderboard</a>
+         <a href="https://30daysofcode.xyz/leaderboard">Leaderboard</a>
         </li>
         <li class="flx row">
          <img src="./assets/img/wa.png">

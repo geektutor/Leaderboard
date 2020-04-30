@@ -94,6 +94,10 @@ if(isset( $_SESSION['login_user'])){
          <a href="index.php">Submissions</a>
         </li>
         <li class="flx row">
+         <img src="./assets/img/add.png">
+         <a href="http://30daysofcode.xyz/update.php">Update Profile</a>
+        </li>
+        <li class="flx row">
          <img src="./assets/img/allTsk.png">
          <a href="view.php">All tasks</a>
         </li>
@@ -102,8 +106,16 @@ if(isset( $_SESSION['login_user'])){
          <a href="submit.php">Submit task</a>
         </li>
         <li class="flx row">
+         <img src="./assets/img/cert.png">
+         <a href="certification.php">Certificate</a>
+        </li>
+        <li class="flx row">
+         <img src="./assets/img/feedback.png">
+         <a href="feedback.php">Feedback</a>
+        </li>
+        <li class="flx row">
          <img src="./assets/img/lead.png">
-         <a href="https://30daysofcode.xyz/dashboard/leaderboard.php">Leaderboard</a>
+         <a href="https://30daysofcode.xyz/leaderboard">Leaderboard</a>
         </li>
         <li class="flx row">
          <img src="./assets/img/tweet.png">
@@ -156,8 +168,7 @@ if(isset( $_SESSION['login_user'])){
           </tr>
         </thead>
         <tbody>
-          <?php
-          
+          <?php          
           if($count > 0){
               $j =1;
               while($row = $result->fetch_assoc()) {
@@ -172,7 +183,6 @@ if(isset( $_SESSION['login_user'])){
                         echo "<a href='editsubmission.php?user=".$_SESSION['login_user'].'&day='.$row['task_day']."'>Edit submission</a>";
                     }
               ?></td>
-
           </tr>
           <?php 
               $j++;
