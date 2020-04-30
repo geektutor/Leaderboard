@@ -30,9 +30,6 @@
         $error = "";
         // If result matched $myusername and $mypassword, table row must be 1 row
         if($count == 1 && password_verify($myPassword, $row['password'])) {
-            $_SESSION['login_user'] = $username;
-            $track_sql = "SELECT * FROM user WHERE email = '$username'";
-            $result = mysqli_query($conn,$track_sql);
             if ($row['isAdmin'] == 2) {
                 //superAdmin priviledges
                 $_SESSION['isAdmin'] = true;
@@ -57,14 +54,7 @@
             }else {
                 header("location: user/index.php");
             }
-            // if($row['isAdmin'] == 0){
-            //     header("location: dashboard/user/index.php");
-            // }else{
-            //     $_SESSION['isAdmin'] = true;
-            //     $_SESSION['track'] = $_SESSION['user_track'];
-            //     $_SESSION['login_user'] = $username.'_';
-            //     header("location: dashboard/admin/index.php");
-            // }
+           
         }else {
             $error = "Your Login Name or Password is invalid";
         }

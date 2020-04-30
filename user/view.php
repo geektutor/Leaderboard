@@ -6,41 +6,19 @@ if(isset($_POST['submit'])){
     $show = 0;
     $task_day = mysqli_real_escape_string($conn, $_POST['task_day']);
     $track = mysqli_real_escape_string($conn, $_POST['track']);
-    $sql = "SELECT url FROM task WHERE task_day = '$task_day' AND track = '$track'";
+    $level = mysqli_real_escape_string($conn, $_POST['level']);
+    $sql = "SELECT task FROM task WHERE task_day = '$task_day' AND track = '$track' AND level = '$level'";
     $result = mysqli_query($conn,$sql);
     $count = mysqli_num_rows($result);
     if($count > 0){
         while($row = mysqli_fetch_assoc($result)) {
-           $error = $row['url'];
+           $error = $row['task'];
            $show = 1;
         }
     }else{
         $error =  "No task for the selected options";
     }
 }
-if(isset($_POST['check_task'])){
-    $error = '';
-    $show = 0;
-    $task_day = mysqli_real_escape_string($conn, $_POST['task_day']);
-    $track = mysqli_real_escape_string($conn, $_POST['track']);
-    if($task_day == "all"){
-      $sql = "SELECT * FROM task WHERE track = '$track'";
-    }
-    $result = mysqli_query($conn,$sql);
-    $count = mysqli_num_rows($result);
-    if($count > 0){
-        while($row = mysqli_fetch_assoc($result)) {
-          $error = 1;
-          $tasks[] = array('url'=> $row['url'], 'day' => $row['task_day']);
-          if ($row['task_day'] == 'Day 29') {
-            break;
-          }  
-        }
-    }else{
-        $error =  "No task for the selected options";
-    }
-}
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -91,8 +69,6 @@ if(isset($_POST['check_task'])){
       while($row = mysqli_fetch_assoc($result)) {
           $user_nickname = $row['nickname'];
           $user_score = $row['score'];
-          $user_track = $row['track'];
-          $university = $row['university'];
           echo '<div class="avatar"><img style=\'width:120px;height:120px;\' src=\'https://robohash.org/'.$user_nickname.$user_track.'\'/></div>';
           echo '<span id="username">'.$user_nickname.'</span>';
           // echo '<span id="username">'.$user_score.'&nbsp; points</div></center>';
@@ -172,29 +148,16 @@ if(isset($_POST['check_task'])){
       <div class="mainCard">
       <?php if($show == 1){ ?>
           <div class="alert alert-primary alert-dismissable">            
-              <a href="<?php echo $error?>">Download Task</a>
+              <?php echo $error?>
           </div>
       <?php }?>
-      Tasks are not ready yet
-        <!--<form method="POST" class="<?php if($show == 1)echo 'd-none'; else echo '';?> ">
+        <form method="POST" class="<?php if($show == 1)echo 'd-none'; else echo '';?> ">
           <div class="field flx col">
-            <label for="day">Day</label>
-               <?php if ($university == "ESUT") {?>
-                <select name="task_day" value="">
-                  <option value="Day 0">Day 0</option>
-                  <option value="Day 1">Day 1</option>
-                  <option value="Day 2">Day 2</option>
-                  <option value="Day 3">Day 3</option>
-                  <option value="Day 4">Day 4</option>
-                  <option value="Day 5">Day 5</option>
-                  <option value="Day 6">Day 6</option>
-                  <option value="Day 7">Day 7</option>
+            <label for="day">Level</label>
+                <select name="level" value="">
+                  <option value="beginner">Beginner</option>
+                  <option value="intermediate">intermediate</option>
                 </select>
-                <?php }else{ ?>
-                <select name="task_day" value="">
-                  <option value="all">All Task</option>
-                </select>
-                <?php } ?>
           </div>
           <div class="field flx col">
             <label for="track">Track</label>
@@ -204,37 +167,12 @@ if(isset($_POST['check_task'])){
               <option value="Mobile">Mobile</option>
               <option value="UIUX">UI/UX</option>
               <option value="Python">Python</option>
-              <option value="Design">Engineering Design</option>
-          </select>
+            </select>
+            <input type="hidden" name="task_day" value="">
           </div>
-          <?php if ($university == "ESUT") {?>
           <button id="taskDownload" type="submit" name="submit">Check Task</button>
-          <?php }else{ ?>
-          <button id="taskDownload" type="submit" name="check_task">Check Task</button>
-          <?php } ?>
         </form>
       </div>
-      <?php if($error == 1){ ?>
-      <div class="taskList">
-         <div class="table-responsive">
-        <table class="table" style="text-align: left;">
-          <thead>
-            <tr>
-              <th scope="col">Day</th>
-              <th scope="col">Url</th>
-            </tr>
-          </thead>
-          <tbody>
-          <?php  foreach ($tasks as $task):?>
-          <tr>
-            <td data-label="DAY"><?php echo $task['day'];?></td>
-            <td data-label="URL"><a href="<?php echo $task['url']; ?>"><button class="bbb">View Task</button></a></td>
-          </tr>
-          <?php endforeach; }?>
-          </tbody>
-        </table>
-       </div>-->
-     </div>
      </main>
      <footer class="flx row"><span class="copyw">Copyright &copy; 30DaysOfCode 2020</span> <div><a href="">Privacy Policy</a><a href="">Terms &amp; Conditions</a></div></footer>
    </div>
