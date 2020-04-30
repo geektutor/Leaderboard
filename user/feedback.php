@@ -93,7 +93,7 @@ if(isset( $_SESSION['login_user'])){
         </div>
       </div>
       <ul class="linksContainer">
-          <li class="flx row active">
+          <li class="flx row">
          <img src="./assets/img/submsn.png">
          <a href="index.php">Submissions</a>
         </li>
@@ -109,7 +109,7 @@ if(isset( $_SESSION['login_user'])){
          <img src="./assets/img/cert.png">
          <a href="certification.php">Certificate</a>
         </li>
-        <li class="flx row">
+        <li class="flx row active">
          <img src="./assets/img/feedback.png">
          <a href="feedback.php">Feedback</a>
         </li>

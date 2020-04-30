@@ -103,6 +103,9 @@
   <form method="POST">
    <fieldset>
     <legend>Sign in</legend>
+    <div class="notify">     
+     <p>This is a notification</p>
+    </div>
     <div class="field flex col">
      <label for="user">Email</label>
      <input type="email" name="email" id="user" required>     

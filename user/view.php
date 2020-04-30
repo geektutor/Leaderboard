@@ -128,11 +128,11 @@ if(isset($_POST['check_task'])){
         </div>
       </div>
       <ul class="linksContainer">
-       <li class="flx row active">
+       <li class="flx row">
          <img src="./assets/img/submsn.png">
          <a href="index.php">Submissions</a>
         </li>
-        <li class="flx row">
+        <li class="flx row active">
          <img src="./assets/img/allTsk.png">
          <a href="view.php">All tasks</a>
         </li>
