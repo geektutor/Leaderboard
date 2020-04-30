@@ -4,10 +4,9 @@ if (isset($_POST['submit'])) {
   $nickname = $_POST['nickname'];
   $email = $_POST['email'];
   $phone = $_POST['phone'];
-
   $sql = "SELECT * FROM  user WHERE `nickname`='$nickname' AND `email`='$email' AND `phone`='$phone'";
   $result = mysqli_query($conn,$sql);
-  if (mysqli_num_rows($result) > 0) {
+  if (mysqli_num_rows($result)) {
       while($row = mysqli_fetch_assoc($result)) {
           session_start();
           $_SESSION['password_session'] = $row['email'];
@@ -35,6 +34,7 @@ if (isset($_POST['submit'])) {
       <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST">
         <fieldset>
           <legend>Reset password</legend>
+          <?php echo "$error_msg";?>
           <div class="field flex col">
             <label for="user">Email</label>
             <input type="email" name="user" id="user" required />
