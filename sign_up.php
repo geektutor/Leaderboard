@@ -84,7 +84,7 @@
      <input type="text" name="first" id="first" required>     
     </div>
     <div class="field flex col">
-     <label for="last">Second Name</label>
+     <label for="last">Last Name</label>
      <input type="text" name="last" id="last" required>     
     </div>
     <div class="field flex col">
