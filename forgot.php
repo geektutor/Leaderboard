@@ -1,7 +1,6 @@
 <?php include('./config/connect.php'); 
 $error_msg ='';
 if (isset($_POST['submit'])) {
-  echo 1;
   $nickname = $_POST['nickname'];
   $email = $_POST['email'];
   $phone = $_POST['phone'];
