@@ -139,8 +139,14 @@ if(isset( $_SESSION['login_user'])){
       $error = "";
       function check(){	
           global $conn;
+          $url = mysqli_real_escape_string($conn, $_POST['url']);
           $task_day = mysqli_real_escape_string($conn, $_POST['task_day']);
-          $queryURL = "SELECT task_day FROM submissions WHERE user = '".$_SESSION['login_user']."' AND task_day = '$task_day'";
+          $track = mysqli_real_escape_string($conn, $_POST['track']);
+          $user =  mysqli_real_escape_string($conn, $_SESSION['login_user']);
+          $comment =  mysqli_real_escape_string($conn, $_POST['comment']);
+          $level = mysqli_real_escape_string($conn, $_POST['level']);
+          $cohort = 1;
+          $queryURL = "SELECT `level` FROM submissions WHERE user = '".$_SESSION['login_user']."' AND task_day = '$task_day' AND track = '$track'";
           $resultURL = mysqli_query($conn, $queryURL);
           $countURL = mysqli_num_rows($resultURL);
           if ($countURL > 0) {
@@ -150,15 +156,10 @@ if(isset( $_SESSION['login_user'])){
           }
       }
           if(isset($_POST['submit'])){
-              $url = mysqli_real_escape_string($conn, $_POST['url']);
-              $task_day = mysqli_real_escape_string($conn, $_POST['task_day']);
-              $track = $_SESSION['user_track'];
-              $user =  mysqli_real_escape_string($conn, $_SESSION['login_user']);
-              $comment =  mysqli_real_escape_string($conn, $_POST['comment']);
               $check = check();
               if(check() == 0){
-                  $sql = "INSERT INTO submissions(user, track, url, task_day, comments, sub_date) 
-                          VALUES('$user','$track', '$url','$task_day', '$comment', NOW())";
+                  $sql = "INSERT INTO submissions(user, track, url, task_day, level, cohort, comments, sub_date) 
+                          VALUES('$user','$track', '$url','$task_day', '$level', '$cohort', '$comment', NOW())";
                   if($conn->query($sql)){
                       $error = "Submitted Successfully";
                       $submit = 1;
@@ -210,6 +211,8 @@ if(isset( $_SESSION['login_user'])){
             <label for="comment">Comments?</label>
             <textarea name="comment" type="text" placeholder="Any comments?" rows="5"></textarea>
           </div>
+          <input type="hidden" name="task_day" value="">
+          <input type="hidden" name="cohort" value="1">
           <button id="submitTask" type="submit" name="submit">Submit task</button>
         </form> 
       </div >
