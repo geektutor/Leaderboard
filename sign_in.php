@@ -31,29 +31,20 @@
         // If result matched $myusername and $mypassword, table row must be 1 row
         if($count == 1 && password_verify($myPassword, $row['password'])) {
             $_SESSION['login_user'] = $username;
-            $track_sql = "SELECT track, university FROM user WHERE email = '$username'";
+            $track_sql = "SELECT * FROM user WHERE email = '$username'";
             $result = mysqli_query($conn,$track_sql);
-            if (mysqli_num_rows($result) > 0) {
-                while($track = mysqli_fetch_assoc($result)) {
-                    $_SESSION['user_track'] = $track['track'];
-                    $_SESSION['user_university'] = $track['university'];
-
-                }
-            }
             if ($row['isAdmin'] == 2) {
                 //superAdmin priviledges
                 $_SESSION['isAdmin'] = true;
                 $_SESSION['isSuperAdmin'] = true;
                 $_SESSION['track'] = $_SESSION['user_track'];
                 $_SESSION['login_user'] = $username.'_';
-                $_SESSION['university'] = $_SESSION['user_university'];
                 header("location: admin/index.php?superadmin=true");
             }elseif ($row['isAdmin'] == 1) {
                 //basic admin priviledges
                 $_SESSION['isAdmin'] = true;
                 $_SESSION['track'] = $_SESSION['user_track'];
                 $_SESSION['login_user'] = $username.'_';
-                $_SESSION['university'] = $_SESSION['user_university'];
                 header("location: admin/index.php");
             }elseif ($row['isAdmin'] == 5) {
                 //basic admin priviledges
@@ -91,7 +82,7 @@
         echo "<div class='notify'>Registration Successful </div>";
     }
     if (@$_GET['message'] == 'update' && $ref == 'update.php') {
-        echo "<div class='notify'>Update Successful </div>";
+        echo "<div class='notify'> Successful </div>";
     }
     if (@$_GET['message'] == 'success' && $resetPassword == 'newpassword.php') {
         echo "<div class='notify'>Password reset successful. Kindly log into your account.</div>";
