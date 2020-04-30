@@ -27,10 +27,7 @@
        `first_name` = '$first', 
        `last_name` = '$last'
         WHERE `email` = '$email' ";
-
-        $sqlg = "UPDATE `user` SET user(`first_name`, `last_name`) 
-                VALUES('$first', '$last') WHERE `email`='$email'";
-        $result = mysqli_query($conn,$sql);
+       $result = mysqli_query($conn,$sql);
         if($result){
         header("location:sign_in.php?message=update");
         }
