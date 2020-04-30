@@ -28,11 +28,9 @@
         $result = mysqli_query($conn,$sql);
         if($result){
         header("location:sign_in.php?message=update");
-        }else{
-        die('could not enter data: '. $conn->error);
         }
         else{
-        $error = "Email incorrect";
+            $error = "Email incorrect";
         }
     }
 ?>
