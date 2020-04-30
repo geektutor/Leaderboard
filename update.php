@@ -5,7 +5,7 @@
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <meta http-equiv="X-UA-Compatible" content="ie=edge">
- <title>Sign up - 30 Days of Code</title>
+ <title>Update Account - 30 Days of Code</title>
  <link rel="stylesheet" href="./assets/css/form.css">
  <link rel="shortcut icon" href="./assets/img/favicon.png" type="image/x-icon">
  <meta name="description" content="sign up for 30 days of code">
