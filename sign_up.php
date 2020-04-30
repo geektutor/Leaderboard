@@ -58,7 +58,7 @@
             $sql = "INSERT INTO user(`user_id`, `first_name`, `last_name`, `nickname`, `email`, `password`, `phone`) 
                     VALUES('$user_id', '$first', '$last', '$nick', '$email', '$password', '$phone')";
             if($conn->query($sql)){
-            header("location:sign_up.php?message=success");
+            header("location:sign_in.php?message=success");
             }else{
             die('could not enter data: '. $conn->error);
             }

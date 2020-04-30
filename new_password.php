@@ -5,7 +5,7 @@ if (!isset($_SESSION['password_session']) || empty($_SESSION['password_session']
     header('location:index.php');
 }
 if (isset($_POST['submit'])) {
-    $password = $_POST['password'];
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
     $email = $_SESSION['password_session'];
     $sql = "UPDATE `user` SET `password` = '$password' WHERE `email`='$email'";
     $result = mysqli_query($conn,$sql);
@@ -36,14 +36,14 @@ if (isset($_POST['submit'])) {
     <p style="margin-bottom: 25px;">Reset password for: <span id="reset-user" style="font-weight: 600;"><?php echo $_SESSION['password_session']?></span></p>    
     <div class="field flex col">
      <label for="npassword">New password</label>
-     <input type="password" name="npassword" id="password" required>     
+     <input type="password" name="password" id="password" required>     
     </div>
     <div class="field flex col">
      <label for="cnpassword">Confirm password</label>
      <input type="password" name="cnpassword" id="cnpassword" required>     
     </div>
    </fieldset>   
-   <button class="flex col">RESET</button> 
+   <button class="flex col" type="submit" name="submit">RESET</button> 
   </form>
  </main>
  <script>
