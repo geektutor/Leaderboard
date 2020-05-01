@@ -15,21 +15,25 @@ class User
     }
 }
 
-//categories for filter
+//categories for filter 
 if (isset($_GET['track']) and isset($_GET['level'])) {
     $track = $_GET['track'];
     $level = $_GET['level'];    
-    $sql = "SELECT * FROM leaderboards WHERE `track`='$track' AND `level` = '$level' ORDER BY score DESC LIMIT 20";
-}elseif (isset($_GET['track']) and !isset($_GET['level'])) {
+    $sql = "SELECT * FROM leaderboards WHERE `track`='$track' AND `level` = '$level' ORDER BY `score` DESC LIMIT 20";
+}
+elseif (isset($_GET['track']) and !isset($_GET['level'])) {
     $track = $_GET['track'];    
-    $sql = "SELECT * FROM leaderboards WHERE `track`='$track' ORDER BY score DESC LIMIT 20";
-}elseif (!isset($_GET['track']) and isset($_GET['level'])) {
-    # code...
-}else {
-    # code...
+    $sql = "SELECT * FROM leaderboards WHERE `track`='$track' ORDER BY `score` DESC LIMIT 20";
+}
+elseif (!isset($_GET['track']) and isset($_GET['level'])) {
+    $level = $_GET['level'];    
+    $sql = "SELECT * FROM leaderboards WHERE AND `level` = '$level' ORDER BY score DESC LIMIT 20";
+}
+else {    
+    $sql = "SELECT * FROM leaderboards ORDER BY `score` DESC LIMIT 20";
 }
 
-
+echo $sql;
  ?>
  <!DOCTYPE html>
 <html>
