@@ -1,18 +1,29 @@
 <?php
 require('../config/connect.php');
 require('../config/session.php');
+
+$day = strtotime("2020-04-01");
+$currdates = date("Y-m-d");
+$currdate = strtotime($currdates);
+$diff = abs($currdate - $day);
+$years = floor($diff / (365*60*60*24));
+$months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
+$days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24)); 
+$days +=1;
+$show = 0;  
+
 if(isset($_POST['submit'])){
     $error = '';
     $show = 0;
     $task_day = mysqli_real_escape_string($conn, $_POST['task_day']);
     $track = mysqli_real_escape_string($conn, $_POST['track']);
     $level = mysqli_real_escape_string($conn, $_POST['level']);
-    $sql = "SELECT task FROM task WHERE task_day = '$task_day' AND track = '$track' AND level = '$level'";
+    $sql = "SELECT url FROM task WHERE task_day = '$task_day' AND track = '$track' AND level = '$level'";
     $result = mysqli_query($conn,$sql);
     $count = mysqli_num_rows($result);
     if($count > 0){
         while($row = mysqli_fetch_assoc($result)) {
-           $error = $row['task'];
+           $error = $row['url'];
            $show = 1;
         }
     }else{
@@ -142,15 +153,21 @@ if(isset($_POST['submit'])){
        <span id="email"><?=$_SESSION['login_user'];?></span>
      </div>   
    </nav>
+    
+     
+
    <div class="mainWrapper flx col" id="mainWrp">
     <main>
       <div class="flx row"><h1>View Tasks</h1></div>
-      <div class="mainCard">
-      <?php if($show == 1){ ?>
-          <div class="alert alert-primary alert-dismissable">            
-              <?php echo $error?>
+        <?php if($show == 1){ ?>
+        <div class="mainCard">
+          <div class="field flx col">
+            <?= $error?>
           </div>
+        </div>
       <?php }?>
+      <div class="mainCard">
+
         <form method="POST" class="<?php if($show == 1)echo 'd-none'; else echo '';?> ">
           <div class="field flx col">
             <label for="day">Level</label>
@@ -168,7 +185,7 @@ if(isset($_POST['submit'])){
               <option value="UIUX">UI/UX</option>
               <option value="Python">Python</option>
             </select>
-            <input type="hidden" name="task_day" value="">
+            <input type="hidden" name="task_day" value="Day <?= $days; ?>">
           </div>
           <button id="taskDownload" type="submit" name="submit">Check Task</button>
         </form>

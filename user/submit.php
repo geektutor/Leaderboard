@@ -6,8 +6,15 @@ if(isset( $_SESSION['login_user'])){
     $sql = "SELECT track FROM user WHERE email = '$tt'";
     $result = mysqli_query($conn, $sql);
     $row =mysqli_fetch_assoc($result);
-    $track = $row['track'];
-    // $university = $row['university'];
+
+    $day = strtotime("2020-04-01");
+    $currdates = date("Y-m-d");
+    $currdate = strtotime($currdates);
+    $diff = abs($currdate - $day);
+    $years = floor($diff / (365*60*60*24));
+    $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
+    $days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24)); 
+    $days +=1;
 
 ?>
 <head>
@@ -158,8 +165,17 @@ if(isset( $_SESSION['login_user'])){
           if(isset($_POST['submit'])){
               $check = check();
               if(check() == 0){
-                  $sql = "INSERT INTO submissions(user, track, url, task_day, level, cohort, comments, sub_date) 
-                          VALUES('$user','$track', '$url','$task_day', '$level', '$cohort', '$comment', NOW())";
+                  $url = mysqli_real_escape_string($conn, $_POST['url']);
+                  $task_day = mysqli_real_escape_string($conn, $_POST['task_day']);
+                  $track = mysqli_real_escape_string($conn, $_POST['track']);
+                  $user =  mysqli_real_escape_string($conn, $_SESSION['login_user']);
+                  $user = rtrim($_SESSION['login_user'], '_');
+                  $comment =  mysqli_real_escape_string($conn, $_POST['comment']);
+                  $level = mysqli_real_escape_string($conn, $_POST['level']);
+                  $date = date('Y-m-d');
+                  $cohort = 1;
+                  $sql = "INSERT INTO submissions(user, track, url, task_day, comments, sub_date, cohort, level) 
+                          VALUES('$user','$track', '$url','$task_day', '$comment', '$date', '$cohort', '$level')";
                   if($conn->query($sql)){
                       $error = "Submitted Successfully";
                       $submit = 1;
@@ -211,7 +227,7 @@ if(isset( $_SESSION['login_user'])){
             <label for="comment">Comments?</label>
             <textarea name="comment" type="text" placeholder="Any comments?" rows="5"></textarea>
           </div>
-          <input type="hidden" name="task_day" value="">
+          <input type="hidden" name="task_day" value="Day <?= $days; ?>">
           <input type="hidden" name="cohort" value="1">
           <button id="submitTask" type="submit" name="submit">Submit task</button>
         </form> 
