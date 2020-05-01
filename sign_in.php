@@ -70,11 +70,11 @@ else {
       <?php
     $ref = substr(@$_SERVER['HTTP_REFERER'],strlen(@$_SERVER['HTTP_REFERER']) - 11, 11);
     $resetPassword = substr(@$_SERVER['HTTP_REFERER'],strlen(@$_SERVER['HTTP_REFERER']) - 16, 16);
-    $update = substr(@$_SERVER['HTTP_REFERER'],strlen(@$_SERVER['HTTP_REFERER']) - 9, 9);
+    $upd = substr(@$_SERVER['HTTP_REFERER'],strlen(@$_SERVER['HTTP_REFERER']) - 9, 9);
     if (@$_GET['message'] == 'success' && $ref == 'sign_up.php') {
         echo "<div class='notify'><p>Registration Successful</p></div>";
     }
-    if (@$_GET['message'] == 'update' && $ref == 'update.php') {
+    if (@$_GET['message'] == 'update' && $upd == 'update.php') {
         echo "<div class='notify'><p>Successful</p></div>";
     }
     if (@$_GET['message'] == 'success' && $resetPassword == 'new_password.php') {
