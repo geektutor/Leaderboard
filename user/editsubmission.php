@@ -114,7 +114,7 @@ if (!isset($_SESSION['login_user']) || empty($_SESSION['login_user'])) {
         </div>
       </div>
       <ul class="linksContainer">
-          <li class="flx row active">
+          <li class="flx row">
          <img src="./assets/img/submsn.png">
          <a href="index.php">Submissions</a>
         </li>
@@ -122,7 +122,7 @@ if (!isset($_SESSION['login_user']) || empty($_SESSION['login_user'])) {
          <img src="./assets/img/allTsk.png">
          <a href="view.php">All tasks</a>
         </li>
-        <li class="flx row">
+        <li class="flx row active">
          <img src="./assets/img/add.png">
          <a href="submit.php">Submit task</a>
         </li>
