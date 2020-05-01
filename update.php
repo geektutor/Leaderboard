@@ -31,7 +31,7 @@
         WHERE `email` = '$email' ";
        $result = mysqli_query($conn,$sql);
         if($result){
-          $error = "Update Successful";
+        header('location:sign_in.php?message=update');
         }
         else{
             $error = "Email incorrect";
