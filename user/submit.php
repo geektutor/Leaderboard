@@ -228,6 +228,7 @@ if(isset( $_SESSION['login_user'])){
             <label for="comment">Comments?</label>
             <textarea name="comment" type="text" placeholder="Any comments?" rows="5"></textarea>
           </div>
+          <input type="text" name="task_view" value="Day <?= $days; ?>" disabled>
           <input type="hidden" name="task_day" value="Day <?= $days; ?>">
           <input type="hidden" name="cohort" value="1">
           <button id="submitTask" type="submit" name="submit">Submit task</button>
