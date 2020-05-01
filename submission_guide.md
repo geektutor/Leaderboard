@@ -22,8 +22,9 @@ How to submit:
 The backend track shall be divided into three segments of 10 days each over the 30 day period. The first 10 days shall consist of algorithmic questions which do not necessitate setting up a server. The following 10 days shall test your basic knowledge of server-side scripting to perform various tasks and you would be required to host your script on any online platform of your choice. Then the final 10 days shall involve implementing 1 or 2 mini projects to put your knowledge to test.
 
 #### Submission Details
+A public GitHub repository containing your solution to a particular task would suffice. All tasks for the 30 day period must all be pushed to this repository
 
-For the first 10 days, a link to the public GitHub repository containing your solution to a particular task would suffice. All tasks for the 30 day period must all be pushed to this repository.
+For the first 10 days, a link to a [repl.it](https://repl.it) page containing your solution to a particular task would suffice. 
 
 For the remaining 20 days, the link to your script which is being hosted on some web-hosting platform of choice (e.g Heroku) should be provided. As long as all task instruction and procedures are followed, no problem should be encountered 
 
