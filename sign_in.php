@@ -36,18 +36,18 @@
                 $_SESSION['isAdmin'] = true;
                 $_SESSION['isSuperAdmin'] = true;
                 $_SESSION['track'] = $_SESSION['user_track'];
-                $_SESSION['login_user'] = $username.'_';
+                $_SESSION['login_user'] = $username;
                 header("location: admin/index.php?superadmin=true");
             }elseif ($row['isAdmin'] == 1) {
                 //basic admin priviledges
                 $_SESSION['isAdmin'] = true;
                 $_SESSION['track'] = $_SESSION['user_track'];
-                $_SESSION['login_user'] = $username.'_';
+                $_SESSION['login_user'] = $username;
                 header("location: admin/index.php");
             }elseif ($row['isAdmin'] == 0) {
                 //basic usee priviledges
                 
-                $_SESSION['login_user'] = $username.'_';
+                $_SESSION['login_user'] = $username;
                 header("location: user/index.php");
             }
 else {
@@ -55,7 +55,7 @@ else {
             }
            
         }else {
-            echo $error = "Your Login Name or Password is invalid";
+             $error = "Your Login Name or Password is invalid";
         }
     }
 
