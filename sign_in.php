@@ -44,7 +44,13 @@
                 $_SESSION['track'] = $_SESSION['user_track'];
                 $_SESSION['login_user'] = $username.'_';
                 header("location: admin/index.php");
-            }else {
+            }elseif ($row['isAdmin'] == 0) {
+                //basic usee priviledges
+                
+                $_SESSION['login_user'] = $username.'_';
+                header("location: user/index.php");
+            }
+else {
                 header("location: user/index.php");
             }
            
