@@ -181,11 +181,11 @@ if(isset( $_SESSION['login_user'])){
               <td data-label="URL"><?php echo $row['url'];?></td>
               <td data-label="POINTS"><?php echo $row['points'];?></td>
               <td data-label="REVIEW"><?php echo $row['feedback'];?></td>
-              <td data-label="ACTIONS"><?php
-                    if (empty($row['feedback'])) {
-                        echo "<a href='editsubmission.php?user=".$_SESSION['login_user'].'&day='.$row['task_day']."'>Edit submission</a>";
-                    }
-              ?></td>
+              <?php if ($row['feedback'] == '' && $row['points'] == 0) {?>
+              <td data-label="ACTION"><a href="editsubmission.php?id=<?=$row['id']?>">Edit</a></td>
+              <?php }else{?>
+              <td data-label="ACTION">Can't Edit</td>
+              <?php } ?>
               <td data-label="LEVEL"><?php echo $row['level'];?></td>
               <td data-label="TRACK"><?php echo $row['track'];?></td>
           </tr>
