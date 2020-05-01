@@ -35,6 +35,22 @@ integers separated by a space as input parameter and returns the average of the 
 Given the array the string s='12 11 2 6 7 10' as input
 average(s) should return 8 
 
+#### FrontEnd Beginner
+
+Tribute page.
+
+
+Description:
+
+The simplest website you
+can make as a beginner is a
+tribute page of someone you
+admire in your life.. Make a
+webpage writing about that
+person adding his/her
+image at the top of the
+webpage. Then proceed to make it as beautiful as you can
+
 #### FrontEnd Intermediate
 
 Create a counter application with the following features
