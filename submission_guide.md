@@ -1,3 +1,8 @@
+### General Submission Guidelines
+
+0 means unmarked
+1 means you didnt follow the submission instructions and score won't be changed
+
 ### Python Track 
 
 An acceptable submission  is a [repl.it](repl.it) link containing the program preferrably in the main.py file on the site. 
@@ -66,3 +71,38 @@ Tips :
 6. Be creative with the use of colors, Use external styling and ensure your site is responsive.
 
 [A guide on hosting with GitHub](https://steph-crown.github.io/a-guide-on-hosting/)
+
+### Mobile Track
+
+#### Accepted Tech Stack
+
+1. Dart
+2. Flutter
+
+#### Beginner
+
+An acceptable submission is a dartpad link. Codepen won't be accepted, submitting a link to a Github repo is not welcomed unless stated otherwise.
+
+#### Intermediate
+
+An acceptable submission is a dartpad link for UI implementations. Codepen won't be accepted unless stated otherwise in the task. For functional apps, a GitHub link containing the code with images of your app in the readme is enough. Otherwise stated, an apk of your app is not compulsory.
+
+How to submit:
+
+1. Create a GitHub gist for all tasks named after the day in the format: dayN30.dart where N id day of challenge Example: day130.dart, day230.dart etc
+
+2. On successfully creating the gist, the URL should be in the format https://gist.github.com/username/{gistID} Example:https://gist.github.com/username/o1e04c81d63fa5481fedab44f5243fd3
+
+3. Logon to dartpad.dev/{gistID} to confirm the code/view
+
+4. Copy the dartpad link from your browser and submit at 30daysofcode.xyz
+
+#### Tips
+
+1. Follow instructions.
+
+2. Be creative with colours and images(UI implementations).
+
+3. A submission without following the pattern described in “How to submit” is null and void.
+
+4. Multiple submissions are considered void.
