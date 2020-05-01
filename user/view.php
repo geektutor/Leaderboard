@@ -18,12 +18,12 @@ if(isset($_POST['submit'])){
     $task_day = mysqli_real_escape_string($conn, $_POST['task_day']);
     $track = mysqli_real_escape_string($conn, $_POST['track']);
     $level = mysqli_real_escape_string($conn, $_POST['level']);
-    $sql = "SELECT url FROM task WHERE task_day = '$task_day' AND track = '$track' AND level = '$level'";
+    $sql = "SELECT task FROM task WHERE task_day = '$task_day' AND track = '$track' AND level = '$level'";
     $result = mysqli_query($conn,$sql);
     $count = mysqli_num_rows($result);
     if($count > 0){
         while($row = mysqli_fetch_assoc($result)) {
-           $error = $row['url'];
+           $error = $row['task'];
            $show = 1;
         }
     }else{
@@ -55,7 +55,7 @@ if(isset($_POST['submit'])){
   <div class="profile flx col">
     <img src="./assets/img/profile.png">
     <ul class="options">
-      <li id="logout"><a href="../../logout.php">Logout</a></li>
+      <li id="logout"><a href="../logout.php">Logout</a></li>
     </ul>
   </div>
  </header>
@@ -179,13 +179,13 @@ if(isset($_POST['submit'])){
           <div class="field flx col">
             <label for="track">Track</label>
             <select name="track" value="">
-              <option value="FrontEnd">Front End</option>
-              <option value="Backend">Back End</option>
-              <option value="Mobile">Mobile</option>
-              <option value="UIUX">UI/UX</option>
-              <option value="Python">Python</option>
+              <option value="frontend">Front End</option>
+              <option value="backend">Back End</option>
+              <option value="mobile">Mobile</option>
+              <option value="ui">UI/UX</option>
+              <option value="python">Python</option>
             </select>
-            <input type="hidden" name="task_day" value="Day <?= $days; ?>">
+            <input type="hidden" name="task_day" value="<?= $days; ?>">
           </div>
           <button id="taskDownload" type="submit" name="submit">Check Task</button>
         </form>
