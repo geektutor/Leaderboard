@@ -72,13 +72,13 @@ else {
     $resetPassword = substr(@$_SERVER['HTTP_REFERER'],strlen(@$_SERVER['HTTP_REFERER']) - 16, 16);
     $update = substr(@$_SERVER['HTTP_REFERER'],strlen(@$_SERVER['HTTP_REFERER']) - 9, 9);
     if (@$_GET['message'] == 'success' && $ref == 'sign_up.php') {
-        $error = "Registration Successful";
+        echo "<div class='notify'><p>Registration Successful</p></div>";
     }
-    if (@$_GET['message'] == 'update' && $update == 'update.php') {
-        $error = "Update Successful";
+    if (@$_GET['message'] == 'update' && $ref == 'update.php') {
+        echo "<div class='notify'><p>Successful</p></div>";
     }
     if (@$_GET['message'] == 'success' && $resetPassword == 'new_password.php') {
-        $error = "Password reset successful. Kindly log into your account.";
+        echo "<div class='notify'><p>Password reset successful. Kindly log into your account.</p></div>";
     }
     ?>
     <?php if($error !== ''){ ?>
