@@ -45,7 +45,7 @@ Create a counter application with the following features
 
 3. When you click “Add Count”, the counter should increment by 1. If the count goes above 0, the number should change to the color green.
 
-#### BackEnd Intermediate
+#### BackEnd Beginner
 
 Divisors
 
@@ -54,6 +54,17 @@ Write a function that takes in an integer as a parameter and returns the number 
 Example:
 
 myFunction(10)===3; //10 is divisible by 1,2,5
+
+#### Backend Intermediate
+
+Write a function in the form of scrabble(str1, str2) that returns true if a portion of str1 characters can be rearranged to match str2, otherwise returns false.
+
+Example:
+
+scrabble(‘jigokuhen’,’jigen’)===true
+
+scrabble(‘i am rain’,’raining’)===false
+
 
 #### UI/UX
 
