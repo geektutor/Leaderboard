@@ -1,7 +1,15 @@
 <?php
 require('../config/connect.php');
 require('../config/session.php');
-$show = "";
+$day = strtotime("2020-04-01");
+$currdates = date("Y-m-d");
+$currdate = strtotime($currdates);
+$diff = abs($currdate - $day);
+$years = floor($diff / (365*60*60*24));
+$months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
+$days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24)); 
+$days +=1;
+$show = 0;  
 if(isset($_POST['submit'])){
     $error = '';
     $show = 0;
@@ -45,7 +53,7 @@ if(isset($_POST['submit'])){
   <div class="profile flx col">
     <img src="./assets/img/profile.png">
     <ul class="options">
-      <li id="logout"><a href="../../logout.php">Logout</a></li>
+      <li id="logout"><a href="../logout.php">Logout</a></li>
     </ul>
   </div>
  </header>
@@ -143,15 +151,21 @@ if(isset($_POST['submit'])){
        <span id="email"><?=$_SESSION['login_user'];?></span>
      </div>   
    </nav>
+    
+     
+
    <div class="mainWrapper flx col" id="mainWrp">
     <main>
       <div class="flx row"><h1>View Tasks</h1></div>
-      <div class="mainCard">
-      <?php if($show == 1){ ?>
-          <div class="alert alert-primary alert-dismissable">            
-              <?php echo $error?>
+        <?php if($show == 1){ ?>
+        <div class="mainCard">
+          <div class="field flx col">
+            <?= $error?>
           </div>
+        </div>
       <?php }?>
+      <div class="mainCard">
+
         <form method="POST" class="<?php if($show == 1)echo 'd-none'; else echo '';?> ">
           <div class="field flx col">
             <label for="day">Level</label>
@@ -163,13 +177,13 @@ if(isset($_POST['submit'])){
           <div class="field flx col">
             <label for="track">Track</label>
             <select name="track" value="">
-              <option value="FrontEnd">Front End</option>
-              <option value="Backend">Back End</option>
-              <option value="Mobile">Mobile</option>
-              <option value="UIUX">UI/UX</option>
-              <option value="Python">Python</option>
+              <option value="frontend">Front End</option>
+              <option value="backend">Back End</option>
+              <option value="mobile">Mobile</option>
+              <option value="ui">UI/UX</option>
+              <option value="python">Python</option>
             </select>
-            <input type="hidden" name="task_day" value="">
+            <input type="hidden" name="task_day" value="<?= $days; ?>">
           </div>
           <button id="taskDownload" type="submit" name="submit">Check Task</button>
         </form>

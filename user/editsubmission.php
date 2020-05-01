@@ -18,9 +18,7 @@ if (!isset($_SESSION['login_user']) || empty($_SESSION['login_user'])) {
         global $conn;
         $url = mysqli_real_escape_string($conn, $_POST['url']);
         $comment =  mysqli_real_escape_string($conn, $_POST['comment']);
-        //$editSql = "UPDATE submissions SET `url`='$url' AND `comments`='$comment' WHERE `user` = '$email' AND `task_day`='$day'";
-        //$find_sql= "SELECT * FROM submisions WHERE 'user' = '$email'";
-        $edit_sql = "UPDATE submissions SET `url`='$url',comments = '$comment' WHERE user = '$email' AND task_day = '$day'";
+        $edit_sql = "UPDATE submissions SET `url`='$url', comments = '$comment' WHERE user = '$email' AND task_day = '$day'";
         $result = mysqli_query($conn,$edit_sql);
         if ($result) {
             header('location: index.php?editSubmissionReport=success');
@@ -53,7 +51,7 @@ if (!isset($_SESSION['login_user']) || empty($_SESSION['login_user'])) {
   <div class="profile flx col">
     <img src="./assets/img/profile.png">
     <ul class="options">
-      <li id="logout"><a href="../../logout.php">Logout</a></li>
+      <li id="logout"><a href="../logout.php">Logout</a></li>
     </ul>
   </div>
  </header>
