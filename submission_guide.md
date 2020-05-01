@@ -62,4 +62,6 @@ Tips :
 3. A submission without the hosted link provided in the readme is considered null.
 4. A bootstrap submission is considered null unless stated in the instructions that you can use it.
 5. Multiple submission are considered void.
-6. Be creative with the use of colors, Use external styling and ensure your site is responsive..
+6. Be creative with the use of colors, Use external styling and ensure your site is responsive.
+
+[A guide on hosting with GitHub](https://steph-crown.github.io/a-guide-on-hosting/)
