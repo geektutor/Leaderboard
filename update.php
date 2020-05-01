@@ -23,9 +23,11 @@
         $first = $_POST['first'];
         $last = $_POST['last'];
         $email = $_POST['email'];
+        $nick = $_POST['nick'];
         $sql = "UPDATE `user` SET 
        `first_name` = '$first', 
-       `last_name` = '$last'
+       `last_name` = '$last',
+       `nickname` = '$nick'
         WHERE `email` = '$email' ";
        $result = mysqli_query($conn,$sql);
         if($result){
@@ -47,6 +49,10 @@
   <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST">
    <fieldset>
     <legend>Update Acount</legend>
+    <div class="field flex col">
+     <label for="nick">Nick Name</label>
+     <input type="text" name="nick" id="nick" pattern="[A-Za-z0-9]+" required>     
+    </div>
     <div class="field flex col">
      <label for="first">First Name</label>
      <input type="text" name="first" id="first" required>     
