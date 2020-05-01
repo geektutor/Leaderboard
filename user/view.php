@@ -1,6 +1,7 @@
 <?php
 require('../config/connect.php');
 require('../config/session.php');
+$show = "";
 if(isset($_POST['submit'])){
     $error = '';
     $show = 0;
