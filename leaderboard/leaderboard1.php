@@ -6,34 +6,59 @@ class User
 {
     public $nickname;
     public $track;
+    public $level;
     public $score;
 
-    function __construct($nickname,$track,$score){
+    function __construct($nickname,$track,$level,$score){
     $this->nickname = $nickname;
     $this->track = $track;
+    $this->level = $level;
     $this->score = $score;
     }
 }
 
 //categories for filter 
-if (isset($_GET['track']) and isset($_GET['level'])) {
+if (isset($_GET['track']) and isset($_GET['level']) and $_GET['level'] !== 'general') {
     $track = $_GET['track'];
     $level = $_GET['level'];    
-    $sql = "SELECT * FROM leaderboards WHERE `track`='$track' AND `level` = '$level' ORDER BY `score` DESC LIMIT 20";
+    $sql = "SELECT * FROM leaderboard WHERE `track`='$track' AND `level` = '$level' ORDER BY `score` DESC LIMIT 20";
+}
+elseif (isset($_GET['track']) and $_GET['track'] == 'general' and isset($_GET['level'])) {
+    $level = $_GET['level'];    
+    $sql = "SELECT * FROM leaderboard WHERE `level` = '$level' ORDER BY `score` DESC LIMIT 20";
+
+}
+elseif (isset($_GET['track']) and $_GET['track'] == 'general' and !isset($_GET['level'])) {    
+    $sql = "SELECT * FROM leaderboard ORDER BY `score` DESC LIMIT 20";
+
 }
 elseif (isset($_GET['track']) and !isset($_GET['level'])) {
     $track = $_GET['track'];    
-    $sql = "SELECT * FROM leaderboards WHERE `track`='$track' ORDER BY `score` DESC LIMIT 20";
+    $sql = "SELECT * FROM leaderboard WHERE `track`='$track' ORDER BY `score` DESC LIMIT 20";
 }
 elseif (!isset($_GET['track']) and isset($_GET['level'])) {
     $level = $_GET['level'];    
-    $sql = "SELECT * FROM leaderboards WHERE AND `level` = '$level' ORDER BY score DESC LIMIT 20";
+    $sql = "SELECT * FROM leaderboard WHERE AND `level` = '$level' ORDER BY score DESC LIMIT 20";
 }
 else {    
-    $sql = "SELECT * FROM leaderboards ORDER BY `score` DESC LIMIT 20";
+    $sql = "SELECT * FROM leaderboard ORDER BY `score` DESC LIMIT 20";
 }
+$result = mysqli_query($conn,$sql);
 
-echo $sql;
+if ($result) {
+    while ($row = mysqli_fetch_assoc($result)) {
+        $nickname = $row['nickname'];
+        $track = $row['track'];
+        $level = $row['level'];
+        $score = $row['score'];
+        $user = new User($nickname,$track,$level,$score);
+        array_push($userRanking,$user);
+    }
+}else{
+    die('error fetching rankings please try again later');
+}
+print_r($userRanking);
+
  ?>
  <!DOCTYPE html>
 <html>
@@ -44,22 +69,12 @@ echo $sql;
     </head>
     <body>
       <div class="filter">
-        <form id="filterform">
-          <select name="" id="filter" class="form-control">
-            <?php
-            include "../config/connect.php";
-            $sql = "SELECT DISTINCT `university` FROM user";
-            $result = mysqli_query($conn,$sql);
-            if ($result && mysqli_num_rows($result) > 0) {
-              while ($row = mysqli_fetch_assoc($result)) {
-                $row['university'] == ''?$row['university'] = 'General' : true;
-                echo "<option value='".$row['university']."' id='".$row['university']."'>".$row['university']."</option>";
-              }
-            }
-             ?>
+        <form id="filterform" action="leaderboard1.php" method="GET">
+          <select name="level" id="filter" class="form-control">
+           <option value="beginner">Beginner</option>
+           <option value="intermediate">Intermediate</option>
           </select>
           <button type="submit" class="btn btn-warning">Filter</button>          
-          <a href="track.php" class="btn btn-warning">Filter By Track</a>
         </form>
       </div>
       <div class="center">
