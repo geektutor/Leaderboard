@@ -153,7 +153,7 @@ if(isset( $_SESSION['login_user'])){
           $comment =  mysqli_real_escape_string($conn, $_POST['comment']);
           $level = mysqli_real_escape_string($conn, $_POST['level']);
           $cohort = 1;
-          $queryURL = "SELECT `level` FROM submissions WHERE user = '".$_SESSION['login_user']."' AND task_day = '$task_day' AND track = '$track'";
+          $queryURL = "SELECT DISTINCT `level`,`track` FROM submissions WHERE user = '".$_SESSION['login_user']."' AND task_day = '$task_day'";
           $resultURL = mysqli_query($conn, $queryURL);
           $countURL = mysqli_num_rows($resultURL);
           if ($countURL > 0) {
