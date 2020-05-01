@@ -37,8 +37,7 @@ average(s) should return 8
 
 #### FrontEnd Beginner
 
-Tribute page.
-
+Appreciation page.
 
 Description:
 
