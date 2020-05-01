@@ -49,13 +49,13 @@ Create a counter application with the following features
 
 Divisors
 
-Write a function that takes in an integer as a parameter and returns the number of possible divisors the number including 1 and itself.
+Write a function that takes in an integer as a parameter and returns the number of possible divisors the number including 1 and but excluding itself.
 
 Example:
 
 myFunction(10)===3; //10 is divisible by 1,2,5
 
-#### Backend Intermediate
+#### BackEnd Intermediate
 
 Write a function in the form of scrabble(str1, str2) that returns true if a portion of str1 characters can be rearranged to match str2, otherwise returns false.
 
