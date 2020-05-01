@@ -31,24 +31,23 @@
         WHERE `email` = '$email' ";
        $result = mysqli_query($conn,$sql);
         if($result){
-        header('location:sign_in.php?message=update');
+          $error = "Update Successful";
         }
         else{
             $error = "Email incorrect";
         }
     }
 ?>
-    <?php if($error !== ''){ ?>
-    <div class="notify">
-        <?= $error?>
-    </div>
-    <?php }?>
-
   <h1 id="home">30 DAYS OF CODE</h1>
   <img src="./assets/img/lbs.png" alt="learnBuildShare"/>
   <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST">
    <fieldset>
     <legend>Update Acount</legend>
+    <?php if($error !== ''){ ?>
+    <div class="notify">
+        <?= $error?>
+    </div>
+    <?php }?>
     <div class="field flex col">
      <label for="nick">Nick Name</label>
      <input type="text" name="nick" id="nick" pattern="[A-Za-z0-9]+" required>     
