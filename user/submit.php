@@ -221,6 +221,7 @@ if(isset( $_SESSION['login_user'])){
               <option value="frontend">Frontend</option>
               <option value="mobile">Mobile</option>
               <option value="python">Python</option>
+              <option value="ui">UI/UX</option>
             </select>
           </div>
           <div class="field flx col">
