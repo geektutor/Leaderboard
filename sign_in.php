@@ -46,12 +46,11 @@
                 header("location: admin/index.php");
 
             }elseif ($row['isAdmin'] == 0) {
-                //basic user priviledges
-                $_SESSION['track'] = $_SESSION['user_track'];
+                //basic usee priviledges  
                 $_SESSION['login_user'] = $username.'_';
-                $_SESSION['university'] = $_SESSION['user_university'];
-                header("location: admin/index.php");
-            }else {
+                header("location: user/index.php");
+            }
+else {
                 header("location: user/index.php");
             }
            
@@ -65,28 +64,29 @@
  <main class="body-content flex col">
   <h1 id="home">30 DAYS OF CODE &amp; DESIGN</h1>
   <img src="./assets/img/lbs.png" alt="learnBuildShare"/>
-  <?php
-    $ref = substr(@$_SERVER['HTTP_REFERER'],strlen(@$_SERVER['HTTP_REFERER']) - 11, 11);
-    $resetPassword = substr(@$_SERVER['HTTP_REFERER'],strlen(@$_SERVER['HTTP_REFERER']) - 16, 16);
-    if (@$_GET['message'] == 'success' && $ref == 'sign_up.php') {
-        echo "<div class='notify'>Registration Successful </div>";
-    }
-    if (@$_GET['message'] == 'update' && $ref == 'update.php') {
-        echo "<div class='notify'> Successful </div>";
-    }
-    if (@$_GET['message'] == 'success' && $resetPassword == 'new_password.php') {
-        echo "<div class='notify'>Password reset successful. Kindly log into your account.</div>";
-    }
-    ?>
-    <?php if($error !== ''){ ?>
-    <div class="notify" style="color: #991111ae;">
-        <?= $error?>
-    </div>
-    <?php }?>
-
   <form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>">
    <fieldset>
     <legend>Sign in</legend>
+      <?php
+    $ref = substr(@$_SERVER['HTTP_REFERER'],strlen(@$_SERVER['HTTP_REFERER']) - 11, 11);
+    $resetPassword = substr(@$_SERVER['HTTP_REFERER'],strlen(@$_SERVER['HTTP_REFERER']) - 16, 16);
+    if (@$_GET['message'] == 'success' && $ref == 'sign_up.php') {
+        echo "<div class='notify'><p>Registration Successful</p></div>";
+    }
+    if (@$_GET['message'] == 'update' && $ref == 'update.php') {
+        echo "<div class='notify'><p>Successful</p></div>";
+    }
+    if (@$_GET['message'] == 'success' && $resetPassword == 'new_password.php') {
+        echo "<div class='notify'><p>Password reset successful. Kindly log into your account.</p></div>";
+    }
+    ?>
+    <?php if($error !== ''){ ?>
+    <div class="notify">
+     <p>
+        <?= $error?>
+     </p>
+    </div>
+    <?php }?>
     <div class="field flex col">
      <label for="user">Email</label>
      <input type="email" name="email" id="user" required>     

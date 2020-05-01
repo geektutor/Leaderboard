@@ -1,24 +1,7 @@
-<?php include('./config/connect.php'); ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <meta http-equiv="X-UA-Compatible" content="ie=edge">
- <title>Sign up - 30 Days of Code</title>
- <link rel="stylesheet" href="./assets/css/form.css">
- <link rel="shortcut icon" href="./assets/img/favicon.png" type="image/x-icon">
- <meta name="description" content="sign up for 30 days of code">
- <meta property="og:type" content="website">
- <meta name="keywords" content="30 days of code, sign up, create account, engineering career expo, ECX, ecx, dsc unilag, code, design, competition">
- <meta property="og:url" content="https://30daysofcode.xyz">
- <meta property="og:site_name" content="30 days of code sign up">
- <meta property="og:image" content="./assets/img/favicon.png">
-</head>
-<body>
- <main class="body-content flex col">
-    <?php
-    $error = '';
+<?php include('./config/connect.php'); 
+ session_start();
+ //echo  $_SESSION['password_session'];
+$error = '';
     function keys(){	
         global $conn;
         // generate a 6 digit unique shortcode
@@ -66,7 +49,25 @@
             $error = "User already exist";
         }
     }
-    ?>
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta http-equiv="X-UA-Compatible" content="ie=edge">
+ <title>Sign up - 30 Days of Code</title>
+ <link rel="stylesheet" href="./assets/css/form.css">
+ <link rel="shortcut icon" href="./assets/img/favicon.png" type="image/x-icon">
+ <meta name="description" content="sign up for 30 days of code">
+ <meta property="og:type" content="website">
+ <meta name="keywords" content="30 days of code, sign up, create account, engineering career expo, ECX, ecx, dsc unilag, code, design, competition">
+ <meta property="og:url" content="https://30daysofcode.xyz">
+ <meta property="og:site_name" content="30 days of code sign up">
+ <meta property="og:image" content="./assets/img/favicon.png">
+</head>
+<body>
+ <main class="body-content flex col">
     <?php if($error !== ''){ ?>
     <div class="notify">
         <?= $error?>
