@@ -35,13 +35,11 @@
                 //superAdmin priviledges
                 $_SESSION['isAdmin'] = true;
                 $_SESSION['isSuperAdmin'] = true;
-                $_SESSION['track'] = $_SESSION['user_track'];
                 $_SESSION['login_user'] = $username;
                 header("location: admin/index.php?superadmin=true");
             }elseif ($row['isAdmin'] == 1) {
                 //basic admin priviledges
                 $_SESSION['isAdmin'] = true;
-                $_SESSION['track'] = $_SESSION['user_track'];
                 $_SESSION['login_user'] = $username;
                 header("location: admin/index.php");
             }elseif ($row['isAdmin'] == 0) {
