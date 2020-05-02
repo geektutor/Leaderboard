@@ -1,8 +1,13 @@
 #### Python
+
 Agunbiade Sodiq  (Beginner) - S<br/>
-[Babatunde Koiki (Intermediate) - B](https://twitter.com/bkoiki950)<br/>
+[Babatunde Koiki](https://twitter.com/bkoiki950) (Intermediate) - B<br/>
 Osemudiamen Itua (Intermediate) - I<br/>
 Fortune Adekogbe (Intermediate) - F<br/>
+[Agunbiade Sodiq](https://twitter.com/sodiq_dev) (Beginner) - S
+Babatunde Koiki (Intermediate) - B
+Osemudiamen Itua (Intermediate) - I
+Fortune Adekogbe (Intermediate) - F
 Oluwajoba Fashogbon - O
 (Intermediate)<br/>
 Philip Owoeye(intermediate) - P<br/>
