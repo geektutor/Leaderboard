@@ -1,7 +1,3 @@
-So list.
-
-Assign your full name to where you will be grading for. Let me see. Put beginner in front if you are marking beginner and Intermediate if you are marking intermediate
-
 #### Python
 Agunbiade Sodiq  (Beginner) - S
 Babatunde Koiki (Intermediate) - B
