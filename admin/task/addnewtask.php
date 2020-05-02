@@ -105,7 +105,7 @@ if(isset( $_SESSION['login_user'])){
                                 <form method="POST">
                                     <div class="form-group">
                                     <label for="point">Day</label> <br>
-                                    <input class="form-control" type="text" name="day" readonly="" value="Day <?=$days; ?>">
+                                    <input class="form-control" type="text" name="day" readonly="" value="<?=$days; ?>">
                                     <br><label for="point">Track</label> <br>
                                     <select class="form-control" name="track">
                                         <option value="frontend">Frontend</option>
