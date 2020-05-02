@@ -3,11 +3,7 @@ require('../config/connect.php');
 require('../config/session.php');
 
 if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
-    if (isset($_POST['submit'])) {
-        $track = $_POST['track'];
-        header("location: submissions.php?track=$track");
-    }
-
+    $track = $_GET['track'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -63,26 +59,64 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                     <div class="container-fluid">
                         <h1 class="mt-4">Dashboard</h1>
                         <div class="card mb-4">
-                            <div class="card-header"><i class="fas fa-table mr-1"></i>Select the track to view</div>
+                            <div class="card-header"><i class="fas fa-table mr-1"></i>Submissions</div>
                             <div class="card-body">
-                            
-                                <form method="POST">
-                                    <div class="form-group">
-                                        <label for="point">Track</label> <br>
-                                        <select class="form-control" name="track">
-                                            <option value="frontend">Frontend</option>
-                                            <option value="backend">Backend</option>
-                                            <option value="mobile">Mobile</option>
-                                            <option value="python">Python</option>
-                                            <option value="ui">UIUX</option>
-                                        </select>
-                                        <small id="emailHelp" class="form-text text-muted">Choose level</small>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary" name="submit">Submit</button>
-                                </form>
-                    
+                                <?php
+                                    $current = date('Y-m-d');
+                                    $sql = "SELECT * FROM submissions WHERE track = '$track' ORDER BY task_day DESC";
+                                    $result = mysqli_query($conn, $sql);
+                                    $row = mysqli_fetch_assoc($result);
+                                    $count = mysqli_num_rows($result);
+                                ?>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>S/N</th>
+                                                <th>Url</th>
+                                                <th>Email</th>
+                                                <th>Track</th>
+                                                <th>Submission for Day</th>                                         
+                                                <th>Points</th>
+                                            </tr>
+                                        </thead>
+                                        <tfoot>
+                                            <tr>
+                                                <th>S/N</th>
+                                                <th>Url</th>
+                                                <th>Email</th>
+                                                <th>Track</th>
+                                                <th>Submission for Day</th>                                         
+                                                <th>Points</th>
+                                            </tr>
+                                        </tfoot>
+                                        <tbody>
+                                        <?php
+                                            if($count > 0){
+                                                $j =1;
+                                                while($row = mysqli_fetch_assoc($result)) {
+                                                    // echo $row['url'];
+                                            ?>
+                                            <tr>
+                                                <td><?php echo $j?></td>
+                                                <td><a href="view.php?id=<?php echo $row['id'];?>"><?php echo $row['url'];?></a></td>
+                                                <td><?php echo $row['user'];?></td>
+                                                <td><?php echo $row['track'];?></td>
+                                                <td><?php echo $row['task_day'];?></td>
+                                                <td><?php echo $row['points'];?></td>
+                                            </tr>
+                                            <?php 
+                                                $j++;
+                                                }}else{
+                                                    echo `<p>No Submissions yet</p>`;
+                                                }
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
+                       
                     </div>
                 </main>
                 <footer class="py-4 bg-light mt-auto">
