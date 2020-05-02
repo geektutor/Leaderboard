@@ -29,7 +29,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
   <div class="profile flx col">
     <img src="../../assets/img/profile.png">
     <ul class="options">
-      <li id="logout"><a href="../logout.php">Logout</a></li>
+      <li id="logout"><a href="../../logout.php">Logout</a></li>
     </ul>
   </div>
  </header>
