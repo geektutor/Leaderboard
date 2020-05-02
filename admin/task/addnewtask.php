@@ -85,8 +85,7 @@ if(isset( $_SESSION['login_user'])){
                                     $day = $_POST['day'];
                                     $track = $_POST['track'];
                                     $level = $_POST['level'];
-                                    $task = mysqli_real_escape_string($conn, $_POST['task']);
-                                    
+                                    $task = mysqli_real_escape_string($conn, $_POST['task']);    
                                     $sql = "INSERT INTO task(task_day, track, task, level) VALUES('$day', '$track', '$task', '$level')";
                                     $result = mysqli_query($conn, $sql);
                                     // var_dump($sql); die;
