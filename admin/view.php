@@ -50,12 +50,12 @@ if(isset( $_SESSION['login_user'])){
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
-                            <div class="sb-sidenav-menu-heading">Core</div>
                             <a class="nav-link" href="index.php"
                                 ><div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
-                            <a class='nav-link' href='waiting_room.php'>Waiting Room</a> 
+                            <a class='nav-link' href='/task'>View Tasks</a>
+                            <a class='nav-link' href='/task/addnewtask.php'>Add New Task</a>
                             <a class='nav-link' href='superadmin.php'>Super Admin</a>
                             <a class='nav-link' href='https://30daysofcode.xyz/user'>Normal User Dashboard</a>
                         </div>

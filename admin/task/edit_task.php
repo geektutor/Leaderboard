@@ -16,7 +16,7 @@ if(isset( $_SESSION['login_user'])){
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Dashboard - 30 Days Of Code</title>
+        <title>Edit Task - 30 Days Of Code</title>
         <link href="../../error/styles.css" rel="stylesheet" />
         <link rel="shortcut icon" href="././assets/img/favicon.png" type="image/x-icon">
         <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
@@ -56,8 +56,9 @@ if(isset( $_SESSION['login_user'])){
                                 ><div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
-                            <a class='nav-link' href='waiting_room.php'>Waiting Room</a> 
-                            <a class='nav-link' href='superadmin.php'>Super Admin</a>
+                            <a class='nav-link' href='index.php'>View Tasks</a>
+                            <a class='nav-link' href='addnewtask.php'>Add New Task</a>
+                            <a class='nav-link' href='../superadmin.php'>Super Admin</a>
                             <a class='nav-link' href='https://30daysofcode.xyz/user'>Normal User Dashboard</a>
                         </div>
                     </div>
@@ -70,7 +71,7 @@ if(isset( $_SESSION['login_user'])){
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
-                        <h1 class="mt-4">Dashboard</h1>
+                        <h1 class="mt-4">Edit Task</h1>
                         <div class="card mb-4">
                             <div class="card-header"><i class="fas fa-table mr-1"></i>View A Submission</div>
                             <div class="card-body">
@@ -113,7 +114,7 @@ if(isset( $_SESSION['login_user'])){
                                     <small id="emailHelp" class="form-text text-muted">Choose the track</small>
 
                                     <br><label for="point">Task</label> <br>
-                                    <textarea name="task" class="form-control" id="feedback" placeholder="Enter the task" ><?php echo $row['task'];?></textarea>
+                                    <textarea name="task" class="form-control" id="feedback" placeholder="Enter the task" rows="7"><?php echo $row['task'];?></textarea>
                                     <small id="emailHelp" class="form-text text-muted">Enter the task</small>
                                     </div>
                                     <button type="submit" class="btn btn-primary" name="submit">Submit</button>

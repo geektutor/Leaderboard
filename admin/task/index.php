@@ -13,7 +13,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Dashboard - 30 Days Of Code</title>
+        <title>Task - 30 Days Of Code</title>
         <link href="../../error/styles.css" rel="stylesheet" />
         <link rel="shortcut icon" href="././assets/img/favicon.png" type="image/x-icon">
         <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
@@ -43,10 +43,11 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                                 ><div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
-                            <a class='nav-link' href='../waiting_room.php'>Waiting Room</a> 
-                            <a class='nav-link' href='../cert.php'>Certificate</a>
+                            <a class='nav-link' href='#'>View Tasks</a>
+                            <a class='nav-link' href='addnewtask.php'>Add New Task</a>
                             <a class='nav-link' href='../superadmin.php'>Super Admin</a>
-                        </div>
+                            <a class='nav-link' href='https://30daysofcode.xyz/user'>Normal User Dashboard</a>
+                        </div> 
                     </div>
                     <div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>
@@ -57,7 +58,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
-                        <h1 class="mt-4">Dashboard</h1>
+                        <h1 class="mt-4">Tasks</h1>
                       
                         <div class="card mb-4">
                             <div class="card-header"><i class="fas fa-table mr-1"></i>Submissions</div>
