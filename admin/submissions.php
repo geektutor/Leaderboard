@@ -63,7 +63,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                             <div class="card-body">
                                 <?php
                                     $current = date('Y-m-d');
-                                    $sql = "SELECT * FROM submissions WHERE track = '$track' ORDER BY task_day DESC";
+                                    $sql = "SELECT * FROM submissions WHERE track = '$track' ORDER BY level DESC";
                                     $result = mysqli_query($conn, $sql);
                                     $row = mysqli_fetch_assoc($result);
                                     $count = mysqli_num_rows($result);
@@ -75,7 +75,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                                                 <th>S/N</th>
                                                 <th>Url</th>
                                                 <th>Email</th>
-                                                <th>Track</th>
+                                                <th>Level</th>
                                                 <th>Submission for Day</th>                                         
                                                 <th>Points</th>
                                             </tr>
@@ -85,7 +85,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                                                 <th>S/N</th>
                                                 <th>Url</th>
                                                 <th>Email</th>
-                                                <th>Track</th>
+                                                <th>Level</th>
                                                 <th>Submission for Day</th>                                         
                                                 <th>Points</th>
                                             </tr>
@@ -101,7 +101,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                                                 <td><?php echo $j?></td>
                                                 <td><a href="view.php?id=<?php echo $row['id'];?>"><?php echo $row['url'];?></a></td>
                                                 <td><?php echo $row['user'];?></td>
-                                                <td><?php echo $row['track'];?></td>
+                                                <td><?php echo $row['level'];?></td>
                                                 <td><?php echo $row['task_day'];?></td>
                                                 <td><?php echo $row['points'];?></td>
                                             </tr>
