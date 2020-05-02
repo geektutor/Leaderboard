@@ -1,9 +1,9 @@
 <?php
-require('../config/connect.php');
-require('../config/session.php');
+require('../../config/connect.php');
+require('../../config/session.php');
 
 if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
-    $track = $_GET['track'];
+    $track = $_SESSION['track'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -80,25 +80,27 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
    </nav>
    <div class="mainWrapper flx col" id="mainWrp">
     <main>
-      <div class="flx row"><h1>Submissions</h1> </div>
+    <div class="flx row"><h1>Tasks</h1> <a id="newBtn" href="addnewtask.php">Add new</a> </div>
       <div class="mainCard">
       <?php
         $current = date('Y-m-d');
-        $sql = "SELECT * FROM submissions WHERE track = '$track' AND points = 0 ORDER BY level DESC";
+        $sql = "SELECT * FROM task ORDER BY task_day";
         $result = mysqli_query($conn, $sql);
         $row = mysqli_fetch_assoc($result);
         $count = mysqli_num_rows($result);
-        ?>
+        $day = $row['task_day'];
+
+    ?>
        <div class="table-responsive">
         <table class="table" style="text-align: left;">
          <thead>
           <tr>
             <th scope="col">S/N</th>
-            <th scope="col">Url</th>
-            <th scope="col">Email</th>
+            <th scope="col">Day</th>
+            <th scope="col">Track</th>
             <th scope="col">Level</th>
-            <th scope="col">Submission for Day</th>
-            <th scope="col">Points</th>
+            <th scope="col">Task</th>
+            <th scope="col">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -109,16 +111,16 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
           ?>
           <tr>
               <td data-label="S/N"><?php echo $j;?></td>
-              <td data-label="URL"><a href="view.php?id=<?php echo $row['id'];?>"><?php echo $row['url'];?></a></td>
-              <td data-label="Email"><?php echo $row['user'];?></td>
-              <td data-label="Level"><?php echo $row['level'];?></td>
-              <td data-label="Submission For Day"><?php echo $row['task_day'];?></td>
-              <td data-label="Points"><?php echo $row['points'];?></td>
+              <td data-label="Day"><?= $row['task_day']; ?></td>
+              <td data-label="Track"><?= $row['track'];?></td>
+              <td data-label="Level"><?= $row['level'];?></td>
+              <td data-label="Task"><?= $row['task'];?></td>
+              <td data-label="Action"><a href="edit_task.php?id=<?=$row['id']?>">Edit</a></td>
           </tr>
           <?php 
               $j++;
               }}else{
-                  echo `<p>No Submissions yet</p>`;
+                  echo `<p>No tasks yet</p>`;
               }
           ?>
         </tbody>

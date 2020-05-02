@@ -3,8 +3,7 @@ require('../config/connect.php');
 require('../config/session.php');
 $msg = '';
 if (isset($_SESSION['isSuperAdmin']) && $_SESSION['isSuperAdmin'] == true) {
-    $track = $_SESSION['track'];
-    $university = $_SESSION['university'];         
+    $track = $_SESSION['track'];     
 ?>
 <!DOCTYPE html>
 <html lang="en">

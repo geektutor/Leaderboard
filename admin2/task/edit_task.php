@@ -1,9 +1,12 @@
 <?php
-require('../config/connect.php');
-require('../config/session.php');
-
-if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
-    $track = $_GET['track'];
+require('../../config/connect.php');
+require('../../config/session.php');
+if(isset( $_SESSION['login_user'])){
+    $id = $_GET['id'];
+    $sql = "SELECT * FROM task WHERE id = '$id' LIMIT 1";
+    $result = mysqli_query($conn, $sql);
+    $count = mysqli_num_rows($result);
+    $row = mysqli_fetch_assoc($result);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,6 +19,12 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
  <link rel="stylesheet" href="../assets/css/responsive.css">
  <link rel="shortcut icon" href="./../assets/img/favicon.png" type="image/x-icon">
  <title>Dashboard - 30 Days Of Code</title>
+ <script src="https://cdn.tiny.cloud/1/f81u5amtw2l096zut1bx25hb08gty3ixwrax24i87te4eydg/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+        <script>
+      tinymce.init({
+        selector: '#mytextarea'
+      });
+    </script>
 </head>
 <body class="flx col">
  <header class="flx row">
@@ -80,50 +89,60 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
    </nav>
    <div class="mainWrapper flx col" id="mainWrp">
     <main>
-      <div class="flx row"><h1>Submissions</h1> </div>
+      <div class="flx row"><h1>Edit Task</h1> </div>
       <div class="mainCard">
-      <?php
-        $current = date('Y-m-d');
-        $sql = "SELECT * FROM submissions WHERE track = '$track' AND points = 0 ORDER BY level DESC";
+    <?php
+    $error = "";
+    if (isset($_POST['submit'])) {
+        $track = $_POST['track'];
+        $level = $_POST['level'];
+        $task = mysqli_real_escape_string($conn, $_POST['task']);
+        
+        $sql = "UPDATE task SET `track` = '$track', `task` = '$task', `level` = '$level' WHERE id = '$id'";
         $result = mysqli_query($conn, $sql);
-        $row = mysqli_fetch_assoc($result);
-        $count = mysqli_num_rows($result);
+        if ($conn->query($sql)) {
+            $error = "Updated successfully";
+        }
+    }
+    ?>
+    <?php if($error !== ''){ ?>
+        <div class="notice">
+            <?= $error; ?>
+        </div>
+    <?php }?>
+      <form method="POST">
+        <div class="field flx col">
+            <label for="url">URL</label>
+            <p style="font-size: 12px; margin-top: 8px; line-height: 110%; color: #646464;"><a href="<?php echo $row['url'];?>" target="_blank"><?php echo $row['url'];?></a></p>
+          </div>
+          <div class="field flx col">
+            <label for="level">Level</label>
+            <select name="level" value="">
+              <option value="Beginner">Beginner</option>
+              <option value="Intermediate">Intermediate</option>
+            </select>
+          </div>
+          <div class="field flx col">
+            <label for="level">Track</label>
+            <select name="track" value="">
+              <option value="backend">Backend</option>
+              <option value="frontend">Frontend</option>
+              <option value="mobile">Mobile</option>
+              <option value="python">Python</option>
+              <option value="ui">UI/UX</option>
+            </select>
+          </div>
+          <div class="field flx col">
+          <label for="feedbaack">Task</label>
+            <textarea name="task" id="mytextarea" placeholder="Enter the task" rows="7"><?php echo $row['task'];?></textarea>
+          </div>
+          <button id="submitTask" type="submit" name="submit">Submit task</button>
+        </form> 
+        <?php 
+            }}else{
+                echo `<p>Nothing yet</p>`;
+            }
         ?>
-       <div class="table-responsive">
-        <table class="table" style="text-align: left;">
-         <thead>
-          <tr>
-            <th scope="col">S/N</th>
-            <th scope="col">Url</th>
-            <th scope="col">Email</th>
-            <th scope="col">Level</th>
-            <th scope="col">Submission for Day</th>
-            <th scope="col">Points</th>
-            </tr>
-        </thead>
-        <tbody>
-          <?php          
-          if($count > 0){
-              $j =1;
-              while($row = mysqli_fetch_assoc($result)) {
-          ?>
-          <tr>
-              <td data-label="S/N"><?php echo $j;?></td>
-              <td data-label="URL"><a href="view.php?id=<?php echo $row['id'];?>"><?php echo $row['url'];?></a></td>
-              <td data-label="Email"><?php echo $row['user'];?></td>
-              <td data-label="Level"><?php echo $row['level'];?></td>
-              <td data-label="Submission For Day"><?php echo $row['task_day'];?></td>
-              <td data-label="Points"><?php echo $row['points'];?></td>
-          </tr>
-          <?php 
-              $j++;
-              }}else{
-                  echo `<p>No Submissions yet</p>`;
-              }
-          ?>
-        </tbody>
-        </table>
-      </div>
       </div >
      </main>
      <footer class="flx row"><span class="copyw">Copyright &copy; 30DaysOfCode 2020</span> <div><a href="">Privacy Policy</a><a href="">Terms &amp; Conditions</a></div></footer>
