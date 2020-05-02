@@ -18,7 +18,7 @@ if(isset( $_SESSION['login_user'])){
         <meta name="author" content="" />
         <title>Edit Task - 30 Days Of Code</title>
         <link href="../../error/styles.css" rel="stylesheet" />
-        <link rel="shortcut icon" href="././assets/img/favicon.png" type="image/x-icon">
+        <link rel="shortcut icon" href="../assets/img/favicon.png" type="image/x-icon">
         <script src="https://cdn.tiny.cloud/1/f81u5amtw2l096zut1bx25hb08gty3ixwrax24i87te4eydg/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
         <script>
       tinymce.init({
