@@ -8,5 +8,5 @@
       if ($_SERVER['HOST_NAME'] == 'localhost' || $_SERVER['HOST_NAME'] == 'Localhost') {
         header("location:".$_SERVER['HOST_NAME']."leaderboard/login.php"); 
       }
-      header("location:".$_SERVER['HOST_NAME']."/login.php"); 
+      header("location:".$_SERVER['HOST_NAME']."/sign_in.php"); 
       } ?>
