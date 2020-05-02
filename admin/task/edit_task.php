@@ -19,9 +19,13 @@ if(isset( $_SESSION['login_user'])){
         <title>Edit Task - 30 Days Of Code</title>
         <link href="../../error/styles.css" rel="stylesheet" />
         <link rel="shortcut icon" href="././assets/img/favicon.png" type="image/x-icon">
-        <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
-    </head>
+        <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+        <script>
+      tinymce.init({
+        selector: '#mytextarea'
+      });
+    </script>
+      </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <a class="navbar-brand" href="index.html">30DaysOfCode.xyz</a><button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button
@@ -114,7 +118,7 @@ if(isset( $_SESSION['login_user'])){
                                     <small id="emailHelp" class="form-text text-muted">Choose the track</small>
 
                                     <br><label for="point">Task</label> <br>
-                                    <textarea name="task" class="form-control" id="feedback" placeholder="Enter the task" rows="7"><?php echo $row['task'];?></textarea>
+                                    <textarea name="task" class="form-control" id="mytextarea" placeholder="Enter the task" rows="7"><?php echo $row['task'];?></textarea>
                                     <small id="emailHelp" class="form-text text-muted">Enter the task</small>
                                     </div>
                                     <button type="submit" class="btn btn-primary" name="submit">Submit</button>

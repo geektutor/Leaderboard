@@ -187,6 +187,7 @@ if(isset($_POST['submit'])){
           </div>
           <button id="taskDownload" type="submit" name="submit">Check Task</button>
         </form>
+        <p style="font-size: 12px; margin-top: 8px; line-height: 110%; color: #646464;"><a href="https://github.com/geektutor/Leaderboard/blob/master/submission_guide.md">What is an accepted submission?</a></p>
       </div>
      </main>
      <footer class="flx row"><span class="copyw">Copyright &copy; 30DaysOfCode 2020</span> <div><a href="">Privacy Policy</a><a href="">Terms &amp; Conditions</a></div></footer>
