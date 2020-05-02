@@ -1,5 +1,5 @@
 #### Python
-Agunbiade Sodiq  (Beginner) - S
+[Agunbiade Sodiq  (Beginner) - S](https://twitter.com/sodiq_dev)
 Babatunde Koiki (Intermediate) - B
 Osemudiamen Itua (Intermediate) - I
 Fortune Adekogbe (Intermediate) - F
