@@ -131,7 +131,7 @@ if(isset( $_SESSION['login_user'])){
           </div>
           <div class="field flx col">
             <label for="comment">Comments?</label>
-            <textarea name="comment" type="text" disabled placeholder="Any comments?" rows="5" value="<?php echo $row['comments'];?>"></textarea>
+            <textarea name="comment" type="text" disabled rows="5" value="<?php echo $row['comments'];?>"></textarea>
           </div>
           <div class="field flx col">
             <label for="point">Point</label>

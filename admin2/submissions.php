@@ -84,7 +84,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
       <div class="mainCard">
       <?php
         $current = date('Y-m-d');
-        $sql = "SELECT * FROM submissions WHERE track = '$track' ORDER BY level DESC";
+        $sql = "SELECT * FROM submissions WHERE track = '$track' AND score = 0 ORDER BY level DESC";
         $result = mysqli_query($conn, $sql);
         $row = mysqli_fetch_assoc($result);
         $count = mysqli_num_rows($result);

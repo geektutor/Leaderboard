@@ -95,7 +95,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
               <option value="ui">UI/UX</option>
             </select>
           </div>
-          <button id="submitTask" type="submit" name="submit">Submit task</button>
+          <button id="submitTask" type="submit" name="submit">Submit</button>
         </form> 
      
       </div >
