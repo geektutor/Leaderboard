@@ -65,7 +65,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                             <div class="card-body">
                                 <?php
                                     $current = date('Y-m-d');
-                                    $sql = "SELECT * FROM task";
+                                    $sql = "SELECT * FROM task ORDER BY task_day";
                                     $result = mysqli_query($conn, $sql);
                                     $row = mysqli_fetch_assoc($result);
                                     $count = mysqli_num_rows($result);
