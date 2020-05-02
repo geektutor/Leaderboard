@@ -2,7 +2,7 @@
 require('../config/connect.php');
 session_start();
 if (!isset($_SESSION['login_user']) || empty($_SESSION['login_user'])) {
-    
+  
 ?>
  <script>
     document.write('You must be logged in first, redirecting to login page ...');
@@ -12,13 +12,29 @@ if (!isset($_SESSION['login_user']) || empty($_SESSION['login_user'])) {
  </script>
 <?php
 }else{
-    $email = $_GET['user'];
-    $day = $_GET['day'];
+  $id = $_GET['id'];
+  $sql = "SELECT * FROM submissions WHERE id = '$id'";
+  $res = mysqli_query($conn, $sql);
+  $count = mysqli_num_rows($res);
+  $rw = mysqli_fetch_assoc($res);
+
+  $day = strtotime("2020-04-01");
+  $currdates = date("Y-m-d");
+  $currdate = strtotime($currdates);
+  $diff = abs($currdate - $day);
+  $years = floor($diff / (365*60*60*24));
+  $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
+  $days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24)); 
+  $days +=1;
+
     if (isset($_POST['submit'])) {
         global $conn;
         $url = mysqli_real_escape_string($conn, $_POST['url']);
+        $level = $_POST['level'];
+        $track = $_POST['track'];
         $comment =  mysqli_real_escape_string($conn, $_POST['comment']);
-        $edit_sql = "UPDATE submissions SET `url`='$url', comments = '$comment' WHERE user = '$email' AND task_day = '$day'";
+        $edit_sql = "UPDATE submissions SET `track` = '$track', `url`='$url', `comments` = '$comment', `level` = '$level' WHERE id = '$id'";
+        // var_dump($edit_sql); die;
         $result = mysqli_query($conn,$edit_sql);
         if ($result) {
             header('location: index.php?editSubmissionReport=success');
@@ -152,29 +168,40 @@ if (!isset($_SESSION['login_user']) || empty($_SESSION['login_user'])) {
    </nav>
    <div class="mainWrapper flx col" id="mainWrp">
     <main>
-      <div class="flx row"><h1>Submit a task</h1></div>
+      <div class="flx row"><h1>Submit a task for Day <?= $days; ?></h1></div>
       <div class="mainCard">
         <form method="POST">
           <div class="field flx col">
             <label for="url">URL</label>
-            <input type="url" name="url" placeholder="Enter URL" required>
+            <input type="url" name="url" placeholder="Enter URL" required value="<?=$rw['url'];?>">
             <p style="font-size: 12px; margin-top: 8px; line-height: 110%; color: #646464;">Python - Repl.it Url, Backend - Github repo Url, Frontend - Github repo Url(put link to your Github Pages in the readme), UI/UX - Figma/Adobe XD Url</p>
           </div>
           <div class="field flx col">
-            <label for="day">Day</label>
-            <select name="task_day" value="">
-                <option value=""><?php echo $day;?></option>
+            <label for="level">Level</label>
+            <select name="level" value="">
+              <option value="Beginner" <?php echo ($rw['level'] == 'beginner')? 'selected' : ''; ?>>Beginner</option>
+              <option value="Intermediate" <?php echo ($rw['level'] == 'intermediate')? 'selected' : ''; ?>>Intermediate</option>
             </select>
           </div>
           <div class="field flx col">
+            <label for="track">Track</label>
+            <select class="form-control" name="track">
+              <option value="frontend" <?php echo ($rw['track'] == 'frontEnd')? 'selected' : ''; ?>>Frontend</option>
+              <option value="backend" <?php echo ($rw['track'] == 'backend')? 'selected' : ''; ?>>Backend</option>
+              <option value="mobile" <?php echo ($rw['track'] == 'mobile')? 'selected' : ''; ?>>Mobile</option>
+              <option value="python" <?php echo ($rw['track'] == 'python')? 'selected' : ''; ?>>Python</option>
+              <option value="ui" <?php echo ($rw['track'] == 'ui')? 'selected' : ''; ?>>UIUX</option>
+          </select>
+          </div>
+          <div class="field flx col">
             <label for="comment">Comments?</label>
-            <textarea name="comment" type="text" placeholder="Any comments?" rows="5"></textarea>
+            <textarea name="comment" type="text" placeholder="Any comments?" rows="5"><?=$rw['comments']; ?></textarea>
           </div>
           <button id="submitTask" type="submit" name="submit">Submit task</button>
         </form>
       </div >
      </main>
-     <footer class="flx row"><span class="copyw">Copyright &copy; 30DaysOfCode 2020</span> <div><a href="">Privacy Policy</a><a href="">Terms & Conditions</a></div></footer> 
+     <footer class="flx row"><span class="copyw">Copyright &copy; 30DaysOfCode 2020</span> <div><a href="">Privacy Policy</a><a href="">Terms &amp; Conditions</a></div></footer> 
    </div>
  </div>
  <script src="./assets/js/app.js"></script>
