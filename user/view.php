@@ -170,8 +170,8 @@ if(isset($_POST['submit'])){
           <div class="field flx col">
             <label for="day">Level</label>
                 <select name="level" value="">
-                  <option value="beginner">Beginner</option>
-                  <option value="intermediate">intermediate</option>
+                  <option value="Beginner">Beginner</option>
+                  <option value="Intermediate">intermediate</option>
                 </select>
           </div>
           <div class="field flx col">
