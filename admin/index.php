@@ -42,7 +42,6 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
-                            <div class="sb-sidenav-menu-heading">Core</div>
                             <a class="nav-link" href="index.php"
                                 ><div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
@@ -50,6 +49,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                             <a class='nav-link' href='waiting_room.php'>Waiting Room</a> 
                             <a class='nav-link' href='cert.php'>Certificate</a>
                             <a class='nav-link' href='superadmin.php'>Super Admin</a>
+                            <a class='nav-link' href='https://30daysofcode.xyz/user'>Normal User Dashboard</a>
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">

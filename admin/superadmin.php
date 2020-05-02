@@ -56,6 +56,7 @@ if (isset($_SESSION['isSuperAdmin']) && $_SESSION['isSuperAdmin'] == true) {
                             </a>
                             <a class='nav-link' href='waiting_room.php'>Waiting Room</a> 
                             <a class='nav-link' href='superadmin.php'>Super Admin</a>
+                            <a class='nav-link' href='https://30daysofcode.xyz/user'>Normal User Dashboard</a>
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">
@@ -72,9 +73,7 @@ if (isset($_SESSION['isSuperAdmin']) && $_SESSION['isSuperAdmin'] == true) {
                             <div class="card-header"><i class="fas fa-table mr-1"></i>Superadmin</div>
                             <div class="card-body">
                             <?php
-                            $sql = "SELECT s.*, u.university FROM submissions AS s
-                                    LEFT JOIN user AS u ON s.user = u.email  
-                                    AND u.university = '$university' ORDER BY s.points, s.track";
+                            $sql = "SELECT * FROM submissions ORDER BY points DESC";
                             $result = mysqli_query($conn, $sql);
                             $count = mysqli_num_rows($result);
                             ?>
@@ -89,7 +88,6 @@ if (isset($_SESSION['isSuperAdmin']) && $_SESSION['isSuperAdmin'] == true) {
                                         <th>Submission for Day</th>
                                         <th>Date</th>                                            
                                         <th>Points</th>
-                                        <th>University</th>
                                     </tr>
                                 </thead>
                                 <tfoot>
@@ -101,7 +99,6 @@ if (isset($_SESSION['isSuperAdmin']) && $_SESSION['isSuperAdmin'] == true) {
                                         <th>Submission for Day</th>
                                         <th>Date</th>                                            
                                         <th>Points</th>
-                                        <th>University</th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
@@ -119,7 +116,6 @@ if (isset($_SESSION['isSuperAdmin']) && $_SESSION['isSuperAdmin'] == true) {
                                         <td><?php echo $row['task_day'];?></td>
                                         <td><?php echo $row['sub_date'];?></td>
                                         <td><?php echo $row['points'];?></td>
-                                        <td><?php echo $row['university'];?></td>
                                     </tr>
                                     <?php 
                                         $j++;

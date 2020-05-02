@@ -58,6 +58,7 @@ if(isset( $_SESSION['login_user'])){
                             </a>
                             <a class='nav-link' href='waiting_room.php'>Waiting Room</a> 
                             <a class='nav-link' href='superadmin.php'>Super Admin</a>
+                            <a class='nav-link' href='https://30daysofcode.xyz/user'>Normal User Dashboard</a>
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">
