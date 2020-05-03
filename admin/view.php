@@ -6,6 +6,7 @@ if(isset( $_SESSION['login_user'])){
     $sql = "SELECT * FROM submissions WHERE id = '$id'";
     $result = mysqli_query($conn, $sql);
     $count = mysqli_num_rows($result);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -87,43 +88,55 @@ if(isset( $_SESSION['login_user'])){
       <?php
     $error = "";
     if($count > 0){
-        while($row = $result->fetch_assoc()) {
-
-            if (isset($_POST['submit'])) {
-                $u = $_POST['user'];
-                $point = $_POST['point'];
-                $feedback = mysqli_real_escape_string($conn, $_POST['feedback']);
-                if ($feedback == '') {
-                    $feedback = "Marked";
-                }
-            $sql = "UPDATE submissions SET points = '$point', feedback = '$feedback' WHERE id = '$id'";
-            // var_dump($sql); die;
-            $result = mysqli_query($conn, $sql);
-            if($result){
-                $sql = "SELECT score FROM leaderboard WHERE email = '$u'";
-                $result = mysqli_query($conn, $sql);
-                $count = mysqli_num_rows($result);
-                $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-                $newPoint = $point + intval($row['score']);
-                
-                $sql = "UPDATE leaderboard SET score = '$newPoint' WHERE email = '$u'";
-                $result = mysqli_query($conn, $sql);
-                if($result){
-                    $error = "Submitted Successfully";
-                    header('refresh: 2; url=./index.php?message=success'); 
-                }else{
-                    $error = "Could not update user";
-                }
-            } else {
-                $error = "Could not update sub";
-            }
+while($row = $result->fetch_assoc()) {
+    if (isset($_POST['submit'])) {
+        $u = $_POST['user'];
+        $point = $_POST['point'];
+        $track = $_POST['track'];
+        $level = $_POST['level'];
+        $feedback = mysqli_real_escape_string($conn, $_POST['feedback']);
+        if ($feedback == '') {
+            $feedback = "Marked";
         }
-    ?>
-        <?php if($error !== ''){ ?>
-            <div class="notice">
-                <?php echo $error?>
-            </div>
-        <?php }?>
+    $sql = "UPDATE submissions SET points = '$point', feedback = '$feedback' WHERE id = '$id'";
+    $result = mysqli_query($conn, $sql);
+    if($result){
+        $us = $row['user'];
+        $sql_check = "SELECT * FROM leaderboard WHERE email = '$u' AND track = '$track' AND level = '$level'";
+        $result_check = mysqli_query($conn, $sql_check);
+        $count_check = mysqli_num_rows($result_check);
+        $row_check = mysqli_fetch_array($result_check,MYSQLI_ASSOC);
+        $total = intval($point) + intval($row_check['score']);
+        $LId = $row_check['id'];
+        if ($count_check > 0) {
+            $sql_up = "UPDATE leaderboard SET score = '$total' WHERE id = '$LId' ";
+            $result_up = mysqli_query($conn, $sql_up);
+            // $count_up = mysqli_num_rows($result_up);
+        }else{
+            $sql_nick = "SELECT * FROM user WHERE email = '$us'";
+            $result_nick = mysqli_query($conn, $sql_nick);
+            $row_nick = mysqli_fetch_array($result_nick,MYSQLI_ASSOC);
+            $nickname = $row_nick['nickname'];
+            $sql_up = "INSERT INTO leaderboard(nickname, email, track, level, score) VALUES('$nickname', '$u', '$track', '$level', '$point')";
+            $result_up = mysqli_query($conn, $sql_up);
+            $count_up = mysqli_num_rows($result_up);
+        }
+        if($result_up){
+            $error = "Submitted Successfully";
+            header('refresh: 2; url=./submissions.php?track='.$track); 
+        }else{
+           $error = "Could not update user";
+        }
+    } else {
+        $error = "Could not update sub";
+    }
+}
+?>
+<?php if($error !== ''){ ?>
+    <div class="notice">
+        <?php echo $error?>
+    </div>
+<?php }?>
       <form method="POST">
         <div class="field flx col">
             <label for="url">URL</label>

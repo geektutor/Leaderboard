@@ -12,7 +12,7 @@ if(isset( $_SESSION['login_user'])){
     $days +=1;
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en">          
 <head>
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -94,22 +94,22 @@ if(isset( $_SESSION['login_user'])){
     <main>
       <div class="flx row"><h1>Add New Task</h1> </div>
       <div class="mainCard">
-      <?php
-        $error = "";
-        if (isset($_POST['submit'])) {
-            $day = $_POST['day'];
-            $track = $_POST['track'];
-            $level = $_POST['level'];
-            $task = mysqli_real_escape_string($conn, $_POST['task']);    
-            $sql = "INSERT INTO task(task_day, track, task, level) VALUES('$day', '$track', '$task', '$level')";
-            $result = mysqli_query($conn, $sql);
-            if ($conn->query($sql)) {
-                $error = "Task uploaded successfully";
-            }else{
-                $error = "Echo";
-            }
-        }
-        ?>
+        <?php
+      $error = "";
+      if (isset($_POST['submit'])) {
+          $day = $_POST['day'];
+          $track = $_POST['track'];
+          $level = $_POST['level'];
+          $task = mysqli_real_escape_string($conn, $_POST['task']);
+          $sql = "INSERT INTO task(task_day, track, task, level) VALUES('$day', '$track', '$task', '$level')";
+          $result = mysqli_query($conn, $sql);
+          if ($result) {
+              $error = "Task uploaded successfully";
+          }else{
+              echo "Task has not uploaded";
+          }
+      }
+      ?>
     <?php if($error !== ''){ ?>
         <div class="notice">
             <?= $error; ?>
@@ -143,8 +143,7 @@ if(isset( $_SESSION['login_user'])){
             <textarea name="task" id="mytextarea" placeholder="Enter the task" rows="7"></textarea>
           </div>
           <button id="submitTask" type="submit" name="submit">Submit task</button>
-        </form> 
-    
+        </form>
       </div >
      </main>
      <footer class="flx row"><span class="copyw">Copyright &copy; 30DaysOfCode 2020</span> <div><a href="">Privacy Policy</a><a href="">Terms &amp; Conditions</a></div></footer>

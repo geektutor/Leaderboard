@@ -36,21 +36,18 @@
                 $_SESSION['isSuperAdmin'] = true;
                 $_SESSION['track'] = $row['track'];
                 $_SESSION['login_user'] = $username;
-                $_SESSION['university'] = $row['university'];
                 header("location: admin/index.php?superadmin=true");
             }elseif ($row['isAdmin'] == 1) {
                 //basic admin priviledges
                 $_SESSION['isAdmin'] = true;
                 $_SESSION['track'] = $row['track'];
                 $_SESSION['login_user'] = $username;
-                $_SESSION['university'] = $row['university'];
                 header("location: admin/index.php");
 
             }elseif ($row['isAdmin'] == 0) {
                 //basic usee priviledges
                 $_SESSION['track'] = $row['track'];
                 $_SESSION['login_user'] = $username;
-                $_SESSION['university'] = $row['university'];
                 $_SESSION['login_user'] = $username;
                 header("location: user/index.php");
             }
