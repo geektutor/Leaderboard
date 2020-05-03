@@ -139,9 +139,9 @@ if(isset( $_SESSION['login_user'])){
       if (isset($_GET['editSubmissionReport']) && !empty($_GET['editSubmissionReport'])) {
           $report = $_GET['editSubmissionReport'];
           if ($report == 'success') {
-              echo "<div id='report' class='alert alert-success'>Submission edit successful</div>";
+              echo "<div id='report' class='notice'>Submission edit successful</div>";
           }elseif ($report == 'failure') {
-          echo "<div id='report' class='alert alert-danger'>Submission edit failed</div>";
+          echo "<div id='report' class='notice'>Submission edit failed</div>";
           }else{
               echo "error";
               session_destroy();
@@ -165,7 +165,6 @@ if(isset( $_SESSION['login_user'])){
             <th scope="col">Url</th>
             <th scope="col">Points</th>
             <th scope="col">Reviews</th>
-            <th scope="col">Actions</th>
             <th scope="col">Level</th>
             <th scope="col">Track</th>
           </tr>
@@ -180,11 +179,10 @@ if(isset( $_SESSION['login_user'])){
               <td data-label="DAY"><?php echo $row['task_day'];?></td>
               <td data-label="URL"><?php echo $row['url'];?></td>
               <td data-label="POINTS"><?php echo $row['points'];?></td>
-              <td data-label="REVIEW"><?php echo $row['feedback'];?></td>
-              <?php if ($row['feedback'] == '' && $row['points'] == 0) {?>
+              <?php if ($row['points'] == 0) {?>
               <td data-label="ACTION"><a href="editsubmission.php?id=<?=$row['id']?>">Edit</a></td>
               <?php }else{?>
-              <td data-label="ACTION">Can't Edit</td>
+              <td data-label="ACTION"><?php echo $row['feedback'];?></td>
               <?php } ?>
               <td data-label="LEVEL"><?php echo $row['level'];?></td>
               <td data-label="TRACK"><?php echo $row['track'];?></td>
