@@ -6,6 +6,7 @@ if(isset( $_SESSION['login_user'])){
     $sql = "SELECT * FROM submissions WHERE id = '$id'";
     $result = mysqli_query($conn, $sql);
     $count = mysqli_num_rows($result);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -80,25 +81,38 @@ if(isset( $_SESSION['login_user'])){
                                     if (isset($_POST['submit'])) {
                                         $u = $_POST['user'];
                                         $point = $_POST['point'];
+                                        $track = $_POST['track'];
+                                        $level = $_POST['level'];
                                         $feedback = mysqli_real_escape_string($conn, $_POST['feedback']);
                                         if ($feedback == '') {
                                             $feedback = "Marked";
                                         }
                                     $sql = "UPDATE submissions SET points = '$point', feedback = '$feedback' WHERE id = '$id'";
-                                    // var_dump($sql); die;
                                     $result = mysqli_query($conn, $sql);
                                     if($result){
-                                        $sql = "SELECT score FROM user WHERE email = '$u'";
-                                        $result = mysqli_query($conn, $sql);
-                                        $count = mysqli_num_rows($result);
-                                        $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-                                        $newPoint = $point + intval($row['score']);
-                                        
-                                        $sql = "UPDATE user SET score = '$newPoint' WHERE email = '$u'";
-                                        $result = mysqli_query($conn, $sql);
-                                        if($result){
+                                        $us = $row['user'];
+                                        $sql_check = "SELECT * FROM leaderboard WHERE email = '$u' AND track = '$track' AND level = '$level'";
+                                        $result_check = mysqli_query($conn, $sql_check);
+                                        $count_check = mysqli_num_rows($result_check);
+                                        $row_check = mysqli_fetch_array($result_check,MYSQLI_ASSOC);
+                                        $total = intval($point) + intval($row_check['score']);
+                                        $LId = $row_check['id'];
+                                        if ($count_check > 0) {
+                                            $sql_up = "UPDATE leaderboard SET score = '$total' WHERE id = '$LId' ";
+                                            $result_up = mysqli_query($conn, $sql_up);
+                                            // $count_up = mysqli_num_rows($result_up);
+                                        }else{
+                                            $sql_nick = "SELECT * FROM user WHERE email = '$us'";
+                                            $result_nick = mysqli_query($conn, $sql_nick);
+                                            $row_nick = mysqli_fetch_array($result_nick,MYSQLI_ASSOC);
+                                            $nickname = $row_nick['nickname'];
+                                            $sql_up = "INSERT INTO leaderboard(nickname, email, track, level, score) VALUES('$nickname', '$u', '$track', '$level', '$point')";
+                                            $result_up = mysqli_query($conn, $sql_up);
+                                            $count_up = mysqli_num_rows($result_up);
+                                        }
+                                        if($result_up){
                                             $error = "Submitted Successfully";
-                                            header('refresh: 2; url=./index.php?message=success'); 
+                                            header('refresh: 2; url=./submissions.php?track='.$track); 
                                         }else{
                                            $error = "Could not update user";
                                         }
@@ -120,6 +134,9 @@ if(isset( $_SESSION['login_user'])){
                                     <br><br><label for="point">Point</label> <br>
                                     <input type="number" name="point" class="form-control" id="point" placeholder="Enter Point for This Submissions" required value="<?php echo $row['points'];?>">
                                     <input type="text" name="user" class="form-control" id="user" value="<?php echo $row['user'];?>" hidden>
+                                    <input type="text" name="level" class="form-control" id="user" value="<?php echo $row['level'];?>" hidden>
+                                    <input type="text" name="track" class="form-control" id="user" value="<?php echo $row['track'];?>" hidden>
+
                                     <small id="emailHelp" class="form-text text-muted">Enter Points for This Submission</small>
                                     <br><br><label for="point">Feedback</label> <br>
                                     <textarea name="feedback" class="form-control" id="feedback" placeholder="Enter Feedback for This Submissions" value="<?php echo $row['feedback'];?>"></textarea>

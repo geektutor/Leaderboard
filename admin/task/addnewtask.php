@@ -87,8 +87,7 @@ if(isset( $_SESSION['login_user'])){
                                     
                                     $sql = "INSERT INTO task(task_day, track, task, level) VALUES('$day', '$track', '$task', '$level')";
                                     $result = mysqli_query($conn, $sql);
-                                    // var_dump($sql); die;
-                                    if ($conn->query($sql)) {
+                                    if ($result) {
                                         $error = "Task uploaded successfully";
                                     }else{
                                         echo "string";
