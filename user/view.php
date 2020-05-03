@@ -26,6 +26,7 @@ if(isset($_POST['submit'])){
         }
     }else{
         $error =  "No task for the selected options";
+        $show = 1;
     }
 }
 ?>
