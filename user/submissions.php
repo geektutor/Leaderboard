@@ -99,7 +99,7 @@ if(isset( $_SESSION['login_user'])){
         </li>
         <li class="flx row">
          <img src="../assets/img/allTsk.png">
-         <a href="view.php">All tasks</a>
+         <a href="index.php">View tasks</a>
         </li>
         <li class="flx row">
          <img src="../assets/img/add.png">
