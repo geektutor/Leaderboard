@@ -4,7 +4,6 @@ require('../config/session.php');
 
 if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
     $track = $_SESSION['track'];
-    $admin = $_SESSION['login_user'];
     $university = $_SESSION['university'];
 ?>
 <!DOCTYPE html>
@@ -17,7 +16,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
         <meta name="author" content="" />
         <title>Dashboard - 30 Days Of Code</title>
         <link href="../error/styles.css" rel="stylesheet" />
-        <link rel="shortcut icon" href="././assets/img/favicon.png" type="image/x-icon">
+        <link rel="shortcut icon" href="../assets/img/favicon.png" type="image/x-icon">
         <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
     </head>
@@ -57,6 +56,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                             </a>
                             <a class='nav-link' href='waiting_room.php'>Waiting Room</a> 
                             <a class='nav-link' href='superadmin.php'>Super Admin</a>
+                            <a class='nav-link' href='https://30daysofcode.xyz/user'>Normal User Dashboard</a>
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">
@@ -111,33 +111,29 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                             </div>
                         </div>-->
                         <div class="card mb-4">
-                            <div class="card-header"><i class="fas fa-table mr-1"></i>Submissions</div>
+                            <div class="card-header"><i class="fas fa-table mr-1"></i>You have to complete Submissions for Previous Days before Others will be unlocked</div>
                             <div class="card-body">
                                 <?php
+                                    $current = date('Y-m-d');
+                                    if ($university == ''){
+                                        $sql = "SELECT task_day FROM submissions WHERE track = '$track' ORDER BY task_day DESC LIMIT 1";
+                                        $result = mysqli_query($conn, $sql);
+                                        $row = mysqli_fetch_assoc($result);
+                                        $day = $row['task_day'];
+                                        // var_dump($day);
 
-                                    $sql = "SELECT s.*, u.university FROM submissions AS s";
 
-                                    if ($admin == 'sodiq.akinjobi@gmail.com_'){
-                                        $sql = "SELECT s.*, u.university FROM submissions AS s LEFT JOIN user AS u ON s.user = u.email  
-                                        WHERE s.points = 0 AND u.university = '$university' ORDER BY s.track, s.task_day";
-                                    $result = mysqli_query($conn, $sql);
-                                    $count = mysqli_num_rows($result);
-                                    }
-                                    
-                                    else if ($university == ''){
-                                        $sql = "SELECT s.*, u.university FROM submissions AS s LEFT JOIN user AS u ON s.user = u.email  
-                                            WHERE s.track = '$track' AND s.points = 0 AND u.university = '$university' ORDER BY s.task_day";
-                                    $result = mysqli_query($conn, $sql);
-                                    $count = mysqli_num_rows($result);
-                                    }
-                                    else {
+                                        $sql = "SELECT s.*, u.university 
+                                            FROM submissions AS s 
+                                            LEFT JOIN user AS u ON s.user = u.email  
+                                            WHERE s.track = '$track' AND s.points = 0 AND u.university = '$university' AND s.task_day < 'Day 028' ORDER BY s.task_day";
+                                    }else{
                                         $sql = "SELECT s.*, u.university FROM submissions AS s
                                             LEFT JOIN user AS u ON s.user = u.email  
-                                            WHERE s.points = 0 AND u.university = '$university'";
+                                            WHERE u.university = '$university' ORDER BY s.points";
+                                    }
                                     $result = mysqli_query($conn, $sql);
                                     $count = mysqli_num_rows($result);
-                                    }
-                                    
                                 ?>
                                 <div class="table-responsive">
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -145,16 +141,20 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                                             <tr>
                                                 <th>S/N</th>
                                                 <th>Url</th>
+                                                <th>Email</th>
                                                 <th>Track</th>
-                                                <th>Submission for Day</th>
+                                                <th>Submission for Day</th>                                         
+                                                <th>Points</th>
                                             </tr>
                                         </thead>
                                         <tfoot>
                                             <tr>
                                                 <th>S/N</th>
                                                 <th>Url</th>
+                                                <th>Email</th>
                                                 <th>Track</th>
-                                                <th>Submission for Day</th>                                            
+                                                <th>Submission for Day</th>                                         
+                                                <th>Points</th>
                                             </tr>
                                         </tfoot>
                                         <tbody>
@@ -167,8 +167,10 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                                             <tr>
                                                 <td><?php echo $j?></td>
                                                 <td><a href="view.php?id=<?php echo $row['id'];?>"><?php echo $row['url'];?></a></td>
+                                                <td><?php echo $row['user'];?></td>
                                                 <td><?php echo $row['track'];?></td>
                                                 <td><?php echo $row['task_day'];?></td>
+                                                <td><?php echo $row['points'];?></td>
                                             </tr>
                                             <?php 
                                                 $j++;
@@ -201,6 +203,9 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
         <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="../error/scripts.js"></script>
+        <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+        <script src="../assets/demo/datatables-demo.js"></script>
         <script>
             setTimeout(() => {
                 $('#success').hide(1000);
