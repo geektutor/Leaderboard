@@ -70,7 +70,7 @@ $res =json_encode($userRanking);
     </head>
     <body>
       <div class="filter">
-        <form id="filterform" action="leaderboard1.php" method="GET">
+        <form id="filterform" action="index.php" method="GET">
           <select name="level" id="filter" class="form-control">
            <option value="beginner">Beginner</option>
            <option value="intermediate">Intermediate</option>
@@ -78,7 +78,7 @@ $res =json_encode($userRanking);
           <select name="track" id="filter" class="form-control">
             <?php
             include "../config/connect.php";
-            $sql = "SELECT DISTINCT `track` FROM user";
+            $sql = "SELECT DISTINCT `track` FROM leaderboard";
             $result = mysqli_query($conn,$sql);
             if ($result && mysqli_num_rows($result) > 0) {
               while ($row = mysqli_fetch_assoc($result)) {
