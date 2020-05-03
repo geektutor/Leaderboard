@@ -136,6 +136,6 @@ $res =json_encode($userRanking);
           <div class="list others">
           </div>
         </div>
-      <script src="leaderboard1.js"></script>
+      <script src="leaderboard.js"></script>
     </body>
 </html>
