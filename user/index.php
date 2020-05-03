@@ -157,11 +157,11 @@ if(isset($_POST['submit'])){
 
    <div class="mainWrapper flx col" id="mainWrp">
     <main>
-      <div class="flx row"><h1>View Tasks</h1></div>
+      <div class="flx row"><h1>View Tasks for Day <?= $days; ?></h1></div>
         <?php if($show == 1){ ?>
         <div class="mainCard">
           <div class="field flx col">
-            <?= $track?> | <?= $level?><br>
+            <?= $track?> | <?= $level?><br><br>
             <?= $error?>
           </div>
         </div>
