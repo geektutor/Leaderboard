@@ -116,11 +116,11 @@ if(isset($_POST['submit'])){
       <ul class="linksContainer">
        <li class="flx row">
          <img src="../assets/img/submsn.png">
-         <a href="index.php">Submissions</a>
+         <a href="submissions.php">Submissions</a>
         </li>
         <li class="flx row active">
          <img src="../assets/img/allTsk.png">
-         <a href="view.php">All tasks</a>
+         <a href="index.php">View tasks</a>
         </li>
         <li class="flx row">
          <img src="../assets/img/add.png">
