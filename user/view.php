@@ -25,7 +25,7 @@ if(isset($_POST['submit'])){
            $show = 1;
         }
     }else{
-        $error =  "No task for the selected options";
+        $error =  "No task for the selected option. Check back later.";
         $show = 1;
     }
 }
@@ -161,6 +161,7 @@ if(isset($_POST['submit'])){
         <?php if($show == 1){ ?>
         <div class="mainCard">
           <div class="field flx col">
+            <?= $track?> | <?= $level?><br>
             <?= $error?>
           </div>
         </div>
