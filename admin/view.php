@@ -49,7 +49,7 @@ if(isset( $_SESSION['login_user'])){
        <ul class="linksContainer">
         <li class="flx row active">
          <img src="../assets/img/submsn.png">
-         <a href="index.php">Dashboard</a>
+         <a href="../user">User Dashboard</a>
         </li>
         <li class="flx row">
          <img src="../assets/img/add.png">
@@ -171,11 +171,6 @@ while($row = $result->fetch_assoc()) {
    </div>
  </div>
  <script src="../assets/js/app.js"></script>
-<script>
-setTimeout(() => {
-    $('#success').hide(1000);
-}, 2000);
-</script>
 </body>
 </html>
 <?php

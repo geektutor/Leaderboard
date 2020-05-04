@@ -46,19 +46,19 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
        <ul class="linksContainer">
         <li class="flx row active">
          <img src="../../assets/img/submsn.png">
-         <a href="index.php">Dashboard</a>
+         <a href="../../user">User Dashboard</a>
         </li>
         <li class="flx row">
          <img src="../../assets/img/add.png">
-         <a href='/admin/task/addnewtask.php'>Add New Tasks</a>
+         <a href='/task/addnewtask.php'>Add New Tasks</a>
         </li>
         <li class="flx row">
          <img src="../../assets/img/allTsk.png">
-         <a href="/admin/task">View Tasks</a>
+         <a href="/task">View Tasks</a>
         </li>
         <li class="flx row">
          <img src="../../assets/img/add.png">
-         <a href="superadmin.php">Superadmin</a>
+         <a href="../superadmin.php">Superadmin</a>
         </li>
         <li class="flx row">
          <img src="../../assets/img/lead.png">

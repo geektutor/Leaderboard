@@ -177,7 +177,7 @@ if(isset( $_SESSION['login_user'])){
           ?>
           <tr>
               <td data-label="DAY"><?php echo $row['task_day'];?></td>
-              <td data-label="URL"><a href="<?php echo $row['url'];?>">Url</a></td>
+              <td data-label="URL"><a href="<?php echo $row['url'];?>">View Link</a></td>
               <td data-label="POINTS"><?php echo $row['points'];?></td>
               <?php if ($row['points'] == 0) {?>
               <td data-label="ACTION"><a href="editsubmission.php?id=<?=$row['id']?>">Edit</a></td>
