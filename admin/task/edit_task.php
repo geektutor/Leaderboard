@@ -156,8 +156,3 @@ setTimeout(() => {
 </script>
 </body>
 </html>
-<?php
-}else{
-    header("location:../sign_in.php"); 
-}
-?>
