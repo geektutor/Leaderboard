@@ -123,7 +123,7 @@ while($row = $result->fetch_assoc()) {
         }
         if($result_up){
             $error = "Submitted Successfully";
-            header('refresh: 2; url=./submissions.php?track='.$track); 
+            header('refresh: 2; url=./submissions.php?message=success'); 
         }else{
            $error = "Could not update user";
         }

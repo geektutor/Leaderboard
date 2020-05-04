@@ -139,7 +139,7 @@ if(isset( $_SESSION['login_user'])){
           <button id="submitTask" type="submit" name="submit">Submit task</button>
         </form> 
         <?php 
-            }}else{
+            }else{
                 echo `<p>Nothing yet</p>`;
             }
         ?>
