@@ -77,6 +77,7 @@ if(isset( $_SESSION['login_user'])){
                 while ($row = mysqli_fetch_assoc($ranking_result)) {
                     if($row['email'] == $email){
                         echo '<span id="rank">'.$rank.'</span>';
+                      break; 
                     }else {
                         $rank++;
                     }

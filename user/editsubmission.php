@@ -87,7 +87,7 @@ if (!isset($_SESSION['login_user']) || empty($_SESSION['login_user'])) {
       $user_score = '';
       $user_track = '';
       $email = $_SESSION['login_user'];
-      $sql = "SELECT * FROM user WHERE email='$email' ";
+      $sql = "SELECT * FROM leaderboard WHERE email='$email' ORDER BY `score` DESC LIMIT 1";
       $result = mysqli_query($conn,$sql);
       while($row = mysqli_fetch_assoc($result)) {
           $user_nickname = $row['nickname'];
@@ -109,13 +109,14 @@ if (!isset($_SESSION['login_user']) || empty($_SESSION['login_user'])) {
          <span class="title">Total rank:</span>
            <?php
             global $conn;
-            $ranking_sql = "SELECT * FROM user WHERE `isAdmin` = '0' ORDER BY `score` DESC";
+            $ranking_sql = "SELECT * FROM leaderboard ORDER BY `score` DESC";
             $ranking_result = mysqli_query($conn,$ranking_sql);
             if ($ranking_result) {
                 $rank = 1;
                 while ($row = mysqli_fetch_assoc($ranking_result)) {
                     if($row['email'] == $email){
                         echo '<span id="rank">'.$rank.'</span>';
+                      break; 
                     }else {
                         $rank++;
                     }
