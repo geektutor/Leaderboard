@@ -130,7 +130,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
  <script src="../assets/js/app.js"></script>
 <script>
 setTimeout(() => {
-    $('#success').hide(1000);
+    $('{$track}').hide(1000);
 }, 2000);
 </script>
 </body>
