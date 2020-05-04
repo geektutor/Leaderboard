@@ -91,7 +91,7 @@ if(isset( $_SESSION['login_user'])){
        <ul class="linksContainer">
         <li class="flx row active">
          <img src="../assets/img/submsn.png">
-         <a href="index.php">Submissions</a>
+         <a href="#">Submissions</a>
         </li>
         <li class="flx row">
          <img src="../assets/img/add.png">
@@ -177,7 +177,7 @@ if(isset( $_SESSION['login_user'])){
           ?>
           <tr>
               <td data-label="DAY"><?php echo $row['task_day'];?></td>
-              <td data-label="URL"><?php echo $row['url'];?></td>
+              <td data-label="URL"><a href="<?php echo $row['url'];?>">Url</a></td>
               <td data-label="POINTS"><?php echo $row['points'];?></td>
               <?php if ($row['points'] == 0) {?>
               <td data-label="ACTION"><a href="editsubmission.php?id=<?=$row['id']?>">Edit</a></td>
