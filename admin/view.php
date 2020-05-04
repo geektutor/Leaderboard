@@ -122,8 +122,8 @@ while($row = $result->fetch_assoc()) {
             $count_up = mysqli_num_rows($result_up);
         }
         if($result_up){
-            $error = "Submitted Successfully";
-            header('refresh: 2; url=./submissions.php?message=success'); 
+            $error = "Submission Successfully Graded";
+            header('refresh: 2; url=./submissions.php?track={$track}'); 
         }else{
            $error = "Could not update user";
         }
