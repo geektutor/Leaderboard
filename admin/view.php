@@ -61,7 +61,7 @@ if(isset( $_SESSION['login_user'])){
         </li>
         <li class="flx row">
          <img src="../assets/img/add.png">
-         <a href="superadmin.php">Superadmin</a>
+         <a href="submissions.php">submissions</a>
         </li>
         <li class="flx row">
          <img src="../assets/img/lead.png">
