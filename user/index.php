@@ -95,7 +95,7 @@ if(isset($_POST['submit'])){
          <span class="title">Total rank:</span>
            <?php
             global $conn;
-            $ranking_sql = "SELECT * FROM leaderboard ORDER BY `score` DESC LIMIT 1";
+            $ranking_sql = "SELECT * FROM leaderboard ORDER BY `score` DESC";
             $ranking_result = mysqli_query($conn,$ranking_sql);
             if ($ranking_result) {
                 $rank = 1;
