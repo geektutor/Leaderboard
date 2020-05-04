@@ -92,8 +92,8 @@ while($row = $result->fetch_assoc()) {
     if (isset($_POST['submit'])) {
         $u = $_POST['user'];
         $point = $_POST['point'];
-        $track = $_POST['track'];
-        $level = $_POST['level'];
+        $track = $row['track'];
+        $level = $row['level'];
         $feedback = mysqli_real_escape_string($conn, $_POST['feedback']);
         if ($feedback == '') {
             $feedback = "Marked";
@@ -123,7 +123,7 @@ while($row = $result->fetch_assoc()) {
         }
         if($result_up){
             $error = "Submission Successfully Graded";
-            header('refresh: 2; url=./submissions.php?track={$track}'); 
+            header('refresh: 2; url=./submissions.php?track='.$track); 
         }else{
            $error = "Could not update user";
         }

@@ -102,6 +102,7 @@ if(isset( $_SESSION['login_user'])){
         $result = mysqli_query($conn, $sql);
         if ($conn->query($sql)) {
             $error = "Updated successfully";
+            
         }
     }
     ?>
