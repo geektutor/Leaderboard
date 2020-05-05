@@ -16,7 +16,7 @@ Philip Owoeye(intermediate) - P<br/>
 
 a. Zubair Idris Aweda (Beginner)  - PHP<br/.
 b. Chukwurah Emmanuel (intermediate) - Nodejs & PHP - E<br/>
-c. Akinwande Bolu (intermediate) - Nodejs - B<br/>
+c. [Akinwande Bolu](https://twitter.com/Bolu Akinwande) (intermediate) - Nodejs - B<br/>
 
 #### Mobile
 
