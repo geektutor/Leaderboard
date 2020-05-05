@@ -161,8 +161,11 @@ if(isset($_POST['submit'])){
       <div class="flx row"><h1>View Tasks for Day <?= $days; ?></h1></div>
         <?php if($show == 1){ ?>
         <div class="mainCard">
-          <div class="field flx col">
-            <?= $track?> | <?= $level?><br><br>
+        <div class="field flx col">
+          <div class="notice">
+            <?= $track?> | <?= $level?>
+            </div>
+            <br><br>
             <?= $error?>
           </div>
         </div>
