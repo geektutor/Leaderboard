@@ -164,9 +164,9 @@ if(isset( $_SESSION['login_user'])){
             <p style="font-size: 12px; margin-top: 8px; line-height: 110%; color: #646464;">Make sure you upload the correct file</p>
           </div>
           <div class="field flx col">
-            <input type="text" name="task_view" value="test" disabled>
+            <input type="text" name="task_view" value="Day <?= $days; ?>" disabled>
           </div>
-          <input type="hidden" id="task_day" name="task_day" value="test">
+          <input type="hidden" id="task_day" name="task_day" value="Day <?= $days; ?>">
           <input type="hidden" id="name" name="name" value="<?= $_SESSION['login_user']; ?>">
           <input type="hidden" name="cohort" value="1">
           <button id="submitTask" type="submit" name="submit">Submit task</button>
