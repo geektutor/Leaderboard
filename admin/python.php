@@ -160,7 +160,7 @@ if(isset( $_SESSION['login_user'])){
           </div>
           <div class="field flx col">
           <label for="track">Password</label>
-          <input type="name" id="password" name="password" value="">
+          <input type="name" id="password" name="password" value="annyeonghaseyo" readonly>
           </div>
           <div class="field flx col">
             <label for="file">Upload file</label>
