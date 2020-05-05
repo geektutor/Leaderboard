@@ -53,7 +53,6 @@ if(isset( $_SESSION['login_user'])){
           $user_nickname = $row['nickname'];
           $user_score = $row['score'];
           $user_track = $row['track'];
-          $university = $row['university'];
           echo '<div class="avatar"><img style=\'width:120px;height:120px;\' src=\'https://robohash.org/'.$user_nickname.$user_track.'\'/></div>';
           echo '<span id="username">'.$user_nickname.'</span>';
           // echo '<span id="username">'.$university.'&nbsp; points</div></center>';

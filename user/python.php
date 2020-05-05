@@ -141,9 +141,9 @@ if(isset( $_SESSION['login_user'])){
    </nav>
    <div class="mainWrapper flx col" id="mainWrp">
     <main>
-      <div class="flx row"><h1>Submit a task</h1></div>
+      <div class="flx row"><h1>Python Autograder</h1></div>
       <div class="mainCard">
-      
+      <div class="notice"> Ensure you fill this form correctly. </div>
        <div id="stats2"></div>
        <form id="form" enctype="multipart/form-data" onsubmit="upload(event)">
           <div id="stats"></div>
@@ -202,8 +202,8 @@ if(isset( $_SESSION['login_user'])){
             success: function(data) {
               var ReturnedData = data;
               var user = ReturnedData.name;
-              var score = ReturnedData.score;
-              $('#stats').html("Welcome " + user + ", you have scored " + score);
+              var points = ReturnedData.score;
+              $('#stats').html("Welcome " + user + ", you have scored " + points);
 
               $.ajax({
                 url: 'py_submit.php',
