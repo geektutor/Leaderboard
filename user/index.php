@@ -165,7 +165,6 @@ if(isset($_POST['submit'])){
           <div class="notice">
             <?= $track?> | <?= $level?>
             </div>
-            <br><br>
             <?= $error?>
           </div>
         </div>

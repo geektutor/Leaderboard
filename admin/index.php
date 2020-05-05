@@ -60,7 +60,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
         </li>
         <li class="flx row">
          <img src="../assets/img/add.png">
-         <a href="submissions.php">submissions</a>
+         <a href="submissions.php">Submissions</a>
         </li>
         <li class="flx row">
          <img src="../assets/img/lead.png">

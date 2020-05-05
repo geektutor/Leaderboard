@@ -169,7 +169,7 @@ if (!isset($_SESSION['login_user']) || empty($_SESSION['login_user'])) {
    </nav>
    <div class="mainWrapper flx col" id="mainWrp">
     <main>
-      <div class="flx row"><h1>Submit a task for Day <?= $days; ?></h1></div>
+      <div class="flx row"><h1>Edit Submission</h1></div>
       <div class="mainCard">
         <form method="POST">
           <div class="field flx col">
