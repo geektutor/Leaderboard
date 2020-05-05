@@ -1,0 +1,136 @@
+@media only screen and (max-width: 1000px) {
+  .hamBWrapper {
+   display: block;
+  }
+  #hamB {
+   display: -webkit-box;
+   display: -ms-flexbox;
+   display: flex;
+   -webkit-box-orient: vertical;
+   -webkit-box-direction: normal;
+       -ms-flex-direction: column;
+           flex-direction: column;
+   -webkit-box-pack: center;
+       -ms-flex-pack: center;
+           justify-content: center;
+  }
+  nav {
+   position: absolute;
+  }
+  nav.closed {
+   -webkit-transition-duration: 600ms;
+        -o-transition-duration: 600ms;
+           transition-duration: 600ms;
+   -webkit-transform: translateX(-100%);
+       -ms-transform: translateX(-100%);
+           transform: translateX(-100%);
+  }
+  #hamB.closed .a {
+   -webkit-transition-duration: 600ms;
+        -o-transition-duration: 600ms;
+           transition-duration: 600ms;
+  -webkit-transform: translateY(-9px);
+      -ms-transform: translateY(-9px);
+          transform: translateY(-9px);
+  }
+   #hamB.closed .b {
+    -webkit-transition-duration: 600ms;
+         -o-transition-duration: 600ms;
+            transition-duration: 600ms;
+   -webkit-transform: translateY(9px);
+       -ms-transform: translateY(9px);
+           transform: translateY(9px);
+   }
+  #hamB.open .a{
+   -webkit-transition-duration: 600ms;
+        -o-transition-duration: 600ms;
+           transition-duration: 600ms;
+   -webkit-transform: rotateZ(-45deg) ;
+       -ms-transform: rotate(-45deg);
+           transform: rotateZ(-45deg) ;
+  }
+  #hamB.open .b{
+   -webkit-transition-duration: 600ms;
+        -o-transition-duration: 600ms;
+           transition-duration: 600ms;
+   -webkit-transform: rotateZ(45deg);
+       -ms-transform: rotate(45deg);
+           transform: rotateZ(45deg);
+  }
+  #hamB.open .c{
+   -webkit-transition-duration: 100ms;
+        -o-transition-duration: 100ms;
+           transition-duration: 100ms;
+   visibility: hidden;
+  }
+  nav.open {
+   -webkit-transition-duration: 600ms;
+        -o-transition-duration: 600ms;
+           transition-duration: 600ms;
+   -webkit-transform: translateX(0);
+       -ms-transform: translateX(0);
+           transform: translateX(0);
+  }
+  footer {
+   position: relative;
+   z-index: -1;
+  }
+ }
+ @media only screen and (max-width: 750px) {
+  main {
+   margin: 65px 25px 10px 25px;
+   -ms-flex-item-align: center;
+       -ms-grid-row-align: center;
+       align-self: center;
+  }
+  .mainCard{
+    margin-top: 20px;
+   padding: 15px 15px 15px 15px;
+  }
+ }
+ @media only screen and (max-width: 550px) {
+   main h1 {
+     font-size: 20px;
+   }
+  .scoresContainer .scoreCard {
+   width: 95px;
+  }
+  .hamBWrapper {
+   -webkit-transform-origin: left;
+       -ms-transform-origin: left;
+           transform-origin: left;
+   -webkit-transform: scale(0.7);
+       -ms-transform: scale(0.7);
+           transform: scale(0.7);
+  }
+  nav {
+   width: 85vw;
+   padding-bottom: 20px;
+  }
+  nav .content {
+   margin-top: 20px;
+  }
+  header {
+   padding: 0 15px 0 15px;
+  }
+  .techSymb img{
+   margin: 2px;
+   -webkit-transform: scale(0.7);
+       -ms-transform: scale(0.7);
+           transform: scale(0.7);
+  }
+  main{
+   padding: 0;
+   -ms-flex-item-align: center;
+       -ms-grid-row-align: center;
+       align-self: center;
+   width: 90%;
+   margin-bottom: 10px;
+  }
+ }
+ @media only screen and (max-width: 400px) {
+   .mainCard{
+     padding-right: 10px;
+     padding-left: 10px;
+   }
+ }
