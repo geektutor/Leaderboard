@@ -29,10 +29,11 @@
       $points = intval($points);
       $level = $_GET['level'];
       $date = date('Y-m-d');
+      $feedback = "Marked by AutoGrader";
       $url = '';
       $cohort = 1;
-      $sql = "INSERT INTO submissions(user, track, url, task_day, points, sub_date, cohort, level) 
-              VALUES('$user','$track', '$url', '$task_day', '$points', '$date', '$cohort', '$level')";
+      $sql = "INSERT INTO submissions(user, track, url, task_day, points, sub_date, cohort, level, feedback) 
+              VALUES('$user','$track', '$url', '$task_day', '$points', '$date', '$cohort', '$level', '$feedback')";
       if($conn->query($sql)){
         print "Saved";
       }else{
