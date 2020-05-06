@@ -83,7 +83,7 @@ if (isset($_SESSION['isSuperAdmin']) && $_SESSION['isSuperAdmin'] == true) {
       <div class="flx row"><h1>Submissions</h1> </div>
       <div class="mainCard">
       <?php
-        $sql = "SELECT * FROM submissions ORDER BY points DESC";
+        $sql = "SELECT * FROM submissions ORDER BY points ASC";
         $result = mysqli_query($conn, $sql);
         $count = mysqli_num_rows($result);
         ?>
