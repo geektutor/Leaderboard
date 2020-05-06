@@ -52,11 +52,11 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
         </li>
         <li class="flx row">
          <img src="../assets/img/add.png">
-         <a href='/admin/task/addnewtask.php'>Add New Tasks</a>
+         <a href='task/addnewtask.php'>Add New Tasks</a>
         </li>
         <li class="flx row">
          <img src="../assets/img/allTsk.png">
-         <a href="/admin/task">View Tasks</a>
+         <a href="task/index.php">View Tasks</a>
         </li>
         <li class="flx row">
          <img src="../assets/img/add.png">
