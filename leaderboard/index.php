@@ -16,32 +16,32 @@ class User
     $this->score = $score;
     }
 }
+function makeSQL($track,$level){
+  if (($level == 'beginner' || $level == 'intermediate') and ($track !== 'general' and $level !== 'general')) {
+    $sql = "SELECT * FROM leaderboard WHERE `track` = '$track' AND `level`='$level' ORDER BY `score` DESC LIMIT 20";
+  }elseif ($track == 'general' and $level !== 'general') {
+    $sql = "SELECT * FROM leaderboard WHERE `level`='$level' ORDER BY `score` DESC LIMIT 20";
+  }elseif ($level == 'general' and $track !== 'general') {
+    $sql = "SELECT * FROM leaderboard WHERE `track` = '$track' ORDER BY `score` DESC LIMIT 20";
+  }else {
+    $sql = "SELECT * FROM leaderboard ORDER BY `score` DESC LIMIT 20";
+  }
 
+  return $sql;
+}
 //categories for filter 
-if (isset($_GET['track']) and isset($_GET['level']) and $_GET['level'] !== 'general') {
+if (isset($_GET['track']) and isset($_GET['level'])) {
     $track = $_GET['track'];
-    $level = $_GET['level'];    
-    $sql = "SELECT * FROM leaderboard WHERE `track`='$track' AND `level` = '$level' ORDER BY `score` DESC LIMIT 20";
-}
-elseif (isset($_GET['track']) and $_GET['track'] == 'general' and isset($_GET['level'])) {
-    $level = $_GET['level'];    
-    $sql = "SELECT * FROM leaderboard WHERE `level` = '$level' ORDER BY `score` DESC LIMIT 20";
-
-}
-elseif (isset($_GET['track']) and $_GET['track'] == 'general' and !isset($_GET['level'])) {    
-    $sql = "SELECT * FROM leaderboard ORDER BY `score` DESC LIMIT 20";
-
-}
-elseif (isset($_GET['track']) and !isset($_GET['level'])) {
-    $track = $_GET['track'];    
-    $sql = "SELECT * FROM leaderboard WHERE `track`='$track' ORDER BY `score` DESC LIMIT 20";
-}
-elseif (!isset($_GET['track']) and isset($_GET['level'])) {
-    $level = $_GET['level'];    
-    $sql = "SELECT * FROM leaderboard WHERE `level` = '$level' ORDER BY score DESC LIMIT 20";
-}
-else {    
-    $sql = "SELECT * FROM leaderboard ORDER BY `score` DESC LIMIT 20";
+     $level = $_GET['level'];    
+    
+     if ($track == 'backend' || $track == 'frontend' || $track == 'mobile' || $track == 'python' || $track == 'ui') {
+       $sql = makeSQL($track,$level);
+     }elseif($track == 'general'){
+       $sql = makeSQL('general',$level);
+     }else {
+       $sql = makeSQL('general','general');
+     }
+     
 }
 $result = mysqli_query($conn,$sql);
 if ($result) {
@@ -70,23 +70,24 @@ $res =json_encode($userRanking);
     </head>
     <body>
       <div class="filter">
-        <form id="filterform" action="index.php" method="GET">
-          <select name="level" id="filter" class="form-control">
-           <option value="beginner">Beginner</option>
-           <option value="intermediate">Intermediate</option>
-          </select>
-          <select name="track" id="filter" class="form-control">
+        <form id="filterform" action="#" method="GET">
+        <select name="track" id="track" class="form-control">
             <?php
             include "../config/connect.php";
-            $sql = "SELECT DISTINCT `track` FROM leaderboard";
+            $sql = "SELECT DISTINCT `track` FROM user";
             $result = mysqli_query($conn,$sql);
             if ($result && mysqli_num_rows($result) > 0) {
+              echo "<option value='general' id='general'>General</option>";
               while ($row = mysqli_fetch_assoc($result)) {
-                $row['track'] == ''?$row['track'] = 'general' : true;
                 echo "<option value='".$row['track']."' id='".$row['track']."'>".$row['track']."</option>";
               }
             }
              ?>
+          </select>
+          <select name="level" id="level" class="form-control">
+          <option value="general">General</option>
+           <option value="beginner">Beginner</option>
+           <option value="intermediate">Intermediate</option>
           </select>
           <button type="submit" class="btn btn-warning">Filter</button>          
         </form>
@@ -136,6 +137,6 @@ $res =json_encode($userRanking);
           <div class="list others">
           </div>
         </div>
-      <script src="leaderboard.js"></script>
+      <script src="leaderboard1.js"></script>
     </body>
 </html>
