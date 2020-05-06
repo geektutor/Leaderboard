@@ -92,7 +92,6 @@ if (isset($_SESSION['isSuperAdmin']) && $_SESSION['isSuperAdmin'] == true) {
          <thead>
           <tr>
             <th scope="col">S/N</th>
-            <th scope="col">Url</th>
             <th scope="col">Email</th>
             <th scope="col">Level</th>
             <th scope="col">Submission for Day</th>
@@ -107,8 +106,7 @@ if (isset($_SESSION['isSuperAdmin']) && $_SESSION['isSuperAdmin'] == true) {
           ?>
           <tr>
               <td data-label="S/N"><?php echo $j;?></td>
-              <td data-label="URL"><a href="view.php?id=<?php echo $row['id'];?>"><?php echo $row['url'];?></a></td>
-              <td data-label="Email"><?php echo $row['user'];?></td>
+              <td data-label="Email"><a href="view.php?id=<?php echo $row['id'];?>"><?php echo $row['user'];?></a></td>
               <td data-label="Level"><?php echo $row['level'];?></td>
               <td data-label="Submission For Day"><?php echo $row['task_day'];?></td>
               <td data-label="Points"><?php echo $row['points'];?></td>
