@@ -86,15 +86,21 @@
     var newUrl = url.join('');
     url = newUrl;
   }
-  var splitPoint = url.indexOf('?');
-  var search = url.slice(splitPoint);
+  // var splitPoint = url.indexOf('?');
+  // var search = url.slice(splitPoint);
 
-  var params = new URLSearchParams(search);
-  var paramsObj = {};
+  // var params = new URLSearchParams(search);
+  // var paramsObj = {};
 
-  for (const value of params.keys()) {
-    paramsObj[value] = params.get[value]
-  }
+  // for (const value of params.keys()) {
+  //   paramsObj[value] = params.get[value]
+  // }
+  const params = url.split('?')[1].split('&');
+
+  const paramsObj = {}
+
+  paramsObj.track =params[0].split('=')[1]
+  paramsObj.level =params[1].split('=')[1]
  
 
   
