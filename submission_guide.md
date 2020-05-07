@@ -71,6 +71,14 @@ Tips :
 5. Multiple submission are considered void.
 6. Be creative with the use of colors, Use external styling and ensure your site is responsive.
 
+  #### Extra tip for Front End Beginners.
+
+When ever you are given an example, it doesn't mean you should implement exactly what is In the example,  it is just a guideline for how yours should look like.
+
+Don't try to implement examples and mess up your job.
+
+If you are to implement the design it will be added to the task description.
+
 [A guide on hosting with GitHub](https://steph-crown.github.io/a-guide-on-hosting/)
 
 ### Mobile Track

@@ -202,6 +202,9 @@ if(isset( $_SESSION['login_user'])){
           <?php }?>
           </div>
               <?php }?>
+              <div class="notice">
+              <a href="python.php">Submit Python Task</a>
+              </div>
        <form method="POST">
           <div class="field flx col">
             <label for="url">URL</label>
@@ -221,7 +224,6 @@ if(isset( $_SESSION['login_user'])){
               <option value="backend">Backend</option>
               <option value="frontend">Frontend</option>
               <option value="mobile">Mobile</option>
-              <option value="python">Python</option>
               <option value="ui">UI/UX</option>
             </select>
           </div>
