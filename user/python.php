@@ -148,16 +148,16 @@ if(isset( $_SESSION['login_user'])){
        <form id="form" enctype="multipart/form-data" onsubmit="upload(event)">
           <div id="stats"></div>
           <div class="field flx col">
+            <label for="url">URL</label>
+            <input type="text" id="theurl" name="url" value="" placeholder="Enter URL">
+            <p style="font-size: 12px; margin-top: 8px; line-height: 110%; color: #646464;"><a href="https://github.com/geektutor/Leaderboard/blob/master/submission_guide.md">Submission Guidelines</a></p>
+          </div>
+          <div class="field flx col">
             <label for="level">Level</label>
             <select name="level" id="level" value="">
               <option value="beginner">Beginner</option>
               <option value="intermediate">Intermediate</option>
             </select>
-          </div>
-          <div class="field flx col">
-            <label for="url">Repl.it URL</label>
-            <input type="url" id="url" name="url" required>
-            <p style="font-size: 12px; margin-top: 8px; line-height: 110%; color: #646464;">Enter your repl url</p>
           </div>
           <div class="field flx col">
             <label for="track">Track</label>
@@ -168,6 +168,10 @@ if(isset( $_SESSION['login_user'])){
             <input type="file" id="file" name="file" required>
             <p style="font-size: 12px; margin-top: 8px; line-height: 110%; color: #646464;">Make sure you upload the correct file</p>
           </div>
+           <div class="field flx col">
+            <label for="comment">Comments?</label>
+            <textarea name="comment" id="comment" type="text" placeholder="Any comments?" rows="5"></textarea>
+          </div>
           <div class="field flx col">
             <input type="text" name="task_view" value="Day 6" disabled>
           </div>
@@ -175,6 +179,7 @@ if(isset( $_SESSION['login_user'])){
           <input type="hidden" id="name" name="name" value="<?= $_SESSION['login_user']; ?>">
           <input type="hidden" name="cohort" value="1">
           <button id="submitTask" type="submit" name="submit">Submit task</button>
+          <button onclick="show(event)">Save Result</button>
         </form> 
       </div >
      </main>
@@ -184,54 +189,57 @@ if(isset( $_SESSION['login_user'])){
  <script src="../assets/js/app.js"></script>
  <script src="assets/js/jquery-3.4.1.js"></script>
  <script type="text/javascript">
-  
-   function upload(event) {
-        event.preventDefault();
-        $("#submitTask").attr("disabled", true);
-        var level = document.getElementById('level').value;
-        var file = document.getElementById('file').value;
-        var track = document.getElementById('track').value;
-        var name = document.getElementById('name').value;
-        var task_day = document.getElementById('task_day').value;
-        var url = document.getElementById('url').value;
-        var cohort = 1;
-        var today = new Date();
-        var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+  var level = document.getElementById('level').value;
+  var file = document.getElementById('file').value;
+  var track = document.getElementById('track').value;
+  var name = document.getElementById('name').value;
+  var task_day = document.getElementById('task_day').value;
+  var urls = document.getElementById('theurl').value;
+  var comment = document.getElementById('comment').value;
+  var cohort = 1;
+  var today = new Date();
+  var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+  var points;
+  function upload(event) {
+    event.preventDefault();
+    var urls = document.getElementById('theurl').value;
+    var form_data = new FormData($('#form')[0]);
+    
+    $.ajax({
+        url: 'https://autograder30days.herokuapp.com/',
+        data: form_data,
+        contentType: false,
+        processData: false,
+        type: "POST",
+        success: function(data) {
+          var ReturnedData = data;
+          var user = ReturnedData.name;
+          points = ReturnedData.score;
+            $('#stats').html("Welcome " + user + ", you have scored " + points);
+        },
+        error: function() {}
+    });
+  }
+  function show(event) {
+    var urls = document.getElementById('theurl').value;
+    var comment = document.getElementById('comment').value;
+    event.preventDefault();
+    $.ajax({
+      url: 'py_submit.php',
+      data: 'user='+name+'&track='+track+'&task_day='+task_day+'&points='+points+'&sub_date='+date+'&cohort='+cohort+'&level='+level+'&url='+urls+'&comment='+comment,
+      type: "GET",
+      success: function(data) {
+        $('#stats2').html(data);
 
-        var form_data = new FormData($('#form')[0]);
-        console.log(form_data);
-        
-        $.ajax({
-            url: 'https://autograder30days.herokuapp.com/',
-            data: form_data,
-            contentType: false,
-            processData: false,
-            type: "POST",
-            success: function(data) {
-              var ReturnedData = data;
-              var user = ReturnedData.name;
-              var points = ReturnedData.score;
-              $('#stats').html("Welcome " + user + ", you have scored " + points);
-
-              $.ajax({
-                url: 'py_submit.php',
-                data: 'user='+name+'&track='+track+'&url='+url+'&task_day='+task_day+'&points='+points+'&sub_date='+date+'&cohort='+cohort+'&level='+level,
-                type: "GET",
-                success: function(data) {
-                  $('#stats2').html(data);
-
-                },
-                error: function() {}
-              })
-            },
-            error: function() {}
-        });
-    }
+      },
+      error: function() {}
+    })
+  }
  </script>
 </body>
 </html>
 <?php
 }else{
-  header("location:../../login.php");
+  header("location:../login.php");
 }
 ?>
