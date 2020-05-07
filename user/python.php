@@ -184,11 +184,10 @@ if(isset( $_SESSION['login_user'])){
  <script src="../assets/js/app.js"></script>
  <script src="assets/js/jquery-3.4.1.js"></script>
  <script type="text/javascript">
-  $('input[type=submit]').one('submit', function() {
-     $(this).attr('disabled','disabled');
- });
+  
    function upload(event) {
         event.preventDefault();
+        $("#submitTask").attr("disabled", true);
         var level = document.getElementById('level').value;
         var file = document.getElementById('file').value;
         var track = document.getElementById('track').value;
