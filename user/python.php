@@ -173,9 +173,9 @@ if(isset( $_SESSION['login_user'])){
             <textarea name="comment" id="comment" type="text" placeholder="Any comments?" rows="5"></textarea>
           </div>
           <div class="field flx col">
-            <input type="text" name="task_view" value="Day 6" disabled>
+            <input type="text" id="task_day" name="task_day" placeholder="Day 6">
+            <p style="font-size: 12px; margin-top: 8px; line-height: 110%; color: #646464;">Enter 'Day 6' in the box. Day 7 is not live yet</p>
           </div>
-          <input type="hidden" id="task_day" name="task_day" value="Day 6">
           <input type="hidden" id="name" name="name" value="<?= $_SESSION['login_user']; ?>">
           <input type="hidden" name="cohort" value="1">
           <button id="submitTask" type="submit" name="submit">Submit task</button>
