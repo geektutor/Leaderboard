@@ -156,8 +156,8 @@ if(isset( $_SESSION['login_user'])){
             <label for="level">Level</label>
             <select name="level" id="level" value="">
               <option value="Intermediate">Intermediate</option>
-              <p style="font-size: 13px; margin-top: 8px; line-height: 110%; color: #646464;"><a href="python.php">Submit for Beginner Here</a></p>
             </select>
+            <p style="font-size: 13px; margin-top: 8px; line-height: 110%; color: #646464;"><a href="python.php">Submit for Beginner Here</a></p>
           </div>
           <div class="field flx col">
             <label for="track">Track</label>
