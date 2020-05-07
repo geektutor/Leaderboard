@@ -6,31 +6,38 @@ if(isset( $_SESSION['login_user'])){
     $sql = "SELECT track FROM user WHERE email = '$tt'";
     $result = mysqli_query($conn, $sql);
     $row =mysqli_fetch_assoc($result);
-    $track = $row['track'];
-    // $university = $row['university'];
+
+    $day = strtotime("2020-04-01");
+    $currdates = date("Y-m-d");
+    $currdate = strtotime($currdates);
+    $diff = abs($currdate - $day);
+    $years = floor($diff / (365*60*60*24));
+    $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
+    $days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24)); 
+    $days +=1;
 
 ?>
 <head>
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <meta http-equiv="X-UA-Compatible" content="ie=edge">
- <link rel="stylesheet" href="./assets/css/style.css">
- <link rel="stylesheet" href="./assets/css/submit.css">
- <link rel="stylesheet" href="./assets/css/responsive.css">
- <link rel="shortcut icon" href="././assets/img/favicon.png" type="image/x-icon">
+ <link rel="stylesheet" href="../assets/css/style.css">
+ <link rel="stylesheet" href="../assets/css/submit.css">
+ <link rel="stylesheet" href="../assets/css/responsive.css">
+ <link rel="shortcut icon" href="./../assets/img/favicon.png" type="image/x-icon">
  <title>Submit task - 30 Days Of Code</title>
 </head>
 <body class="flx col">
  <header class="flx row">
   <span>#30DaysOfCode</span>
   <div class="techSymb flx row">
-   <img src="./assets/img/htm.png">
-   <img src="./assets/img/crly.png">
-   <img src="./assets/img/prts.png">
-   <img src="./assets/img/dsg.png">
+   <img src="../assets/img/htm.png">
+   <img src="../assets/img/crly.png">
+   <img src="../assets/img/prts.png">
+   <img src="../assets/img/dsg.png">
   </div>
   <div class="profile flx col">
-    <img src="./assets/img/profile.png">
+    <img src="../assets/img/profile.png">
     <ul class="options">
       <li id="logout"><a href="../../logout.php">Logout</a></li>
     </ul>
@@ -52,7 +59,7 @@ if(isset( $_SESSION['login_user'])){
       $user_score = '';
       $user_track = '';
       $email = $_SESSION['login_user'];
-      $sql = "SELECT * FROM user WHERE email='$email' ";
+      $sql = "SELECT * FROM leaderboard WHERE email='$email' ORDER BY `score` DESC LIMIT 1";
       $result = mysqli_query($conn,$sql);
       while($row = mysqli_fetch_assoc($result)) {
           $user_nickname = $row['nickname'];
@@ -74,13 +81,14 @@ if(isset( $_SESSION['login_user'])){
          <span class="title">Total rank:</span>
            <?php
             global $conn;
-            $ranking_sql = "SELECT * FROM user WHERE `isAdmin` = '0' ORDER BY `score` DESC";
+            $ranking_sql = "SELECT * FROM leaderboard ORDER BY `score` DESC";
             $ranking_result = mysqli_query($conn,$ranking_sql);
             if ($ranking_result) {
                 $rank = 1;
                 while ($row = mysqli_fetch_assoc($ranking_result)) {
                     if($row['email'] == $email){
                         echo '<span id="rank">'.$rank.'</span>';
+                      break; 
                     }else {
                         $rank++;
                     }
@@ -93,39 +101,39 @@ if(isset( $_SESSION['login_user'])){
         </div>
       </div>
       <ul class="linksContainer">
-      <li class="flx row active">
-         <img src="./assets/img/submsn.png">
-         <a href="index.php">Submissions</a>
+      <li class="flx row">
+         <img src="../assets/img/submsn.png">
+         <a href="submissions.php">Submissions</a>
         </li>
         <li class="flx row">
-         <img src="./assets/img/allTsk.png">
-         <a href="view.php">All tasks</a>
+         <img src="../assets/img/allTsk.png">
+         <a href="view.php">View tasks</a>
         </li>
-        <li class="flx row">
-         <img src="./assets/img/add.png">
+        <li class="flx row active">
+         <img src="../assets/img/add.png">
          <a href="submit.php">Submit task</a>
         </li>
         <li class="flx row">
-         <img src="./assets/img/cert.png">
+         <img src="../assets/img/cert.png">
          <a href="certification.php">Certificate</a>
         </li>
         <li class="flx row">
-         <img src="./assets/img/feedback.png">
+         <img src="../assets/img/feedback.png">
          <a href="feedback.php">Feedback</a>
         </li>
         <li class="flx row">
-         <img src="./assets/img/lead.png">
+         <img src="../assets/img/lead.png">
          <a href="https://30daysofcode.xyz/leaderboard">Leaderboard</a>
         </li>
         <li class="flx row">
-         <img src="./assets/img/wa.png">
+         <img src="../assets/img/wa.png">
          <a href="https://30daysofcode.xyz/whatsapp">Support group</a>
-         <img class="external" src="./assets/img/external.png" alt="">
+         <img class="external" src="../assets/img/external.png" alt="">
         </li>
           <li class="flx row">
-         <img src="./assets/img/tweet.png">
+         <img src="../assets/img/tweet.png">
          <a href=" https://twitter.com/intent/tweet?url=https%3A%2F%2F30daysofcodes.xyz&via=codon&text=Hello%2C%20I%20just%20finished%20my%20task%20for%20....&hashtags=30DaysOfCode%2C%20ECX">Tweet</a>
-         <img class="external" style="float: right;" src="./assets/img/external.png" alt="">
+         <img class="external" style="float: right;" src="../assets/img/external.png" alt="">
         </li>
        </ul>
        <span id="email"><?=$_SESSION['login_user'];?></span>
@@ -146,7 +154,7 @@ if(isset( $_SESSION['login_user'])){
           $comment =  mysqli_real_escape_string($conn, $_POST['comment']);
           $level = mysqli_real_escape_string($conn, $_POST['level']);
           $cohort = 1;
-          $queryURL = "SELECT `level` FROM submissions WHERE user = '".$_SESSION['login_user']."' AND task_day = '$task_day' AND track = '$track'";
+          $queryURL = "SELECT * FROM submissions WHERE user = '".$_SESSION['login_user']."' AND task_day = '$task_day' AND track = '$track' AND level = '$level'";
           $resultURL = mysqli_query($conn, $queryURL);
           $countURL = mysqli_num_rows($resultURL);
           if ($countURL > 0) {
@@ -158,8 +166,17 @@ if(isset( $_SESSION['login_user'])){
           if(isset($_POST['submit'])){
               $check = check();
               if(check() == 0){
-                  $sql = "INSERT INTO submissions(user, track, url, task_day, level, cohort, comments, sub_date) 
-                          VALUES('$user','$track', '$url','$task_day', '$level', '$cohort', '$comment', NOW())";
+                  $url = mysqli_real_escape_string($conn, $_POST['url']);
+                  $task_day = mysqli_real_escape_string($conn, $_POST['task_day']);
+                  $track = mysqli_real_escape_string($conn, $_POST['track']);
+                  $user =  mysqli_real_escape_string($conn, $_SESSION['login_user']);
+                  $user = rtrim($_SESSION['login_user'], '_');
+                  $comment =  mysqli_real_escape_string($conn, $_POST['comment']);
+                  $level = mysqli_real_escape_string($conn, $_POST['level']);
+                  $date = date('Y-m-d');
+                  $cohort = 1;
+                  $sql = "INSERT INTO submissions(user, track, url, task_day, comments, sub_date, cohort, level) 
+                          VALUES('$user','$track', '$url','$task_day', '$comment', '$date', '$cohort', '$level')";
                   if($conn->query($sql)){
                       $error = "Submitted Successfully";
                       $submit = 1;
@@ -179,23 +196,26 @@ if(isset( $_SESSION['login_user'])){
               if($submit == 1){
           ?>
           <p>Share on twitter:</p>
-          <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2F30daysofcode.xyz%2F&via=ecxunilag&text=<?php echo $task_day;?>%20of%2030%3A%20Check%20out%20my%20solution%20at%3A%20<?php echo $url;?>&hashtags=30DaysOfCode%2C%2030DaysOfDesign%2C%20ecxunilag">
-          <button class="flx row"> <img src="./assets/img/tweet2.png"> Tweet</button>
+          <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2F30daysofcode.xyz%2F&via=try30DaysOfCode&text=<?php echo $task_day;?>%20of%2030%3A%20Check%20out%20my%20solution%20at%3A%20<?php echo $url;?>&hashtags=30DaysOfCode%2C%2030DaysOfDesign">
+          <button class="flx row"> <img src="../assets/img/tweet2.png"> Tweet</button>
           </a>
           <?php }?>
           </div>
               <?php }?>
+              <div class="notice">
+              <a href="python.php">Submit Python Task</a>
+              </div>
        <form method="POST">
           <div class="field flx col">
             <label for="url">URL</label>
             <input type="url" name="url" placeholder="Enter URL" required>
-            <p style="font-size: 12px; margin-top: 8px; line-height: 110%; color: #646464;">Python - Repl.it Url, Backend - Github repo Url, Frontend - <a href="https://steph-crown.github.io/a-guide-on-hosting/">Follow this guide</a></p>
+            <p style="font-size: 12px; margin-top: 8px; line-height: 110%; color: #646464;"><a href="https://github.com/geektutor/Leaderboard/blob/master/submission_guide.md">Submission Guidelines</a></p>
           </div>
           <div class="field flx col">
             <label for="level">Level</label>
             <select name="level" value="">
-              <option value="beginner">Beginner</option>
-              <option value="intermediate">Intermediate</option>
+              <option value="Beginner">Beginner</option>
+              <option value="Intermediate">Intermediate</option>
             </select>
           </div>
           <div class="field flx col">
@@ -204,14 +224,17 @@ if(isset( $_SESSION['login_user'])){
               <option value="backend">Backend</option>
               <option value="frontend">Frontend</option>
               <option value="mobile">Mobile</option>
-              <option value="python">Python</option>
+              <option value="ui">UI/UX</option>
             </select>
           </div>
           <div class="field flx col">
             <label for="comment">Comments?</label>
             <textarea name="comment" type="text" placeholder="Any comments?" rows="5"></textarea>
           </div>
-          <input type="hidden" name="task_day" value="">
+          <div class="field flx col">
+            <input type="text" name="task_view" value="Day <?= $days; ?>" disabled>
+          </div>
+          <input type="hidden" name="task_day" value="Day <?= $days; ?>">
           <input type="hidden" name="cohort" value="1">
           <button id="submitTask" type="submit" name="submit">Submit task</button>
         </form> 
@@ -220,7 +243,7 @@ if(isset( $_SESSION['login_user'])){
      <footer class="flx row"><span class="copyw">Copyright &copy; 30DaysOfCode 2020</span> <div><a href="">Privacy Policy</a><a href="">Terms & Conditions</a></div></footer> 
    </div>
  </div>
- <script src="./assets/js/app.js"></script>
+ <script src="../assets/js/app.js"></script>
 </body>
 </html>
 <?php

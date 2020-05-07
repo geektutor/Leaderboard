@@ -34,29 +34,29 @@
                 //superAdmin priviledges
                 $_SESSION['isAdmin'] = true;
                 $_SESSION['isSuperAdmin'] = true;
-                $_SESSION['track'] = $_SESSION['user_track'];
-                $_SESSION['login_user'] = $username.'_';
+                $_SESSION['track'] = $row['track'];
+                $_SESSION['login_user'] = $username;
                 header("location: admin/index.php?superadmin=true");
             }elseif ($row['isAdmin'] == 1) {
                 //basic admin priviledges
                 $_SESSION['isAdmin'] = true;
-                $_SESSION['track'] = $_SESSION['user_track'];
-                $_SESSION['login_user'] = $username.'_';
+                $_SESSION['track'] = $row['track'];
+                $_SESSION['login_user'] = $username;
                 header("location: admin/index.php");
-            }elseif ($row['isAdmin'] == 5) {
-                //basic admin priviledges
-                $_SESSION['ttt'] = $row['isAdmin'];
-                $_SESSION['isAdmin'] = true;
-                $_SESSION['track'] = $_SESSION['user_track'];
-                $_SESSION['login_user'] = $username.'_';
-                $_SESSION['university'] = $_SESSION['user_university'];
-                header("location: admin/index.php");
-            }else {
+
+            }elseif ($row['isAdmin'] == 0) {
+                //basic usee priviledges
+                $_SESSION['track'] = $row['track'];
+                $_SESSION['login_user'] = $username;
+                $_SESSION['login_user'] = $username;
+                header("location: user/index.php");
+            }
+else {
                 header("location: user/index.php");
             }
            
         }else {
-            $error = "Your Login Name or Password is invalid";
+             $error = "Your Login Name or Password is invalid";
         }
     }
 
@@ -65,28 +65,30 @@
  <main class="body-content flex col">
   <h1 id="home">30 DAYS OF CODE &amp; DESIGN</h1>
   <img src="./assets/img/lbs.png" alt="learnBuildShare"/>
-  <?php
-    $ref = substr(@$_SERVER['HTTP_REFERER'],strlen(@$_SERVER['HTTP_REFERER']) - 10, 10);
-    $resetPassword = substr(@$_SERVER['HTTP_REFERER'],strlen(@$_SERVER['HTTP_REFERER']) - 15, 15);
-    if (@$_GET['message'] == 'success' && $ref == 'signup.php') {
-        echo "<div class='notify'>Registration Successful </div>";
+  <form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>">
+   <fieldset>
+    <legend>Sign in</legend>
+      <?php
+    $ref = substr(@$_SERVER['HTTP_REFERER'],strlen(@$_SERVER['HTTP_REFERER']) - 11, 11);
+    $resetPassword = substr(@$_SERVER['HTTP_REFERER'],strlen(@$_SERVER['HTTP_REFERER']) - 16, 16);
+    $upd = substr(@$_SERVER['HTTP_REFERER'],strlen(@$_SERVER['HTTP_REFERER']) - 9, 9);
+    if (@$_GET['message'] == 'success' && $ref == 'sign_up.php') {
+        echo "<div class='notify'><p>Registration Successful</p></div>";
     }
-    if (@$_GET['message'] == 'update' && $ref == 'update.php') {
-        echo "<div class='notify'> Successful </div>";
+    if (@$_GET['message'] == 'update' && $upd == 'update.php') {
+        echo "<div class='notify'><p>Successful</p></div>";
     }
-    if (@$_GET['message'] == 'success' && $resetPassword == 'newpassword.php') {
-        echo "<div class='notify'>Password reset successful. Kindly log into your account.</div>";
+    if (@$_GET['message'] == 'success' && $resetPassword == 'new_password.php') {
+        echo "<div class='notify'><p>Password reset successful. Kindly log into your account.</p></div>";
     }
     ?>
     <?php if($error !== ''){ ?>
-    <div class="notify" style="color: #991111ae;">
+    <div class="notify">
+     <p>
         <?= $error?>
+     </p>
     </div>
     <?php }?>
-
-  <form method="POST">
-   <fieldset>
-    <legend>Sign in</legend>
     <div class="field flex col">
      <label for="user">Email</label>
      <input type="email" name="email" id="user" required>     
