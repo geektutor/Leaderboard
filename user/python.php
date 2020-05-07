@@ -155,6 +155,11 @@ if(isset( $_SESSION['login_user'])){
             </select>
           </div>
           <div class="field flx col">
+            <label for="url">Repl.it URL</label>
+            <input type="url" id="url" name="url">
+            <p style="font-size: 12px; margin-top: 8px; line-height: 110%; color: #646464;">Enter your repl url</p>
+          </div>
+          <div class="field flx col">
             <label for="track">Track</label>
             <input type="text" id="track" name="track" value="python" readonly>
           </div>
@@ -164,9 +169,9 @@ if(isset( $_SESSION['login_user'])){
             <p style="font-size: 12px; margin-top: 8px; line-height: 110%; color: #646464;">Make sure you upload the correct file</p>
           </div>
           <div class="field flx col">
-            <input type="text" name="task_view" value="Day <?= $days; ?>" disabled>
+            <input type="text" name="task_view" value="Day 6" disabled>
           </div>
-          <input type="hidden" id="task_day" name="task_day" value="Day <?= $days; ?>">
+          <input type="hidden" id="task_day" name="task_day" value="Day 6">
           <input type="hidden" id="name" name="name" value="<?= $_SESSION['login_user']; ?>">
           <input type="hidden" name="cohort" value="1">
           <button id="submitTask" type="submit" name="submit">Submit task</button>
@@ -179,6 +184,9 @@ if(isset( $_SESSION['login_user'])){
  <script src="../assets/js/app.js"></script>
  <script src="assets/js/jquery-3.4.1.js"></script>
  <script type="text/javascript">
+  $('input[type=submit]').one('submit', function() {
+     $(this).attr('disabled','disabled');
+ });
    function upload(event) {
         event.preventDefault();
         var level = document.getElementById('level').value;
@@ -186,6 +194,7 @@ if(isset( $_SESSION['login_user'])){
         var track = document.getElementById('track').value;
         var name = document.getElementById('name').value;
         var task_day = document.getElementById('task_day').value;
+        var url = document.getElementById('url').value;
         var cohort = 1;
         var today = new Date();
         var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
@@ -207,7 +216,7 @@ if(isset( $_SESSION['login_user'])){
 
               $.ajax({
                 url: 'py_submit.php',
-                data: 'user='+name+'&track='+track+'&task_day='+task_day+'&points='+points+'&sub_date='+date+'&cohort='+cohort+'&level='+level,
+                data: 'user='+name+'&track='+track+'&url='+url+'&task_day='+task_day+'&points='+points+'&sub_date='+date+'&cohort='+cohort+'&level='+level,
                 type: "GET",
                 success: function(data) {
                   $('#stats2').html(data);

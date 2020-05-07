@@ -30,7 +30,7 @@
       $level = $_GET['level'];
       $date = date('Y-m-d');
       $feedback = "Marked by AutoGrader";
-      $url = '';
+      $url = $_GET['url'];
       $cohort = 1;
       $sql = "INSERT INTO submissions(user, track, url, task_day, points, sub_date, cohort, level, feedback) 
               VALUES('$user','$track', '$url', '$task_day', '$points', '$date', '$cohort', '$level', '$feedback')";
