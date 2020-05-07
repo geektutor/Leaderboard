@@ -155,8 +155,8 @@ if(isset( $_SESSION['login_user'])){
           <div class="field flx col">
             <label for="level">Level</label>
             <select name="level" id="level" value="">
-              <option value="Beginner">Beginner</option>
-              <p style="font-size: 12px; margin-top: 8px; line-height: 110%; color: #646464;"><a href="pyint.php">Submit for Intermediate Here</a></p>
+              <option value="Intermediate">Intermediate</option>
+              <p style="font-size: 13px; margin-top: 8px; line-height: 110%; color: #646464;"><a href="python.php">Submit for Beginner Here</a></p>
             </select>
           </div>
           <div class="field flx col">
@@ -206,7 +206,7 @@ if(isset( $_SESSION['login_user'])){
     var form_data = new FormData($('#form')[0]);
     
     $.ajax({
-        url: 'https://autograder30days.herokuapp.com/',
+        url: 'https://autograder30int.herokuapp.com/',
         data: form_data,
         contentType: false,
         processData: false,
