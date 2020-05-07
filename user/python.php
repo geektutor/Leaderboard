@@ -156,7 +156,7 @@ if(isset( $_SESSION['login_user'])){
           </div>
           <div class="field flx col">
             <label for="url">Repl.it URL</label>
-            <input type="url" id="url" name="url">
+            <input type="url" id="url" name="url" required>
             <p style="font-size: 12px; margin-top: 8px; line-height: 110%; color: #646464;">Enter your repl url</p>
           </div>
           <div class="field flx col">
@@ -165,7 +165,7 @@ if(isset( $_SESSION['login_user'])){
           </div>
           <div class="field flx col">
             <label for="file">Upload file</label>
-            <input type="file" id="file" name="file">
+            <input type="file" id="file" name="file" required>
             <p style="font-size: 12px; margin-top: 8px; line-height: 110%; color: #646464;">Make sure you upload the correct file</p>
           </div>
           <div class="field flx col">
