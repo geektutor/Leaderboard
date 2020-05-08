@@ -231,6 +231,7 @@ if(isset( $_SESSION['login_user'])){
       type: "GET",
       success: function(data) {
         $('#stats2').html(data);
+        $('#stats').html("Saved");
 
       },
       error: function() {}
