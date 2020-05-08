@@ -77,6 +77,8 @@
    }
    .notify p {
        width: 100%;
+       height: -webkit-fit-content;
+       height: -moz-fit-content;
        height: fit-content;
        padding: 10px;
        border: 1px solid #0ea5d3;
