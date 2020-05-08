@@ -77,11 +77,25 @@ main {
 }
 .group .track {
  font-size: 25px;
- color: #1486C2;
  margin-bottom: 12px;
+ text-transform: capitalize;
+}
+.frontend .track {
+ color: #1486C2;
+}
+.backend .track {
+ color: #C26D00;
+}
+.ui .track {
+ color: #BC27C2;
+}
+.mobile .track {
+ color: #2E345C;
+}
+.python .track {
+ color: #53C20A;
 }
 .group .level {
- background-color: #1486C2;
  color: white;
  text-transform: uppercase;
  border-radius: 5px;
@@ -93,4 +107,19 @@ main {
  color: #071733;
  font-size: 16px;
  font-weight: 800;
+}
+.frontend .level {
+ background-color: #1486C2;
+}
+.backend .level {
+background-color: #C26D00;
+}
+.ui .level {
+ background-color: #BC27C2;
+}
+.mobile .level {
+ background-color: #2E345C;
+}
+.python .level {
+ background-color: #53C20A;
 }
