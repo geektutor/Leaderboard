@@ -42,6 +42,8 @@ if (isset($_GET['track']) and isset($_GET['level'])) {
        $sql = makeSQL('general','general');
      }
      
+}else{
+  $sql = makeSQL('general','general');
 }
 $result = mysqli_query($conn,$sql);
 if ($result) {
