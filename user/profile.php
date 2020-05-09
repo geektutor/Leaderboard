@@ -29,12 +29,18 @@
         </div>
         <div class="flx col content">
           <?php
-          global $conn;
+          include '../config/connect.php';
+          session_start();
           $user_nickname = '';
           $user_track = '';
           $email = $_SESSION['login_user'];
-          $sql = "SELECT * FROM leaderboard WHERE email='$email' ORDER BY `score` DESC LIMIT 1";
+          $sql = "SELECT * FROM leaderboard WHERE `email`='$email' ORDER BY `score` DESC LIMIT 1";
           $result = mysqli_query($conn,$sql);
+          if ($result) {
+            echo 'works';
+          }else {
+            echo 'errors';
+          }
           while($row = mysqli_fetch_assoc($result)) {
               $user_nickname = $row['nickname'];
               echo '<div class="avatar flx col"><img src=\'https://robohash.org/'.$user_nickname.$user_track.'\'/ alt="robot avatar"/></div>';
