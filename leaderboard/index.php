@@ -76,9 +76,9 @@ $res =json_encode($userRanking);
         <select name="track" id="track" class="form-control">
             <?php
             include "../config/connect.php";
-            $sql = "SELECT DISTINCT `track` FROM user";
+            $sql = "SELECT DISTINCT `track` FROM leaderboard";
             $result = mysqli_query($conn,$sql);
-            if ($result && mysqli_num_rows($result) > 0) {
+            if ($result) {
               echo "<option value='general' id='trackNull'>General</option>";
               while ($row = mysqli_fetch_assoc($result)) {
                 echo "<option value='".$row['track']."' id='".$row['track']."'>".$row['track']."</option>";
