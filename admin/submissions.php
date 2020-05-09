@@ -86,7 +86,6 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
       <?php
         $current = date('Y-m-d');
         $sql = "SELECT * FROM submissions WHERE `track` = '$track' AND `level` = '$level' AND `points` = 0 ORDER BY level, task_day DESC";
-        echo $sql;
         $result = mysqli_query($conn, $sql);
         $row = mysqli_fetch_assoc($result);
         $count = mysqli_num_rows($result);
