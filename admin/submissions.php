@@ -4,6 +4,7 @@ require('../config/session.php');
 
 if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
     $track = $_GET['track'];
+    $level = $_GET['level'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -84,7 +85,8 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
       <div class="mainCard">
       <?php
         $current = date('Y-m-d');
-        $sql = "SELECT * FROM submissions WHERE track = '$track' AND points = 0 ORDER BY level, task_day DESC";
+        $sql = "SELECT * FROM submissions WHERE `track` = '$track' AND `level` = '$level' AND `points` = 0 ORDER BY level, task_day DESC";
+        echo $sql;
         $result = mysqli_query($conn, $sql);
         $row = mysqli_fetch_assoc($result);
         $count = mysqli_num_rows($result);
@@ -127,8 +129,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
      <footer class="flx row"><span class="copyw">Copyright &copy; 30DaysOfCode 2020</span> <div><a href="">Privacy Policy</a><a href="">Terms &amp; Conditions</a></div></footer>
    </div>
  </div>
- <script src="../assets/js/app.js"></script>
-<script>
+ <script src="../assets/js/app.js"></script><script>
 setTimeout(() => {
     $('{$track}').hide(1000);
 }, 2000);

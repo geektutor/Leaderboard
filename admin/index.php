@@ -100,8 +100,8 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
           <div class="field flx col">
             <label for="track">Level</label>
             <select name="level" value="">
-              <option value="beginner">Beginner</option>
-              <option value="intermediate">Intermediate</option>
+              <option value="Beginner">Beginner</option>
+              <option value="Intermediate">Intermediate</option>
             </select>
           </div>
 
