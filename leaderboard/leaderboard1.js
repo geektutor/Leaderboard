@@ -80,29 +80,40 @@ function getOverallRanking(){
   // }
 
 
-  
-  // var url = window.location.href;
-  // if (url.endsWith('#')) {
-  //   const hashpoint = url.indexOf('#');
-  //   url = url.split('').slice(0,hashpoint)
-  //   var newUrl = url.join('');
-  //   url = newUrl;
+
+  var url = window.location.href;
+  if (url.endsWith('#')) {
+    const hashpoint = url.indexOf('#');
+    url = url.split('').slice(0,hashpoint)
+    var newUrl = url.join('');
+    url = newUrl;
+  }
+  // var splitPoint = url.indexOf('?');
+  // var search = url.slice(splitPoint);
+
+  // var params = new URLSearchParams(search);
+  // var paramsObj = {};
+
+  // for (const value of params.keys()) {
+  //   paramsObj[value] = params.get[value]
   // }
-  // // var splitPoint = url.indexOf('?');
-  // // var search = url.slice(splitPoint);
+  const params = url.split('?')
 
-  // // var params = new URLSearchParams(search);
-  // // var paramsObj = {};
+  if (params.length > 1) {
+    const query = params[1].split('&');
 
-  // // for (const value of params.keys()) {
-  // //   paramsObj[value] = params.get[value]
-  // // }
-  // const params = url.split('?')[1].split('&');
+    const paramsObj = {}
 
-  // const paramsObj = {}
+    paramsObj.track =query[0].split('=')[1]
+    paramsObj.level =query[1].split('=')[1]
 
-  // paramsObj.track =params[0].split('=')[1]
-  // paramsObj.level =params[1].split('=')[1]
- 
+    if(paramsObj.track == 'general'){paramsObj.track = 'trackNull'}
+    if(paramsObj.level == 'general'){paramsObj.level = 'levelNull'}
+
+    document.getElementById(paramsObj.track).selected = true;
+    document.getElementById(paramsObj.level).selected = true;
+  
+  }
+  
 
   
