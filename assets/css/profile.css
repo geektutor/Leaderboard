@@ -1,0 +1,144 @@
+body {
+ background-image: none;
+}
+main {
+ -webkit-box-align: center;
+     -ms-flex-align: center;
+         align-items: center;
+ -webkit-box-flex: 1;
+     -ms-flex: 1;
+         flex: 1;
+}
+.banner {
+ width: 100%;
+ height: 285px;
+ background-color: #2B3E70;
+ -webkit-box-align: center;
+     -ms-flex-align: center;
+         align-items: center;
+ position: relative;
+}
+.whiteBtn { 
+ -ms-flex-item-align: end; 
+     align-self: flex-end;
+ position: relative;
+ top: 0;
+ height: 38px;
+ width: 130px;
+ background-color: rgba(0, 0, 0, 0);
+ border: 1.5px solid #ffffff;
+ border-radius: 20px;
+ margin: 10px 10px 0 0;
+ cursor: pointer;
+ }
+ .whiteBtn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+ }
+.whiteBtn a {
+ color: white;
+ text-decoration: none;
+}
+.profile-details {
+ -webkit-box-align: center;
+     -ms-flex-align: center;
+         align-items: center; 
+}
+.banner .avatar {
+ border-radius: 50%;
+ height: 145px;
+ width: 145px;
+ background-color: #697699;
+ margin-bottom: 10px;
+}
+.profile-details .name {
+ color: white;
+ font-size: 24px;
+ text-align: center;
+ margin-bottom: 6px;
+}
+.profile-details .user {
+ color: #DADDE6; 
+ font-size: 16px;
+ text-align: center;
+}
+.scores-card {
+ padding-top: 30px;
+ -webkit-box-flex: 1;
+     -ms-flex: 1;
+         flex: 1;
+ -ms-flex-wrap: wrap;
+     flex-wrap: wrap;
+ width: 80%;
+ border-radius: 5px;
+ -webkit-box-pack: center;
+     -ms-flex-pack: center;
+         justify-content: center;
+}
+.scores-card .group {
+ background-color: white;
+ width: -webkit-fit-content;
+ width: -moz-fit-content;
+ width: fit-content;
+ height: -webkit-fit-content;
+ height: -moz-fit-content;
+ height: fit-content;
+ -webkit-box-shadow: 0px 0px 3px rgba(41, 41, 41, 0.322);
+         box-shadow: 0px 0px 3px rgba(41, 41, 41, 0.322);
+ padding: 30px 35px;
+ border-radius: 10px;
+ margin: 20px;
+}
+.group .rank {
+ margin-top: 5px;
+ color: #071733;
+ font-weight: 800;
+ font-size: 18px;
+}
+.group .track {
+ font-size: 25px;
+ margin-bottom: 12px;
+ text-transform: capitalize;
+}
+.frontend .track {
+ color: #1486C2;
+}
+.backend .track {
+ color: #C26D00;
+}
+.ui .track {
+ color: #BC27C2;
+}
+.mobile .track {
+ color: #2E345C;
+}
+.python .track {
+ color: #53C20A;
+}
+.group .level {
+ color: white;
+ text-transform: uppercase;
+ border-radius: 5px;
+ padding: 12px 30px;
+ font-size: 14px;
+ margin-bottom: 14px;
+}
+.group .points {
+ color: #071733;
+ font-size: 16px;
+ font-weight: 800;
+}
+.frontend .level {
+ background-color: #1486C2;
+}
+.backend .level {
+background-color: #C26D00;
+}
+.ui .level {
+ background-color: #BC27C2;
+}
+.mobile .level {
+ background-color: #2E345C;
+}
+.python .level {
+ background-color: #53C20A;
+}

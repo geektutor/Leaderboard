@@ -1,136 +1,122 @@
-@media only screen and (max-width: 1000px) {
-  .hamBWrapper {
-   display: block;
-  }
-  #hamB {
-   display: -webkit-box;
-   display: -ms-flexbox;
-   display: flex;
-   -webkit-box-orient: vertical;
-   -webkit-box-direction: normal;
-       -ms-flex-direction: column;
-           flex-direction: column;
-   -webkit-box-pack: center;
-       -ms-flex-pack: center;
-           justify-content: center;  
-  }
+@media only screen and (max-width: 800px) {
   nav {
-   position: absolute;  
-  }
-  nav.closed {
-   -webkit-transition-duration: 600ms;
-        -o-transition-duration: 600ms;
-           transition-duration: 600ms;
-   -webkit-transform: translateX(-100%);
-       -ms-transform: translateX(-100%);
-           transform: translateX(-100%);  
-  }
-  #hamB.closed .a {
-   -webkit-transition-duration: 600ms;
-        -o-transition-duration: 600ms;
-           transition-duration: 600ms;
-  -webkit-transform: translateY(-9px);
-      -ms-transform: translateY(-9px);
-          transform: translateY(-9px);
-  }
-   #hamB.closed .b {
-    -webkit-transition-duration: 600ms;
-         -o-transition-duration: 600ms;
-            transition-duration: 600ms;
-   -webkit-transform: translateY(9px);
-       -ms-transform: translateY(9px);
-           transform: translateY(9px);
-   }
-  #hamB.open .a{
-   -webkit-transition-duration: 600ms;
-        -o-transition-duration: 600ms;
-           transition-duration: 600ms;
-   -webkit-transform: rotateZ(-45deg) ;
-       -ms-transform: rotate(-45deg);
-           transform: rotateZ(-45deg) ;
-  }
-  #hamB.open .b{
-   -webkit-transition-duration: 600ms;
-        -o-transition-duration: 600ms;
-           transition-duration: 600ms;
-   -webkit-transform: rotateZ(45deg);
-       -ms-transform: rotate(45deg);
-           transform: rotateZ(45deg);
-  }
-  #hamB.open .c{
-   -webkit-transition-duration: 100ms;
-        -o-transition-duration: 100ms;
-           transition-duration: 100ms;
-   visibility: hidden;
+    -webkit-transition-duration: 400ms;
+         -o-transition-duration: 400ms;
+            transition-duration: 400ms;
+    z-index: 3;
+    height: inherit;
+    position: absolute;
+    -webkit-transform: translateX(-100%);
+        -ms-transform: translateX(-100%);
+            transform: translateX(-100%);
+   
   }
   nav.open {
-   -webkit-transition-duration: 600ms;
-        -o-transition-duration: 600ms;
-           transition-duration: 600ms;
-   -webkit-transform: translateX(0);
-       -ms-transform: translateX(0);
-           transform: translateX(0);  
+    -webkit-transform: translateX(0%);
+        -ms-transform: translateX(0%);
+            transform: translateX(0%);
   }
-  footer {
-   position: relative;
-   z-index: -1;
+  #hamburger {
+    -webkit-transition-duration: 350ms;
+         -o-transition-duration: 350ms;
+            transition-duration: 350ms;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-sizing: content-box;
+            box-sizing: content-box;
+    position: absolute;
+    right: 0;
+    height: 30px;
+    width: 35px;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    cursor: pointer;
+    outline: none;
+    padding: 15px;
+    -webkit-transform: translateX(100%);
+        -ms-transform: translateX(100%);
+            transform: translateX(100%);
   }
- }
- @media only screen and (max-width: 750px) {
-  main {
-   margin: 65px 25px 10px 25px;
-   -ms-flex-item-align: center;
-       -ms-grid-row-align: center;
-       align-self: center;
+  .open #hamburger {
+    -webkit-transform: translateX(0);
+        -ms-transform: translateX(0);
+            transform: translateX(0);
   }
-  .mainCard{
-    margin-top: 20px;
-   padding: 15px 15px 15px 15px;
+  .open #hamburger div {    
+    background-color: white;
   }
- }
- @media only screen and (max-width: 550px) {
-   main h1 {
-     font-size: 20px;
-   }
-  .scoresContainer .scoreCard {
-   width: 95px;
+  #hamburger div {
+      -webkit-transition-duration: 500ms;
+           -o-transition-duration: 500ms;
+              transition-duration: 500ms;      
+      -webkit-transform-origin: center;      
+          -ms-transform-origin: center;      
+              transform-origin: center;
+    height: 4px;
+    border-radius: 4px;
+    background-color: rgb(29, 8, 122);
   }
-  .hamBWrapper {
-   -webkit-transform-origin: left;
-       -ms-transform-origin: left;
-           transform-origin: left;
-   -webkit-transform: scale(0.7);
-       -ms-transform: scale(0.7);
-           transform: scale(0.7);
+  #hamburger div.a {
+    width: 35px;
   }
-  nav {
-   width: 85vw;
-   padding-bottom: 20px;
+  .open #hamburger div.a {
+    -webkit-transform: rotateZ(45deg) translateY(10px) translateX(5px) ;
+        -ms-transform: rotate(45deg) translateY(10px) translateX(5px);
+            transform: rotateZ(45deg) translateY(10px) translateX(5px) ;
+}
+  #hamburger div.b {
+    width: 25px;
   }
-  nav .content {
-   margin-top: 20px;
+  .open #hamburger div.b {
+    -webkit-transform: rotateZ(-45deg) translateY(2px) translateX(5px);
+        -ms-transform: rotate(-45deg) translateY(2px) translateX(5px);
+            transform: rotateZ(-45deg) translateY(2px) translateX(5px);
+    border-radius:  0 4px 4px 0;
+}
+  #hamburger div.c {
+    width: 10px;
   }
-  header {
-   padding: 0 15px 0 15px;
-  }
-  .techSymb img{
-   margin: 2px;
-   -webkit-transform: scale(0.7);
-       -ms-transform: scale(0.7);
-           transform: scale(0.7);
-  }
-  main{
-   padding: 0;
-   -ms-flex-item-align: center;
-       -ms-grid-row-align: center;
-       align-self: center;
-   width: 90%;
-   margin-bottom: 10px;
-  }
- }
- @media only screen and (max-width: 400px) {
-   .mainCard{
-     padding-right: 10px;
-     padding-left: 10px;
-   }
- }
+  .open #hamburger div.c {
+    border-radius:  4px 0 0 4px;
+    -webkit-transform: rotateZ(-45deg) translateX(1px) translateY(0px);
+        -ms-transform: rotate(-45deg) translateX(1px) translateY(0px);
+            transform: rotateZ(-45deg) translateX(1px) translateY(0px);
+}
+form {
+  margin: 40px 0;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  width: 65%;
+}
+}
+@media only screen and (max-width: 500px) {
+    header {
+        padding: 0 30px;
+    }
+    .banner .avatar {
+        margin-top: 25px;
+        height: 120px;
+        width: 120px;
+    }
+.banner .name {
+    font-size: 18px;
+}
+.whiteBtn {
+    width: 110px;
+}
+.scores-card {
+    padding-top: 5px;
+}
+.scores-card .group {
+    margin-bottom: 15px;
+}
+form {
+  margin: 65px 0;
+  width: 90%;
+}
+}

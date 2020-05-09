@@ -17,18 +17,12 @@ if(isset( $_SESSION['login_user'])){
  <link rel="stylesheet" href="../assets/css/style.css">
  <link rel="stylesheet" href="../assets/css/submit.css">
  <link rel="stylesheet" href="../assets/css/responsive.css">
- <link rel="shortcut icon" href="./../assets/img/favicon.png" type="image/x-icon">
+ <link rel="shortcut icon" href="../assets/img/favicon.png" type="image/x-icon">
  <title>Feedback - 30 Days Of Code</title>
 </head>
 <body class="flx col">
  <header class="flx row">
   <span>#30DaysOfCode</span>
-  <div class="techSymb flx row">
-   <img src="../assets/img/htm.png">
-   <img src="../assets/img/crly.png">
-   <img src="../assets/img/prts.png">
-   <img src="../assets/img/dsg.png">
-  </div>
   <div class="profile flx col">
     <img src="../assets/img/profile.png">
     <ul class="options">
@@ -37,104 +31,68 @@ if(isset( $_SESSION['login_user'])){
   </div>
  </header>
  <div class="pageWrapper flx row">
-  <nav class="flx col closed" id="navPane">
-    <div class="hamBWrapper">
-      <div id="hamB" class="closed">   
-        <div class="a"></div> 
-        <div class="b"></div>
-        <div class="c"></div>
-      </div>
+ <nav class="flx col" id="navPane">
+    <div id="hamburger" class="flx col">
+      <div class="a"></div>
+      <div class="b"></div>
+      <div class="c"></div>
     </div>
-     <div class="flx col content">
+    <div class="flx col content">
       <?php
       global $conn;
       $user_nickname = '';
-      $user_score = '';
       $user_track = '';
       $email = $_SESSION['login_user'];
-      $sql = "SELECT * FROM user WHERE email='$email' ";
+      $sql = "SELECT * FROM leaderboard WHERE email='$email' ORDER BY `score` DESC LIMIT 1";
       $result = mysqli_query($conn,$sql);
       while($row = mysqli_fetch_assoc($result)) {
           $user_nickname = $row['nickname'];
-          $user_score = $row['score'];
-          $user_track = $row['track'];
-          echo '<div class="avatar"><img style=\'width:120px;height:120px;\' src=\'https://robohash.org/'.$user_nickname.$user_track.'\'/></div>';
-          echo '<span id="username">'.$user_nickname.'</span>';
-          // echo '<span id="username">'.$user_score.'&nbsp; points</div></center>';
+          echo '<div class="avatar flx col"><img src=\'https://robohash.org/'.$user_nickname.$user_track.'\'/ alt="robot avatar"/></div>';
+          echo '<p class="username">'.$user_nickname.'</p>';
       }
       ?>
-      <div class="scoresContainer flx row">
-        <div class="scoreCard flx col">
-         <div class="wLayer"></div>
-         <span class="title">Total points:</span>
-         <span id="points"><?php echo '<center><div>'.$user_score.'&nbsp; points</div></center>';?></span>
-        </div>
-        <div class="scoreCard flx col">
-         <div class="wLayer"></div>
-         <span class="title">Total rank:</span>
-           <?php
-            global $conn;
-            $ranking_sql = "SELECT * FROM user WHERE `isAdmin` = '0' ORDER BY `score` DESC";
-            $ranking_result = mysqli_query($conn,$ranking_sql);
-            if ($ranking_result) {
-                $rank = 1;
-                while ($row = mysqli_fetch_assoc($ranking_result)) {
-                    if($row['email'] == $email){
-                        echo '<span id="rank">'.$rank.'</span>';
-                    }else {
-                        $rank++;
-                    }
-                }
-                
-            }else {
-                echo "error fetching from database";
-            }
-            ?>
-        </div>
-      </div>
       <ul class="linksContainer">
-          <li class="flx row">
-         <img src="../assets/img/submsn.png">
-         <a href="index.php">Submissions</a>
+        <li class="flx row">
+          <img src="../assets/img/profileWT.png" />
+          <a href="profile.php">Profile</a>
         </li>
         <li class="flx row">
-         <img src="../assets/img/allTsk.png">
-         <a href="view.php">All tasks</a>
-        </li>
-        <li class="flx row">
-         <img src="../assets/img/add.png">
-         <a href="submit.php">Submit task</a>
-        </li>
-        <li class="flx row">
-         <img src="../assets/img/cert.png">
-         <a href="certification.php">Certificate</a>
+          <img src="../assets/img/task.png" />
+          <a href="task.php">View task</a>
         </li>
         <li class="flx row active">
-         <img src="../assets/img/feedback.png">
-         <a href="feedback.php">Feedback</a>
+          <img src="../assets/img/add.png" />
+          <a href="submit.php">Submit task</a>
         </li>
         <li class="flx row">
-         <img src="../assets/img/lead.png">
-         <a href="https://30daysofcode.xyz/leaderboard">Leaderboard</a>
+          <img src="../assets/img/submissions.png" />
+          <a href="submissions.php">Submissions</a>
         </li>
         <li class="flx row">
-         <img src="../assets/img/wa.png">
-         <a href="https://30daysofcode.xyz/whatsapp">Support group</a>
-         <img class="external" src="../assets/img/external.png" alt="">
+          <img src="../assets/img/podium.png" />
+          <a href="https://30daysofcode.xyz/leaderboard">Leaderboard</a>
         </li>
-          <li class="flx row">
-         <img src="../assets/img/tweet.png">
-         <a href=" https://twitter.com/intent/tweet?url=https%3A%2F%2F30daysofcodes.xyz&via=codon&text=Hello%2C%20I%20just%20finished%20my%20task%20for%20....&hashtags=30DaysOfCode%2C%20ECX">Tweet</a>
-         <img class="external" style="float: right;" src="../assets/img/external.png" alt="">
+        <li class="flx row">
+          <img src="../assets/img/twitter.png" />
+          <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2F30daysofcodes.xyz&via=codon&text=Hello%2C%20I%20just%20finished%20my%20task%20for%20....&hashtags=30DaysOfCode%2C%20ECX">Tweet</a>
         </li>
-       </ul>
-       <span id="email"><?=$_SESSION['login_user'];?></span>
-     </div>   
-   </nav>
+
+        <li class="flx row">
+          <img src="../assets/img/whatsapp.png" />
+          <a href="https://30daysofcode.xyz/whatsapp">Support group</a>
+        </li>
+        <li class="flx row">
+          <img src="../assets/img/feedback.png" />
+          <a href="feedback.php">Feedback</a>
+        </li>
+      </ul>
+      <span class="email">
+        <?=$_SESSION['login_user'];?>
+      </span>
+    </div>
+  </nav>
    <div class="mainWrapper flx col" id="mainWrp">
     <main>
-      <div class="flx row"><h1>Submit Feedback</h1></div>
-      <div class="mainCard">
       <?php
       $error = "";
         if(isset($_POST['submit'])){
@@ -164,13 +122,15 @@ if(isset( $_SESSION['login_user'])){
           </div>
               <?php }?>
        <form method="POST">
-          <div class="field flx col">
+       <legend>Submit feedback</legend>
+         <div class="fields-container flx col">
+         <div class="field flx col">
             <label for="feedback">Anonymous Feedback?</label>
             <textarea name="feedback" type="text" placeholder="Any comments?" rows="8"></textarea>
           </div>
           <button id="submitTask" type="submit" name="submit">Submit Feedback</button>
+         </div>
         </form> 
-      </div >
      </main>
      <footer class="flx row"><span class="copyw">Copyright &copy; 30DaysOfCode 2020</span> <div><a href="">Privacy Policy</a><a href="">Terms & Conditions</a></div></footer> 
    </div>

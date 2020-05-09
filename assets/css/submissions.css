@@ -1,7 +1,9 @@
 main #newBtn {
+  margin-left: 12px;
   font-size: 14px;
+font-weight: normal;
   border: none;
-  color: white;
+  color: rgba(255, 255, 255, 0.952);
   border-radius: 3px;
   padding: 8px 12px 8px 12px;
   background-color: #6868fd;
@@ -9,21 +11,23 @@ main #newBtn {
  }
  main #newBtn:hover {
   background-color: #8e8eee;
-  -webkit-transform: scale(1.02);
-      -ms-transform: scale(1.02);
-          transform: scale(1.02);
  }
- .mainCard {
-  padding: 30px;
-  margin-top: 35px;
- }
- 
+ form{
+   -ms-flex-item-align: center;
+       -ms-grid-row-align: center;
+       align-self: center;
+   margin: 80px 0px !important;
+   width: 95% !important;
+ } 
  table {
    color: rgb(60, 60, 63);
   border: 1px solid #ccc;
   border-collapse: collapse;
   margin: 0;
   padding: 0;
+  width: 100%;
+}
+table thead {
   width: 100%;
 }
 table tr {
@@ -34,6 +38,7 @@ table tr {
 
 table th,
 table td {
+  min-height: 20px;
   padding: .625em;
   text-align: left;
 }
@@ -43,7 +48,6 @@ table th {
   letter-spacing: .1em;
   text-transform: uppercase;
 }
-
 @media screen and (max-width: 600px) {
   table {
     border: 0;
