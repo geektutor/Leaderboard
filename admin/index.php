@@ -4,7 +4,8 @@ require('../config/session.php');
 if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
     if (isset($_POST['submit'])) {
         $track = $_POST['track'];
-        header("location: submissions.php?track=$track");
+        $level = $_POST['level'];
+        header("location: submissions.php?track=$track&level=$level");
     }
 ?>
 <!DOCTYPE html>
@@ -95,6 +96,15 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
               <option value="ui">UI/UX</option>
             </select>
           </div>
+
+          <div class="field flx col">
+            <label for="track">Level</label>
+            <select name="level" value="">
+              <option value="beginner">Beginner</option>
+              <option value="intermediate">Intermediate</option>
+            </select>
+          </div>
+
           <button id="submitTask" type="submit" name="submit">Submit</button>
         </form> 
      
