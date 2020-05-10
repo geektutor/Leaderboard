@@ -75,7 +75,7 @@ if(isset( $_SESSION['login_user'])){
         <main class="flx col">
          <div class="banner flx col">
          <button class="whiteBtn flx row cnt" onclick="rdr(this)">       
-          <a href="update.php"> Update profile </a>
+          <a href="index.php"> View Profile </a>
           <script>
            function rdr(elm){
             window.location.href = elm.children[0].href
@@ -101,39 +101,64 @@ if(isset( $_SESSION['login_user'])){
           ?>
          </div>
          </div>
-          <div class="scores-card flx row">
-           
-           <?php
-            global $conn;
-            $ranking_sql = "SELECT * FROM leaderboard ORDER BY `score` DESC";
-            $ranking_result = mysqli_query($conn,$ranking_sql);
-            if ($ranking_result) {
-                $rank = 1;
-                while ($row = mysqli_fetch_assoc($ranking_result)) {
-                    if($row['email'] == $email){
-                        $user_track = $row['track'];
-                        $score = $row['score'];
-                        $level = $row['level'];
-                        echo '<div class="group flx col cnt '.$user_track.'">';
-                        echo '<img src="../assets/img/medal.png" alt="">';
-                        echo '<p class="rank">'.$rank.'</p>';
-                        echo '<p class="track">'.$user_track.'</>';
-                        echo '<p class="level">'.$level.'</p>';
-                        echo '<p class="points">'.$score.' points</p>';
-                        echo '</div>';
-                      break; 
-                    }else {
-                        $rank++;
-                    }
-                }
-                
-            }else {
-                echo "error fetching from database";
-            }
-            ?>
-           
           
-         </div>
+         <?php
+    $error = '';
+    if(isset($_POST['submit'])){
+        $first = $_POST['first'];
+        $last = $_POST['last'];
+        $email = $_POST['email'];
+        $nick = $_POST['nick'];
+        $sql = "UPDATE `user` SET 
+       `first_name` = '$first', 
+       `last_name` = '$last',
+       `nickname` = '$nick'
+        WHERE `email` = '$email' ";
+       $result = mysqli_query($conn,$sql);
+        if($result){
+        header('location:update.php?message=update');
+        }
+        else{
+            $error = "Email incorrect";
+        }
+    }
+?>
+ <?php
+    $ref = substr(@$_SERVER['HTTP_REFERER'],strlen(@$_SERVER['HTTP_REFERER']) - 11, 11);
+    $resetPassword = substr(@$_SERVER['HTTP_REFERER'],strlen(@$_SERVER['HTTP_REFERER']) - 16, 16);
+    $upd = substr(@$_SERVER['HTTP_REFERER'],strlen(@$_SERVER['HTTP_REFERER']) - 9, 9);
+    if (@$_GET['message'] == 'update' && $upd == 'update.php') {
+        echo "<div class='notify'><p>Successful</p></div>";
+    }
+    ?>
+  <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST">
+   <fieldset>
+    <legend>Update Acount</legend>
+    <?php if($error !== ''){ ?>
+    <div class="notify">
+        <?= $error?>
+    </div>
+    <?php }?>
+    <div class="field flex col">
+     <label for="nick">Nick Name</label>
+     <input type="text" name="nick" id="nick" pattern="[A-Za-z0-9]+" required>     
+    </div>
+    <div class="field flex col">
+     <label for="first">First Name</label>
+     <input type="text" name="first" id="first" required>     
+    </div>
+    <div class="field flex col">
+     <label for="last">Last Name</label>
+     <input type="text" name="last" id="last" required>     
+    </div>
+    <div class="field flex col">
+     <label for="user">Email</label>
+     <input type="email" name="email" id="user" required>     
+    </div>
+   </fieldset>   
+   <button type="submit" name="submit" class="flex col">Update Details</button>
+  </form>           
+         
         </main>
         <footer class="flx row">
           <span class="copyw">Copyright &copy; 30DaysOfCode 2020</span>
