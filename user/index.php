@@ -1,3 +1,8 @@
+<?php
+require('../config/connect.php');
+require('../config/session.php');
+if(isset( $_SESSION['login_user'])){
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -31,7 +36,7 @@
           <ul class="linksContainer">
             <li class="flx row">
               <img src="../assets/img/profileWT.png" />
-              <a href="profile.php">Profile</a>
+              <a href="#">Profile</a>
             </li>
             <li class="flx row">
               <img src="../assets/img/task.png" />
@@ -83,12 +88,14 @@
           $user_nickname = '';
           $user_track = '';
           $email = $_SESSION['login_user'];
-          $sql = "SELECT * FROM leaderboard WHERE email='$email' ORDER BY `score` DESC LIMIT 1";
+          $sql = "SELECT * FROM user WHERE email='$email' ORDER BY `score` DESC LIMIT 1";
           $result = mysqli_query($conn,$sql);
           while($row = mysqli_fetch_assoc($result)) {
               $user_nickname = $row['nickname'];
-              echo '<div class="avatar"><img src=\'https://robohash.org/'.$user_nickname.$user_track.'\'/ alt="robot avatar"/></div>';
-              echo '<p class="name">'.$user_first. $user_last.'</p>';
+              $first = $row['first'];
+              $last = $row['last'];
+              echo '<img src=\'https://robohash.org/'.$user_nickname.'\'/ alt="robot avatar" class="avatar"/>';
+              echo '<p class="name">'.$first. $last.'</p>';
               echo '<p class="user">'.$user_nickname.'</p>';
           }
           ?>
@@ -104,12 +111,15 @@
                 $rank = 1;
                 while ($row = mysqli_fetch_assoc($ranking_result)) {
                     if($row['email'] == $email){
-                        echo '<div class="group flx col cnt <?= $track; ?>">';
+                        $user_track = $row['track'];
+                        $score = $row['score'];
+                        $level = $row['level'];
+                        echo '<div class="group flx col cnt '.$user_track.'">';
                         echo '<img src="../assets/img/medal.png" alt="">';
                         echo '<p class="rank">'.$rank.'</p>';
-                        echo '<p class="track">'.$track.'</>';
+                        echo '<p class="track">'.$user_track.'</>';
                         echo '<p class="level">'.$level.'</p>';
-                        echo '<p class="points">'.$score.'</p>';
+                        echo '<p class="points">'.$score.' points</p>';
                         echo '</div>';
                       break; 
                     }else {
@@ -136,3 +146,8 @@
     <script src="../assets/js/app.js"></script>
   </body>
 </html>
+<?php
+}else{
+    header("location:../sign_in.php"); 
+}
+?>
