@@ -202,11 +202,11 @@ if(isset( $_SESSION['login_user'])){
      <footer class="flx row"><span class="copyw">Copyright &copy; 30DaysOfCode 2020</span> <div><a href="">Privacy Policy</a><a href="">Terms & Conditions</a></div></footer> 
    </div>
  </div>
- <script src="./assets/js/app.js"></script>
+ <script src="../assets/js/app.js"></script>
 </body>
 </html>
 <?php
 }else{
-  header("location:../../sign_in.php");
+  header("location:../sign_in.php");
 }
 ?>

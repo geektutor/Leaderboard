@@ -56,7 +56,7 @@ if(isset( $_SESSION['login_user'])){
             </li>
             <li class="flx row">
               <img src="../assets/img/twitter.png" />
-              <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2F30daysofcode.xyz%2F&via=ecxunilag&text=<?php echo $task_day;?>%20of%2030%3A%20Check%20out%20my%20solution%20at%3A%20<?php echo $url;?>&hashtags=30DaysOfCode%2C%2030DaysOfDesign%2C%20ecxunilag">Tweet</a>
+              <a href="">Tweet</a>
             </li>
             <li class="flx row">
               <img src="../assets/img/whatsapp.png" />
@@ -92,10 +92,10 @@ if(isset( $_SESSION['login_user'])){
           $result = mysqli_query($conn,$sql);
           while($row = mysqli_fetch_assoc($result)) {
               $user_nickname = $row['nickname'];
-              $first = $row['first'];
-              $last = $row['last'];
+              $first = $row['first_name'];
+              $last = $row['last_name'];
               echo '<img src=\'https://robohash.org/'.$user_nickname.'\'/ alt="robot avatar" class="avatar"/>';
-              echo '<p class="name">'.$first. $last.'</p>';
+              echo '<p class="name">'.$first. ' ' .$last.'</p>';
               echo '<p class="user">'.$user_nickname.'</p>';
           }
           ?>
