@@ -154,12 +154,11 @@ if(isset( $_SESSION['login_user'])){
         <?php if($error !== ''){ ?>
           <div class="notice flx col">
               <?php 
-                  echo "<p>$error$</p>";
-                  if($submit == 1){
+                  echo "<p>$error</p>";
+                  if ($submit == 1){
               ?>
-              <h1 class="track">Success</h1>
               <p>
-                You have successfully submitted <br>
+                <br>
                 Share on <a style="font-size: 16px;" href="https://twitter.com/intent/tweet?url=https%3A%2F%2F30daysofcode.xyz%2F&via=ecxunilag&text=<?php echo $task_day;?>%20of%2030%3A%20Check%20out%20my%20solution%20at%3A%20<?php echo $url;?>&hashtags=30DaysOfCode%2C%2030DaysOfDesign%2C%20ecxunilag">Twitter </a>
               </p>
               <?php }?>
