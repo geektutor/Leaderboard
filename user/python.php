@@ -118,7 +118,7 @@ if(isset( $_SESSION['login_user'])){
             </div>
             <div class="field flx col">
               <label for="level">Level</label>
-              <select name="level" value="">
+              <select name="level" value="" id="level">
                 <option value="Beginner">Beginner</option>
               </select>
               <p style="font-size: 12px; margin-top: 8px; line-height: 110%; color: #646464;"><a href="pyint.php">Submit for Intermediate Here</a></p>
