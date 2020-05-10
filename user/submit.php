@@ -26,6 +26,9 @@ if(isset( $_SESSION['login_user'])){
  <link rel="stylesheet" href="../assets/css/submit.css">
  <link rel="stylesheet" href="../assets/css/responsive.css">
  <link rel="shortcut icon" href="../assets/img/favicon.png" type="image/x-icon">
+ <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0"/>
  <title>Submit task - 30 Days Of Code</title>
 </head>
 <body class="flx col">
