@@ -34,7 +34,7 @@ if(isset( $_SESSION['login_user'])){
         </div>
         <div class="flx col content">
           <ul class="linksContainer">
-            <li class="flx row">
+            <li class="flx row active">
               <img src="../assets/img/profileWT.png" />
               <a href="#">Profile</a>
             </li>
@@ -46,7 +46,7 @@ if(isset( $_SESSION['login_user'])){
               <img src="../assets/img/add.png" />
               <a href="submit.php">Submit task</a>
             </li>
-            <li class="flx row active">
+            <li class="flx row">
               <img src="../assets/img/submissions.png" />
               <a href="submissions.php">Submissions</a>
             </li>
