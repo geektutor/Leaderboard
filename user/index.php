@@ -31,7 +31,7 @@
           <ul class="linksContainer">
             <li class="flx row">
               <img src="../assets/img/profileWT.png" />
-              <a href="index.php">Profile</a>
+              <a href="profile.php">Profile</a>
             </li>
             <li class="flx row">
               <img src="../assets/img/task.png" />
@@ -88,7 +88,7 @@
           while($row = mysqli_fetch_assoc($result)) {
               $user_nickname = $row['nickname'];
               echo '<div class="avatar"><img src=\'https://robohash.org/'.$user_nickname.$user_track.'\'/ alt="robot avatar"/></div>';
-              echo '<p class="name">'.$user_first. {$user_last}'</p>';
+              echo '<p class="name">'.$user_first. $user_last.'</p>';
               echo '<p class="user">'.$user_nickname.'</p>';
           }
           ?>
@@ -106,10 +106,11 @@
                     if($row['email'] == $email){
                         echo '<div class="group flx col cnt <?= $track; ?>">';
                         echo '<img src="../assets/img/medal.png" alt="">';
-                        echo '<p class="rank">'.$rank.'</span>';
-                        echo '<p class="track">'.$track.'</span>';
-                        echo '<p class="level">'.$level.'</span>';
-                        echo '<p class="points">'.$score. points'</span>';
+                        echo '<p class="rank">'.$rank.'</p>';
+                        echo '<p class="track">'.$track.'</>';
+                        echo '<p class="level">'.$level.'</p>';
+                        echo '<p class="points">'.$score.'</p>';
+                        echo '</div>';
                       break; 
                     }else {
                         $rank++;
@@ -120,7 +121,7 @@
                 echo "error fetching from database";
             }
             ?>
-           </div>
+           
           
          </div>
         </main>
