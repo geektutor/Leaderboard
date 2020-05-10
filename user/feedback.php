@@ -92,7 +92,7 @@ if(isset( $_SESSION['login_user'])){
     </div>
   </nav>
    <div class="mainWrapper flx col" id="mainWrp">
-    <main>
+    
       <?php
       $error = "";
         if(isset($_POST['submit'])){
@@ -131,7 +131,7 @@ if(isset( $_SESSION['login_user'])){
           <button id="submitTask" type="submit" name="submit">Submit Feedback</button>
          </div>
         </form> 
-     </main>
+    
      <footer class="flx row"><span class="copyw">Copyright &copy; 30DaysOfCode 2020</span> <div><a href="">Privacy Policy</a><a href="">Terms & Conditions</a></div></footer> 
    </div>
  </div>
