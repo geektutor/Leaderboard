@@ -113,7 +113,7 @@ if(isset( $_SESSION['login_user'])){
           <div class="fields-container">
             <div class="field flx col">
               <label for="url">URL</label>
-              <input type="url" name="url" placeholder="Enter URL" required>
+              <input type="url" id="theurl" name="url" placeholder="Enter URL" required>
               <p style="font-size: 12px; margin-top: 8px; line-height: 110%; color: #646464;"><a href="https://github.com/geektutor/Leaderboard/blob/master/submission_guide.md">Submission Guidelines</a></p>
             </div>
             <div class="field flx col">
