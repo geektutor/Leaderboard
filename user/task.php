@@ -45,7 +45,7 @@ if(isset($_POST['submit'])){
     <header class="flx row">
       <span>#30DaysOfCode</span>
       <div class="profile flx col">
-        <img src=".../assets/img/profile.png" />
+        <img src="../assets/img/profile.png" />
         <ul class="options">
           <li id="logout"><a href="../../logout.php">Logout</a></li>
         </ul>
@@ -75,7 +75,7 @@ if(isset($_POST['submit'])){
           <ul class="linksContainer">
             <li class="flx row">
               <img src="../assets/img/profileWT.png" />
-              <a href="profile.php">Profile</a>
+              <a href="index.php">Profile</a>
             </li>
             <li class="flx row active">
               <img src="../assets/img/task.png" />
@@ -140,7 +140,7 @@ if(isset($_POST['submit'])){
                   <option value="ui">UI/UX</option>
                   <option value="python">Python</option>
                 </select>
-                <input type="hidden" name="task_day" value="" />
+                <input type="hidden" name="task_day" value="<?= $days?>" />
               </div>
               <button id="taskDownload" type="submit" name="submit">
                 Check Task

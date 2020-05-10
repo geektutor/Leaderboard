@@ -27,7 +27,7 @@ if (isset($_SESSION['isSuperAdmin']) && $_SESSION['isSuperAdmin'] == true) {
    <img src="../assets/img/dsg.png">
   </div>
   <div class="profile flx col">
-    <img src=".../assets/img/profile.png">
+    <img src="../assets/img/profile.png">
     <ul class="options">
       <li id="logout"><a href="../logout.php">Logout</a></li>
     </ul>
@@ -138,7 +138,7 @@ setTimeout(() => {
     echo "<script>
         document.write('you do not have access to this page, redirecting to login page ...');
         setTimeout(()=>{
-            window.location.href = '../../login.php'
+            window.location.href = '../../sign_in.php'
         },2000)
     </script>";
 }

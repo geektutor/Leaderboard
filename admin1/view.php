@@ -159,6 +159,6 @@ if(isset( $_SESSION['login_user'])){
 </html>
 <?php
 }else{
-    header("location:../../login.php"); 
+    header("location:../../sign_in.php"); 
 }
 ?>

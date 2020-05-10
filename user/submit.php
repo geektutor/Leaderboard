@@ -32,7 +32,7 @@ if(isset( $_SESSION['login_user'])){
  <header class="flx row">
   <span>#30DaysOfCode</span>
   <div class="profile flx col">
-    <img src=".../assets/img/profile.png">
+    <img src="../assets/img/profile.png">
     <ul class="options">
       <li id="logout"><a href="../../logout.php">Logout</a></li>
     </ul>
@@ -62,7 +62,7 @@ if(isset( $_SESSION['login_user'])){
       <ul class="linksContainer">
         <li class="flx row">
           <img src="../assets/img/profileWT.png" />
-          <a href="profile.php">Profile</a>
+          <a href="index.php">Profile</a>
         </li>
         <li class="flx row">
           <img src="../assets/img/task.png" />
@@ -208,6 +208,6 @@ if(isset( $_SESSION['login_user'])){
 </html>
 <?php
 }else{
-  header("location:../../login.php");
+  header("location:../../sign_in.php");
 }
 ?>

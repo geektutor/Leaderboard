@@ -7,7 +7,7 @@ if (!isset($_SESSION['login_user']) || empty($_SESSION['login_user'])) {
  <script>
     document.write('You must be logged in first, redirecting to login page ...');
     setTimeout(() => {
-        window.location.href = "../../login.php"
+        window.location.href = "../../sign_in.php"
     }, 3000);
  </script>
 <?php
@@ -65,7 +65,7 @@ if (!isset($_SESSION['login_user']) || empty($_SESSION['login_user'])) {
    <img src="../assets/img/dsg.png">
   </div>
   <div class="profile flx col">
-    <img src=".../assets/img/profile.png">
+    <img src="../assets/img/profile.png">
     <ul class="options">
       <li id="logout"><a href="../../logout.php">Logout</a></li>
     </ul>
@@ -95,7 +95,7 @@ if (!isset($_SESSION['login_user']) || empty($_SESSION['login_user'])) {
       <ul class="linksContainer">
         <li class="flx row">
           <img src="../assets/img/profileWT.png" />
-          <a href="profile.php">Profile</a>
+          <a href="index.php">Profile</a>
         </li>
         <li class="flx row">
           <img src="../assets/img/task.png" />

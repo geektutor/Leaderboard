@@ -31,7 +31,7 @@
           <ul class="linksContainer">
             <li class="flx row">
               <img src="../assets/img/profileWT.png" />
-              <a href="profile.php">Profile</a>
+              <a href="index.php">Profile</a>
             </li>
             <li class="flx row">
               <img src="../assets/img/task.png" />
@@ -95,41 +95,33 @@
          </div>
          </div>
           <div class="scores-card flx row">
-           <div class="group flx col cnt frontend">
-            <img src="../assets/img/medal.png" alt="">
-            <p class="rank">20</p>
-            <p class="track">frontend</p>
-            <p class="level">intermediate</p>
-            <p class="points">200 points</p>
+           
+           <?php
+            global $conn;
+            $ranking_sql = "SELECT * FROM leaderboard ORDER BY `score` DESC";
+            $ranking_result = mysqli_query($conn,$ranking_sql);
+            if ($ranking_result) {
+                $rank = 1;
+                while ($row = mysqli_fetch_assoc($ranking_result)) {
+                    if($row['email'] == $email){
+                        echo '<div class="group flx col cnt <?= $track; ?>">';
+                        echo '<img src="../assets/img/medal.png" alt="">';
+                        echo '<p class="rank">'.$rank.'</span>';
+                        echo '<p class="track">'.$track.'</span>';
+                        echo '<p class="level">'.$level.'</span>';
+                        echo '<p class="points">'.$score. points'</span>';
+                      break; 
+                    }else {
+                        $rank++;
+                    }
+                }
+                
+            }else {
+                echo "error fetching from database";
+            }
+            ?>
            </div>
-           <div class="group flx col cnt backend">
-            <img src="../assets/img/medal.png" alt="">
-            <p class="rank">20</p>
-            <p class="track">backend</p>
-            <p class="level">intermediate</p>
-            <p class="points">200 points</p>
-           </div>
-           <div class="group flx col cnt python">
-            <img src="../assets/img/medal.png" alt="">
-            <p class="rank">20</p>
-            <p class="track">python</p>
-            <p class="level">intermediate</p>
-            <p class="points">200 points</p>
-           </div>
-           <div class="group flx col cnt mobile">
-            <img src="../assets/img/medal.png" alt="">
-            <p class="rank">20</p>
-            <p class="track">mobile</p>
-            <p class="level">intermediate</p>
-            <p class="points">200 points</p>
-           </div>
-           <div class="group flx col cnt ui">
-            <img src="../assets/img/medal.png" alt="">
-            <p class="rank">20</p>
-            <p class="track">ui/ux</p>
-            <p class="level">intermediate</p>
-            <p class="points">200 points</p>
-           </div>
+          
          </div>
         </main>
         <footer class="flx row">

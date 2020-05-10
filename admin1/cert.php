@@ -127,6 +127,6 @@ $count = mysqli_num_rows($result);
 </html>
 <?php
 }else{
-header("location:../../login.php"); 
+header("location:../../sign_in.php"); 
 }
 ?>
