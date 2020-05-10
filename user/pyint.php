@@ -173,7 +173,7 @@ if(isset( $_SESSION['login_user'])){
             <textarea name="comment" id="comment" type="text" placeholder="Any comments?" rows="5"></textarea>
           </div>
           <div class="field flx col">
-            <input type="text" id="task_day" name="task_day" value="Day 9" readonly>
+            <input type="text" id="task_day" name="task_day" value="Day 10" readonly>
           </div>
           <input type="hidden" id="name" name="name" value="<?= $_SESSION['login_user']; ?>">
           <input type="hidden" name="cohort" value="1">
