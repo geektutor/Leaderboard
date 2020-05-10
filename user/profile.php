@@ -8,13 +8,13 @@
     <link rel="stylesheet" href="../assets/css/profile.css" />
     <link rel="stylesheet" href="../assets/css/responsive.css" />
     <link rel="shortcut icon" href="../assets/img/favicon.png" type="image/x-icon">
-    <title>30 Days Of Code dashboard</title>
+    <title>30 Days Of Code Dashboard</title>
   </head>
   <body class="flx col">
     <header class="flx row">
       <span>#30DaysOfCode</span>
       <div class="profile flx col">
-        <img src="./assets/img/profile.png" />
+        <img src="../assets/img/profile.png" />
         <ul class="options">
           <li id="logout"><a href="../../logout.php">Logout</a></li>
         </ul>
@@ -28,19 +28,6 @@
           <div class="c"></div>
         </div>
         <div class="flx col content">
-          <?php
-          global $conn;
-          $user_nickname = '';
-          $user_track = '';
-          $email = $_SESSION['login_user'];
-          $sql = "SELECT * FROM leaderboard WHERE email='$email' ORDER BY `score` DESC LIMIT 1";
-          $result = mysqli_query($conn,$sql);
-          while($row = mysqli_fetch_assoc($result)) {
-              $user_nickname = $row['nickname'];
-              echo '<div class="avatar flx col"><img src=\'https://robohash.org/'.$user_nickname.$user_track.'\'/ alt="robot avatar"/></div>';
-              echo '<p class="username">'.$user_nickname.'</p>';
-          }
-          ?>
           <ul class="linksContainer">
             <li class="flx row">
               <img src="../assets/img/profileWT.png" />
@@ -91,11 +78,20 @@
            </script>
          </button>
          <div class="profile-details flx col">
-          <div class="avatar">
-           <img src="" alt="robot avatar">
-          </div>
-          <p class="name">Akinjobi Sodiq</p>
-          <p class="user">Geektutor</p> 
+         <?php
+          global $conn;
+          $user_nickname = '';
+          $user_track = '';
+          $email = $_SESSION['login_user'];
+          $sql = "SELECT * FROM leaderboard WHERE email='$email' ORDER BY `score` DESC LIMIT 1";
+          $result = mysqli_query($conn,$sql);
+          while($row = mysqli_fetch_assoc($result)) {
+              $user_nickname = $row['nickname'];
+              echo '<div class="avatar"><img src=\'https://robohash.org/'.$user_nickname.$user_track.'\'/ alt="robot avatar"/></div>';
+              echo '<p class="name">'.$user_first. {$user_last}'</p>';
+              echo '<p class="user">'.$user_nickname.'</p>';
+          }
+          ?>
          </div>
          </div>
           <div class="scores-card flx row">

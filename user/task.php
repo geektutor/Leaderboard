@@ -45,7 +45,7 @@ if(isset($_POST['submit'])){
     <header class="flx row">
       <span>#30DaysOfCode</span>
       <div class="profile flx col">
-        <img src="../assets/img/profile.png" />
+        <img src=".../assets/img/profile.png" />
         <ul class="options">
           <li id="logout"><a href="../../logout.php">Logout</a></li>
         </ul>
