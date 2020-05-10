@@ -125,7 +125,7 @@ if(isset( $_SESSION['login_user'])){
             </div>
             <div class="field flx col">
               <label for="level">Track</label>
-              <select name="track" value="">
+              <select name="track" value="" id="track">
                 <option value="python">Python</option>
               </select>
             </div>
@@ -136,11 +136,11 @@ if(isset( $_SESSION['login_user'])){
           </div>
             <div class="field flx col">
               <label for="comment">Comments?</label>
-              <textarea name="comment" type="text" placeholder="Any comments?" rows="5"></textarea>
+              <textarea name="comment" type="text" id="comment" placeholder="Any comments?" rows="5"></textarea>
             </div>
             <div class="field flx col">
             </div>
-            <input type="hidden" name="task_day" value="Day <?= $days; ?>">
+            <input type="hidden" name="task_day" id="task_day" value="Day <?= $days; ?>">
             <input type="hidden" id="name" name="name" value="<?= $_SESSION['login_user']; ?>">
           <input type="hidden" name="cohort" value="1">
           <button id="submitTask" type="submit" name="submit">Submit task</button>
