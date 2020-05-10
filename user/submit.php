@@ -55,14 +55,14 @@ if(isset( $_SESSION['login_user'])){
       $result = mysqli_query($conn,$sql);
       while($row = mysqli_fetch_assoc($result)) {
           $user_nickname = $row['nickname'];
-          echo '<div class="avatar flx col"><img src=\'https://robohash.org/'.$user_nickname.$user_track.'\'/ alt="robot avatar"/></div>';
+          echo '<img src=\'https://robohash.org/'.$user_nickname.$user_track.'\'/ alt="robot avatar" class="avatar flx col"/>';
           echo '<p class="username">'.$user_nickname.'</p>';
       }
       ?>
       <ul class="linksContainer">
         <li class="flx row">
           <img src="../assets/img/profileWT.png" />
-          <a href="profile.php">Profile</a>
+          <a href="index.php">Profile</a>
         </li>
         <li class="flx row">
           <img src="../assets/img/task.png" />
@@ -154,12 +154,11 @@ if(isset( $_SESSION['login_user'])){
         <?php if($error !== ''){ ?>
           <div class="notice flx col">
               <?php 
-                  echo "<p>$error$</p>";
-                  if($submit == 1){
+                  echo "<p>$error</p>";
+                  if ($submit == 1){
               ?>
-              <h1 class="track">Success</h1>
               <p>
-                You have successfully submitted <br>
+                <br>
                 Share on <a style="font-size: 16px;" href="https://twitter.com/intent/tweet?url=https%3A%2F%2F30daysofcode.xyz%2F&via=ecxunilag&text=<?php echo $task_day;?>%20of%2030%3A%20Check%20out%20my%20solution%20at%3A%20<?php echo $url;?>&hashtags=30DaysOfCode%2C%2030DaysOfDesign%2C%20ecxunilag">Twitter </a>
               </p>
               <?php }?>
@@ -203,11 +202,11 @@ if(isset( $_SESSION['login_user'])){
      <footer class="flx row"><span class="copyw">Copyright &copy; 30DaysOfCode 2020</span> <div><a href="">Privacy Policy</a><a href="">Terms & Conditions</a></div></footer> 
    </div>
  </div>
- <script src="./assets/js/app.js"></script>
+ <script src="../assets/js/app.js"></script>
 </body>
 </html>
 <?php
 }else{
-  header("location:../../login.php");
+  header("location:../sign_in.php");
 }
 ?>

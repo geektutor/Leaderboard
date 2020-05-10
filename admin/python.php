@@ -83,7 +83,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
       <div class="flx row"><h1>Submissions</h1> </div>
       <div class="mainCard">
       <?php
-        $sql = "SELECT * FROM submissions WHERE  track = 'python' AND task_day > 'Day 5' AND points < 10 ORDER BY points ASC";
+        $sql = "SELECT * FROM submissions WHERE  track = 'python' AND level = 'Beginner' AND task_day > 'Day 7' AND points < 9 AND feedback = 'Marked by AutoGrader V2' ORDER BY points ASC";
         $result = mysqli_query($conn, $sql);
         $count = mysqli_num_rows($result);
         ?>
@@ -138,7 +138,7 @@ setTimeout(() => {
     echo "<script>
         document.write('you do not have access to this page, redirecting to login page ...');
         setTimeout(()=>{
-            window.location.href = '../../login.php'
+            window.location.href = '../../sign_in.php'
         },2000)
     </script>";
 }

@@ -42,6 +42,8 @@ if (isset($_GET['track']) and isset($_GET['level'])) {
        $sql = makeSQL('general','general');
      }
      
+}else{
+  $sql = makeSQL('general','general');
 }
 $result = mysqli_query($conn,$sql);
 if ($result) {
@@ -74,10 +76,10 @@ $res =json_encode($userRanking);
         <select name="track" id="track" class="form-control">
             <?php
             include "../config/connect.php";
-            $sql = "SELECT DISTINCT `track` FROM user";
+            $sql = "SELECT DISTINCT `track` FROM leaderboard";
             $result = mysqli_query($conn,$sql);
-            if ($result && mysqli_num_rows($result) > 0) {
-              echo "<option value='general' id='general'>General</option>";
+            if ($result) {
+              echo "<option value='general' id='trackNull'>General</option>";
               while ($row = mysqli_fetch_assoc($result)) {
                 echo "<option value='".$row['track']."' id='".$row['track']."'>".$row['track']."</option>";
               }
@@ -85,9 +87,9 @@ $res =json_encode($userRanking);
              ?>
           </select>
           <select name="level" id="level" class="form-control">
-          <option value="general">General</option>
-           <option value="beginner">Beginner</option>
-           <option value="intermediate">Intermediate</option>
+          <option value="general" id="levelNull">General</option>
+           <option value="beginner" id="beginner">Beginner</option>
+           <option value="intermediate" id="intermediate">Intermediate</option>
           </select>
           <button type="submit" class="btn btn-warning">Filter</button>          
         </form>

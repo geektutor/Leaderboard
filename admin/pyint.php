@@ -1,10 +1,9 @@
 <?php
 require('../config/connect.php');
 require('../config/session.php');
-
+$msg = '';
 if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
-    $track = $_GET['track'];
-    $level = $_GET['level'];
+    $track = $_SESSION['track'];     
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,7 +46,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
        <ul class="linksContainer">
         <li class="flx row active">
          <img src="../assets/img/submsn.png">
-         <a href="../user">User Dashboard</a>
+         <a href="index.php">Dashboard</a>
         </li>
         <li class="flx row">
          <img src="../assets/img/add.png">
@@ -84,10 +83,8 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
       <div class="flx row"><h1>Submissions</h1> </div>
       <div class="mainCard">
       <?php
-        $current = date('Y-m-d');
-        $sql = "SELECT * FROM submissions WHERE `track` = '$track' AND `level` = '$level' AND `points` = 0 ORDER BY level, task_day DESC";
+        $sql = "SELECT * FROM submissions WHERE  track = 'python' AND level = 'Intermediate' AND task_day > 'Day 7' AND points < 9 AND feedback = 'Marked by AutoGrader V2' ORDER BY points ASC";
         $result = mysqli_query($conn, $sql);
-        $row = mysqli_fetch_assoc($result);
         $count = mysqli_num_rows($result);
         ?>
        <div class="table-responsive">
@@ -95,9 +92,9 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
          <thead>
           <tr>
             <th scope="col">S/N</th>
-            <th scope="col">Url</th>
+            <th scope="col">Email</th>
             <th scope="col">Level</th>
-            <th scope="col">Day</th>
+            <th scope="col">Submission for Day</th>
             <th scope="col">Points</th>
             </tr>
         </thead>
@@ -109,9 +106,9 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
           ?>
           <tr>
               <td data-label="S/N"><?php echo $j;?></td>
-              <td data-label="URL"><a href="view.php?id=<?php echo $row['id'];?>"><?php echo $row['user'];?></a></td>
+              <td data-label="Email"><a href="view.php?id=<?php echo $row['id'];?>"><?php echo $row['user'];?></a></td>
               <td data-label="Level"><?php echo $row['level'];?></td>
-              <td data-label="Day"><?php echo $row['task_day'];?></td>
+              <td data-label="Submission For Day"><?php echo $row['task_day'];?></td>
               <td data-label="Points"><?php echo $row['points'];?></td>
           </tr>
           <?php 
@@ -128,15 +125,21 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
      <footer class="flx row"><span class="copyw">Copyright &copy; 30DaysOfCode 2020</span> <div><a href="">Privacy Policy</a><a href="">Terms &amp; Conditions</a></div></footer>
    </div>
  </div>
- <script src="../assets/js/app.js"></script><script>
+ <script src="../assets/js/app.js"></script>
+<script>
 setTimeout(() => {
-    $('{$track}').hide(1000);
+    $('#success').hide(1000);
 }, 2000);
 </script>
 </body>
 </html>
 <?php
 }else{
-    header("location:../sign_in.php"); 
+    echo "<script>
+        document.write('you do not have access to this page, redirecting to login page ...');
+        setTimeout(()=>{
+            window.location.href = '../../sign_in.php'
+        },2000)
+    </script>";
 }
 ?>

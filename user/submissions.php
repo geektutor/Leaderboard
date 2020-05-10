@@ -42,14 +42,14 @@ if(isset( $_SESSION['login_user'])){
       $result = mysqli_query($conn,$sql);
       while($row = mysqli_fetch_assoc($result)) {
           $user_nickname = $row['nickname'];
-          echo '<div class="avatar flx col"><img src=\'https://robohash.org/'.$user_nickname.$user_track.'\'/ alt="robot avatar"/></div>';
+          echo '<img src=\'https://robohash.org/'.$user_nickname.$user_track.'\'/ alt="robot avatar" class="avatar flx col"/>';
           echo '<p class="username">'.$user_nickname.'</p>';
       }
       ?>
       <ul class="linksContainer">
         <li class="flx row">
           <img src="../assets/img/profileWT.png" />
-          <a href="profile.php">Profile</a>
+          <a href="index.php">Profile</a>
         </li>
         <li class="flx row">
           <img src="../assets/img/task.png" />

@@ -134,7 +134,7 @@ if (isset($_SESSION['isSuperAdmin']) && $_SESSION['isSuperAdmin'] == true) {
     echo "<script>
         document.write('you do not have access to this page, redirecting to login page ...');
         setTimeout(()=>{
-            window.location.href = '../../login.php'
+            window.location.href = '../../sign_in.php'
         },2000)
     </script>";
 }

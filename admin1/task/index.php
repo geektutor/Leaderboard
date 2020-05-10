@@ -151,6 +151,6 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
 </html>
 <?php
 }else{
-    header("location:../../login.php"); 
+    header("location:../../sign_in.php"); 
 }
 ?>
