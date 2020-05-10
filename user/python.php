@@ -151,7 +151,7 @@ if(isset( $_SESSION['login_user'])){
      <footer class="flx row"><span class="copyw">Copyright &copy; 30DaysOfCode 2020</span> <div><a href="">Privacy Policy</a><a href="">Terms & Conditions</a></div></footer> 
    </div>
  </div> <script src="../assets/js/app.js"></script>
- <script src="assets/js/jquery-3.4.1.js"></script>
+ <script src="../assets/js/jquery-3.4.1.js"></script>
  <script type="text/javascript">
   var level = document.getElementById('level').value;
   var file = document.getElementById('file').value;
