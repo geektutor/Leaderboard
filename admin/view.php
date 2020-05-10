@@ -123,7 +123,7 @@ while($row = $result->fetch_assoc()) {
         }
         if($result_up){
             $error = "Submission Successfully Graded";
-            header('refresh: 2; url=./submissions.php?track='.$track); 
+            header('refresh: 2; url=./submissions.php?track='.$track'?level='.$level); 
         }else{
            $error = "Could not update user";
         }
