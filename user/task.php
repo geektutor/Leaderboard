@@ -106,7 +106,7 @@ if(isset($_POST['submit'])){
         <main class="flx col">
           <form method="POST" class="flx col">
             <legend>
-              Today's task <span class="day">Day <?= $days; ?></span>
+              All task <span class="day">Day <?= $days; ?></span>
             </legend>
             <?php if($show == 1){ ?>
              <?php
@@ -117,7 +117,7 @@ if(isset($_POST['submit'])){
                 $level = $row['level'];
                 $day = $row['task_day'];
                 echo '<div class="notice flx col">';
-                echo '<h1 class="track"> '.$track.' | '.$level.' | '.$day.'</h1>'; 
+                echo '<h1 class="track"> '.$track.' | '.$level.' | '.$day.'</h1><br>'; 
                 echo '<p>'.$error.'</p></div>';
                 $show = 1;
               }
