@@ -167,7 +167,8 @@ if(isset( $_SESSION['login_user'])){
 <!--             <div class="notice flx col">
               
             </div> -->
-	<div class="field flx col">
+          <div class="fields-container">
+		 <div class="field flx col">
 	    	<label for="track">Track</label>
 		<select id="track" name="track" value="">
                 <option value="backend">Backend</option>
@@ -177,7 +178,6 @@ if(isset( $_SESSION['login_user'])){
                 <option value="ui">UI/UX</option>
               </select>
 	    </div>
-          <div class="fields-container">
             <div class="field flx col">
               <label for="url">URL</label>
               <input id="url" type="url" name="url" placeholder="Enter URL" required>
