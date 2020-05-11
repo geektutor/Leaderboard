@@ -90,6 +90,14 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
         $count = mysqli_num_rows($result);
         $day = $row['task_day'];
     ?>
+    <?php
+      if(isset($_GET['delete'])){
+        $id = $row['id'];
+        $delete =("DELETE FROM `task` WHERE id = '$id'");
+        $result = mysqli_query($conn, $sql);
+        echo `<p>Task Deleted</p>`;
+      }
+    ?>  
        <div class="table-responsive">
         <table class="table" style="text-align: left;">
          <thead>
@@ -114,7 +122,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
               <td data-label="Track"><?= $row['track'];?></td>
               <td data-label="Level"><?= $row['level'];?></td>
               <td data-label="Task"><?= $row['task'];?></td>
-              <td data-label="Action"><a href="edit_task.php?id=<?=$row['id']?>">Edit</a> | <a href="delete_task.php?id=<?=$row['id']?>">Delete</a></td>
+              <td data-label="Action"><a href="edit_task.php?id=<?=$row['id']?>">Edit</a> | <input type="button" name="Delete" value="delete"></td>
           </tr>
           <?php 
               $j++;
