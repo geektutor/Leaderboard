@@ -105,7 +105,7 @@ if(isset($_POST['submit'])){
               <a href="https://30daysofcode.xyz/whatsapp">Support group</a>
             </li>
             <li class="flx row">
-              <img src="./assets/img/feedback.png" />
+              <img src="../assets/img/feedback.png" />
               <a href="feedback.php">Feedback</a>
             </li>
           </ul>
