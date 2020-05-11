@@ -1,5 +1,7 @@
 # Leaderboard
 
+Check [SOLUTION](https://github.com/geektutor/Leaderboard/tree/solution) Branch for final solution for Solution Challenge
+
 HOW TO SET UP THIS PROJECT LOCALLY
 
 1. You must have local developer server installed on your machine like XAMPP, WAMP, LAMP
