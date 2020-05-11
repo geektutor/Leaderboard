@@ -84,12 +84,11 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
       <div class="mainCard">
       <?php
         $current = date('Y-m-d');
-        $sql = "SELECT * FROM task ORDER BY task_day";
+        $sql = "SELECT * FROM task ORDER BY task_day, track";
         $result = mysqli_query($conn, $sql);
         $row = mysqli_fetch_assoc($result);
         $count = mysqli_num_rows($result);
         $day = $row['task_day'];
-
     ?>
        <div class="table-responsive">
         <table class="table" style="text-align: left;">
@@ -115,7 +114,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
               <td data-label="Track"><?= $row['track'];?></td>
               <td data-label="Level"><?= $row['level'];?></td>
               <td data-label="Task"><?= $row['task'];?></td>
-              <td data-label="Action"><a href="edit_task.php?id=<?=$row['id']?>">Edit</a></td>
+              <td data-label="Action"><a href="edit_task.php?id=<?=$row['id']?>">Edit</a> | <a href="delete_task.php?id=<?=$row['id']?>">Delete</a></td>
           </tr>
           <?php 
               $j++;
