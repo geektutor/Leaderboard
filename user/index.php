@@ -31,9 +31,9 @@ if(isset( $_SESSION['login_user'])){
     <div class="pageWrapper flx row">
       <nav class="flx col" id="navPane">
         <div id="hamburger" class="flx col">
-          <div class="a"></div>
-          <div class="b"></div>
-          <div class="c"></div>
+          <div class="a" style="background-color: white"></div>
+          <div class="b" style="background-color: white"></div>
+          <div class="c" style="background-color: white"></div>
         </div>
         <div class="flx col content">
           <ul class="linksContainer">

@@ -242,10 +242,16 @@ legend .day {
   font-size: 16px;
   margin-bottom: 5px;
 }
+.notice h2, .notice h3 {
+	font-size: 14px;
+	font-weight: bold;
  .notice p {
    line-height: 120%;
   width: 100%;
  }
+.notice a, .notice p, .notice span {
+	word-wrap: break-word;
+}
 .notice img {
   margin-right: 6px;
 }

@@ -105,7 +105,7 @@ if(isset($_POST['submit'])){
               <a href="https://30daysofcode.xyz/whatsapp">Support group</a>
             </li>
             <li class="flx row">
-              <img src="./assets/img/feedback.png" />
+              <img src="../assets/img/feedback.png" />
               <a href="feedback.php">Feedback</a>
             </li>
           </ul>
@@ -131,7 +131,7 @@ if(isset($_POST['submit'])){
                 <label for="day">Level</label>
                 <select name="level" value="">
                   <option value="Beginner">Beginner</option>
-                  <option value="Intermediate">intermediate</option>
+                  <option value="Intermediate">Intermediate</option>
                 </select>
               </div>
               <div class="field flx col">
