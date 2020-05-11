@@ -118,11 +118,11 @@ if(isset( $_SESSION['login_user'])){
           <div class="fields-container">
 		 <div class="field flx col">
 	    	<label for="track">Track</label>
-		<select id="track" name="track" value="">
+		<select id="track" class="trackS" name="track" value="">
+		<option value="python" selected>Python</option>
                 <option value="backend">Backend</option>
                 <option value="frontend">Frontend</option>
                 <option value="mobile">Mobile</option>
-                <option value="python" selected>Python</option>
                 <option value="ui">UI/UX</option>
               </select>
 	    </div>
@@ -170,7 +170,7 @@ if(isset( $_SESSION['login_user'])){
           <div class="fields-container">
 		 <div class="field flx col">
 	    	<label for="track">Track</label>
-		<select id="track" name="track" value="">
+		<select id="track" class="trackS" name="track" value="">
                 <option value="backend">Backend</option>
                 <option value="frontend">Frontend</option>
                 <option value="mobile">Mobile</option>
@@ -210,16 +210,17 @@ if(isset( $_SESSION['login_user'])){
  <script src="../assets/js/app.js"></script>
  <script src="../assets/js/jquery-3.4.1.js"></script>
 <script type="text/javascript">
-  $('#track').change(function(){
+ $('.trackS').change(function(){
     if (this.value == 'python'){
       $(".python").show();
+	$(".python .trackS").val(this.value);
       $(".main").hide();
     }else{
       $('.main').show();
+	$(".main .trackS").val(this.value);
       $('.python').hide();
     }
   });
-
   
   var points;
   function handleSubmission(event) {
