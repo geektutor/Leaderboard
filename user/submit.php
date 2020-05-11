@@ -108,9 +108,8 @@ if(isset( $_SESSION['login_user'])){
     <main class="flx col">
       
         <div class="flx col">
+          <legend>Track</legend>
           <form class="flx col">
-           <div class="field flx col">
-              <label for="level"><legend>Track</legend></label>
               <select id="track" name="track" value="">
                 <option value="backend">Backend</option>
                 <option value="frontend">Frontend</option>
@@ -118,7 +117,6 @@ if(isset( $_SESSION['login_user'])){
                 <option value="python">Python</option>
                 <option value="ui">UI/UX</option>
               </select>
-            </div>
           </form>
         </div>
 

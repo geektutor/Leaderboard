@@ -3,7 +3,6 @@ require('../../config/connect.php');
 require('../../config/session.php');
 
 if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
-    $track = $_SESSION['track'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -122,7 +121,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
               <td data-label="Track"><?= $row['track'];?></td>
               <td data-label="Level"><?= $row['level'];?></td>
               <td data-label="Task"><?= $row['task'];?></td>
-              <td data-label="Action"><a href="edit_task.php?id=<?=$row['id']?>">Edit</a> | <input type="button" name="Delete" value="delete"></td>
+              <td data-label="Action"><a href="edit_task.php?id=<?=$row['id']?>">Edit</a> | <input type="button" name="delete" value="delete"></td>
           </tr>
           <?php 
               $j++;

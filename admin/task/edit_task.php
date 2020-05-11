@@ -114,7 +114,7 @@ if(isset( $_SESSION['login_user'])){
       <form method="POST">
         <div class="field flx col">
             <label for="url">Current Task Details</label>
-            <p style="font-size: 12px; margin-top: 8px; line-height: 110%; color: #646464;">ID - <?php echo $row['id'];?> | Track -  <?php echo $row['track'];?> | Level - <?php echo $row['level'];?></p>
+            <p style="font-size: 12px; margin-top: 8px; line-height: 110%; color: #646464;">Day - <?php echo $row['task_day'];?> | Track -  <?php echo $row['track'];?> | Level - <?php echo $row['level'];?></p>
           </div>
           <div class="field flx col">
             <label for="level">Level</label>
