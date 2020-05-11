@@ -113,19 +113,19 @@ if(isset( $_SESSION['login_user'])){
           <div class="fields-container">
             <div class="field flx col">
               <label for="url">URL</label>
-              <input type="url" name="url" placeholder="Enter URL" required>
+              <input type="url" id="theurl" name="url" placeholder="Enter URL" required>
               <p style="font-size: 12px; margin-top: 8px; line-height: 110%; color: #646464;"><a href="https://github.com/geektutor/Leaderboard/blob/master/submission_guide.md">Submission Guidelines</a></p>
             </div>
             <div class="field flx col">
               <label for="level">Level</label>
-              <select name="level" value="">
+              <select name="level" value="" id="level">
                 <option value="Beginner">Beginner</option>
               </select>
               <p style="font-size: 12px; margin-top: 8px; line-height: 110%; color: #646464;"><a href="pyint.php">Submit for Intermediate Here</a></p>
             </div>
             <div class="field flx col">
               <label for="level">Track</label>
-              <select name="track" value="">
+              <select name="track" value="" id="track">
                 <option value="python">Python</option>
               </select>
             </div>
@@ -136,11 +136,11 @@ if(isset( $_SESSION['login_user'])){
           </div>
             <div class="field flx col">
               <label for="comment">Comments?</label>
-              <textarea name="comment" type="text" placeholder="Any comments?" rows="5"></textarea>
+              <textarea name="comment" id="comment" type="text" placeholder="Any comments?" rows="5"></textarea>
             </div>
             <div class="field flx col">
             </div>
-            <input type="hidden" name="task_day" value="Day <?= $days; ?>">
+            <input type="hidden" name="task_day" id="task_day" value="Day <?= $days; ?>">
             <input type="hidden" id="name" name="name" value="<?= $_SESSION['login_user']; ?>">
           <input type="hidden" name="cohort" value="1">
           <button id="submitTask" type="submit" name="submit">Submit task</button>
@@ -151,7 +151,7 @@ if(isset( $_SESSION['login_user'])){
      <footer class="flx row"><span class="copyw">Copyright &copy; 30DaysOfCode 2020</span> <div><a href="">Privacy Policy</a><a href="">Terms & Conditions</a></div></footer> 
    </div>
  </div> <script src="../assets/js/app.js"></script>
- <script src="assets/js/jquery-3.4.1.js"></script>
+ <script src="../assets/js/jquery-3.4.1.js"></script>
  <script type="text/javascript">
   var level = document.getElementById('level').value;
   var file = document.getElementById('file').value;

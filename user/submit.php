@@ -151,6 +151,9 @@ if(isset( $_SESSION['login_user'])){
           }
       ?>
          <form method="POST" class="flx col">
+         <legend>
+          <a href="python.php">PyBeginner</a> <span class="day"><a href="pyint.php">PyIntermediate</a></span>
+        </legend>
         <legend>
           Submit task <span class="day">Day <?= $days; ?></span>
         </legend>

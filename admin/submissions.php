@@ -15,7 +15,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
  <link rel="stylesheet" href="../assets/css/style.css">
  <link rel="stylesheet" href="../assets/css/submissions.css">
  <link rel="stylesheet" href="../assets/css/responsive.css">
- <link rel="shortcut icon" href="./../assets/img/favicon.png" type="image/x-icon">
+ <link rel="shortcut icon" href="../../assets/img/favicon.png" type="image/x-icon">
  <title>Dashboard - 30 Days Of Code</title>
 </head>
 <body class="flx col">
