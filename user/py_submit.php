@@ -22,6 +22,10 @@
           
   $check = check();
   if(check() == 0){
+	  $feedback = "Marked by AutoGrader V2";
+	  if(isset($_GET['n'])){
+		  $feedback = ''; 
+	  }
       $task_day = $_GET['task_day'];
       $track = $_GET['track'];
       $user =  $_GET['user'];
@@ -31,7 +35,7 @@
       $date = date('Y-m-d');
       $url = $_GET['url'];
       $comment = $_GET['comment'];
-      $feedback = "Marked by AutoGrader V2";
+      
       $cohort = 1;
       $sql = "INSERT INTO submissions(user, track, url, task_day, points, sub_date, cohort, level, feedback) 
               VALUES('$user','$track', '$url', '$task_day', '$points', '$date', '$cohort', '$level', '$feedback')";
