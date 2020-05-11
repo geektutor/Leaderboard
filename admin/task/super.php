@@ -85,7 +85,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
       <div class="mainCard">
       <?php
         $current = date('Y-m-d');
-        $sql = "SELECT * FROM task WHERE `track` = '$track' AND `level` = '$level' ORDER BY task_day";
+        $sql = "SELECT * FROM task ORDER BY task_day, track";
         $result = mysqli_query($conn, $sql);
         $row = mysqli_fetch_assoc($result);
         $count = mysqli_num_rows($result);
