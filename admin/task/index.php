@@ -141,6 +141,6 @@ setTimeout(() => {
 </html>
 <?php
 }else{
-    header("location:../sign_in.php"); 
+    header("location:../../sign_in.php"); 
 }
 ?>
