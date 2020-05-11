@@ -1,4 +1,4 @@
-@import url(//db.onlinewebfonts.com/c/4735dd9ca25670c44600021e7428b8d3?family=Segoe);
+@import url(https://db.onlinewebfonts.com/c/4735dd9ca25670c44600021e7428b8d3?family=Segoe);
 * {
   margin: 0;
   padding: 0;
@@ -245,6 +245,7 @@ legend .day {
 .notice h2, .notice h3 {
 	font-size: 14px;
 	font-weight: bold;
+}
  .notice p {
    line-height: 120%;
   width: 100%;
@@ -341,3 +342,4 @@ footer a {
 .alert.alert-primary a {
   color: #0000ee;
 }
+

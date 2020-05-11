@@ -106,20 +106,6 @@ if(isset( $_SESSION['login_user'])){
   </nav>
    <div class="mainWrapper flx col" id="mainWrp">
     <main class="flx col">
-      
-        <div class="flx col">
-          <legend>Track</legend>
-          <form class="flx col">
-              <select id="track" name="track" value="">
-                <option value="backend">Backend</option>
-                <option value="frontend">Frontend</option>
-                <option value="mobile">Mobile</option>
-                <option value="python">Python</option>
-                <option value="ui">UI/UX</option>
-              </select>
-          </form>
-        </div>
-
         <!-- PYTHON AUTOGRADER -->
         <form style="display: none;" method="POST" class="flx col python"  id="form" enctype="multipart/form-data" onsubmit="upload(event)">
           <legend>
@@ -130,6 +116,16 @@ if(isset( $_SESSION['login_user'])){
             <div id="stats"></div>
           </div>
           <div class="fields-container">
+		 <div class="field flx col">
+	    	<label for="track">Track</label>
+		<select id="track" name="track" value="">
+                <option value="backend">Backend</option>
+                <option value="frontend">Frontend</option>
+                <option value="mobile">Mobile</option>
+                <option value="python" selected>Python</option>
+                <option value="ui">UI/UX</option>
+              </select>
+	    </div>
             <div class="field flx col">
               <label for="url">URL</label>
               <input id="theurl" type="url" name="url" placeholder="Enter URL" required>
@@ -168,10 +164,20 @@ if(isset( $_SESSION['login_user'])){
             Submit task <span class="day">Day <?= $days; ?></span>
             <div id="stats"></div>
           </legend>
-            <div class="notice flx col">
+<!--             <div class="notice flx col">
               
-            </div>
+            </div> -->
           <div class="fields-container">
+		 <div class="field flx col">
+	    	<label for="track">Track</label>
+		<select id="track" name="track" value="">
+                <option value="backend">Backend</option>
+                <option value="frontend">Frontend</option>
+                <option value="mobile">Mobile</option>
+                <option value="python">Python</option>
+                <option value="ui">UI/UX</option>
+              </select>
+	    </div>
             <div class="field flx col">
               <label for="url">URL</label>
               <input id="url" type="url" name="url" placeholder="Enter URL" required>
