@@ -16,7 +16,7 @@ if(isset($_POST['submit'])){
     $task_day = mysqli_real_escape_string($conn, $_POST['task_day']);
     $track = mysqli_real_escape_string($conn, $_POST['track']);
     $level = mysqli_real_escape_string($conn, $_POST['level']);
-    $sql = "SELECT * FROM task WHERE track = '$track' AND level = '$level'";
+    $sql = "SELECT * FROM task WHERE task_day = '$task_day' AND track = '$track' AND level = '$level'";
     $result = mysqli_query($conn,$sql);
     $count = mysqli_num_rows($result);
     if($count > 0){
