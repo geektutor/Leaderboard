@@ -16,5 +16,13 @@ Array.from(document.getElementsByClassName("dismiss")).forEach(function(elm){
   e.target.parentElement.remove()
  })
 })
-// window.onresize = resizeEvent;
-// resizeEvent()
+
+//remove WYSIWYG inline styling
+Array.from(Array.from(document.getElementsByClassName("notice"))[0].children).forEach(function(e){
+    e.removeAttribute('style')
+    Array.from(e.children).forEach(function(c){
+    c.removeAttribute('style')
+})
+})
+/* window.onresize = resizeEvent;
+ resizeEvent() */
