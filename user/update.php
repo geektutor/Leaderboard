@@ -95,8 +95,8 @@ if(isset( $_SESSION['login_user'])){
           $result = mysqli_query($conn,$sql);
           while($row = mysqli_fetch_assoc($result)) {
               $user_nickname = $row['nickname'];
-              $first = $row['first'];
-              $last = $row['last'];
+              $first = $row['first_name'];
+              $last = $row['last_name'];
               echo '<img src=\'https://robohash.org/'.$user_nickname.'\'/ alt="robot avatar" class="avatar"/>';
               echo '<p class="name">'.$first. $last.'</p>';
               echo '<p class="user">'.$user_nickname.'</p>';
