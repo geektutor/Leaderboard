@@ -113,34 +113,34 @@ if(isset( $_SESSION['login_user'])){
           <div class="fields-container">
             <div class="field flx col">
               <label for="url">URL</label>
-              <input type="url" name="url" placeholder="Enter URL" required>
+              <input id="theurl" type="url" name="url" placeholder="Enter URL" required>
               <p style="font-size: 12px; margin-top: 8px; line-height: 110%; color: #646464;"><a href="https://github.com/geektutor/Leaderboard/blob/master/submission_guide.md">Submission Guidelines</a></p>
             </div>
             <div class="field flx col">
               <label for="level">Level</label>
-              <select name="level" value="">
+              <select id="level" name="level" value="">
                 <option value="Beginner">Beginner</option>
               </select>
               <p style="font-size: 12px; margin-top: 8px; line-height: 110%; color: #646464;"><a href="pyint.php">Submit for Intermediate Here</a></p>
             </div>
             <div class="field flx col">
               <label for="level">Track</label>
-              <select name="track" value="">
+              <select id="track" name="track" value="">
                 <option value="python">Python</option>
               </select>
             </div>
             <div class="field flx col">
-            <label for="file">Upload file</label>
-            <input type="file" id="file" name="file" required>
-            <p style="font-size: 12px; margin-top: 8px; line-height: 110%; color: #646464;">Make sure you upload the correct file</p>
-          </div>
+              <label for="file">Upload file</label>
+              <input id="file" type="file" name="file" required>
+              <p style="font-size: 12px; margin-top: 8px; line-height: 110%; color: #646464;">Make sure you upload the correct file</p>
+            </div>
             <div class="field flx col">
               <label for="comment">Comments?</label>
-              <textarea name="comment" type="text" placeholder="Any comments?" rows="5"></textarea>
+              <textarea id="comment" name="comment" type="text" placeholder="Any comments?" rows="5"></textarea>
             </div>
             <div class="field flx col">
             </div>
-            <input type="hidden" name="task_day" value="Day <?= $days; ?>">
+            <input type="hidden" id="task_day" name="task_day" value="Day <?= $days; ?>">
             <input type="hidden" id="name" name="name" value="<?= $_SESSION['login_user']; ?>">
           <input type="hidden" name="cohort" value="1">
           <button id="submitTask" type="submit" name="submit">Submit task</button>
@@ -148,10 +148,10 @@ if(isset( $_SESSION['login_user'])){
           </div>
         </form>
      </main>
-     <footer class="flx row"><span class="copyw">Copyright &copy; 30DaysOfCode 2020</span> <div><a href="">Privacy Policy</a><a href="">Terms & Conditions</a></div></footer> 
+     <footer class="flx row"><span class="copyw">Copyright &copy; 30DaysOfCode 2020</span> <div><a href="">Privacy Policy</a><a href="">Terms &amp; Conditions</a></div></footer> 
    </div>
  </div> <script src="../assets/js/app.js"></script>
- <script src="assets/js/jquery-3.4.1.js"></script>
+ <script src="../assets/js/jquery-3.4.1.js"></script>
  <script type="text/javascript">
   var level = document.getElementById('level').value;
   var file = document.getElementById('file').value;
@@ -166,9 +166,9 @@ if(isset( $_SESSION['login_user'])){
   var points;
   function upload(event) {
     event.preventDefault();
-    var urls = document.getElementById('theurl').value;
+    // var urls = document.getElementById('theurl').value;
     var form_data = new FormData($('#form')[0]);
-    
+
     $.ajax({
         url: 'https://autograder30days.herokuapp.com/',
         data: form_data,

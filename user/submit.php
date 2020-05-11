@@ -1,4 +1,4 @@
-  
+ 
 <?php
 require('../config/connect.php');
 require('../config/session.php');
@@ -18,6 +18,8 @@ if(isset( $_SESSION['login_user'])){
     $days +=1;
 
 ?>
+<!DOCTYPE html>
+<html>
 <head>
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -104,88 +106,12 @@ if(isset( $_SESSION['login_user'])){
   </nav>
    <div class="mainWrapper flx col" id="mainWrp">
     <main class="flx col">
-      <?php
-      $error = "";
-      function check(){	
-          global $conn;
-          $url = mysqli_real_escape_string($conn, $_POST['url']);
-          $task_day = mysqli_real_escape_string($conn, $_POST['task_day']);
-          $track = mysqli_real_escape_string($conn, $_POST['track']);
-          $user =  mysqli_real_escape_string($conn, $_SESSION['login_user']);
-          $comment =  mysqli_real_escape_string($conn, $_POST['comment']);
-          $level = mysqli_real_escape_string($conn, $_POST['level']);
-          $cohort = 1;
-          $queryURL = "SELECT * FROM submissions WHERE user = '".$_SESSION['login_user']."' AND task_day = '$task_day' AND track = '$track' AND level = '$level'";
-          $resultURL = mysqli_query($conn, $queryURL);
-          $countURL = mysqli_num_rows($resultURL);
-          if ($countURL > 0) {
-              return 1;
-          }else{
-              return 0;
-          }
-      }
-          if(isset($_POST['submit'])){
-              $check = check();
-              if(check() == 0){
-                  $url = mysqli_real_escape_string($conn, $_POST['url']);
-                  $task_day = mysqli_real_escape_string($conn, $_POST['task_day']);
-                  $track = mysqli_real_escape_string($conn, $_POST['track']);
-                  $user =  mysqli_real_escape_string($conn, $_SESSION['login_user']);
-                  $user = rtrim($_SESSION['login_user'], '_');
-                  $comment =  mysqli_real_escape_string($conn, $_POST['comment']);
-                  $level = mysqli_real_escape_string($conn, $_POST['level']);
-                  $date = date('Y-m-d');
-                  $cohort = 1;
-                  $sql = "INSERT INTO submissions(user, track, url, task_day, comments, sub_date, cohort, level) 
-                          VALUES('$user','$track', '$url','$task_day', '$comment', '$date', '$cohort', '$level')";
-                  if($conn->query($sql)){
-                      $error = "Submitted Successfully";
-                      $submit = 1;
-                  }else{
-                  die('could not enter data: '. $conn->error);
-                  }
-              }else{
-                  $error = "You've submitted already, wait for tomorrow's challenge";
-                  $submit = 0;
-              }
-          }
-      ?>
-         <form method="POST" class="flx col">
-         <legend>
-          <a href="python.php">PyBeginner</a> <span class="day"><a href="pyint.php">PyIntermediate</a></span>
-        </legend>
-        <legend>
-          Submit task <span class="day">Day <?= $days; ?></span>
-        </legend>
-        <?php if($error !== ''){ ?>
-          <div class="notice flx col">
-              <?php 
-                  echo "<p>$error</p>";
-                  if ($submit == 1){
-              ?>
-              <p>
-                <br>
-                Share on <a style="font-size: 16px;" href="https://twitter.com/intent/tweet?url=https%3A%2F%2F30daysofcode.xyz%2F&via=ecxunilag&text=<?php echo $task_day;?>%20of%2030%3A%20Check%20out%20my%20solution%20at%3A%20<?php echo $url;?>&hashtags=30DaysOfCode%2C%2030DaysOfDesign%2C%20ecxunilag">Twitter </a>
-              </p>
-              <?php }?>
-            </div>
-         <?php }?>
-          <div class="fields-container">
-            <div class="field flx col">
-              <label for="url">URL</label>
-              <input type="url" name="url" placeholder="Enter URL" required>
-              <p style="font-size: 12px; margin-top: 8px; line-height: 110%; color: #646464;"><a href="https://github.com/geektutor/Leaderboard/blob/master/submission_guide.md">Submission Guidelines</a></p>
-            </div>
-            <div class="field flx col">
-              <label for="level">Level</label>
-              <select name="level" value="">
-                <option value="Beginner">Beginner</option>
-                <option value="Intermediate">Intermediate</option>
-              </select>
-            </div>
-            <div class="field flx col">
-              <label for="level">Track</label>
-              <select name="track" value="">
+      
+        <div class="flx col">
+          <form class="flx col">
+           <div class="field flx col">
+              <label for="level"><legend>Track</legend></label>
+              <select id="track" name="track" value="">
                 <option value="backend">Backend</option>
                 <option value="frontend">Frontend</option>
                 <option value="mobile">Mobile</option>
@@ -193,22 +119,206 @@ if(isset( $_SESSION['login_user'])){
                 <option value="ui">UI/UX</option>
               </select>
             </div>
+          </form>
+        </div>
+
+        <!-- PYTHON AUTOGRADER -->
+        <form style="display: none;" method="POST" class="flx col python"  id="form" enctype="multipart/form-data" onsubmit="upload(event)">
+          <legend>
+            Python Autograder <span class="day">Day <?= $days; ?></span>
+          </legend>
+          <div class="notice flx col">
+          <div id="stats2"></div>
+            <div id="stats"></div>
+          </div>
+          <div class="fields-container">
+            <div class="field flx col">
+              <label for="url">URL</label>
+              <input id="theurl" type="url" name="url" placeholder="Enter URL" required>
+              <p style="font-size: 12px; margin-top: 8px; line-height: 110%; color: #646464;"><a href="https://github.com/geektutor/Leaderboard/blob/master/submission_guide.md">Submission Guidelines</a></p>
+            </div>
+            <div class="field flx col">
+              <label for="level">Level</label>
+              <select id="level" name="level" value="">
+                <option value="Beginner">Beginner</option>
+                <option value="Intermediate">Intermediate</option>
+              </select>
+              <p style="font-size: 12px; margin-top: 8px; line-height: 110%; color: #646464;"><a href="pyint.php">Submit for Intermediate Here</a></p>
+            </div>
+            <div class="field flx col">
+              <label for="file">Upload file</label>
+              <input id="file" type="file" name="file" required>
+              <p style="font-size: 12px; margin-top: 8px; line-height: 110%; color: #646464;">Make sure you upload the correct file</p>
+            </div>
             <div class="field flx col">
               <label for="comment">Comments?</label>
-              <textarea name="comment" type="text" placeholder="Any comments?" rows="5"></textarea>
+              <textarea id="comment" name="comment" type="text" placeholder="Any comments?" rows="5"></textarea>
             </div>
             <div class="field flx col">
             </div>
-            <input type="hidden" name="task_day" value="Day <?= $days; ?>">
-            <input type="hidden" name="cohort" value="1">
-            <button id="submitTask" type="submit" name="submit">Submit task</button>
+            <input type="hidden" id="task_day" name="task_day" value="Day <?= $days; ?>">
+            <input type="hidden" id="name" name="name" value="<?= $_SESSION['login_user']; ?>">
+          <input type="hidden" name="cohort" value="1">
+          <button id="submitTask" type="submit" name="submit">Submit task</button>
+          <button id="save" style="display: none;" onclick="show(event)">Save Result</button>
+          </div>
+        </form>
+
+        <!-- OTHER TRACKS -->
+        <form class="flx col main" enctype="multipart/form-data" onsubmit="handleSubmission(event)">
+          <legend>
+            Submit task <span class="day">Day <?= $days; ?></span>
+            <div id="stats"></div>
+          </legend>
+            <div class="notice flx col">
+              
+            </div>
+          <div class="fields-container">
+            <div class="field flx col">
+              <label for="url">URL</label>
+              <input id="url" type="url" name="url" placeholder="Enter URL" required>
+              <p style="font-size: 12px; margin-top: 8px; line-height: 110%; color: #646464;"><a href="https://github.com/geektutor/Leaderboard/blob/master/submission_guide.md">Submission Guidelines</a></p>
+            </div>
+            <div class="field flx col">
+              <label for="level">Level</label>
+              <select id="level" name="level" value="">
+                <option value="Beginner">Beginner</option>
+                <option value="Intermediate">Intermediate</option>
+              </select>
+            </div>
+            <div class="field flx col">
+              <label for="comment">Comments?</label>
+              <textarea id="comment" name="comment" type="text" placeholder="Any comments?" rows="5"></textarea>
+            </div>
+            <div class="field flx col">
+            </div>
+            <input type="hidden" id="task_day" name="task_day" value="Day <?= $days; ?>">
+            <input type="hidden" id="name" name="name" value="<?= $_SESSION['login_user']; ?>">
+            <input type="hidden" id="cohort" name="cohort" value="1">
+            <button style="display: none;" class="submit" id="upload" type="submit" name="psubmit">Submit task</button>
+            <button id="submitTask" type="submit" name="submit">Save</button>
           </div>
         </form>
      </main>
-     <footer class="flx row"><span class="copyw">Copyright &copy; 30DaysOfCode 2020</span> <div><a href="">Privacy Policy</a><a href="">Terms & Conditions</a></div></footer> 
+     <footer class="flx row"><span class="copyw">Copyright &copy; 30DaysOfCode 2020</span> <div><a href="">Privacy Policy</a><a href="">Terms &amp; Conditions</a></div></footer> 
    </div>
  </div>
  <script src="../assets/js/app.js"></script>
+ <script src="../assets/js/jquery-3.4.1.js"></script>
+<script type="text/javascript">
+  $('#track').change(function(){
+    if (this.value == 'python'){
+      $(".python").show();
+      $(".main").hide();
+    }else{
+      $('.main').show();
+      $('.python').hide();
+    }
+  });
+
+  
+  var points;
+  function handleSubmission(event) {
+    event.preventDefault()
+    var urls = document.getElementById('url').value;
+    var level = document.getElementById('level').value;
+    var comment = document.getElementById('comment').value;
+    var name = document.getElementById('name').value;
+    var cohort = 1;
+    var today = new Date();
+    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    var points;
+	  var n = 1;
+    var track = document.getElementById('track').value;
+    var task_day = document.getElementById('task_day').value;
+    var form_data = new FormData($('.main')[0]);
+
+    $.ajax({
+        url: 'py_submit.php',
+        data: 'user='+name+'&track='+track+'&task_day='+task_day+'&points='+points+'&sub_date='+date+'&cohort='+cohort+'&level='+level+'&url='+urls+'&comment='+comment+'&n='+n,
+        contentType: false,
+        processData: false,
+        type: "GET",
+        success: function(data) {
+          $('#stats').html(data);
+          $('.notice').html('<p><br>Share on <a style="font-size: 16px;" href="https://twitter.com/intent/tweet?url=https%3A%2F%2F30daysofcode.xyz%2F&via=ecxunilag&text=Day <?= $days;?>%20of%2030%3A%20Check%20out%20my%20solution%20at%3A%20'+urls+'&hashtags=30DaysOfCode%2C%2030DaysOfDesign%2C%20ecxunilag">Twitter </a></p>')
+
+        },
+        error: function() {}
+    });
+
+    
+  }
+
+  function upload(event) {
+    event.preventDefault();
+    // var urls = document.getElementById('theurl').value;
+    var form_data = new FormData($('#form')[0]);
+    var level = document.getElementById('level').value;
+
+    if (level == 'Beginner') {
+      $.ajax({
+        url: 'https://autograder30days.herokuapp.com/',
+        data: form_data,
+        contentType: false,
+        processData: false,
+        type: "POST",
+        success: function(data) {
+          var ReturnedData = data;
+          var user = ReturnedData.name;
+          points = ReturnedData.score;
+            $('#stats').html("Welcome " + user + ", you have scored " + points);
+            $('#save').show()
+        },
+        error: function() {}
+      });
+    } else {
+      $.ajax({
+        url: 'https://autograder30int.herokuapp.com/',
+        data: form_data,
+        contentType: false,
+        processData: false,
+        type: "POST",
+        success: function(data) {
+          var ReturnedData = data;
+          var user = ReturnedData.name;
+          points = ReturnedData.score;
+            $('#stats').html("Welcome " + user + ", you have scored " + points);
+            $('#save').show()
+        },
+        error: function() {}
+    });
+    }
+    
+  }
+  function show(event) {
+    var urls = document.getElementById('theurl').value;
+    var level = document.getElementById('level').value;
+    var comment = document.getElementById('comment').value;
+    var name = document.getElementById('name').value;
+    var cohort = 1;
+    var today = new Date();
+    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    var track = document.getElementById('track').value;
+    var task_day = document.getElementById('task_day').value;
+    var cohort = 1;
+
+    event.preventDefault();
+    $.ajax({
+      url: 'py_submit.php',
+      data: 'user='+name+'&track='+track+'&task_day='+task_day+'&points='+points+'&sub_date='+date+'&cohort='+cohort+'&level='+level+'&url='+urls+'&comment='+comment,
+      type: "GET",
+      success: function(data) {
+        $('#stats2').html(data);
+        // $('#stats').html("Saved");
+
+      },
+      error: function() {}
+    })
+  }
+
+  
+</script>
 </body>
 </html>
 <?php
