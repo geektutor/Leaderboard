@@ -15,6 +15,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <meta http-equiv="X-UA-Compatible" content="ie=edge">
  <link rel="stylesheet" href="../assets/css/style.css">
+ <link rel="stylesheet" href="../assets/css/profile.css">
  <link rel="stylesheet" href="../assets/css/submissions.css">
  <link rel="stylesheet" href="../assets/css/responsive.css">
  <link rel="shortcut icon" href="../assets/img/favicon.png" type="image/x-icon">
@@ -85,28 +86,75 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
     <main>
       <div class="flx row"><h1>Submissions</h1> </div>
       <div class="mainCard">
-      <form method="POST">
-          <div class="field flx col">
-            <label for="track">Track</label>
-            <select name="track" value="">
-              <option value="backend">Backend</option>
-              <option value="frontend">Frontend</option>
-              <option value="mobile">Mobile</option>
-              <option value="python">Python</option>
-              <option value="ui">UI/UX</option>
-            </select>
-          </div>
+       <!--  <form method="POST">
+            <div class="field flx col">
+              <label for="track">Track</label>
+              <select name="track" value="">
+                <option value="backend">Backend</option>
+                <option value="frontend">Frontend</option>
+                <option value="mobile">Mobile</option>
+                <option value="python">Python</option>
+                <option value="ui">UI/UX</option>
+              </select>
+            </div>
 
-          <div class="field flx col">
-            <label for="track">Level</label>
-            <select name="level" value="">
-              <option value="Beginner">Beginner</option>
-              <option value="Intermediate">Intermediate</option>
-            </select>
-          </div>
+            <div class="field flx col">
+              <label for="track">Level</label>
+              <select name="level" value="">
+                <option value="Beginner">Beginner</option>
+                <option value="Intermediate">Intermediate</option>
+              </select>
+            </div>
 
-          <button id="submitTask" type="submit" name="submit">Submit</button>
-        </form> 
+            <button id="submitTask" type="submit" name="submit">Submit</button>
+          </form>  -->
+        <div class="scores-card flx row">
+           <?php
+            global $conn;
+            // $tracks = [
+              
+            // ];
+            $tracks = [
+             'Begineer' => [
+              'frontend' => 'Beginner', 
+              'backend' => 'Beginner', 
+              'mobile' => 'Beginner', 
+              'python' => 'Beginner', 
+              'ui' => 'Beginner' 
+              ],
+              'Intermediate'=> [
+              'frontend' => 'Intermediate', 
+              'backend' => 'Intermediate',
+              'mobile' => 'Intermediate',
+              'python' => 'Intermediate',
+              'ui' => 'Intermediate'
+              ]
+            ];
+            foreach ($tracks as $track) {
+              foreach ($track as $key => $value) {
+                $track_submission = "SELECT * FROM submissions WHERE track = '$key' AND level = '$value' AND points = 0";
+                $result = mysqli_query($conn, $track_submission);
+                $count = mysqli_num_rows($result);
+                echo '<div class="group field flx col cnt '.$key.'">';
+                echo '<img src="../assets/img/medal.png" alt="">';
+                echo '<p class="track">'.$key.'</p>';
+                echo '<p class="track">'.$value.'</p>';
+                echo '<p class="points">Unmarked: '.$count++.'</p>';
+                echo '<a href=submissions.php?track='.$key.'&level='.$value.'><p class=level>Check</p></a>';
+                echo '</div>';
+              }
+            }
+           
+            ?>
+          <!--   <div class="group flx col cnt python">
+              <img src="../assets/img/medal.png" alt="">
+              <p class="rank">Helo</p>
+              <p class="track">Python</p>
+              <p class="level">Intermediate</p>
+              <p class="points">150</p>
+            </div> -->
+          
+         </div>
      
       </div >
      </main>
