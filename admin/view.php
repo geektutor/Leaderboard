@@ -73,7 +73,7 @@ if(isset( $_SESSION['login_user'])){
    </nav>
    <div class="mainWrapper flx col" id="mainWrp">
     <main class="flx col">
-      <!-- <?php
+      <?php
     $error = "";
     if($count > 0){
 while($row = $result->fetch_assoc()) {
@@ -119,7 +119,7 @@ while($row = $result->fetch_assoc()) {
         $error = "Could not update sub";
     }
 }
-?>-->
+?>
 
       <form method="POST" class="flx col">
         <legend>Submission</legend>

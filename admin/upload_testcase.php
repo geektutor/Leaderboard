@@ -1,4 +1,4 @@
-<!-- <?php
+<?php
 require('../config/connect.php');
 require('../config/session.php');
 if(isset( $_SESSION['login_user'])){
@@ -10,7 +10,7 @@ if(isset( $_SESSION['login_user'])){
     $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
     $days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24)); 
     $days +=1;
-?> -->
+?> 
 <!DOCTYPE html>
 <html lang="en">          
 <head>
