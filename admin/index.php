@@ -76,8 +76,36 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
    </nav>
    <div class="mainWrapper flx col" id="mainWrp">
     <main>
-      <div class="flx row"><h1>Submissions</h1> </div>
-      <div class="mainCard">
+    <div class="mainWrapper flx col" id="mainWrp">
+        <main class="flx col">
+         <div class="banner flx col">
+         <button class="whiteBtn flx row cnt" onclick="rdr(this)">       
+          <a href="update.php"> Update profile </a>
+          <script>
+           function rdr(elm){
+            window.location.href = elm.children[0].href
+           }
+           </script>
+         </button>
+         <div class="profile-details flx col">
+         <?php
+          global $conn;
+          $user_nickname = '';
+          $user_track = '';
+          $email = $_SESSION['login_user'];
+          $sql = "SELECT * FROM user WHERE email='$email' ORDER BY `score` DESC LIMIT 1";
+          $result = mysqli_query($conn,$sql);
+          while($row = mysqli_fetch_assoc($result)) {
+              $user_nickname = $row['nickname'];
+              $first = $row['first_name'];
+              $last = $row['last_name'];
+              echo '<img src=\'https://robohash.org/'.$user_nickname.'\'/ alt="robot avatar" class="avatar"/>';
+              echo '<p class="name">'.$first. ' ' .$last.'</p>';
+              echo '<p class="user">'.$user_nickname.'</p>';
+          }
+          ?>
+         </div>
+         </div>
        <!--  <form method="POST">
             <div class="field flx col">
               <label for="track">Track</label>
@@ -137,15 +165,15 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
             ];
             foreach ($tracks as $track) {
               foreach ($track as $key => $value) {
-                $track_submission = "SELECT * FROM submissions WHERE track = '$key' AND level = '$value' AND points = 0";
+                $track_submission = "SELECT * FROM submissions WHERE track = '$key' AND level = '$value' AND points = 0 ORDER BY track";
                 $result = mysqli_query($conn, $track_submission);
                 $count = mysqli_num_rows($result);
                 echo '<div class="group field flx col cnt '.$key.'">';
                 echo '<img src="../assets/img/medal.png" alt="">';
                 echo '<p class="track">'.$key.'</p>';
-                echo '<p class="track">'.$value.'</p>';
+                echo '<p class="level">'.$value.'</p>';
                 echo '<p class="points">Unmarked: '.$count++.'</p>';
-                echo '<a href=submissions.php?track='.$key.'&level='.$value.'><p class=level>Check</p></a>';
+                echo '<a href=submissions.php?track='.$key.'&level='.$value.'>Check</a>';
                 echo '</div>';
               }
             }
@@ -157,13 +185,14 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
               <p class="track">Python</p>
               <p class="level">Intermediate</p>
               <p class="points">150</p>
-            </div> -->
+            </div>
           
          </div>
           <button id="submitTask" type="submit" name="submit">Submit</button>
     </div>
-        </form> 
+        </form> -->
      
+     </div>
       
      </main>
      <footer class="flx row"><span class="copyw">Copyright &copy; 30DaysOfCode 2020</span> <div><a href="">Privacy Policy</a><a href="">Terms &amp; Conditions</a></div></footer>

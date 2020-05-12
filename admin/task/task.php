@@ -106,7 +106,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
         <tbody>
           <?php          
           if($count > 0){
-              $j =1;
+              $j =0;
               while($row = mysqli_fetch_assoc($result)) {
           ?>
           <tr>
