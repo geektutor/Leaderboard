@@ -137,7 +137,6 @@ if(isset( $_SESSION['login_user'])){
                 <option value="Beginner">Beginner</option>
                 <option value="Intermediate">Intermediate</option>
               </select>
-              <p style="font-size: 12px; margin-top: 8px; line-height: 110%; color: #646464;"><a href="pyint.php">Submit for Intermediate Here</a></p>
             </div>
             <div class="field flx col">
               <label for="file">Upload file</label>
@@ -162,11 +161,10 @@ if(isset( $_SESSION['login_user'])){
         <form class="flx col main" enctype="multipart/form-data" onsubmit="handleSubmission(event)">
           <legend>
             Submit task <span class="day">Day <?= $days; ?></span>
-            <div id="stats"></div>
           </legend>
-<!--             <div class="notice flx col">
-              
-            </div> -->
+            <div class="notice flx col">
+            <div id="stats"></div>   
+            </div>
           <div class="fields-container">
 		 <div class="field flx col">
 	    	<label for="track">Track</label>
