@@ -12,22 +12,12 @@ $days +=1;
 $show = 0;  
 if(isset($_POST['submit'])){
     $error = '';
-    $show = 0;
+    $show = 1;
     $task_day = mysqli_real_escape_string($conn, $_POST['task_day']);
     $track = mysqli_real_escape_string($conn, $_POST['track']);
     $level = mysqli_real_escape_string($conn, $_POST['level']);
-    $sql = "SELECT * FROM task WHERE track = '$track' AND level = '$level'";
-    $result = mysqli_query($conn,$sql);
-    $count = mysqli_num_rows($result);
-    if($count > 0){
-        while($row = mysqli_fetch_assoc($result)) {
-           $error = $row['task'];
-           $show = 1;
-        }
-    }else{
-        $error =  "No task for the selected option. Check back later.";
-        $show = 1;
-    }
+    $sql = "SELECT * FROM task WHERE task_day <= '$task_day' AND track = '$track' AND level = '$level' ORDER BY task_day DESC";
+    $resultTask = mysqli_query($conn,$sql);
 }
 ?>
 <!DOCTYPE html>
@@ -98,7 +88,7 @@ if(isset($_POST['submit'])){
             </li>
             <li class="flx row">
               <img src="../assets/img/twitter.png" />
-              <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2F30daysofcode.xyz%2F&via=ecxunilag&text=<?php echo $task_day;?>%20of%2030%3A%20Check%20out%20my%20solution%20at%3A%20<?php echo $url;?>&hashtags=30DaysOfCode%2C%2030DaysOfDesign%2C%20ecxunilag">Tweet</a>
+              <a href="">Tweet</a>
             </li>
             <li class="flx row">
               <img src="../assets/img/whatsapp.png" />
@@ -116,15 +106,26 @@ if(isset($_POST['submit'])){
         <main class="flx col">
           <form method="POST" class="flx col">
             <legend>
-              Today's task <span class="day">Day <?= $days; ?></span>
+              All task <span class="day">Day <?= $days; ?></span>
             </legend>
             <?php if($show == 1){ ?>
-            <div class="notice flx col">
-              <h1 class="track"> <?= $track?> | <?= $level?> | <?= $task_day?></h1>
-              <p>
-                <?= $error?>
-              </p>
-            </div>
+             <?php
+            if($resultTask){
+              while($row = mysqli_fetch_assoc($resultTask)) {
+                $error = $row['task'];
+                $track = $row['track'];
+                $level = $row['level'];
+                $day = $row['task_day'];
+                echo '<div class="notice flx col">';
+                echo '<h1 class="track"> '.$track.' | '.$level.' | '.$day.'</h1><br>'; 
+                echo '<p>'.$error.'</p></div>';
+                $show = 1;
+              }
+            }else{
+                $error =  "No task for the selected option. Check back later.";
+                $show = 1;
+            }
+            ?>
             <?php }?>
             <div class="fields-container">
               <div class="field flx col">

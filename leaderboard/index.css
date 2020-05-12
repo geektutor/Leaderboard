@@ -27,6 +27,9 @@ div.filter{
 div.filter select{
   width: 270px;
   display: inline;
+  padding: 3px;
+  font-family: 'Red Hat Display';
+  background: lightsteelblue;
 }
 div.filter .btn{
   width: 60px;
@@ -36,11 +39,22 @@ div.filter .btn:nth-child(3) {
   border: none;
   background-color: #efef13;
   width: fit-content;
-  color: white;
-  padding: 16px 32px;
+  color: black;
+  padding: 7px 16px;
   text-decoration: none;
   margin: 4px 2px;
   cursor: pointer;
+  border-radius: 20px;
+}
+
+button.btn.btn-warning:hover {
+    background: white;
+    border: #efef13;
+    
+}
+
+button.btn.btn-warning:hover {
+    background: white;
 }
 .center {
 /*   position: absolute; */

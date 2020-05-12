@@ -105,7 +105,6 @@ if(isset( $_SESSION['login_user'])){
          </div>
          </div>
           <div class="scores-card flx row">
-           
            <?php
             global $conn;
             $ranking_sql = "SELECT * FROM leaderboard ORDER BY `score` DESC";
@@ -123,8 +122,7 @@ if(isset( $_SESSION['login_user'])){
                         echo '<p class="track">'.$user_track.'</>';
                         echo '<p class="level">'.$level.'</p>';
                         echo '<p class="points">'.$score.' points</p>';
-                        echo '</div>';
-                      break; 
+                        echo '</div>'; 
                     }else {
                         $rank++;
                     }
