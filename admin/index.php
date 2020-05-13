@@ -135,7 +135,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                 echo '<div class="group field flx col cnt '.$key.'">';
                 echo '<img src="../assets/img/medal.png" alt="">';
                 echo '<p class="track">'.$key.'</p>';
-                echo '<p class="level"><a href=submissions.php?track='.$key.'&level='.$value.'>'.$value.'</a></p>';
+                echo '<p class="level"><a href=submissions.php?track='.$key.'&level='.$value.' style="text-decoration: none">'.$value.'</a></p>';
                 echo '<p class="points">Unmarked: '.$count++.'</p>';
                 echo '</div>';
               }
