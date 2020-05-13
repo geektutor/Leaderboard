@@ -116,16 +116,16 @@ if(isset( $_SESSION['login_user'])){
             <div id="stats"></div>
           </div>
           <div class="fields-container">
-		 <div class="field flx col">
-	    	<label for="track">Track</label>
-		<select id="track" class="trackS" name="track" value="">
-		<option value="python" selected>Python</option>
+		      <div class="field flx col">
+	    	    <label for="track">Track</label>
+		          <select id="trackP" class="trackS" name="track" value="">
+		            <option value="python" selected>Python</option>
                 <option value="backend">Backend</option>
                 <option value="frontend">Frontend</option>
                 <option value="mobile">Mobile</option>
                 <option value="ui">UI/UX</option>
               </select>
-	    </div>
+          </div>
             <div class="field flx col">
               <label for="url">URL</label>
               <input id="theurl" type="url" name="url" placeholder="Enter URL" required>
@@ -233,6 +233,7 @@ if(isset( $_SESSION['login_user'])){
     var points;
 	  var n = 1;
     var track = document.getElementById('track').value;
+    console.log(track)
     var task_day = document.getElementById('task_day').value;
     var form_data = new FormData($('.main')[0]);
 
@@ -308,7 +309,7 @@ if(isset( $_SESSION['login_user'])){
     $.ajax({
       url: 'py_submit.php',
       data: 'user='+name+'&track='+track+'&task_day='+task_day+'&points='+points+'&sub_date='+date+'&cohort='+cohort+'&level='+level+'&url='+urls+'&comment='+comment,
-      type: "GET",
+      type: "POST",
       success: function(data) {
         $('#stats2').html(data);
         // $('#stats').html("Saved");
