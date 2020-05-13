@@ -139,23 +139,14 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                 echo '<img src="../assets/img/medal.png" alt="">';
                 echo '<p class="track">'.$key.'</p>';
                 echo '<p class="track">'.$value.'</p>';
-                echo '<p class="points">Unmarked: '.$count++.'</p>';
+                echo '<p class="points">Unmarked: '.$count.'</p>';
                 echo '<a href=submissions.php?track='.$key.'&level='.$value.'><p class=level>Check</p></a>';
                 echo '</div>';
               }
             }
            
             ?>
-          <!--   <div class="group flx col cnt python">
-              <img src="../assets/img/medal.png" alt="">
-              <p class="rank">Helo</p>
-              <p class="track">Python</p>
-              <p class="level">Intermediate</p>
-              <p class="points">150</p>
-            </div> -->
-          
          </div>
-     
       </div >
      </main>
      <footer class="flx row"><span class="copyw">Copyright &copy; 30DaysOfCode 2020</span> <div><a href="">Privacy Policy</a><a href="">Terms &amp; Conditions</a></div></footer>

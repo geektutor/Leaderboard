@@ -4,10 +4,10 @@
   $error = "";
   function check(){	
       global $conn;
-      $task_day = $_GET['task_day'];
-      $track = $_GET['track'];
-      $user = mysqli_real_escape_string($conn, $_GET['user']);
-      $level = $_GET['level'];
+      $task_day = $_POST['task_day'];
+      $track = $_POST['track'];
+      $user = mysqli_real_escape_string($conn, $_POST['user']);
+      $level = $_POST['level'];
       $cohort = 1;
       $queryURL = "SELECT * FROM submissions WHERE user = '$user' AND task_day = '$task_day' AND track = '$track' AND level = '$level'";
       $resultURL = mysqli_query($conn, $queryURL);
@@ -23,23 +23,22 @@
   $check = check();
   if(check() == 0){
 	  $feedback = "Marked by AutoGrader V2";
-	  if(isset($_GET['n'])){
+	  if(isset($_POST['n'])){
 		  $feedback = ''; 
 	  }
-      $task_day = $_GET['task_day'];
-      $track = $_GET['track'];
-      $user =  $_GET['user'];
-      $points = $_GET['points'];
+      $task_day = $_POST['task_day'];
+      $track = $_POST['track'];
+      $user =  $_POST['user'];
+      $points = $_POST['points'];
       $points = intval($points);
-      $level = $_GET['level'];
+      $level = $_POST['level'];
       $date = date('Y-m-d');
-      $url = $_GET['url'];
-      $comment = $_GET['comment'];
+      $url = $_POST['url'];
+      $comment = $_POST['comment'];
       
       $cohort = 1;
       $sql = "INSERT INTO submissions(user, track, url, task_day, points, sub_date, cohort, level, feedback) 
               VALUES('$user','$track', '$url', '$task_day', '$points', '$date', '$cohort', '$level', '$feedback')";
-
       if($conn->query($sql)){
         print "Saved";
       }else{
