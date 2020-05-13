@@ -166,16 +166,16 @@ if(isset( $_SESSION['login_user'])){
             <div id="stats"></div>   
             </div>
           <div class="fields-container">
-		 <div class="field flx col">
-	    	<label for="track">Track</label>
-		<select id="track" class="trackS" name="track" value="">
+      		 <div class="field flx col">
+      	    	<label for="track">Track</label>
+		          <select id="track" class="trackS" name="track" value="">
                 <option value="backend">Backend</option>
                 <option value="frontend">Frontend</option>
                 <option value="mobile">Mobile</option>
                 <option value="python">Python</option>
                 <option value="ui">UI/UX</option>
               </select>
-	    </div>
+            </div>
             <div class="field flx col">
               <label for="url">URL</label>
               <input id="url" type="url" name="url" placeholder="Enter URL" required>
@@ -239,9 +239,7 @@ if(isset( $_SESSION['login_user'])){
     $.ajax({
         url: 'py_submit.php',
         data: 'user='+name+'&track='+track+'&task_day='+task_day+'&points='+points+'&sub_date='+date+'&cohort='+cohort+'&level='+level+'&url='+urls+'&comment='+comment+'&n='+n,
-        contentType: false,
-        processData: false,
-        type: "GET",
+        type: 'POST',
         success: function(data) {
           $('#stats').html(data);
           $('.notice').html('<p><br>Share on <a style="font-size: 16px;" href="https://twitter.com/intent/tweet?url=https%3A%2F%2F30daysofcode.xyz%2F&via=ecxunilag&text=Day <?= $days;?>%20of%2030%3A%20Check%20out%20my%20solution%20at%3A%20'+urls+'&hashtags=30DaysOfCode%2C%2030DaysOfDesign%2C%20ecxunilag">Twitter </a></p>')
