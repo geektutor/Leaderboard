@@ -14,18 +14,12 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
  <link rel="stylesheet" href="../assets/css/style.css">
  <link rel="stylesheet" href="../assets/css/submissions.css">
  <link rel="stylesheet" href="../assets/css/responsive.css">
- <link rel="shortcut icon" href="./../assets/img/favicon.png" type="image/x-icon">
+ <link rel="shortcut icon" href="../assets/img/favicon.png" type="image/x-icon">
  <title>Dashboard - 30 Days Of Code</title>
 </head>
 <body class="flx col">
  <header class="flx row">
   <span>#30DaysOfCode</span>
-  <div class="techSymb flx row">
-   <img src="../assets/img/htm.png">
-   <img src="../assets/img/crly.png">
-   <img src="../assets/img/prts.png">
-   <img src="../assets/img/dsg.png">
-  </div>
   <div class="profile flx col">
     <img src="../assets/img/profile.png">
     <ul class="options">
@@ -34,18 +28,16 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
   </div>
  </header>
  <div class="pageWrapper flx row">
-  <nav class="flx col closed" id="navPane">
-    <div class="hamBWrapper">
-      <div id="hamB" class="closed">   
-        <div class="a"></div> 
-        <div class="b"></div>
-        <div class="c"></div>
-      </div>
-    </div>
+  <nav class="flx col" id="navPane">
+    <div id="hamburger" class="flx col">
+      <div class="a"></div>
+      <div class="b"></div>
+      <div class="c"></div>
+ </div>
      <div class="flx col content">
        <ul class="linksContainer">
         <li class="flx row active">
-         <img src="../assets/img/submsn.png">
+         <img src="../assets/img/profileWT.png">
          <a href="index.php">Dashboard</a>
         </li>
         <li class="flx row">
@@ -53,24 +45,24 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
          <a href='/admin/task/addnewtask.php'>Add New Tasks</a>
         </li>
         <li class="flx row">
-         <img src="../assets/img/allTsk.png">
+         <img src="../assets/img/task.png">
          <a href="/admin/task">View Tasks</a>
         </li>
         <li class="flx row">
-         <img src="../assets/img/add.png">
+         <img src="../assets/img/lock.png">
          <a href="superadmin.php">Superadmin</a>
         </li>
         <li class="flx row">
-         <img src="../assets/img/lead.png">
+         <img src="../assets/img/podium.png">
          <a href="https://30daysofcode.xyz/leaderboard">Leaderboard</a>
         </li>
         <li class="flx row">
-         <img src="../assets/img/tweet.png">
+         <img src="../assets/img/twitter.png">
          <a href=" https://twitter.com/intent/tweet?url=https%3A%2F%2F30daysofcodes.xyz&via=codon&text=Hello%2C%20I%20just%20finished%20my%20task%20for%20....&hashtags=30DaysOfCode%2C%20ECX">Tweet</a>
          <img class="external" style="float: right;" src="../assets/img/external.png" alt="">
         </li>
         <li class="flx row">
-         <img src="../assets/img/wa.png">
+         <img src="../assets/img/whatsapp.png">
          <a href="https://30daysofcode.xyz/whatsapp">Support group</a>
          <img class="external" src="../assets/img/external.png" alt="">
         </li>
@@ -79,9 +71,9 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
      </div>   
    </nav>
    <div class="mainWrapper flx col" id="mainWrp">
-    <main>
-      <div class="flx row"><h1>Submissions</h1> </div>
-      <div class="mainCard">
+    <main class="flx col">
+      <form class="mainCard">
+        <legend>Submissions</legend>
       <?php
         $sql = "SELECT * FROM submissions WHERE  track = 'python' AND level = 'Beginner' AND task_day > 'Day 7' AND points < 9 AND feedback = 'Marked by AutoGrader V2' ORDER BY points ASC";
         $result = mysqli_query($conn, $sql);
@@ -120,7 +112,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
         </tbody>
         </table>
       </div>
-      </div >
+      </form >
      </main>
      <footer class="flx row"><span class="copyw">Copyright &copy; 30DaysOfCode 2020</span> <div><a href="">Privacy Policy</a><a href="">Terms &amp; Conditions</a></div></footer>
    </div>

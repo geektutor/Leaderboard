@@ -20,8 +20,8 @@ Array.from(document.getElementsByClassName("dismiss")).forEach(function(elm){
 //remove WYSIWYG inline styling
 var notice = Array.from(document.getElementsByClassName("notice"))
 if (notice.length > 0) {
-  if (notice[0].firstElementChild) {
-    Array.from(notice[0].children).forEach(function (e) {
+ notice.forEach(function(a){
+    Array.from(a.children).forEach(function (e) {
       e.removeAttribute("style");
       if (e.firstElementChild) {
         Array.from(e.children).forEach(function (c) {
@@ -34,8 +34,7 @@ if (notice.length > 0) {
         });
       }
     });
-  }
+})  
 }
-
 /* window.onresize = resizeEvent;
  resizeEvent() */

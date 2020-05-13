@@ -1,8 +1,8 @@
 <?php
 $hostname = 'localhost';
-$username = 'root';
-$password = '';
-$db_name = 'leaderboard';
+$username = 'mushpgwz_leaderboard';
+$password = '}.7oX%+TxJT4';
+$db_name = 'mushpgwz_leaderboard';
 
 $conn = mysqli_connect($hostname,$username,$password,$db_name);
 if (!$conn) {
