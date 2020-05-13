@@ -132,12 +132,11 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                 $track_submission = "SELECT * FROM submissions WHERE track = '$key' AND level = '$value' AND points = 0 ORDER BY track";
                 $result = mysqli_query($conn, $track_submission);
                 $count = mysqli_num_rows($result);
-                echo '<div class="group field flx col cnt '.$key.'"><a href=submissions.php?track='.$key.'&level='.$value.'>';
+                echo '<div class="group field flx col cnt '.$key.'">';
                 echo '<img src="../assets/img/medal.png" alt="">';
                 echo '<p class="track">'.$key.'</p>';
-                echo '<p class="level">'.$value.'</p>';
+                echo '<p class="level"><a href=submissions.php?track='.$key.'&level='.$value.'>'.$value.'</a></p>';
                 echo '<p class="points">Unmarked: '.$count++.'</p>';
-                echo '</a>';
                 echo '</div>';
               }
             }
