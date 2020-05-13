@@ -75,9 +75,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
      </div>   
    </nav>
    <div class="mainWrapper flx col" id="mainWrp">
-    <main>
-    <div class="mainWrapper flx col" id="mainWrp">
-        <main class="flx col">
+      <main class="flx col">
          <div class="banner flx col">
          <button class="whiteBtn flx row cnt" onclick="rdr(this)">       
           <a href="update.php"> Update profile </a>
@@ -106,41 +104,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
           ?>
          </div>
          </div>
-       <!--  <form method="POST">
-            <div class="field flx col">
-              <label for="track">Track</label>
-              <select name="track" value="">
-                <option value="backend">Backend</option>
-                <option value="frontend">Frontend</option>
-                <option value="mobile">Mobile</option>
-                <option value="python">Python</option>
-                <option value="ui">UI/UX</option>
-              </select>
-            </div>
-    <main class="flx col">
-      <form method="POST">
-        <legend>Submissions</legend>
-    <div class="flx col fields-container">
-    <div class="field flx col">
-            <label for="track">Track</label>
-            <select name="track" value="">
-              <option value="backend">Backend</option>
-              <option value="frontend">Frontend</option>
-              <option value="mobile">Mobile</option>
-              <option value="python">Python</option>
-              <option value="ui">UI/UX</option>
-            </select>
-          </div>
-
-            <div class="field flx col">
-              <label for="track">Level</label>
-              <select name="level" value="">
-                <option value="Beginner">Beginner</option>
-                <option value="Intermediate">Intermediate</option>
-              </select>
-            </div>
-            <button id="submitTask" type="submit" name="submit">Submit</button>
-          </form>  -->
+      
         <div class="scores-card flx row">
            <?php
             global $conn;
@@ -168,35 +132,28 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                 $track_submission = "SELECT * FROM submissions WHERE track = '$key' AND level = '$value' AND points = 0 ORDER BY track";
                 $result = mysqli_query($conn, $track_submission);
                 $count = mysqli_num_rows($result);
-                echo '<div class="group field flx col cnt '.$key.'">';
+                echo '<div class="group field flx col cnt '.$key.'"><a href=submissions.php?track='.$key.'&level='.$value.'>';
                 echo '<img src="../assets/img/medal.png" alt="">';
                 echo '<p class="track">'.$key.'</p>';
                 echo '<p class="level">'.$value.'</p>';
                 echo '<p class="points">Unmarked: '.$count++.'</p>';
-                echo '<a href=submissions.php?track='.$key.'&level='.$value.'>Check</a>';
+                echo '</a>';
                 echo '</div>';
               }
             }
            
             ?>
-          <!--   <div class="group flx col cnt python">
-              <img src="../assets/img/medal.png" alt="">
-              <p class="rank">Helo</p>
-              <p class="track">Python</p>
-              <p class="level">Intermediate</p>
-              <p class="points">150</p>
-            </div>
-          
-         </div>
-          <button id="submitTask" type="submit" name="submit">Submit</button>
-    </div>
-        </form> -->
      
      </div>
       
      </main>
-     <footer class="flx row"><span class="copyw">Copyright &copy; 30DaysOfCode 2020</span> <div><a href="">Privacy Policy</a><a href="">Terms &amp; Conditions</a></div></footer>
-   </div>
+     <footer class="flx row">
+          <span class="copyw">Copyright &copy; 30DaysOfCode 2020</span>
+          <div>
+            <a href="">Privacy Policy</a><a href="">Terms &amp; Conditions</a>
+          </div>
+        </footer>
+    </div>
  </div>
  <script src="../assets/js/app.js"></script>
 <script>
