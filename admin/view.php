@@ -125,29 +125,29 @@ while($row = $result->fetch_assoc()) {
         <legend>Submission</legend>
         <?php if($error !== ''){ ?> 
           <div class="notice">
-              <?php echo $error?>
+              <?= $error?>
           </div>
       <?php }?>
  <div class="flx col fields-container">
   <div class="field flx col">
     <label for="url">URL</label>
-    <p style="font-size: 12px; margin-top: 8px; line-height: 110%; color: #646464;"><a href="<?php echo $row['url'];?>" target="_blank"><?php echo $row['url'];?></a></p>
+    <p style="font-size: 12px; margin-top: 8px; line-height: 110%; color: #646464;"><a href="<?= $row['url'];?>" target="_blank"><?= $row['url'];?></a></p>
   </div>
   <div class="field flx col">
     <label for="comment">Comments?</label>
-    <textarea name="comment" type="text" disabled rows="5" value="<?php echo $row['comments'];?>"></textarea>
+    <textarea name="comment" type="text" disabled rows="5"><?= $row['comments'];?></textarea>
   </div>
   <div class="field flx col">
     <label for="point">Point</label>
-    <input type="number" name="point" id="point" placeholder="Enter Point for This Submissions" required value="<?php echo $row['points'];?>">
+    <input type="number" name="point" id="point" placeholder="Enter Point for This Submissions" required value="<?= $row['points'];?>">
   </div>
   <div class="field flx col">
     <label for="user">User</label>
-    <input type="text" name="user" id="user" value="<?php echo $row['user'];?>" hidden>
+    <input type="text" name="user" id="user" value="<?= $row['user'];?>" hidden>
   </div>
   <div class="field flx col">
   <label for="feedbaack">Feedback?</label>
-    <textarea name="feedback" id="feedback" placeholder="Enter Feedback for This Submissions" value="<?php echo $row['feedback'];?>"></textarea>
+    <textarea name="feedback" id="feedback" placeholder="Enter Feedback for This Submissions" value="<?= $row['feedback'];?>"></textarea>
   </div>
   <button id="submitTask" type="submit" name="submit">Submit task</button>
  </div>
