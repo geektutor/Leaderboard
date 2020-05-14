@@ -135,11 +135,9 @@ if(isset( $_SESSION['login_user'])){
              <br>
            <?php
             global $conn;
-            // $tracks = [
-              
-            // ];
+            
             $tracks = [
-             'Begineer' => [
+             'Beginner' => [
               'frontend' => 'Beginner', 
               'backend' => 'Beginner', 
               'mobile' => 'Beginner', 
