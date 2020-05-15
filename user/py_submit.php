@@ -37,8 +37,8 @@
       $comment = $_POST['comment'];
       
       $cohort = 1;
-      $sql = "INSERT INTO submissions(user, track, url, task_day, points, sub_date, cohort, level, feedback) 
-              VALUES('$user','$track', '$url', '$task_day', '$points', '$date', '$cohort', '$level', '$feedback')";
+      $sql = "INSERT INTO submissions(user, track, url, task_day, comments, points, sub_date, cohort, level, feedback) 
+              VALUES('$user','$track', '$url', '$task_day', '$comments', '$points', '$date', '$cohort', '$level', '$feedback')";
       if($conn->query($sql)){
         print "Saved";
       }else{
