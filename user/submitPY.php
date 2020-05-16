@@ -106,27 +106,29 @@ if(isset( $_SESSION['login_user'])){
   </nav>
    <div class="mainWrapper flx col" id="mainWrp">
     <main class="flx col">
-         <!-- OTHER TRACKS -->
-        <form class="flx col main" enctype="multipart/form-data" onsubmit="handleSubmission(event)">
+        <!-- PYTHON AUTOGRADER -->
+        <form method="POST" class="flx col python"  id="form" enctype="multipart/form-data" onsubmit="upload(event)">
           <legend>
-            Submit task <span class="day" style="float: none;">- Day <?= $days; ?></span> <div class="generic"></div><a class="py" href="submitPY.php">Submit for Python here</a>
+            Python Autograder <span class="day" style="float: none;">- Day <?= $days; ?></span> <div class="generic"></div><a class="py" href="submit.php">Submit for NON Python here</a>
           </legend>
-            <div class="notice flx col">
-            <div id="stats"></div>   
-            </div>
-          <div class="fields-container">            
-      		 <div class="field flx col">
-      	    	<label for="track">Track</label>
-		          <select id="track" class="trackS" name="track" value="">
+          <div class="notice flx col">
+          <div id="stats2"></div>
+            <div id="stats"></div>
+          </div>
+          <div class="fields-container">
+		      <div class="field flx col">
+	    	    <label for="track">Track</label>
+		          <select id="trackP" class="trackS" name="track" value="">
+		            <option value="python" selected>Python</option>
                 <option value="backend">Backend</option>
                 <option value="frontend">Frontend</option>
                 <option value="mobile">Mobile</option>
                 <option value="ui">UI/UX</option>
               </select>
-            </div>
+          </div>
             <div class="field flx col">
               <label for="url">URL</label>
-              <input id="url" type="url" name="url" placeholder="Enter URL" required>
+              <input id="theurl" type="url" name="url" placeholder="Enter URL" required>
               <p style="font-size: 12px; margin-top: 8px; line-height: 110%; color: #646464;"><a href="https://github.com/geektutor/Leaderboard/blob/master/submission_guide.md">Submission Guidelines</a></p>
             </div>
             <div class="field flx col">
@@ -137,6 +139,11 @@ if(isset( $_SESSION['login_user'])){
               </select>
             </div>
             <div class="field flx col">
+              <label for="file">Upload file</label>
+              <input id="file" type="file" name="file" required>
+              <p style="font-size: 12px; margin-top: 8px; line-height: 110%; color: #646464;">Make sure you upload the correct file</p>
+            </div>
+            <div class="field flx col">
               <label for="comment">Comments?</label>
               <textarea id="comment" name="comment" type="text" placeholder="Any comments?" rows="5"></textarea>
             </div>
@@ -144,9 +151,9 @@ if(isset( $_SESSION['login_user'])){
             </div>
             <input type="hidden" id="task_day" name="task_day" value="Day <?= $days; ?>">
             <input type="hidden" id="name" name="name" value="<?= $_SESSION['login_user']; ?>">
-            <input type="hidden" id="cohort" name="cohort" value="1">
-            <button style="display: none;" class="submit" id="upload" type="submit" name="psubmit">Submit task</button>
-            <button id="submitTask" type="submit" name="submit">SUBMIT TASK</button>
+          <input type="hidden" name="cohort" value="1">
+          <button id="submitTask" type="submit" name="submit">Submit task</button>
+          <button id="save" style="display: none;" onclick="show(event)">Save Result</button>
           </div>
         </form>
      </main>
