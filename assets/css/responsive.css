@@ -120,3 +120,12 @@ form {
   width: 90%;
 }
 }
+@media only screen and (max-width: 450px) {
+  legend a {
+    float: none;
+  }
+  legend .generic {
+    display: block;
+    height: 5px;
+  }
+}
