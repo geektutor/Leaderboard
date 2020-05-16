@@ -206,7 +206,7 @@ form {
   padding-bottom: 30px;
 	margin: 40px 0  0 80px;
 	background-color: #FFFFFF;
-	width: 400px;
+	width: 420px;
 	height: -webkit-fit-content;
 	height: -moz-fit-content;
 	height: fit-content;
@@ -314,6 +314,16 @@ font-size: 14px;
 color: #05298D;
 text-align: left;
 text-decoration: underline;
+}
+.prev_link {
+  width: fit-content;
+  border: 0.5px dashed rgb(37, 37, 37);
+}
+.prev_link a {
+  text-decoration: none;
+  color: black;
+  padding: 8px 10px;
+  display: inline-block;
 }
 footer {
   position: relative;

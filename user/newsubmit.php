@@ -109,7 +109,7 @@ if(isset( $_SESSION['login_user'])){
         <!-- OTHER TRACKS -->
         <form class="flx col main" enctype="multipart/form-data" onsubmit="handleSubmission(event)">
           <legend>
-            Submit task <span class="day">Day <?= $days; ?></span>
+            Submit previous task
             <div id="stats"></div>
           </legend>
           <div class="fields-container">
