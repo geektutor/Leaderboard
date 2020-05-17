@@ -201,14 +201,14 @@ if(isset( $_SESSION['login_user'])){
  <script src="../assets/js/app.js"></script>
  <script src="../assets/js/jquery-3.4.1.js"></script>
 <script type="text/javascript">
- $('.trackP').change(function(){
+ $('.trackS').change(function(){
     if (this.value == 'python'){
       $(".python").show();
-	$(".python .trackP").val(this.value);
+	$(".python .trackS").val(this.value);
       $(".main").hide();
     }else{
       $(".python").show();
-	$(".python .trackP").val(this.value);
+	$(".python .trackS").val(this.value);
       $(".main").hide();
     }
   });
