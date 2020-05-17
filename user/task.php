@@ -108,25 +108,7 @@ if(isset($_POST['submit'])){
             <legend>
               All task <span class="day">Day <?= $days; ?></span>
             </legend>
-            <?php if($show == 1){ ?>
-             <?php
-            if($resultTask){
-              while($row = mysqli_fetch_assoc($resultTask)) {
-                $error = $row['task'];
-                $track = $row['track'];
-                $level = $row['level'];
-                $day = $row['task_day'];
-                echo '<div class="notice flx col">';
-                echo '<h1 class="track"> '.$track.' | '.$level.' | '.$day.'</h1><br>'; 
-                echo '<p>'.$error.'</p></div>';
-                $show = 1;
-              }
-            }else{
-                $error =  "No task for the selected option. Check back later.";
-                $show = 1;
-            }
-            ?>
-            <?php }?>
+            
             <div class="fields-container">
               <div class="field flx col">
                 <label for="day">Level</label>
@@ -151,6 +133,25 @@ if(isset($_POST['submit'])){
               </button>
               <a href="https://github.com/geektutor/Leaderboard/blob/master/submission_guide.md">What is an accepted submission?</a>
             </div>
+              <?php if($show == 1){ ?>
+             <?php
+            if($resultTask){
+              while($row = mysqli_fetch_assoc($resultTask)) {
+                $error = $row['task'];
+                $track = $row['track'];
+                $level = $row['level'];
+                $day = $row['task_day'];
+                echo '<div class="notice flx col">';
+                echo '<h1 class="track"> '.$track.' | '.$level.' | '.$day.'</h1><br>'; 
+                echo '<p>'.$error.'</p></div>';
+                $show = 1;
+              }
+            }else{
+                $error =  "No task for the selected option. Check back later.";
+                $show = 1;
+            }
+            ?>
+            <?php }?>
           </form>
         </main>
         <footer class="flx row">
