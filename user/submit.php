@@ -147,6 +147,7 @@ if(isset( $_SESSION['login_user'])){
             <input type="hidden" id="cohort" name="cohort" value="1">
             <button style="display: none;" class="submit" id="upload" type="submit" name="psubmit">Submit task</button>
             <button id="submitTask" type="submit" name="submit">SUBMIT TASK</button>
+            <div class="prev_link"><a href="newsubmit.php"><--&nbsp; Previous days</a></div>
           </div>
         </form>
      </main>

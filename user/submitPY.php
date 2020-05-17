@@ -109,7 +109,7 @@ if(isset( $_SESSION['login_user'])){
         <!-- PYTHON AUTOGRADER -->
         <form method="POST" class="flx col python"  id="form" enctype="multipart/form-data" onsubmit="upload(event)">
           <legend>
-            Python Autograder <span class="day" style="float: none;">- Day <?= $days; ?></span> <div class="generic"></div><a class="py" href="submit.php">Submit for NON Python here</a>
+            Python Autograder <span class="day" style="float: none;">- Day <?= $days; ?></span> <div class="generic"></div> <a class="py" href="submit.php">Submit other tracks</a>
           </legend>
           <div class="notice flx col">
           <div id="stats2"></div>
@@ -119,12 +119,8 @@ if(isset( $_SESSION['login_user'])){
 		      <div class="field flx col">
 	    	    <label for="track">Track</label>
 		          <select id="trackP" class="trackS" name="track" value="">
-		            <option value="python" selected>Python</option>
-                <option value="backend">Backend</option>
-                <option value="frontend">Frontend</option>
-                <option value="mobile">Mobile</option>
-                <option value="ui">UI/UX</option>
-              </select>
+                <option value="python" selected>Python</option>
+                </select>
           </div>
             <div class="field flx col">
               <label for="url">URL</label>
