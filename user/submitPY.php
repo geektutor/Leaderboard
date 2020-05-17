@@ -108,7 +108,7 @@ if(isset( $_SESSION['login_user'])){
         <!-- PYTHON AUTOGRADER -->
         <form style="display: none;" method="POST" class="flx col python"  id="form" enctype="multipart/form-data" onsubmit="upload(event)">
           <legend>
-            Python Autograder <span class="day">Day <?= $days; ?></span>
+            Python Autograder <span class="day">Day 16</span>
           </legend>
           <div class="notice flx col">
           <div id="stats2"></div>
@@ -119,10 +119,7 @@ if(isset( $_SESSION['login_user'])){
 	    	    <label for="track">Track</label>
 		          <select id="trackP" class="trackS" name="track" value="">
 		            <option value="python" selected>Python</option>
-                <option value="backend">Backend</option>
-                <option value="frontend">Frontend</option>
-                <option value="mobile">Mobile</option>
-                <option value="ui">UI/UX</option>
+                <option value="select">Select</option>
               </select>
           </div>
             <div class="field flx col">
@@ -148,7 +145,7 @@ if(isset( $_SESSION['login_user'])){
             </div>
             <div class="field flx col">
             </div>
-            <input type="hidden" id="task_day" name="task_day" value="Day <?= $days; ?>">
+            <input type="hidden" id="task_day" name="task_day" value="Day 16">
             <input type="hidden" id="name" name="name" value="<?= $_SESSION['login_user']; ?>">
           <input type="hidden" name="cohort" value="1">
           <button id="submitTask" type="submit" name="submit">Submit task</button>
@@ -204,14 +201,14 @@ if(isset( $_SESSION['login_user'])){
  <script src="../assets/js/app.js"></script>
  <script src="../assets/js/jquery-3.4.1.js"></script>
 <script type="text/javascript">
- $('.trackS').change(function(){
+ $('.trackP').change(function(){
     if (this.value == 'python'){
       $(".python").show();
-	$(".python .trackS").val(this.value);
+	$(".python .trackP").val(this.value);
       $(".main").hide();
     }else{
       $(".python").show();
-	$(".python .trackS").val(this.value);
+	$(".python .trackP").val(this.value);
       $(".main").hide();
     }
   });
