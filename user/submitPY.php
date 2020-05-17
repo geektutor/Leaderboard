@@ -119,6 +119,10 @@ if(isset( $_SESSION['login_user'])){
 	    	    <label for="track">Track</label>
 		          <select id="trackP" class="trackS" name="track" value="">
 		            <option value="python" selected>Python</option>
+                <option value="backend">Backend</option>
+                <option value="frontend">Frontend</option>
+                <option value="mobile">Mobile</option>
+                <option value="ui">UI/UX</option>
               </select>
           </div>
             <div class="field flx col">
@@ -152,7 +156,7 @@ if(isset( $_SESSION['login_user'])){
           </div>
         </form>
 
-        <!-- OTHER TRACKS
+        <!-- OTHER TRACKS -->
         <form class="flx col main" enctype="multipart/form-data" onsubmit="handleSubmission(event)">
           <legend>
             Submit task <span class="day">Day <?= $days; ?></span>
@@ -195,7 +199,7 @@ if(isset( $_SESSION['login_user'])){
             <button style="display: none;" class="submit" id="upload" type="submit" name="psubmit">Submit task</button>
             <button id="submitTask" type="submit" name="submit">Save</button>
           </div>
-        </form>-->
+        </form>
      </main>
      <footer class="flx row"><span class="copyw">Copyright &copy; 30DaysOfCode 2020</span> <div><a href="">Privacy Policy</a><a href="">Terms &amp; Conditions</a></div></footer> 
    </div>
