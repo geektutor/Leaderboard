@@ -1,4 +1,3 @@
- 
 <?php
 require('../config/connect.php');
 require('../config/session.php');
@@ -107,20 +106,20 @@ if(isset( $_SESSION['login_user'])){
    <div class="mainWrapper flx col" id="mainWrp">
     <main class="flx col">
         <!-- PYTHON AUTOGRADER -->
-        <form method="POST" class="flx col python"  id="form" enctype="multipart/form-data" onsubmit="upload(event)">
+        <form style="display: none;" method="POST" class="flx col python"  id="form" enctype="multipart/form-data" onsubmit="upload(event)">
           <legend>
-            Python Autograder <span class="day" style="float: none;">- Day <?= $days; ?></span> <div class="generic"></div> <a class="py" href="submit.php">Submit other tracks</a>
+            Python Autograder <span class="day">Day <?= $days; ?></span>
           </legend>
           <div class="notice flx col">
           <div id="stats2"></div>
             <div id="stats"></div>
           </div>
           <div class="fields-container">
-		 <div class="field flx col">
-	    	<label for="track">Track</label>
-		 <select id="trackP" class="trackS" name="track" value="">
-                <option value="python" selected>Python</option>
-                </select>
+		      <div class="field flx col">
+	    	    <label for="track">Track</label>
+		          <select id="trackP" class="trackS" name="track" value="">
+		            <option value="python" selected>Python</option>
+              </select>
           </div>
             <div class="field flx col">
               <label for="url">URL</label>
@@ -152,6 +151,51 @@ if(isset( $_SESSION['login_user'])){
           <button id="save" style="display: none;" onclick="show(event)">Save Result</button>
           </div>
         </form>
+
+        <!-- OTHER TRACKS
+        <form class="flx col main" enctype="multipart/form-data" onsubmit="handleSubmission(event)">
+          <legend>
+            Submit task <span class="day">Day <?= $days; ?></span>
+          </legend>
+            <div class="notice flx col">
+            <div id="stats"></div>   
+            </div>
+          <div class="fields-container">
+      		 <div class="field flx col">
+      	    	<label for="track">Track</label>
+		          <select id="track" class="trackS" name="track" value="">
+                <option value="backend">Backend</option>
+                <option value="frontend">Frontend</option>
+                <option value="mobile">Mobile</option>
+                <option value="python">Python</option>
+                <option value="ui">UI/UX</option>
+              </select>
+            </div>
+            <div class="field flx col">
+              <label for="url">URL</label>
+              <input id="url" type="url" name="url" placeholder="Enter URL" required>
+              <p style="font-size: 12px; margin-top: 8px; line-height: 110%; color: #646464;"><a href="https://github.com/geektutor/Leaderboard/blob/master/submission_guide.md">Submission Guidelines</a></p>
+            </div>
+            <div class="field flx col">
+              <label for="level">Level</label>
+              <select id="level" name="level" value="">
+                <option value="Beginner">Beginner</option>
+                <option value="Intermediate">Intermediate</option>
+              </select>
+            </div>
+            <div class="field flx col">
+              <label for="comment">Comments?</label>
+              <textarea id="comment" name="comment" type="text" placeholder="Any comments?" rows="5"></textarea>
+            </div>
+            <div class="field flx col">
+            </div>
+            <input type="hidden" id="task_day" name="task_day" value="Day <?= $days; ?>">
+            <input type="hidden" id="name" name="name" value="<?= $_SESSION['login_user']; ?>">
+            <input type="hidden" id="cohort" name="cohort" value="1">
+            <button style="display: none;" class="submit" id="upload" type="submit" name="psubmit">Submit task</button>
+            <button id="submitTask" type="submit" name="submit">Save</button>
+          </div>
+        </form>-->
      </main>
      <footer class="flx row"><span class="copyw">Copyright &copy; 30DaysOfCode 2020</span> <div><a href="">Privacy Policy</a><a href="">Terms &amp; Conditions</a></div></footer> 
    </div>
@@ -159,6 +203,18 @@ if(isset( $_SESSION['login_user'])){
  <script src="../assets/js/app.js"></script>
  <script src="../assets/js/jquery-3.4.1.js"></script>
 <script type="text/javascript">
+ $('.trackS').change(function(){
+    if (this.value == 'python'){
+      $(".python").show();
+	$(".python .trackS").val(this.value);
+      $(".main").hide();
+    }else{
+      $('.main').show();
+	$(".main .trackS").val(this.value);
+      $('.python').hide();
+    }
+  });
+  
   var points;
   function handleSubmission(event) {
     event.preventDefault()
@@ -170,7 +226,7 @@ if(isset( $_SESSION['login_user'])){
     var today = new Date();
     var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
     var points;
- 	var n = 1;
+	  var n = 1;
     var track = document.getElementById('track').value;
     console.log(track)
     var task_day = document.getElementById('task_day').value;
@@ -251,7 +307,7 @@ if(isset( $_SESSION['login_user'])){
       type: "POST",
       success: function(data) {
         $('#stats2').html(data);
-        $('#stats').html("Saved");
+        // $('#stats').html("Saved");
 
       },
       error: function() {}
