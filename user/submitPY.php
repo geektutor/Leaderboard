@@ -108,7 +108,7 @@ if(isset( $_SESSION['login_user'])){
         <!-- PYTHON AUTOGRADER -->
         <form style="display: none;" method="POST" class="flx col python"  id="form" enctype="multipart/form-data" onsubmit="upload(event)">
           <legend>
-            Python Autograder <span class="day">Day 16</span>
+            Python Autograder <span class="day">Day <?= $days; ?></span>
           </legend>
           <div class="notice flx col">
           <div id="stats2"></div>
@@ -145,7 +145,7 @@ if(isset( $_SESSION['login_user'])){
             </div>
             <div class="field flx col">
             </div>
-            <input type="hidden" id="task_day" name="task_day" value="Day 16">
+            <input type="hidden" id="task_day" name="task_day" value="Day <?= $days; ?>">
             <input type="hidden" id="name" name="name" value="<?= $_SESSION['login_user']; ?>">
           <input type="hidden" name="cohort" value="1">
           <button id="submitTask" type="submit" name="submit">Submit task</button>
