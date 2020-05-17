@@ -116,9 +116,9 @@ if(isset( $_SESSION['login_user'])){
             <div id="stats"></div>
           </div>
           <div class="fields-container">
-		      <div class="field flx col">
-	    	    <label for="track">Track</label>
-		          <select id="trackP" class="trackS" name="track" value="">
+		 <div class="field flx col">
+	    	<label for="track">Track</label>
+		 <select id="trackP" class="trackS" name="track" value="">
                 <option value="python" selected>Python</option>
                 </select>
           </div>
@@ -170,7 +170,7 @@ if(isset( $_SESSION['login_user'])){
     var today = new Date();
     var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
     var points;
-	  var n = 1;
+ 	var n = 1;
     var track = document.getElementById('track').value;
     console.log(track)
     var task_day = document.getElementById('task_day').value;
@@ -251,7 +251,7 @@ if(isset( $_SESSION['login_user'])){
       type: "POST",
       success: function(data) {
         $('#stats2').html(data);
-        // $('#stats').html("Saved");
+        $('#stats').html("Saved");
 
       },
       error: function() {}
