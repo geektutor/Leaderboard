@@ -168,8 +168,9 @@ if(isset( $_SESSION['login_user'])){
       		 <div class="field flx col">
       	    	<label for="track">Track</label>
 		          <select id="track" class="trackS" name="track" value="">
-		<option value="python">Python</option>
-               </select>
+                <option value="python">Select</option>
+                <option value="python">Python</option>
+                </select>
             </div>
             <div class="field flx col">
               <label for="url">URL</label>
@@ -209,9 +210,9 @@ if(isset( $_SESSION['login_user'])){
 	$(".python .trackS").val(this.value);
       $(".main").hide();
     }else{
-      $('.main').show();
-	$(".main .trackS").val(this.value);
-      $('.python').hide();
+      $(".python").show();
+	$(".python .trackS").val(this.value);
+      $(".main").hide();
     }
   });
   
