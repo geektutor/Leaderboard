@@ -168,12 +168,8 @@ if(isset( $_SESSION['login_user'])){
       		 <div class="field flx col">
       	    	<label for="track">Track</label>
 		          <select id="track" class="trackS" name="track" value="">
-                <option value="backend">Backend</option>
-                <option value="frontend">Frontend</option>
-                <option value="mobile">Mobile</option>
-                <option value="python">Python</option>
-                <option value="ui">UI/UX</option>
-              </select>
+		<option value="python">Python</option>
+               </select>
             </div>
             <div class="field flx col">
               <label for="url">URL</label>
