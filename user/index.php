@@ -131,9 +131,19 @@ if(isset( $_SESSION['login_user'])){
             }else {
                 echo "error fetching from database";
             }
-            ?>
-             <br>
-           <?php
+            ?> 
+            </div>        
+         <div class="unmarked-card">
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">TRACK</th>
+        <th scope="col">LEVEL</th>
+        <th scope="col">UNMARKED</th>
+      </tr>
+    </thead>
+    <tbody>
+    <?php
             global $conn;
             
             $tracks = [
@@ -157,16 +167,17 @@ if(isset( $_SESSION['login_user'])){
                 $track_submission = "SELECT * FROM submissions WHERE track = '$key' AND level = '$value' AND points = 0 ORDER BY track";
                 $result = mysqli_query($conn, $track_submission);
                 $count = mysqli_num_rows($result);
-                echo '<div class="group field flx col cnt '.$key.'">';
-                echo '<p class="track">'.$key.'</p>';
-                echo '<p class="level">'.$value.'</a></p>';
-                echo '<p class="points">Unmarked: '.$count++.'</p>';
-                echo '</div>';
-              }
-            }
-           
+                echo '<tr>';
+                echo '<td>'.$key.'</td>';
+                echo '<td>'.$value.'</td>';
+                echo '<td>'.$count++.'</td>'
+              }Beginner
+            }           
             ?>
-         </div>
+      </tr>
+    </tbody>
+  </table>
+</div>
         </main>
         <footer class="flx row">
           <span class="copyw">Copyright &copy; 30DaysOfCode 2020</span>
