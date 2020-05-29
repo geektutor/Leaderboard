@@ -171,6 +171,7 @@ if(isset( $_SESSION['login_user'])){
                 echo '<td>'.$key.'</td>';
                 echo '<td>'.$value.'</td>';
                 echo '<td>'.$count++.'</td>';
+                echo '</tr></tbody></table>';
               }
             }
             ?>
