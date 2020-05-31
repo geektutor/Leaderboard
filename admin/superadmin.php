@@ -78,7 +78,10 @@ if (isset($_SESSION['isSuperAdmin']) && $_SESSION['isSuperAdmin'] == true) {
         ?>
         <legend>Submissions</legend>
        <div class="table-responsive">
-        <table class="table" style="text-align: left;">
+        <div class="field fix col">
+          <input class="" type="text" id="myInput" onkeyup="filterTable()" placeholder="Search for email..">
+        </div>
+        <table class="table" id="myTable" style="text-align: left;">
          <thead>
           <tr>
             <th scope="col">S/N</th>
@@ -86,6 +89,7 @@ if (isset($_SESSION['isSuperAdmin']) && $_SESSION['isSuperAdmin'] == true) {
             <th scope="col">Level</th>
             <th scope="col">Submission for Day</th>
             <th scope="col">Points</th>
+            <th scope="col">Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -100,6 +104,7 @@ if (isset($_SESSION['isSuperAdmin']) && $_SESSION['isSuperAdmin'] == true) {
               <td data-label="Level"><?php echo $row['level'];?></td>
               <td data-label="Submission For Day"><?php echo $row['task_day'];?></td>
               <td data-label="Points"><?php echo $row['points'];?></td>
+              <td><a href="delete_It.php?delId=<?=$row['id']?>">Delete</a></td>
           </tr>
           <?php 
               $j++;
@@ -120,6 +125,28 @@ if (isset($_SESSION['isSuperAdmin']) && $_SESSION['isSuperAdmin'] == true) {
 setTimeout(() => {
     $('#success').hide(1000);
 }, 2000);
+
+function filterTable() {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
 </script>
 </body>
 </html>
