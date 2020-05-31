@@ -75,7 +75,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
       <form class="mainCard">
         <legend>Submissions</legend>
       <?php
-        $sql = "SELECT * FROM submissions WHERE  track = 'python' AND level = 'Beginner' AND task_day > 'Day 7' AND points < 9 AND feedback = 'Marked by AutoGrader V2' ORDER BY points ASC";
+        $sql = "SELECT * FROM submissions WHERE  track = 'python' AND level = 'Beginner' AND points < 11 AND feedback = 'Marked by AutoGrader V2' ORDER BY points ASC";
         $result = mysqli_query($conn, $sql);
         $count = mysqli_num_rows($result);
         ?>
