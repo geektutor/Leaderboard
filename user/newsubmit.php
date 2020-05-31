@@ -8,7 +8,7 @@ if(isset( $_SESSION['login_user'])){
     $result = mysqli_query($conn, $sql);
     $row =mysqli_fetch_assoc($result);
 
-    $day = strtotime("2020-04-01");
+    $day = strtotime("2020-05-2");
     $currdates = date("Y-m-d");
     $currdate = strtotime($currdates);
     $diff = abs($currdate - $day);
