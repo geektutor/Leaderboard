@@ -150,6 +150,7 @@ if(isset( $_SESSION['login_user'])){
             <button style="display: none;" class="submit" id="upload" type="submit" name="psubmit">Submit task</button>
             <button id="submitTask" type="submit" name="submit">SUBMIT TASK</button>
             <div class="prev_link"><a href="newsubmit.php"><--&nbsp; Previous days</a></div>
+	     <div class="prev_link"><a href="old_autograder_submit.php"><--&nbsp; Previous Python</a></div>
           </div>
         </form>
      </main>
