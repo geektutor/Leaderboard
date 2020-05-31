@@ -73,7 +73,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
    <div class="mainWrapper flx col" id="mainWrp">
     <main class="flx col">
       <?php
-        $sql = "SELECT * FROM submissions WHERE  track = 'python' AND level = 'Intermediate' AND task_day > 'Day 5' AND points < 10 AND feedback = 'Marked by AutoGrader V2' ORDER BY points ASC";
+        $sql = "SELECT * FROM submissions WHERE  track = 'python' AND level = 'Intermediate' AND points < 10 AND feedback = 'Marked by AutoGrader V2' ORDER BY points ASC";
         $result = mysqli_query($conn, $sql);
         $count = mysqli_num_rows($result);
         ?>
