@@ -9,16 +9,13 @@ $years = floor($diff / (365*60*60*24));
 $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
 $days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24)); 
 $days +=1;
-$show = 0;  
-if(isset($_POST['submit'])){
-    $error = '';
-    $show = 1;
-    $task_day = mysqli_real_escape_string($conn, $_POST['task_day']);
-    $track = mysqli_real_escape_string($conn, $_POST['track']);
-    $level = mysqli_real_escape_string($conn, $_POST['level']);
-    $sql = "SELECT * FROM task WHERE task_day <= '$task_day' AND track = '$track' AND level = '$level' ORDER BY task_day DESC";
-    $resultTask = mysqli_query($conn,$sql);
-}
+$show = 0; 
+
+$track = $_POST['track'];
+$level = $_POST['level']; 
+
+// var_dump($track, $level); die;
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,6 +24,7 @@ if(isset($_POST['submit'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="../assets/css/submissions.css">
     <link rel="stylesheet" href="../assets/css/responsive.css" />
     <link rel="shortcut icon" href="./../assets/img/favicon.png" type="image/x-icon">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
@@ -103,66 +101,56 @@ if(isset($_POST['submit'])){
         </div>
       </nav>
       <div class="mainWrapper flx col" id="mainWrp">
-        <main class="flx col">
-          <form method="POST" class="flx col">
-            <legend>
-              All task <span class="day">Day <?= $days; ?></span>
-            </legend>
-            
-            <div class="fields-container">
-              <div class="field flx col">
-                <label for="day">Level</label>
-                <select name="level" value="">
-                  <option value="Beginner">Beginner</option>
-                  <option value="Intermediate">Intermediate</option>
-                </select>
-              </div>
-              <div class="field flx col">
-                <label for="track">Track</label>
-                <select name="track" value="">
-                  <option value="frontend">Front End</option>
-                  <option value="backend">Back End</option>
-                  <option value="mobile">Mobile</option>
-                  <option value="ui">UI/UX</option>
-                  <option value="python">Python</option>
-                </select>
-                <input type="hidden" name="task_day" value="<?= $days?>" />
-              </div>
-              <button id="taskDownload" type="submit" name="submit">
-                Check Task
-              </button>
-              <a href="https://github.com/geektutor/Leaderboard/blob/master/submission_guide.md">What is an accepted submission?</a>
-              <br><br>
-              <div class="prev_link"><a href="oldtask.php"><--&nbsp; Previous days</a></div>
-            </div>
-              <?php if($show == 1){ ?>
-             <?php
-            if($resultTask){
-              while($row = mysqli_fetch_assoc($resultTask)) {
-                $error = $row['task'];
-                $track = $row['track'];
-                $level = $row['level'];
-                $day = $row['task_day'];
-                echo '<div class="notice flx col">';
-                echo '<h1 class="track"> '.$track.' | '.$level.' | '.$day.'</h1><br>'; 
-                echo '<p>'.$error.'</p></div>';
-                $show = 1;
+      <main class="flx col">
+      <form class="mainCard">
+        <legend>Tasks <a id="newBtn" href="addnewtask.php">Add new</a></legend>
+      <?php
+        $current = date('Y-m-d');
+        $sql = "SELECT * FROM task WHERE `track` = '$track' AND `level` = '$level' ORDER BY task_day";
+        $result = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_assoc($result);
+        $count = mysqli_num_rows($result);
+        $day = $row['task_day'];
+        // var_dump($day); die;
+    ?>
+       <div class="table-responsive">
+        <table class="table" style="text-align: left;">
+         <thead>
+          <tr>
+            <th scope="col">S/N</th>
+            <th scope="col">Day</th>
+            <th scope="col">Track</th>
+            <th scope="col">Level</th>
+            <th scope="col">Task</th>
+            </tr>
+        </thead>
+        <tbody>
+          <?php          
+          if($count > 0){
+              $j =0;
+              while($row = mysqli_fetch_assoc($result)) {
+          ?>
+          <tr>
+              <td data-label="S/N"><?php echo $j;?></td>
+              <td data-label="Day"><?= $row['task_day']; ?></td>
+              <td data-label="Track"><?= $row['track'];?></td>
+              <td data-label="Level"><?= $row['level'];?></td>
+              <td data-label="Task"><?= $row['task'];?></td>
+          </tr>
+          <?php 
+              $j++;
+              }}else{
+                  echo `<p>No tasks yet</p>`;
               }
-            }else{
-                $error =  "No task for the selected option. Check back later.";
-                $show = 1;
-            }
-            ?>
-            <?php }?>
-          </form>
-        </main>
-        <footer class="flx row">
-          <span class="copyw">Copyright &copy; 30DaysOfCode 2020</span>
-          <div>
-            <a href="">Privacy Policy</a><a href="">Terms &amp; Conditions</a>
-          </div>
-        </footer>
+          ?>
+        </tbody>
+        </table>
       </div>
+      </form >
+     </main>
+
+     <footer class="flx row"><span class="copyw">Copyright &copy; 30DaysOfCode 2020</span> <div><a href="">Privacy Policy</a><a href="">Terms &amp; Conditions</a></div></footer>
+   </div>
     </div>
     <script src="../assets/js/app.js"></script>
   </body>

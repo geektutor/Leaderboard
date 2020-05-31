@@ -8,14 +8,7 @@ if(isset( $_SESSION['login_user'])){
     $result = mysqli_query($conn, $sql);
     $row =mysqli_fetch_assoc($result);
 
-    $day = strtotime("2020-05-2");
-    $currdates = date("Y-m-d");
-    $currdate = strtotime($currdates);
-    $diff = abs($currdate - $day);
-    $years = floor($diff / (365*60*60*24));
-    $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
-    $days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24)); 
-    $days +=1;
+  include ('taskday.php');
 
 ?>
 <!DOCTYPE html>
