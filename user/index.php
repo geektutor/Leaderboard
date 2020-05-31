@@ -170,8 +170,8 @@ if(isset( $_SESSION['login_user'])){
                 echo '<tr>';
                 echo '<td>'.$key.'</td>';
                 echo '<td>'.$value.'</td>';
-                echo '<td>'.$count++.'</td>'
-              }Beginner
+                echo '<td>'.$count++.'</td>';
+              }
             }           
             ?>
       </tr>

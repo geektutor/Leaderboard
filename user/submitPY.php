@@ -129,6 +129,7 @@ if(isset( $_SESSION['login_user'])){
             </div>
             <div class="field flx col">
               <label for="level">Level</label>
+              <div class="lev" style="display: none;"></div>
               <select id="level" name="level" value="">
                 <option value="Beginner">Beginner</option>
                 <option value="Intermediate">Intermediate</option>
@@ -263,7 +264,11 @@ if(isset( $_SESSION['login_user'])){
           var user = ReturnedData.name;
           points = ReturnedData.score;
             $('#stats').html("Welcome " + user + ", you have scored " + points);
-            $('#save').show()
+            $('#save').show();
+            $('#level').hide();
+            $('.lev').show();
+            $('.lev').html("Welcome " + user + ", you have scored " + points);
+            
         },
         error: function() {}
       });
@@ -279,7 +284,10 @@ if(isset( $_SESSION['login_user'])){
           var user = ReturnedData.name;
           points = ReturnedData.score;
             $('#stats').html("Welcome " + user + ", you have scored " + points);
-            $('#save').show()
+            $('#save').show();
+            $('#level').hide();
+            $('.lev').show();
+            $('.lev').html(level);
         },
         error: function() {}
     });
