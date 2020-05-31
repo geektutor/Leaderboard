@@ -131,8 +131,8 @@ if(isset( $_SESSION['login_user'])){
             }else {
                 echo "error fetching from database";
             }
-            ?> 
-            </div>        
+            ?>
+             </div>        
          <div class="unmarked-card">
   <table>
     <thead>
@@ -143,7 +143,7 @@ if(isset( $_SESSION['login_user'])){
       </tr>
     </thead>
     <tbody>
-    <?php
+      <?php
             global $conn;
             
             $tracks = [
@@ -174,10 +174,10 @@ if(isset( $_SESSION['login_user'])){
               }
             }           
             ?>
-      </tr>
+    </tr>
     </tbody>
   </table>
-</div>
+</div>>
         </main>
         <footer class="flx row">
           <span class="copyw">Copyright &copy; 30DaysOfCode 2020</span>
