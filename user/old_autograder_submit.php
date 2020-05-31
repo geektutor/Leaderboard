@@ -106,7 +106,7 @@ if(isset( $_SESSION['login_user'])){
    <div class="mainWrapper flx col" id="mainWrp">
     <main class="flx col">
         <!-- PYTHON AUTOGRADER -->
-        <form style="display: none;" method="POST" class="flx col python"  id="form" enctype="multipart/form-data" onsubmit="upload(event)">
+        <form method="POST" class="flx col python"  id="form" enctype="multipart/form-data" onsubmit="upload(event)">
           <legend>
             Python Autograder <span class="day">Day <?= $days; ?></span>
           </legend>
@@ -115,9 +115,16 @@ if(isset( $_SESSION['login_user'])){
             <div id="stats"></div>
           </div>
           <div class="fields-container">
+            <div class="field fix col">
+              <select id="day" name="day">
+                <?php for($i = $days; $i > 0; $i--): ?>
+                  <option value="Day <?=$i; ?>">Day  <?=$i;?></option>
+                <?php endfor; ?>
+              </select>
+            </div>
 		      <div class="field flx col">
 	    	    <label for="track">Track</label>
-		          <select id="trackP" class="trackS" name="track" value="">
+		          <select id="track" class="trackS" name="track" value="">
 		            <option value="python" selected>Python</option>
                 <option value="select">Select</option>
               </select>
@@ -146,7 +153,6 @@ if(isset( $_SESSION['login_user'])){
             </div>
             <div class="field flx col">
             </div>
-            <input type="hidden" id="task_day" name="task_day" value="Day <?= $days; ?>">
             <input type="hidden" id="name" name="name" value="<?= $_SESSION['login_user']; ?>">
           <input type="hidden" name="cohort" value="1">
           <button id="submitTask" type="submit" name="submit">Submit task</button>
@@ -154,47 +160,7 @@ if(isset( $_SESSION['login_user'])){
           </div>
         </form>
 
-        <!-- OTHER TRACKS -->
-        <form class="flx col main" enctype="multipart/form-data" onsubmit="handleSubmission(event)">
-          <legend>
-            Submit task <span class="day">Day <?= $days; ?></span>
-          </legend>
-            <div class="notice flx col">
-            <div id="stats"></div>   
-            </div>
-          <div class="fields-container">
-      		 <div class="field flx col">
-      	    	<label for="track">Track</label>
-		          <select id="track" class="trackS" name="track" value="">
-                <option value="python">Select</option>
-                <option value="python">Python</option>
-                </select>
-            </div>
-            <div class="field flx col">
-              <label for="url">URL</label>
-              <input id="url" type="url" name="url" placeholder="Enter URL" required>
-              <p style="font-size: 12px; margin-top: 8px; line-height: 110%; color: #646464;"><a href="https://github.com/geektutor/Leaderboard/blob/master/submission_guide.md">Submission Guidelines</a></p>
-            </div>
-            <div class="field flx col">
-              <label for="level">Level</label>
-              <select id="level" name="level" value="">
-                <option value="Beginner">Beginner</option>
-                <option value="Intermediate">Intermediate</option>
-              </select>
-            </div>
-            <div class="field flx col">
-              <label for="comment">Comments?</label>
-              <textarea id="comment" name="comment" type="text" placeholder="Any comments?" rows="5"></textarea>
-            </div>
-            <div class="field flx col">
-            </div>
-            <input type="hidden" id="task_day" name="task_day" value="Day <?= $days; ?>">
-            <input type="hidden" id="name" name="name" value="<?= $_SESSION['login_user']; ?>">
-            <input type="hidden" id="cohort" name="cohort" value="1">
-            <button style="display: none;" class="submit" id="upload" type="submit" name="psubmit">Submit task</button>
-            <button id="submitTask" type="submit" name="submit">Save</button>
-          </div>
-        </form>
+       
      </main>
      <footer class="flx row"><span class="copyw">Copyright &copy; 30DaysOfCode 2020</span> <div><a href="">Privacy Policy</a><a href="">Terms &amp; Conditions</a></div></footer> 
    </div>
@@ -202,17 +168,7 @@ if(isset( $_SESSION['login_user'])){
  <script src="../assets/js/app.js"></script>
  <script src="../assets/js/jquery-3.4.1.js"></script>
 <script type="text/javascript">
- $('.trackS').change(function(){
-    if (this.value == 'python'){
-      $(".python").show();
-	$(".python .trackS").val(this.value);
-      $(".main").hide();
-    }else{
-      $(".python").show();
-	$(".python .trackS").val(this.value);
-      $(".main").hide();
-    }
-  });
+
   
   var points;
   function handleSubmission(event) {
@@ -267,7 +223,7 @@ if(isset( $_SESSION['login_user'])){
             $('#save').show();
             $('#level').hide();
             $('.lev').show();
-            $('.lev').html("Welcome " + user + ", you have scored " + points);
+            $('.lev').html(level);
             
         },
         error: function() {}
@@ -303,13 +259,13 @@ if(isset( $_SESSION['login_user'])){
     var today = new Date();
     var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
     var track = document.getElementById('track').value;
-    var task_day = document.getElementById('task_day').value;
+    var day = document.getElementById('day').value;
     var cohort = 1;
 
     event.preventDefault();
     $.ajax({
       url: 'py_submit.php',
-      data: 'user='+name+'&track='+track+'&task_day='+task_day+'&points='+points+'&sub_date='+date+'&cohort='+cohort+'&level='+level+'&url='+urls+'&comment='+comment,
+      data: 'user='+name+'&track='+track+'&task_day='+day+'&points='+points+'&sub_date='+date+'&cohort='+cohort+'&level='+level+'&url='+urls+'&comment='+comment,
       type: "POST",
       success: function(data) {
         $('#stats2').html(data);

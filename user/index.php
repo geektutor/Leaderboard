@@ -172,7 +172,7 @@ if(isset( $_SESSION['login_user'])){
                 echo '<td>'.$value.'</td>';
                 echo '<td>'.$count++.'</td>';
               }
-            }
+            }           
             ?>
     </tr>
     </tbody>
