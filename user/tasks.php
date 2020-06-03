@@ -1,21 +1,10 @@
 <?php
 require('../config/connect.php');
 require('../config/session.php');
-$day = strtotime("2020-04-01");
-$currdates = date("Y-m-d");
-$currdate = strtotime($currdates);
-$diff = abs($currdate - $day);
-$years = floor($diff / (365*60*60*24));
-$months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
-$days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24)); 
-$days +=1;
-$show = 0; 
+include ('taskday.php'); 
 
 $track = $_POST['track'];
 $level = $_POST['level']; 
-
-// var_dump($track, $level); die;
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -106,12 +95,10 @@ $level = $_POST['level'];
         <legend>Tasks <a id="newBtn" href="addnewtask.php">Add new</a></legend>
       <?php
         $current = date('Y-m-d');
-        $sql = "SELECT * FROM task WHERE `track` = '$track' AND `level` = '$level' ORDER BY task_day";
+        $sql = "SELECT * FROM task WHERE `track` = '$track' AND `level` = '$level' AND `cohort` = '$cohort'";
         $result = mysqli_query($conn, $sql);
-        $row = mysqli_fetch_assoc($result);
         $count = mysqli_num_rows($result);
         $day = $row['task_day'];
-        // var_dump($day); die;
     ?>
        <div class="table-responsive">
         <table class="table" style="text-align: left;">
@@ -127,7 +114,7 @@ $level = $_POST['level'];
         <tbody>
           <?php          
           if($count > 0){
-              $j =0;
+              $j =1;
               while($row = mysqli_fetch_assoc($result)) {
           ?>
           <tr>

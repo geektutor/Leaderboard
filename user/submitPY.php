@@ -141,7 +141,7 @@ include ('taskday.php');
             </div>
             <input type="hidden" id="task_day" name="task_day" value="Day <?= $days; ?>">
             <input type="hidden" id="name" name="name" value="<?= $_SESSION['login_user']; ?>">
-          <input type="hidden" name="cohort" value="1">
+          <input type="hidden" name="cohort" value="<?=$cohort?>">
           <button id="submitTask" type="submit" name="submit">Submit task</button>
           <button id="save" style="display: none;" onclick="show(event)">Save Result</button>
           </div>
@@ -183,7 +183,7 @@ include ('taskday.php');
             </div>
             <input type="hidden" id="task_day" name="task_day" value="Day <?= $days; ?>">
             <input type="hidden" id="name" name="name" value="<?= $_SESSION['login_user']; ?>">
-            <input type="hidden" id="cohort" name="cohort" value="1">
+           <input type="hidden" name="cohort" value="<?=$cohort?>">
             <button style="display: none;" class="submit" id="upload" type="submit" name="psubmit">Submit task</button>
             <button id="submitTask" type="submit" name="submit">Save</button>
           </div>

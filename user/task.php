@@ -1,22 +1,15 @@
 <?php
 require('../config/connect.php');
 require('../config/session.php');
-$day = strtotime("2020-04-01");
-$currdates = date("Y-m-d");
-$currdate = strtotime($currdates);
-$diff = abs($currdate - $day);
-$years = floor($diff / (365*60*60*24));
-$months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
-$days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24)); 
-$days +=1;
-$show = 0;  
+include ('taskday.php');
+$show = 0; 
 if(isset($_POST['submit'])){
     $error = '';
     $show = 1;
     $task_day = mysqli_real_escape_string($conn, $_POST['task_day']);
     $track = mysqli_real_escape_string($conn, $_POST['track']);
     $level = mysqli_real_escape_string($conn, $_POST['level']);
-    $sql = "SELECT * FROM task WHERE task_day <= '$task_day' AND track = '$track' AND level = '$level' ORDER BY task_day DESC";
+    $sql = "SELECT * FROM task WHERE task_day = '$task_day' AND track = '$track' AND level = '$level' AND `cohort` = '$cohort' ORDER BY task_day DESC";
     $resultTask = mysqli_query($conn,$sql);
 }
 ?>
@@ -126,7 +119,7 @@ if(isset($_POST['submit'])){
                   <option value="ui">UI/UX</option>
                   <option value="python">Python</option>
                 </select>
-                <input type="hidden" name="task_day" value="<?= $days?>" />
+                <input type="hidden" name="task_day" value="Day <?= $days?>" />
               </div>
               <button id="taskDownload" type="submit" name="submit">
                 Check Task
