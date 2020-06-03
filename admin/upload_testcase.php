@@ -1,15 +1,9 @@
 <?php
 require('../config/connect.php');
 require('../config/session.php');
+include ('../user/taskday.php');
 if(isset( $_SESSION['login_user'])){
-    $day = strtotime("2020-04-01");
-    $currdates = date("Y-m-d");
-    $currdate = strtotime($currdates);
-    $diff = abs($currdate - $day);
-    $years = floor($diff / (365*60*60*24));
-    $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
-    $days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24)); 
-    $days +=1;
+   
 ?> 
 <!DOCTYPE html>
 <html lang="en">          
@@ -134,7 +128,7 @@ if(isset( $_SESSION['login_user'])){
           </div>
           <input type="hidden" id="task_day" name="task_day" value="Day <?= $days; ?>">
           <input type="hidden" id="name" name="name" value="<?= $_SESSION['login_user']; ?>">
-          <input type="hidden" name="cohort" value="1">
+          <input type="hidden" name="cohort" value="<?=$cohort;?>">
           <button id="submitTask" type="submit" name="submit">Submit task</button>
       </div>
         </form> 

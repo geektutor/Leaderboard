@@ -142,7 +142,7 @@ if(isset( $_SESSION['login_user'])){
             <div class="field flx col">
             </div>
             <input type="hidden" id="name" name="name" value="<?= $_SESSION['login_user']; ?>">
-            <input type="hidden" id="cohort" name="cohort" value="1">
+            <input type="hidden" name="cohort" value="<?=$cohort?>">
             <button style="display: none;" class="submit" id="upload" type="submit" name="psubmit">Submit task</button>
             <button id="submitTask" type="submit" name="submit">Save</button>
           </div>

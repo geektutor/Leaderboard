@@ -8,14 +8,7 @@ if(isset( $_SESSION['login_user'])){
     $result = mysqli_query($conn, $sql);
     $row =mysqli_fetch_assoc($result);
 
-    $day = strtotime("2020-04-01");
-    $currdates = date("Y-m-d");
-    $currdate = strtotime($currdates);
-    $diff = abs($currdate - $day);
-    $years = floor($diff / (365*60*60*24));
-    $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
-    $days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24)); 
-    $days +=1;
+    include ('taskday.php');
 
 ?>
 <!DOCTYPE html>
@@ -147,7 +140,7 @@ if(isset( $_SESSION['login_user'])){
             </div>
             <input type="hidden" id="task_day" name="task_day" value="Day <?= $days; ?>">
             <input type="hidden" id="name" name="name" value="<?= $_SESSION['login_user']; ?>">
-            <input type="hidden" id="cohort" name="cohort" value="1">
+            <input type="hidden" name="cohort" value="<?=$cohort?>">
             <button style="display: none;" class="submit" id="upload" type="submit" name="psubmit">Submit task</button>
             <button id="submitTask" type="submit" name="submit">SUBMIT TASK</button>
             <div class="prev_link"><a href="newsubmit.php"><--&nbsp; Previous days</a></div>
