@@ -55,8 +55,7 @@ if(isset( $_SESSION['login_user'])){
       while($row = mysqli_fetch_assoc($result)) {
           $user_nickname = $row['nickname'];
           $user_score = $row['score'];
-          $performance = $row['performance'];
-          $participation = $row['participation'];
+          $cohort = $row['cohort'];
           $response = '';
           echo '<div class="avatar"><img style=\'width:120px;height:120px;\' src=\'https://robohash.org/'.$user_nickname.$user_track.'\'/></div>';
           echo '<span id="username">'.$user_nickname.'</span>';
@@ -158,7 +157,7 @@ if(isset( $_SESSION['login_user'])){
              <p style='font-size: 1em; margin-top: 8px; line-height: 110%; color: #646464;'> Congratulations, on your completion of the 30 days of code challenge. <br><br>
                  Fill this form and then click on download. Ensure there are no spaces in your name. <br><br>
                  If it doesn't download, it means you do not meet the certification criteria. <br><br>
-                 Minimum of 15 submissions or 330 points.<br><br>
+                 Minimum of 200 points.<br><br>
                  For issues, use the support group <br><br>
       <form method="POST">
           <input type="hidden" name="track" id="track" value="<?php echo $user_track; ?>">
@@ -173,8 +172,7 @@ if(isset( $_SESSION['login_user'])){
           <div class="field flx col">
             <label for="day">Type</label>
             <select name="type" id="type" value="">
-              <option value="<?php echo $participation; ?>">Certificate of Participation</option>
-              <option value="<?php echo $performance; ?>">Certificate of Performance</option>
+              <option value="<?php echo $cohort; ?>">Certificate of Participation</option>
             </select>
           </div>
           <button id="submitTask" type="submit" name="submit" value="submit">Receive Certificate</button>
