@@ -152,17 +152,11 @@ if(isset( $_SESSION['login_user'])){
               } else {
                 echo "Certificate does not exists.";
               }
-              
             }
           ?>
   <form method="POST">
    <fieldset>
     <legend>Certificate Generator</legend>
-    <?php if($error !== ''){ ?>
-    <div class="notify">
-        <?= $error?>
-    </div>
-    <?php }?>
     <div class="field flex col">
      <label for="first">First Name</label>
       <input type="name" name="first" id="first" placeholder="First Name" value="<?php echo $first; ?>" required disabled>
