@@ -145,7 +145,7 @@ if(isset( $_SESSION['login_user'])){
               $last = $_POST['last'];
               $level = $_POST['level'];
               $certify = 0;
-              $sentence = "http://try30daysofcode.pythonanywhere.com/generate/first_name={$first}&last_name={$last}&track={$track}&level={$level}";
+              $sentence = "http://try30daysofcode.pythonanywhere.com/generate/?first_name={$first}&last_name={$last}&track={$track}&level={$level}";
               $stripped = str_replace(' ', '', $sentence);
               $response = file_get_contents("$stripped");
               $file_name = basename($response);
@@ -206,7 +206,7 @@ if(isset( $_SESSION['login_user'])){
       var level = document.getElementById('level').value;
 
       $.ajax({
-          url: 'http://try30daysofcode.pythonanywhere.com/generate/',
+          url: 'http://try30daysofcode.pythonanywhere.com/generate/?',
           data: 'first_name='+first+'&last_name='+last+'&track='+track+'&level='+level,
           type: "GET",
           success: function(data) {
