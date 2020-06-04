@@ -196,7 +196,7 @@ if(isset( $_SESSION['login_user'])){
       </div>
     </div>
     <script src="../assets/js/app.js"></script>
-<script src="../scripts/jquery-3.4.1.js"></script>
+<script src="../assets/js/jquery-3.4.1.js"></script>
 <script type="text/javascript">
   function check(event) {
       event.preventDefault();
