@@ -109,7 +109,35 @@ if(isset( $_SESSION['login_user'])){
           ?>
          </div>
          </div>
-          
+          <div class="scores-card flx row">
+           <?php
+            global $conn;
+            $ranking_sql = "SELECT * FROM leaderboard ORDER BY `score` DESC";
+            $ranking_result = mysqli_query($conn,$ranking_sql);
+            if ($ranking_result) {
+                $rank = 1;
+                while ($row = mysqli_fetch_assoc($ranking_result)) {
+                    if($row['email'] == $email & $row['score'] > 220){
+                        $track = $row['track'];
+                        $score = $row['score'];
+                        $level = $row['level'];
+                        echo '<div class="group flx col cnt '.$track.'">';
+                        echo '<img src="../assets/img/medal.png" alt="">';
+                        echo '<p class="rank">'.$rank.'</p>';
+                        echo '<p class="track">'.$track.'</>';
+                        echo '<p class="level">'.$level.'</p>';
+                        echo '<p class="points">'.$score.' points</p>';
+                        echo '</div>'; 
+                    }else {
+                        $rank++;
+                    }
+                }
+                
+            }else {
+                echo "error fetching from database";
+            }
+            ?>
+             </div> 
         <?php  
             if (isset($_POST['submit'])){
               $type = $_POST['type'];
@@ -147,11 +175,11 @@ if(isset( $_SESSION['login_user'])){
      </div>
     <div class="field flex col">
      <label for="user">Track</label>
-      <input type="name" name="track" id="track" placeholder="Track" value="<?php echo $track; ?>" required disabled>
+      <input type="name" name="track" id="track" value="<?php echo $track; ?>" required disabled>
     </div>
        <div class="field flex col">
      <label for="user">Level</label>
-      <input type="name" name="level" id="track" placeholder="Level" value="<?php echo $level; ?>" required disabled>
+      <input type="name" name="level" id="track" value="<?php echo $level; ?>" required disabled>
     </div>
    </fieldset>
   <button id="submitTask" type="submit" name="submit" value="submit">Receive Certificate</button>  </form>  
