@@ -179,7 +179,7 @@ if(isset( $_SESSION['login_user'])){
     </div>
        <div class="field flex col">
      <label for="user">Level</label>
-      <input type="name" name="level" id="track" value="<?php echo $level; ?>" required disabled>
+      <input type="name" name="level" id="level" value="<?php echo $level; ?>" required disabled>
     </div>
    </fieldset>
   <button id="submitTask" type="submit" name="submit" value="submit">Receive Certificate</button>  </form>  
