@@ -4,9 +4,7 @@ require('../config/session.php');
 if(isset( $_SESSION['login_user'])){
     $tt = $_SESSION['login_user'];
     $sql = "SELECT * FROM user WHERE email = '$tt'";
-    $sql2 = "SELECT * FROM leaderboard WHERE email = '$tt'";
     $result = mysqli_query($conn, $sql);
-    $result2 = mysqli_query($conn, $sql2);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -206,7 +204,7 @@ if(isset( $_SESSION['login_user'])){
       var level = document.getElementById('level').value;
 
       $.ajax({
-          url: 'http://try30daysofcode.pythonanywhere.com/generate/?',
+          url: 'http://try30daysofcode.pythonanywhere.com/generate/',
           data: 'first_name='+first+'&last_name='+last+'&track='+track+'&level='+level,
           type: "GET",
           success: function(data) {
