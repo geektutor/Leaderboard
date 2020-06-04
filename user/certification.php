@@ -140,7 +140,7 @@ if(isset( $_SESSION['login_user'])){
              </div> 
         <?php  
             if (isset($_POST['submit'])){
-              $type = $_POST['type'];
+              $track = $_POST['track'];
               $first = $_POST['first'];
               $last = $_POST['last'];
               $level = $_POST['level'];
