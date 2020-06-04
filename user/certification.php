@@ -6,141 +6,116 @@ if(isset( $_SESSION['login_user'])){
     $sql = "SELECT * FROM user WHERE email = '$tt'";
     $result = mysqli_query($conn, $sql);
 ?>
-<head>
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="../assets/css/profile.css" />
+    <link rel="stylesheet" href="../assets/css/responsive.css" />
+    <link rel="shortcut icon" href="../assets/img/favicon.png" type="image/x-icon">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
 <meta http-equiv="Pragma" content="no-cache" />
 <meta http-equiv="Expires" content="0"/>
- <meta http-equiv="X-UA-Compatible" content="ie=edge">
- <link rel="stylesheet" href="../assets/css/style.css">
- <link rel="stylesheet" href="../assets/css/submit.css">
- <link rel="stylesheet" href="../assets/css/responsive.css">
- <link rel="shortcut icon" href="./../assets/img/favicon.png" type="image/x-icon">
- <title>Certification - 30 Days Of Code</title>
-</head>
-<body class="flx col">
- <header class="flx row">
-  <span>#30DaysOfCode</span>
-  <div class="techSymb flx row">
-   <img src="../assets/img/htm.png">
-   <img src="../assets/img/crly.png">
-   <img src="../assets/img/prts.png">
-   <img src="../assets/img/dsg.png">
-  </div>
-  <div class="profile flx col">
-    <img src="../assets/img/profile.png">
-    <ul class="options">
-      <li id="logout"><a href="../../logout.php">Logout</a></li>
-    </ul>
-  </div>
- </header>
- <div class="pageWrapper flx row">
-  <nav class="flx col closed" id="navPane">
-    <div class="hamBWrapper">
-      <div id="hamB" class="closed">   
-        <div class="a"></div> 
-        <div class="b"></div>
-        <div class="c"></div>
+    <title>30 Days Of Code Dashboard</title>
+  </head>
+  <body class="flx col">
+    <header class="flx row">
+      <span>#30DaysOfCode</span>
+      <div class="profile flx col">
+        <img src="../assets/img/profile.png" />
+        <ul class="options">
+          <li id="logout"><a href="../../logout.php">Logout</a></li>
+        </ul>
       </div>
-    </div>
-     <div class="flx col content">
-      <?php
-      global $conn;
-      $user_nickname = '';
-      $user_score = '';
-      $email = $_SESSION['login_user'];
-      $sql = "SELECT * FROM user WHERE email='$email' ";
-      $result = mysqli_query($conn,$sql);
-      while($row = mysqli_fetch_assoc($result)) {
-          $user_nickname = $row['nickname'];
-          $user_score = $row['score'];
-          $cohort = $row['cohort'];
-          $response = '';
-          echo '<div class="avatar"><img style=\'width:120px;height:120px;\' src=\'https://robohash.org/'.$user_nickname.$user_track.'\'/></div>';
-          echo '<span id="username">'.$user_nickname.'</span>';
-          // echo '<span id="username">'.$user_score.'&nbsp; points</div></center>';
-      }
-      ?>
-      <div class="scoresContainer flx row">
-        <div class="scoreCard flx col">
-         <div class="wLayer"></div>
-         <span class="title">Total points:</span>
-         <span id="points"><?php echo '<center><div>'.$user_score.'&nbsp; points</div></center>';?></span>
+    </header>
+    <div class="pageWrapper flx row">
+      <nav class="flx col" id="navPane">
+        <div id="hamburger" class="flx col">
+          <div class="a"></div>
+          <div class="b"></div>
+          <div class="c"></div>
         </div>
-        <div class="scoreCard flx col">
-         <div class="wLayer"></div>
-         <span class="title">Total rank:</span>
-           <?php
-            global $conn;
-            $ranking_sql = "SELECT * FROM user WHERE `isAdmin` = '0' ORDER BY `score` DESC";
-            $ranking_result = mysqli_query($conn,$ranking_sql);
-            if ($ranking_result) {
-                $rank = 1;
-                while ($row = mysqli_fetch_assoc($ranking_result)) {
-                    if($row['email'] == $email){
-                        echo '<span id="rank">'.$rank.'</span>';
-                    }else {
-                        $rank++;
-                    }
-                }
-                
-            }else {
-                echo "error fetching from database";
-            }
-            ?>
+        <div class="flx col content">
+          <ul class="linksContainer">
+            <li class="flx row">
+              <img src="../assets/img/profileWT.png" />
+              <a href="#">Profile</a>
+            </li>
+            <li class="flx row">
+              <img src="../assets/img/task.png" />
+              <a href="task.php">View task</a>
+            </li>
+            <li class="flx row">
+              <img src="../assets/img/add.png" />
+              <a href="submit.php">Submit task</a>
+            </li>
+            <li class="flx row active">
+              <img src="../assets/img/submissions.png" />
+              <a href="submissions.php">Submissions</a>
+            </li>
+            <li class="flx row">
+              <img src="../assets/img/podium.png" />
+              <a href="https://30daysofcode.xyz/leaderboard">Leaderboard</a>
+            </li>
+            <li class="flx row">
+              <img src="../assets/img/twitter.png" />
+              <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2F30daysofcode.xyz%2F&via=ecxunilag&text=<?php echo $task_day;?>%20of%2030%3A%20Check%20out%20my%20solution%20at%3A%20<?php echo $url;?>&hashtags=30DaysOfCode%2C%2030DaysOfDesign%2C%20ecxunilag">Tweet</a>
+            </li>
+            <li class="flx row">
+              <img src="../assets/img/whatsapp.png" />
+              <a href="https://30daysofcode.xyz/whatsapp">Support group</a>
+            </li>
+            <li class="flx row">
+              <img src="../assets/img/feedback.png" />
+              <a href="feedback.php">Feedback</a>
+            </li>
+          </ul>
+          <span class="email">
+            <?=$_SESSION['login_user'];?></span>
         </div>
-      </div>
-      <ul class="linksContainer">
-        <li class="flx row">
-         <img src="../assets/img/submsn.png">
-         <a href="index.php">Submissions</a>
-        </li>
-        <li class="flx row">
-         <img src="../assets/img/allTsk.png">
-         <a href="view.php">All tasks</a>
-        </li>
-        <li class="flx row">
-         <img src="../assets/img/add.png">
-         <a href="submit.php">Submit task</a>
-        </li>
-        <li class="flx row">
-         <img src="../assets/img/cert.png">
-         <a href="certification.php">Certificate</a>
-        </li>
-        <li class="flx row">
-         <img src="../assets/img/feedback.png">
-         <a href="feedback.php">Feedback</a>
-        </li>
-        <li class="flx row">
-         <img src="../assets/img/lead.png">
-         <a href="https://30daysofcode.xyz/leaderboard">Leaderboard</a>
-        </li>
-        <li class="flx row">
-         <img src="../assets/img/tweet.png">
-         <a href=" https://twitter.com/intent/tweet?url=https%3A%2F%2F30daysofcodes.xyz&via=codon&text=Hello%2C%20I%20just%20finished%20my%20task%20for%20....&hashtags=30DaysOfCode%2C%20ECX">Tweet</a>
-         <img class="external" style="float: right;" src="../assets/img/external.png" alt="">
-        </li>
-        <li class="flx row">
-         <img src="../assets/img/wa.png">
-         <a href="https://30daysofcode.xyz/whatsapp">Support group</a>
-         <img class="external" src="../assets/img/external.png" alt="">
-        </li>
-       </ul>
-       <span id="email"><?=$_SESSION['login_user'];?></span>
-     </div>   
-   </nav>
-   <div class="mainWrapper flx col" id="mainWrp">
-    <main>
-      <div>
-          <?php  
+      </nav>
+      <div class="mainWrapper flx col" id="mainWrp">
+        <main class="flx col">
+         <div class="banner flx col">
+         <button class="whiteBtn flx row cnt" onclick="rdr(this)">       
+          <a href="index.php"> View Profile </a>
+          <script>
+           function rdr(elm){
+            window.location.href = elm.children[0].href
+           }
+           </script>
+         </button>
+         <div class="profile-details flx col">
+         <?php
+          global $conn;
+          $user_nickname = '';
+          $user_track = '';
+          $email = $_SESSION['login_user'];
+          $sql = "SELECT * FROM user WHERE email='$email' ORDER BY `score` DESC LIMIT 1";
+          $result = mysqli_query($conn,$sql);
+          while($row = mysqli_fetch_assoc($result)) {
+              $user_nickname = $row['nickname'];
+              $first = $row['first_name'];
+              $last = $row['last_name'];
+              echo '<img src=\'https://robohash.org/'.$user_nickname.'\'/ alt="robot avatar" class="avatar"/>';
+              echo '<p class="name">'.$first. $last.'</p>';
+              echo '<p class="user">'.$user_nickname.'</p>';
+          }
+          ?>
+         </div>
+         </div>
+          
+        <?php  
             if (isset($_POST['submit'])){
               $type = $_POST['type'];
               $first = $_POST['first'];
               $last = $_POST['last'];
-              $track = $_POST['track'];
+              $level = $_POST['level'];
               $certify = 0;
-              $sentence = "http://try30daysofcode.pythonanywhere.com/generate/?type={$type}&first_name={$first}&last_name={$last}&track={$track}";
+              $sentence = "http://try30daysofcode.pythonanywhere.com/generate/first_name={$first}&last_name={$last}&track={$track}&level={$level}";
               $stripped = str_replace(' ', '', $sentence);
               $response = file_get_contents("$stripped");
               $file_name = basename($response);
@@ -152,42 +127,45 @@ if(isset( $_SESSION['login_user'])){
               
             }
           ?>
-        </div>
-         <div class="mainCard">
-             <p style='font-size: 1em; margin-top: 8px; line-height: 110%; color: #646464;'> Congratulations, on your completion of the 30 days of code challenge. <br><br>
-                 Fill this form and then click on download. Ensure there are no spaces in your name. <br><br>
-                 If it doesn't download, it means you do not meet the certification criteria. <br><br>
-                 Minimum of 200 points.<br><br>
-                 For issues, use the support group <br><br>
-      <form method="POST">
-          <input type="hidden" name="track" id="track" value="<?php echo $user_track; ?>">
-          <div class="field flx col">
-            <label for="firstname">First Name</label>
+  <form method="POST">
+   <fieldset>
+    <legend>Certificate Generator</legend>
+    <?php if($error !== ''){ ?>
+    <div class="notify">
+        <?= $error?>
+    </div>
+    <?php }?>
+    <div class="field flex col">
+     <label for="first">First Name</label>
             <input type="name" name="first" id="first" placeholder="First Name" value="<?php echo $first; ?>" required disabled>
-          </div>
-          <div class="field flx col">
-            <label for="lastname">Last Name</label>
+       </div> 
+     <div class="field flex col">
+     <label for="last">Last Name</label>
             <input type="name" name="last" id="last" placeholder="Last Name" value="<?php echo $last; ?>" required disabled>
-          </div>
-          <div class="field flx col">
-            <label for="day">Type</label>
-            <select name="type" id="type" value="">
-              <option value="<?php echo $cohort; ?>">Certificate of Participation</option>
-            </select>
-          </div>
-          <button id="submitTask" type="submit" name="submit" value="submit">Receive Certificate</button>
-                    
-         </form>
-         
-             <?php if ($certify == 1){ ?>
+     </div>
+    <div class="field flex col">
+     <label for="user">Track</label>
+     <input type="email" name="email" id="user" required>     
+    </div>
+       <div class="field flex col">
+     <label for="user">Level</label>
+     <input type="email" name="email" id="user" required>     
+    </div>
+   </fieldset>
+  <button id="submitTask" type="submit" name="submit" value="submit">Receive Certificate</button>  </form>  
+            <?php if ($certify == 1){ ?>
                     <a href="<?php echo $response;?>" target="_blank"><button>Download Certificate</button></a>
               <?php } ?>
-        </div>
-     </main>
-     <footer class="flx row"><span class="copyw">Copyright &copy; 30DaysOfCode 2020</span> <div><a href="">Privacy Policy</a><a href="">Terms &amp; Conditions</a></div></footer> 
-   </div>
- </div>
- <script src="../assets/js/app.js"></script>
+   </main>
+        <footer class="flx row">
+          <span class="copyw">Copyright &copy; 30DaysOfCode 2020</span>
+          <div>
+            <a href="">Privacy Policy</a><a href="">Terms &amp; Conditions</a>
+          </div>
+        </footer>
+      </div>
+    </div>
+    <script src="../assets/js/app.js"></script>
 <script src="../scripts/jquery-3.4.1.js"></script>
 <script type="text/javascript">
   function check(event) {
@@ -195,11 +173,11 @@ if(isset( $_SESSION['login_user'])){
       var track = document.getElementById('track').value;
       var first = document.getElementById('first').value;
       var last = document.getElementById('last').value;
-      var type = document.getElementById('type').value;
+      var level = document.getElementById('level').value;
 
       $.ajax({
           url: 'http://try30daysofcode.pythonanywhere.com/generate/',
-          data: 'type='+type+'&first_name='+first+'&last_name='+last+'&track='+track,
+          data: 'first_name='+first+'&last_name='+last+'&track='+track+'&level='+level,
           type: "GET",
           success: function(data) {
              $('#stats').html(data);
@@ -211,10 +189,10 @@ if(isset( $_SESSION['login_user'])){
       
   }
 </script>
-</body>
+  </body>
 </html>
 <?php
 }else{
-  header("location:../../sign_in.php");
+    header("location:../sign_in.php"); 
 }
 ?>
