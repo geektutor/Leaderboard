@@ -4,7 +4,9 @@ require('../config/session.php');
 if(isset( $_SESSION['login_user'])){
     $tt = $_SESSION['login_user'];
     $sql = "SELECT * FROM user WHERE email = '$tt'";
+    $sql2 = "SELECT * FROM leaderboard WHERE email = '$tt'";
     $result = mysqli_query($conn, $sql);
+    $result2 = mysqli_query($conn, $sql2);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -137,19 +139,19 @@ if(isset( $_SESSION['login_user'])){
     <?php }?>
     <div class="field flex col">
      <label for="first">First Name</label>
-            <input type="name" name="first" id="first" placeholder="First Name" value="<?php echo $first; ?>" required disabled>
-       </div> 
+      <input type="name" name="first" id="first" placeholder="First Name" value="<?php echo $first; ?>" required disabled>
+     </div> 
      <div class="field flex col">
      <label for="last">Last Name</label>
-            <input type="name" name="last" id="last" placeholder="Last Name" value="<?php echo $last; ?>" required disabled>
+      <input type="name" name="last" id="last" placeholder="Last Name" value="<?php echo $last; ?>" required disabled>
      </div>
     <div class="field flex col">
      <label for="user">Track</label>
-     <input type="email" name="email" id="user" required>     
+      <input type="name" name="track" id="track" placeholder="Track" value="<?php echo $track; ?>" required disabled>
     </div>
        <div class="field flex col">
      <label for="user">Level</label>
-     <input type="email" name="email" id="user" required>     
+      <input type="name" name="level" id="track" placeholder="Level" value="<?php echo $level; ?>" required disabled>
     </div>
    </fieldset>
   <button id="submitTask" type="submit" name="submit" value="submit">Receive Certificate</button>  </form>  
