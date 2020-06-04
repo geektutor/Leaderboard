@@ -1,6 +1,6 @@
 <?php
-require('../../config/connect.php');
-require('../../config/session.php');
+require('../config/connect.php');
+require('../config/session.php');
 if(isset( $_SESSION['login_user'])){
     $tt = $_SESSION['login_user'];
     $sql = "SELECT * FROM user WHERE email = '$tt'";
