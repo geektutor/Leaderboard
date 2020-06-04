@@ -1,6 +1,7 @@
 <?php
 require('../../config/connect.php');
 require('../../config/session.php');
+include ('../../user/taskday.php');
 
 if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
   $track = $_GET['track'];
@@ -41,10 +42,10 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
          <img src="../../assets/img/profileWT.png">
          <a href="../../user">User Dashboard</a>
         </li>
-        <li class="flx row">
+        <!-- <li class="flx row">
          <img src="../../assets/img/add.png">
          <a href='/task/addnewtask.php'>Add New Tasks</a>
-        </li>
+        </li> -->
         <li class="flx row">
          <img src="../../assets/img/task.png">
          <a href="/task">View Tasks</a>
@@ -75,11 +76,9 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
         <legend>Tasks <a id="newBtn" href="addnewtask.php">Add new</a></legend>
       <?php
         $current = date('Y-m-d');
-        $sql = "SELECT * FROM task WHERE `track` = '$track' AND `level` = '$level' ORDER BY task_day";
+        $sql = "SELECT * FROM task WHERE `track` = '$track' AND `level` = '$level' AND `cohort` = '$cohort' ORDER BY task_day";
         $result = mysqli_query($conn, $sql);
-        $row = mysqli_fetch_assoc($result);
         $count = mysqli_num_rows($result);
-        $day = $row['task_day'];
     ?>
        <div class="table-responsive">
         <table class="table" style="text-align: left;">

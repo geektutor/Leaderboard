@@ -40,10 +40,10 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
          <img src="../assets/img/profileWT.png">
          <a href="index.php">Dashboard</a>
         </li>
-        <li class="flx row">
+        <!-- <li class="flx row">
          <img src="../assets/img/add.png">
          <a href='/admin/task/addnewtask.php'>Add New Tasks</a>
-        </li>
+        </li> -->
         <li class="flx row">
          <img src="../assets/img/task.png">
          <a href="/admin/task">View Tasks</a>
