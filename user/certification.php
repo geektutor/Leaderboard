@@ -140,7 +140,7 @@ if(isset( $_SESSION['login_user'])){
               $last = $_POST['last'];
               $track = $_POST['track'];
               $certify = 0;
-              $sentence = "http://30days.autocaps.xyz/generate/?type={$type}&first_name={$first}&last_name={$last}&track={$track}";
+              $sentence = "http://try30daysofcode.pythonanywhere.com/generate/?type={$type}&first_name={$first}&last_name={$last}&track={$track}";
               $stripped = str_replace(' ', '', $sentence);
               $response = file_get_contents("$stripped");
               $file_name = basename($response);
@@ -163,11 +163,11 @@ if(isset( $_SESSION['login_user'])){
           <input type="hidden" name="track" id="track" value="<?php echo $user_track; ?>">
           <div class="field flx col">
             <label for="firstname">First Name</label>
-            <input type="name" name="first" id="first" placeholder="First Name" required>
+            <input type="name" name="first" id="first" placeholder="First Name" value="<?php echo $first; ?>" required disabled>
           </div>
           <div class="field flx col">
             <label for="lastname">Last Name</label>
-            <input type="name" name="last" id="last" placeholder="Last Name" required>
+            <input type="name" name="last" id="last" placeholder="Last Name" value="<?php echo $last; ?>" required disabled>
           </div>
           <div class="field flx col">
             <label for="day">Type</label>
@@ -198,7 +198,7 @@ if(isset( $_SESSION['login_user'])){
       var type = document.getElementById('type').value;
 
       $.ajax({
-          url: 'http://30days.autocaps.xyz/generate/',
+          url: 'http://try30daysofcode.pythonanywhere.com/generate/',
           data: 'type='+type+'&first_name='+first+'&last_name='+last+'&track='+track,
           type: "GET",
           success: function(data) {
