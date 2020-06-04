@@ -1,15 +1,9 @@
 <?php
 require('../../config/connect.php');
 require('../../config/session.php');
+include ('../../user/taskday.php');
 if(isset( $_SESSION['login_user'])){
-    $day = strtotime("2020-04-01");
-    $currdates = date("Y-m-d");
-    $currdate = strtotime($currdates);
-    $diff = abs($currdate - $day);
-    $years = floor($diff / (365*60*60*24));
-    $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
-    $days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24)); 
-    $days +=1;
+
 ?>
 <!DOCTYPE html>
 <html lang="en">          
@@ -52,13 +46,13 @@ if(isset( $_SESSION['login_user'])){
          <img src="../../assets/img/profileWT.png">
          <a href="../../user">User Dashboard</a>
         </li>
-        <li class="flx row">
+        <!-- <li class="flx row">
          <img src="../../assets/img/add.png">
-         <a href='/admin/task/addnewtask.php'>Add New Tasks</a>
-        </li>
+         <a href='addnewtask.php'>Add New Tasks</a>
+        </li> -->
         <li class="flx row">
          <img src="../../assets/img/task.png">
-         <a href="/admin/task">View Tasks</a>
+         <a href="index.php">View Tasks</a>
         </li>
         <li class="flx row">
          <img src="../../assets/img/lock.png">
@@ -91,7 +85,7 @@ if(isset( $_SESSION['login_user'])){
           $track = $_POST['track'];
           $level = $_POST['level'];
           $task = mysqli_real_escape_string($conn, $_POST['task']);
-          $sql = "INSERT INTO task(task_day, track, task, level) VALUES('$day', '$track', '$task', '$level')";
+          $sql = "INSERT INTO task(task_day, track, task, level, cohort) VALUES('$day', '$track', '$task', '$level', '$cohort')";
           $result = mysqli_query($conn, $sql);
           if ($result) {
               $error = "Task uploaded successfully";
@@ -121,7 +115,11 @@ if(isset( $_SESSION['login_user'])){
             <option value="Intermediate">Intermediate</option>
           </select>
         </div>
-        <div class="field flx col">
+        <div class="field fix col">
+          <label for="track">Track</label>
+          <input type="text" name="track" value="<?=$_SESSION['track'];?>" readonly>
+        </div>
+        <!-- <div class="field flx col">
           <label for="level">Track</label>
           <select name="track" value="">
             <option value="backend">Backend</option>
@@ -130,7 +128,7 @@ if(isset( $_SESSION['login_user'])){
             <option value="python">Python</option>
             <option value="ui">UI/UX</option>
           </select>
-        </div>
+        </div> -->
         <div class="field flx col">
         <label for="feedbaack">Task</label>
           <textarea name="task" id="mytextarea" placeholder="Enter the task" rows="7"></textarea>

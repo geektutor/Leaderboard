@@ -5,6 +5,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
     if (isset($_POST['submit'])) {
         $track = $_POST['track'];
         $level = $_POST['level'];
+        $_SESSION['track'] = $track;
         header("location: task.php?track=$track&level=$level");
     }
 ?>
@@ -43,10 +44,10 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
          <img src="../../assets/img/profileWT.png">
          <a href="../../user">User Dashboard</a>
         </li>
-        <li class="flx row">
+        <!-- <li class="flx row">
          <img src="../../assets/img/add.png">
          <a href='addnewtask.php'>Add New Tasks</a>
-        </li>
+        </li> -->
         <li class="flx row">
          <img src="../../assets/img/task.png">
          <a href="super.php">All Tasks</a>
