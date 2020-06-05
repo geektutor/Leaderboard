@@ -138,10 +138,6 @@ if(isset( $_SESSION['login_user'])){
              </div> 
         <?php  
             if (isset($_POST['submit'])){
-              $track = $_POST['track'];
-              $first = $_POST['first'];
-              $last = $_POST['last'];
-              $level = $_POST['level'];
               $certify = 0;
               $sentence = "http://try30daysofcode.pythonanywhere.com/generate/?first_name={$first}&last_name={$last}&track={$track}&level={$level}";
               $stripped = str_replace(' ', '', $sentence);
