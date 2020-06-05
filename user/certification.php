@@ -150,7 +150,11 @@ if(isset( $_SESSION['login_user'])){
               }
             }
           ?>
-  <form method="POST">
+
+   <?php if ($certify == 1){ ?>
+        <div class="notify"><a href="javascript:void(0)" onclick="location.href='<?php echo $stripped;?>'" target="_blank"><button>Download Certificate</button></a></div>
+  <?php } ?>
+<form method="POST">
    <fieldset>
     <legend>Certificate Generator</legend>
     <div class="field flex col">
@@ -170,13 +174,8 @@ if(isset( $_SESSION['login_user'])){
       <input type="name" name="level" id="level" value="<?php echo $level; ?>" required disabled>
     </div>
    </fieldset>
-  <button id="submitTask" type="submit" name="submit" value="submit">Receive Certificate</button> 
-           <?php if ($certify == 1){ ?>
-                    <a href="javascript:void(0)" onclick="location.href='<?php echo $stripped;?>'" target="_blank"><button>Download Certificate</button></a>
-              <?php } ?>
-          
-          </form>  
-
+  <button id="submitTask" type="submit" name="submit" value="submit">Receive Certificate</button>          
+          </form>
    </main>
         <footer class="flx row">
           <span class="copyw">Copyright &copy; 30DaysOfCode 2020</span>
