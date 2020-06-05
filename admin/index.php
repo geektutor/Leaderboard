@@ -108,9 +108,6 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
         <div class="scores-card flx row">
            <?php
             global $conn;
-            // $tracks = [
-              
-            // ];
             $tracks = [
              'Begineer' => [
               'frontend' => 'Beginner', 
