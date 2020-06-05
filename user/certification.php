@@ -126,7 +126,8 @@ if(isset( $_SESSION['login_user'])){
                         echo '<p class="track">'.$track.'</>';
                         echo '<p class="level">'.$level.'</p>';
                         echo '<p class="points">'.$score.' points</p>';
-                        echo '</div>'; 
+                        echo '</div>';
+                        $track = strtoupper($track);
                     }else {
                         $rank++;
                     }
@@ -162,7 +163,7 @@ if(isset( $_SESSION['login_user'])){
      </div>
     <div class="field flex col">
      <label for="user">Track</label>
-      <input type="name" name="track" id="track" value="<?php echo strtoupper($track; ?>" required disabled>
+      <input type="name" name="track" id="track" value="<?php echo $track; ?>" required disabled>
     </div>
        <div class="field flex col">
      <label for="user">Level</label>
