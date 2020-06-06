@@ -109,6 +109,9 @@ if(isset( $_SESSION['login_user'])){
          </div>
          </div>
           <div class="scores-card flx row">
+               <?php if ($certify == 1){ ?>
+        <div class="notify"><a href="javascript:void(0)" onclick="location.href='<?php echo $stripped;?>'" target="_blank"><button>Download Certificate</button></a></div>
+  <?php } ?>
            <?php
             global $conn;
             $ranking_sql = "SELECT * FROM leaderboard ORDER BY `score` DESC";
@@ -133,19 +136,19 @@ if(isset( $_SESSION['login_user'])){
     <legend>Certificate Generator</legend>
     <div class="field flex col">
      <label for="first">First Name</label>
-      <input type="name" name="first" id="first" placeholder="First Name" value="<?php echo $first; ?>" required disabled>
+      <input type="name" name="first" id="first" placeholder="First Name" value="'.$first.'" required disabled>
      </div> 
      <div class="field flex col">
      <label for="last">Last Name</label>
-      <input type="name" name="last" id="last" placeholder="Last Name" value="<?php echo $last; ?>" required disabled>
+      <input type="name" name="last" id="last" placeholder="Last Name" value="'.$last.'" required disabled>
      </div>
     <div class="field flex col">
      <label for="user">Track</label>
-      <input type="name" name="track" id="track" value="<?php echo $track; ?>" required disabled>
+      <input type="name" name="track" id="track" value="'.$track.'" required disabled>
     </div>
        <div class="field flex col">
      <label for="user">Level</label>
-      <input type="name" name="level" id="level" value="<?php echo $level; ?>" required disabled>
+      <input type="name" name="level" id="level" value="'.$level.'" required disabled>
     </div>
    </fieldset>
   <button id="submitTask" type="submit" name="submit" value="submit">Receive Certificate</button>          
@@ -172,10 +175,6 @@ if(isset( $_SESSION['login_user'])){
               }
             }
           ?>
-
-   <?php if ($certify == 1){ ?>
-        <div class="notify"><a href="javascript:void(0)" onclick="location.href='<?php echo $stripped;?>'" target="_blank"><button>Download Certificate</button></a></div>
-  <?php } ?>
    </main>
         <footer class="flx row">
           <span class="copyw">Copyright &copy; 30DaysOfCode 2020</span>
