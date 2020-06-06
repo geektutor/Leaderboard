@@ -117,11 +117,11 @@ if(isset( $_SESSION['login_user'])){
     <legend>Certificate Generator</legend>
     <div class="field flex col">
      <label for="first">First Name</label>
-      <input type="name" name="first" id="first" placeholder="First Name" value="'.$first.'" required disabled>
+      <input type="name" name="first" id="first" placeholder="First Name" value="<?php echo $first; ?>" required disabled>
      </div> 
      <div class="field flex col">
      <label for="last">Last Name</label>
-      <input type="name" name="last" id="last" placeholder="Last Name" value="'.$last.'" required disabled>
+      <input type="name" name="last" id="last" placeholder="Last Name" value="<?php echo $last; ?>" required disabled>
      </div>
     </fieldset>
   <button id="submitTask" type="submit" name="submit" value="submit">Receive Certificate</button>          
