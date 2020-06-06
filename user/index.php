@@ -116,7 +116,7 @@ if(isset( $_SESSION['login_user'])){
             if ($ranking_result) {
                 $rank = 1;
                 while ($row = mysqli_fetch_assoc($ranking_result)) {
-                    if($row['email'] == $email & $row['score'] > 220){
+                    if($row['email'] == $email){
                         $track = $row['track'];
                         $score = $row['score'];
                         $level = $row['level'];
@@ -154,6 +154,8 @@ if(isset( $_SESSION['login_user'])){
    <?php if ($certify == 1){ ?>
         <div class="notify"><a href="javascript:void(0)" onclick="location.href='<?php echo $stripped;?>'" target="_blank"><button>Download Certificate</button></a></div>
   <?php } ?>
+ <?php 
+if($score > 220){ ?>
 <form method="POST">
    <fieldset>
     <legend>Certificate Generator</legend>
@@ -176,6 +178,7 @@ if(isset( $_SESSION['login_user'])){
    </fieldset>
   <button id="submitTask" type="submit" name="submit" value="submit">Receive Certificate</button>          
           </form>
+    <?php } ?>
    </main>
         <footer class="flx row">
           <span class="copyw">Copyright &copy; 30DaysOfCode 2020</span>
