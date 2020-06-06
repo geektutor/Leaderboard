@@ -148,8 +148,8 @@ if(isset( $_SESSION['login_user'])){
       <input type="name" name="level" id="level" value="'.$level.'" required disabled>
     </div>
    </fieldset>
-  <button id="submitTask" type="submit" name="submit" value="submit">Receive Certificate</button>
-           </form>';
+  <button id="submitTask" type="submit" name="submit" value="submit">Receive Certificate</button>          
+          </form>';
                     }else {
                         $rank++;
                     }
@@ -166,13 +166,16 @@ if(isset( $_SESSION['login_user'])){
               $sentence = "http://try30daysofcode.pythonanywhere.com/generate/?first_name={$first}&last_name={$last}&track={$track}&level={$level}";
               $stripped = str_replace(' ', '', $sentence);
               if ($stripped) {
-                echo '<a href="javascript:void(0)" onclick="location.href='.$stripped.'" target="_blank"><button>Download Certificate</button></a>';
                 $certify = 1;
               } else {
                 echo "Certificate does not exists.";
               }
             }
           ?>
+
+   <?php if ($certify == 1){ ?>
+        <div class="notify"><a href="javascript:void(0)" onclick="location.href='<?php echo $stripped;?>'" target="_blank"><button>Download Certificate</button></a></div>
+  <?php } ?>
    </main>
         <footer class="flx row">
           <span class="copyw">Copyright &copy; 30DaysOfCode 2020</span>
