@@ -109,9 +109,6 @@ if(isset( $_SESSION['login_user'])){
          </div>
          </div>
           <div class="scores-card flx row">
-               <?php if ($certify == 1){ ?>
-        <div class="notify"><a href="javascript:void(0)" onclick="location.href='<?php echo $stripped;?>'" target="_blank"><button>Download Certificate</button></a></div>
-  <?php } ?>
            <?php
             global $conn;
             $ranking_sql = "SELECT * FROM leaderboard ORDER BY `score` DESC";
@@ -151,7 +148,8 @@ if(isset( $_SESSION['login_user'])){
       <input type="name" name="level" id="level" value="'.$level.'" required disabled>
     </div>
    </fieldset>
-  <button id="submitTask" type="submit" name="submit" value="submit">Receive Certificate</button>          
+  <button id="submitTask" type="submit" name="submit" value="submit">Receive Certificate</button>
+  <br><a href="javascript:void(0)" onclick="location.href='<?php echo $stripped;?>'" target="_blank"><button>Download Certificate</button></a>
           </form>';
                     }else {
                         $rank++;
