@@ -1,7 +1,7 @@
 <?php
 require('../config/connect.php');
 require('../config/session.php');
-if(isset( $_SESSION['login_user'])){
+if(isset( $_SESSION['login_user']) && _SESSION['isAdmin'] == true){
     $tt = $_SESSION['login_user'];
     $sql = "SELECT * FROM user WHERE email = '$tt'";
     $result = mysqli_query($conn, $sql);
