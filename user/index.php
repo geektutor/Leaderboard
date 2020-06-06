@@ -149,8 +149,7 @@ if(isset( $_SESSION['login_user'])){
     </div>
    </fieldset>
   <button id="submitTask" type="submit" name="submit" value="submit">Receive Certificate</button>
-  <br><a href="javascript:void(0)" onclick="location.href='.$stripped.'" target="_blank"><button>Download Certificate</button></a>
-          </form>';
+           </form>';
                     }else {
                         $rank++;
                     }
@@ -167,6 +166,7 @@ if(isset( $_SESSION['login_user'])){
               $sentence = "http://try30daysofcode.pythonanywhere.com/generate/?first_name={$first}&last_name={$last}&track={$track}&level={$level}";
               $stripped = str_replace(' ', '', $sentence);
               if ($stripped) {
+                echo "<br><a href="javascript:void(0)" onclick="location.href='.$stripped.'" target="_blank"><button>Download Certificate</button></a>";
                 $certify = 1;
               } else {
                 echo "Certificate does not exists.";
