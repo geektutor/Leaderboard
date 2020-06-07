@@ -1,11 +1,11 @@
 <?php
 require('../config/connect.php');
 require('../config/session.php');
+include ('../user/taskday.php');
 if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
     if (isset($_POST['submit'])) {
         $track = $_POST['track'];
-        $level = $_POST['level'];
-        header("location: submissions.php?track=$track&level=$level");
+        header("location: submissions.php?track=$track");
     }
 ?>
 <!DOCTYPE html>

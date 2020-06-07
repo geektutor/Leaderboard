@@ -1,6 +1,7 @@
 <?php
 require('../config/connect.php');
 require('../config/session.php');
+include ('taskday.php');
 if(isset( $_SESSION['login_user'])){
 ?>
 <!DOCTYPE html>
@@ -106,7 +107,7 @@ if(isset( $_SESSION['login_user'])){
       <?php
       $u = $_SESSION['login_user'];
       $u = rtrim($u, '_');
-      $sql = "SELECT * FROM submissions WHERE `user` = '$u' AND `cohort` = '1' ";
+      $sql = "SELECT * FROM submissions WHERE `user` = '$u' AND `cohort` = '$cohort' ";
       $result = mysqli_query($conn, $sql);
       $count = mysqli_num_rows($result);
       
@@ -122,8 +123,8 @@ if(isset( $_SESSION['login_user'])){
             <th scope="col">Day</th>
             <th scope="col">Url</th>
             <th scope="col">Points</th>
-            <th scope="col">Reviews</th>
-            <th scope="col">Level</th>
+            <th scope="col">Action</th>
+            <th scope="col">Feedback</th>
             <th scope="col">Track</th>
           </tr>
         </thead>
@@ -140,9 +141,9 @@ if(isset( $_SESSION['login_user'])){
               <?php if ($row['points'] == 0) {?>
               <td data-label="ACTION">&nbsp;<a href="editsubmission.php?id=<?=$row['id']?>">Edit</a></td>
               <?php }else{?>
-              <td data-label="ACTION">&nbsp;<?php echo $row['feedback'];?></td>
+              <td data-label="ACTION">N/A</td>
               <?php } ?>
-              <td data-label="LEVEL">&nbsp;<?php echo $row['level'];?></td>
+              <td data-label="FEEDBACK">&nbsp;<?php echo $row['feedback'];?></td>
               <td data-label="TRACK">&nbsp;<?php echo $row['track'];?></td>
           </tr>
           <?php 

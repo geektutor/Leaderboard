@@ -83,9 +83,8 @@ if(isset( $_SESSION['login_user'])){
       if (isset($_POST['submit'])) {
           $day = $_POST['day'];
           $track = $_POST['track'];
-          $level = $_POST['level'];
           $task = mysqli_real_escape_string($conn, $_POST['task']);
-          $sql = "INSERT INTO task(task_day, track, task, level, cohort) VALUES('$day', '$track', '$task', '$level', '$cohort')";
+          $sql = "INSERT INTO task(task_day, track, task, cohort) VALUES('$day', '$track', '$task', '$cohort')";
           $result = mysqli_query($conn, $sql);
           if ($result) {
               $error = "Task uploaded successfully";
@@ -107,13 +106,6 @@ if(isset( $_SESSION['login_user'])){
           <label for="url">Day</label>
           <input type="text" name="day"maxlength="10" required>
           <p style="font-size: 12px; margin-top: 8px; line-height: 110%; color: #646464;">Enter the day e.g 1,2,3,4,5,6</p>
-        </div>
-        <div class="field flx col">
-          <label for="level">Level</label>
-          <select name="level" value="">
-            <option value="Beginner">Beginner</option>
-            <option value="Intermediate">Intermediate</option>
-          </select>
         </div>
         <div class="field fix col">
           <label for="track">Track</label>

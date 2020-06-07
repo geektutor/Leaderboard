@@ -83,10 +83,8 @@ if(isset( $_SESSION['login_user'])){
     $error = "";
     if (isset($_POST['submit'])) {
         $track = $_POST['track'];
-        $level = $_POST['level'];
         $task = mysqli_real_escape_string($conn, $_POST['task']);
-        
-        $sql = "UPDATE task SET `track` = '$track', `task` = '$task', `level` = '$level' WHERE id = '$id'";
+        $sql = "UPDATE task SET `track` = '$track', `task` = '$task' WHERE id = '$id'";
         $result = mysqli_query($conn, $sql);
         if ($conn->query($sql)) {
             $error = "Updated successfully";
@@ -105,23 +103,15 @@ if(isset( $_SESSION['login_user'])){
       <div class="fields-container flx col">
         <div class="field flx col">
           <label for="url">Current Task Details</label>
-          <p style="font-size: 12px; margin-top: 8px; line-height: 110%; color: #646464;">Day - <?php echo $row['task_day'];?> | Track -  <?php echo $row['track'];?> | Level - <?php echo $row['level'];?></p>
+          <p style="font-size: 12px; margin-top: 8px; line-height: 110%; color: #646464;">Day - <?php echo $row['task_day'];?> | Track -  <?php echo $row['track'];?> </p>
         </div>
-        <div class="field flx col">
-          <label for="level">Level</label>
-          <select name="level" value="">
-            <option value="Beginner">Beginner</option>
-            <option value="Intermediate">Intermediate</option>
-          </select>
-        </div>
+        
         <div class="field flx col">
           <label for="level">Track</label>
           <select name="track" value="">
-            <option value="backend">Backend</option>
-            <option value="frontend">Frontend</option>
-            <option value="mobile">Mobile</option>
-            <option value="python">Python</option>
-            <option value="ui">UI/UX</option>
+          <option value="Backend">Backend</option>
+          <option value="Mobile">Mobile</option>
+          <option value="ML">Machine Learning</option>
           </select>
         </div>
         <div class="field flx col">

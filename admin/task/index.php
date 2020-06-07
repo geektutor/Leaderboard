@@ -4,9 +4,8 @@ require('../../config/session.php');
 if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
     if (isset($_POST['submit'])) {
         $track = $_POST['track'];
-        $level = $_POST['level'];
         $_SESSION['track'] = $track;
-        header("location: task.php?track=$track&level=$level");
+        header("location: task.php?track=$track");
     }
 ?>
 <!DOCTYPE html>
@@ -80,22 +79,11 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
           <div class="field flx col">
             <label for="track">Track</label>
             <select name="track" value="">
-              <option value="backend">Backend</option>
-              <option value="frontend">Frontend</option>
-              <option value="mobile">Mobile</option>
-              <option value="python">Python</option>
-              <option value="ui">UI/UX</option>
+            <option value="Backend">Backend</option>
+            <option value="Mobile">Mobile</option>
+            <option value="ML">Machine Learning</option>
             </select>
           </div>
-
-          <div class="field flx col">
-            <label for="track">Level</label>
-            <select name="level" value="">
-              <option value="Beginner">Beginner</option>
-              <option value="Intermediate">Intermediate</option>
-            </select>
-          </div>
-
           <button id="submitTask" type="submit" name="submit">Submit</button>
         </div>
         </form> 

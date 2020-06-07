@@ -4,7 +4,6 @@ require('../config/session.php');
 include ('../user/taskday.php');
 if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
     $track = $_GET['track'];
-    $level = $_GET['level'];
 ?>
 <!DOCTYPE html>
 <html lang="en">

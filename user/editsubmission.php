@@ -144,21 +144,13 @@ if (!isset($_SESSION['login_user']) || empty($_SESSION['login_user'])) {
             <input type="url" name="url" placeholder="Enter URL" required value="<?=$rw['url'];?>">
             <p style="font-size: 12px; margin-top: 8px; line-height: 110%; color: #646464;">Python - Repl.it Url, Backend - Github repo Url, Frontend - Github repo Url(put link to your Github Pages in the readme), UI/UX - Figma/Adobe XD Url</p>
           </div>
-          <div class="field flx col">
-            <label for="level">Level</label>
-            <select name="level" value="">
-              <option value="Beginner" <?php echo ($rw['level'] == 'beginner')? 'selected' : ''; ?>>Beginner</option>
-              <option value="Intermediate" <?php echo ($rw['level'] == 'intermediate')? 'selected' : ''; ?>>Intermediate</option>
-            </select>
-          </div>
+          
           <div class="field flx col">
             <label for="track">Track</label>
             <select class="form-control" name="track">
-              <option value="frontend" <?php echo ($rw['track'] == 'frontEnd')? 'selected' : ''; ?>>Frontend</option>
-              <option value="backend" <?php echo ($rw['track'] == 'backend')? 'selected' : ''; ?>>Backend</option>
-              <option value="mobile" <?php echo ($rw['track'] == 'mobile')? 'selected' : ''; ?>>Mobile</option>
-              <option value="python" <?php echo ($rw['track'] == 'python')? 'selected' : ''; ?>>Python</option>
-              <option value="ui" <?php echo ($rw['track'] == 'ui')? 'selected' : ''; ?>>UIUX</option>
+              <option value="Backend" <?php echo ($rw['track'] == 'Backend')? 'selected' : ''; ?>>Backend</option>
+              <option value="Mobile" <?php echo ($rw['track'] == 'Mobile')? 'selected' : ''; ?>>Mobile</option>
+              <option value="ML" <?php echo ($rw['track'] == 'ML')? 'selected' : ''; ?>>ML</option>
           </select>
           </div>
           <div class="field flx col">
