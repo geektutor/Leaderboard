@@ -107,13 +107,13 @@ main {
 .frontend .track {
  color: #1486C2;
 }
-.backend .track {
+.Backend .track {
  color: #C26D00;
 }
-.ui .track {
+.ML .track {
  color: #BC27C2;
 }
-.mobile .track {
+.Mobile .track {
  color: #2E345C;
 }
 .python .track {
@@ -135,13 +135,13 @@ main {
 .frontend .level {
  background-color: #1486C2;
 }
-.backend .level {
+.Backend .level {
 background-color: #C26D00;
 }
-.ui .level {
+.ML .level {
  background-color: #BC27C2;
 }
-.mobile .level {
+.Mobile .level {
  background-color: #2E345C;
 }
 .python .level {
