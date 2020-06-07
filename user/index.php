@@ -153,7 +153,7 @@ if(isset( $_SESSION['login_user'])){
                 $result = mysqli_query($conn, $track_submission);
                 $count = mysqli_num_rows($result);
                 echo '<tr>';
-                echo '<td>'.$key.'</td>';
+                echo '<td>'.$track.'</td>';
                 echo '<td>'.$count++.'</td>';
             }           
             ?>
