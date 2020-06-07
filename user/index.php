@@ -115,12 +115,10 @@ if(isset( $_SESSION['login_user'])){
                     if($row['email'] == $email){
                         $user_track = $row['track'];
                         $score = $row['score'];
-                        $level = $row['level'];
                         echo '<div class="group flx col cnt '.$user_track.'">';
                         echo '<img src="../assets/img/medal.png" alt="">';
                         echo '<p class="rank">'.$rank.'</p>';
                         echo '<p class="track">'.$user_track.'</>';
-                        echo '<p class="level">'.$level.'</p>';
                         echo '<p class="points">'.$score.' points</p>';
                         echo '</div>'; 
                     }else {
@@ -151,19 +149,17 @@ if(isset( $_SESSION['login_user'])){
               'ML' => 'ML',
             ];
             foreach ($tracks as $track) {
-              foreach ($track as $key => $value) {
-                $track_submission = "SELECT * FROM submissions WHERE track = '$key' AND points = 0 ORDER BY track";
+                $track_submission = "SELECT * FROM submissions WHERE track = '$track' AND points = 0 ORDER BY track";
                 $result = mysqli_query($conn, $track_submission);
                 $count = mysqli_num_rows($result);
                 echo '<tr>';
                 echo '<td>'.$key.'</td>';
                 echo '<td>'.$count++.'</td>';
-              }
             }           
             ?>
     </tbody>
   </table>
-</div>>
+</div>
         </main>
         <footer class="flx row">
           <span class="copyw">Copyright &copy; 30DaysOfCode 2020</span>
