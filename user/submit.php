@@ -2,13 +2,12 @@
 <?php
 require('../config/connect.php');
 require('../config/session.php');
+include ('taskday.php');
 if(isset( $_SESSION['login_user'])){
     $tt = $_SESSION['login_user'];
     $sql = "SELECT track FROM user WHERE email = '$tt'";
     $result = mysqli_query($conn, $sql);
     $row =mysqli_fetch_assoc($result);
-    include ('taskday.php');
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -100,7 +99,7 @@ if(isset( $_SESSION['login_user'])){
     <main class="flx col">
         <form class="flx col main" enctype="multipart/form-data" onsubmit="handleSubmission(event)">
           <legend>
-            Submit task <span class="day" style="float: none;">- Day <?= $days; ?></span> <div class="generic"></div><a class="py" href="#">Submit for Python here</a>
+            Submit task <span class="day" style="float: none;">- Day <?= $days; ?></span> <div class="generic"></div><a class="py" href="#">#</a>
           </legend>
             <div class="notice flx col">
             <div id="stats"></div>   

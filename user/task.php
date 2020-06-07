@@ -116,7 +116,6 @@ if(isset($_POST['submit'])){
               </button>
               <a href="https://github.com/geektutor/Leaderboard/blob/master/submission_guide.md">What is an accepted submission?</a>
               <br><br>
-              <div class="prev_link"><a href="oldtask.php"><--&nbsp; Previous days</a></div>
             </div>
               <?php if($show == 1){ ?>
              <?php
