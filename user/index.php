@@ -124,8 +124,7 @@ if(isset( $_SESSION['login_user'])){
                     }else {
                         $rank++;
                     }
-                }
-                
+                }  
             }else {
                 echo "error fetching from database";
             }
