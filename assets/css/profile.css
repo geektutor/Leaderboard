@@ -116,7 +116,7 @@ main {
 .Mobile .track {
  color: #2E345C;
 }
-.python .track {
+.GIS .track {
  color: #53C20A;
 }
 .group .level {
@@ -135,7 +135,7 @@ main {
  font-size: 16px;
  font-weight: 800;
 }
-.frontend .level {
+.Frontend .level {
  background-color: #1486C2;
 }
 .Backend .level {
@@ -147,7 +147,7 @@ background-color: #C26D00;
 .Mobile .level {
  background-color: #2E345C;
 }
-.python .level {
+.GIS .level {
  background-color: #53C20A;
 }
 
