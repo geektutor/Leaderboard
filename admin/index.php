@@ -120,7 +120,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
                 $count = mysqli_num_rows($result);
                 echo '<div class="group field flx col cnt '.$track.'">';
                 echo '<img src="../assets/img/medal.png" alt="">';
-                echo '<p class="track"><a href=submissions.php?track='.$track.' style="text-decoration: none">'.$track.'</a></p>';
+                echo '<p class="level"><a href=submissions.php?track='.$track.' style="text-decoration: none">'.$track.'</a></p>';
                 echo '<p class="points">Unmarked: '.$count++.'</p>';
                 echo '</div>';
               }

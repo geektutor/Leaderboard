@@ -118,7 +118,7 @@ if(isset( $_SESSION['login_user'])){
                         echo '<div class="group flx col cnt '.$user_track.'">';
                         echo '<img src="../assets/img/medal.png" alt="">';
                         echo '<p class="rank">'.$rank.'</p>';
-                        echo '<p class="track">'.$user_track.'</>';
+                        echo '<p class="level">'.$user_track.'</>';
                         echo '<p class="points">'.$score.' points</p>';
                         echo '</div>'; 
                     }else {
