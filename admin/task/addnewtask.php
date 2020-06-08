@@ -20,9 +20,6 @@ if(isset( $_SESSION['login_user'])){
         <script>
       tinymce.init({
         selector: '#mytextarea',
-       plugins: "link",
-  menubar: "insert",
-  toolbar: "link"
       });
     </script>
 </head>
