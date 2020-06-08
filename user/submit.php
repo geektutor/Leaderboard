@@ -169,78 +169,7 @@ if(isset( $_SESSION['login_user'])){
         },
         error: function() {}
     });
-
-    
   }
-
-  function upload(event) {
-    event.preventDefault();
-    // var urls = document.getElementById('theurl').value;
-    var form_data = new FormData($('#form')[0]);
-    var level = document.getElementById('level').value;
-
-    if (level == 'Beginner') {
-      $.ajax({
-        url: 'https://autograder30days.herokuapp.com/',
-        data: form_data,
-        contentType: false,
-        processData: false,
-        type: "POST",
-        success: function(data) {
-          var ReturnedData = data;
-          var user = ReturnedData.name;
-          points = ReturnedData.score;
-            $('#stats').html("Welcome " + user + ", you have scored " + points);
-            $('#save').show()
-        },
-        error: function() {}
-      });
-    } else {
-      $.ajax({
-        url: 'https://autograder30int.herokuapp.com/',
-        data: form_data,
-        contentType: false,
-        processData: false,
-        type: "POST",
-        success: function(data) {
-          var ReturnedData = data;
-          var user = ReturnedData.name;
-          points = ReturnedData.score;
-            $('#stats').html("Welcome " + user + ", you have scored " + points);
-            $('#save').show()
-        },
-        error: function() {}
-    });
-    }
-    
-  }
-  function show(event) {
-    var urls = document.getElementById('theurl').value;
-    var level = document.getElementById('level').value;
-    var comment = document.getElementById('comment').value;
-    var name = document.getElementById('name').value;
-    var cohort = 1;
-    var today = new Date();
-    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-    var track = document.getElementById('track').value;
-    var task_day = document.getElementById('task_day').value;
-    var cohort = 1;
-
-    event.preventDefault();
-    $.ajax({
-      url: 'py_submit.php',
-      data: 'user='+name+'&track='+track+'&task_day='+task_day+'&points='+points+'&sub_date='+date+'&cohort='+cohort+'&level='+level+'&url='+urls+'&comment='+comment,
-      type: "POST",
-      success: function(data) {
-        $('#stats2').html(data);
-        // $('#stats').html("Saved");
-
-      },
-      error: function() {}
-    })
-  }
-
-  
 </script>
 </body>
 </html>
