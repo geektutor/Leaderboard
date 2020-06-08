@@ -1,5 +1,5 @@
 <?php
-	$day = strtotime("2020-06-08");
+	$day = strtotime("2020-06-07");
     $currdates = date("Y-m-d");
     $currdate = strtotime($currdates);
     $diff = abs($currdate - $day);
