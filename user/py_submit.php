@@ -8,7 +8,7 @@
       $track = $_POST['track'];
       $user = mysqli_real_escape_string($conn, $_POST['user']);
       $level = $_POST['level'];
-      $cohort = 1;
+      $cohort = $_POST['cohort'];
       $queryURL = "SELECT * FROM submissions WHERE user = '$user' AND task_day = '$task_day' AND track = '$track' AND level = '$level'";
       $resultURL = mysqli_query($conn, $queryURL);
       $countURL = mysqli_num_rows($resultURL);
@@ -22,7 +22,6 @@
           
   $check = check();
   if(check() == 0){
-	  $feedback = "Marked by AutoGrader V2";
 	  if(isset($_POST['n'])){
 		  $feedback = ''; 
 	  }
@@ -35,8 +34,7 @@
       $date = date('Y-m-d');
       $url = $_POST['url'];
       $comment = $_POST['comment'];
-      
-      $cohort = 1;
+      $cohort = $_POST['cohort'];
       $sql = "INSERT INTO submissions(user, track, url, task_day, comments, points, sub_date, cohort, level, feedback) 
               VALUES('$user','$track', '$url', '$task_day', '$comment', '$points', '$date', '$cohort', '$level', '$feedback')";
       if($conn->query($sql)){
