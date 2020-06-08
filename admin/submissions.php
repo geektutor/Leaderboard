@@ -76,7 +76,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
         <legend>Submissions</legend>
       <?php
         $current = date('Y-m-d');
-        $sql = "SELECT * FROM submissions WHERE track = '$track' AND `points` = 0 AND `cohort` = '$cohort' ";
+        $sql = "SELECT * FROM submissions WHERE track = '$track' AND `points` = 0";
         $result = mysqli_query($conn, $sql);
         $count = mysqli_num_rows($result);
         ?>
