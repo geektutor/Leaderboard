@@ -1,9 +1,6 @@
 <?php
-<<<<<<< HEAD
 	$day = strtotime("2020-06-07");
-=======
     $day = strtotime("2020-06-08");
->>>>>>> 227d9c9e99c7f655dca196beb17c01f7cad4db34
     $currdates = date("Y-m-d");
     $currdate = strtotime($currdates);
     $diff = abs($currdate - $day);
