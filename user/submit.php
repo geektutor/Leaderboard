@@ -109,6 +109,7 @@ if(isset( $_SESSION['login_user'])){
       	    	<label for="track">Track</label>
 		          <select id="track" class="trackS" name="track" value="">
                 <option value="Backend">Backend</option>
+                <option value="Frontend">Frontend</option>
                 <option value="Mobile">Mobile</option>
                 <option value="ML">Machine Learning</option>
               </select>

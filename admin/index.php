@@ -111,6 +111,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
             
             $tracks = [
               'Backend' => 'Backend',
+              'Frontend' => 'Frontend',
               'Mobile' => 'Mobile',
               'ML' => 'ML',
             ];

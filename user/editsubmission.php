@@ -149,6 +149,7 @@ if (!isset($_SESSION['login_user']) || empty($_SESSION['login_user'])) {
             <label for="track">Track</label>
             <select class="form-control" name="track">
               <option value="Backend" <?php echo ($rw['track'] == 'Backend')? 'selected' : ''; ?>>Backend</option>
+              <option value="Frontend" <?php echo ($rw['track'] == 'Frontend')? 'selected' : ''; ?>>Frontend</option>
               <option value="Mobile" <?php echo ($rw['track'] == 'Mobile')? 'selected' : ''; ?>>Mobile</option>
               <option value="ML" <?php echo ($rw['track'] == 'ML')? 'selected' : ''; ?>>ML</option>
           </select>

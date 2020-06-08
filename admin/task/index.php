@@ -80,6 +80,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
             <label for="track">Track</label>
             <select name="track" value="">
             <option value="Backend">Backend</option>
+            <option value="Frontend">Frontend</option>
             <option value="Mobile">Mobile</option>
             <option value="ML">Machine Learning</option>
             </select>
