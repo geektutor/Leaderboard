@@ -115,19 +115,16 @@ if(isset( $_SESSION['login_user'])){
                     if($row['email'] == $email){
                         $user_track = $row['track'];
                         $score = $row['score'];
-                        $level = $row['level'];
                         echo '<div class="group flx col cnt '.$user_track.'">';
                         echo '<img src="../assets/img/medal.png" alt="">';
                         echo '<p class="rank">'.$rank.'</p>';
-                        echo '<p class="track">'.$user_track.'</>';
-                        echo '<p class="level">'.$level.'</p>';
+                        echo '<p class="level">'.$user_track.'</>';
                         echo '<p class="points">'.$score.' points</p>';
                         echo '</div>'; 
                     }else {
                         $rank++;
                     }
-                }
-                
+                }  
             }else {
                 echo "error fetching from database";
             }
@@ -138,7 +135,6 @@ if(isset( $_SESSION['login_user'])){
     <thead>
       <tr>
         <th scope="col">TRACK</th>
-        <th scope="col">LEVEL</th>
         <th scope="col">UNMARKED</th>
       </tr>
     </thead>
@@ -147,37 +143,22 @@ if(isset( $_SESSION['login_user'])){
             global $conn;
             
             $tracks = [
-             'Beginner' => [
-              'frontend' => 'Beginner', 
-              'backend' => 'Beginner', 
-              'mobile' => 'Beginner', 
-              'python' => 'Beginner', 
-              'ui' => 'Beginner' 
-              ],
-              'Intermediate'=> [
-              'frontend' => 'Intermediate', 
-              'backend' => 'Intermediate',
-              'mobile' => 'Intermediate',
-              'python' => 'Intermediate',
-              'ui' => 'Intermediate'
-              ]
+              'Backend' => 'Backend',
+              'Mobile' => 'Mobile',
+              'ML' => 'ML',
             ];
             foreach ($tracks as $track) {
-              foreach ($track as $key => $value) {
-                $track_submission = "SELECT * FROM submissions WHERE track = '$key' AND level = '$value' AND points = 0 ORDER BY track";
+                $track_submission = "SELECT * FROM submissions WHERE track = '$track' AND points = 0 ORDER BY track";
                 $result = mysqli_query($conn, $track_submission);
                 $count = mysqli_num_rows($result);
                 echo '<tr>';
-                echo '<td>'.$key.'</td>';
-                echo '<td>'.$value.'</td>';
+                echo '<td>'.$track.'</td>';
                 echo '<td>'.$count++.'</td>';
-              }
             }           
             ?>
-    </tr>
     </tbody>
   </table>
-</div>>
+</div>
         </main>
         <footer class="flx row">
           <span class="copyw">Copyright &copy; 30DaysOfCode 2020</span>

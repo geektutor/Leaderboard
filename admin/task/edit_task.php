@@ -22,7 +22,8 @@ if(isset( $_SESSION['login_user'])){
  <script src="https://cdn.tiny.cloud/1/f81u5amtw2l096zut1bx25hb08gty3ixwrax24i87te4eydg/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
         <script>
       tinymce.init({
-        selector: '#mytextarea'
+        selector: '#mytextarea',
+        plugins: 'link',
       });
     </script>
 </head>
@@ -59,7 +60,7 @@ if(isset( $_SESSION['login_user'])){
         </li>
         <li class="flx row">
          <img src="../../assets/img/lock.png">
-         <a href="superadmin.php">Superadmin</a>
+         <a href="../superadmin.php">Superadmin</a>
         </li>
         <li class="flx row">
          <img src="../../assets/img/podium.png">
@@ -83,10 +84,9 @@ if(isset( $_SESSION['login_user'])){
     $error = "";
     if (isset($_POST['submit'])) {
         $track = $_POST['track'];
-        $level = $_POST['level'];
+        $day = $_POST['day'];
         $task = mysqli_real_escape_string($conn, $_POST['task']);
-        
-        $sql = "UPDATE task SET `track` = '$track', `task` = '$task', `level` = '$level' WHERE id = '$id'";
+        $sql = "UPDATE task SET `task_day` = '$day',`track` = '$track', `task` = '$task' WHERE id = '$id'";
         $result = mysqli_query($conn, $sql);
         if ($conn->query($sql)) {
             $error = "Updated successfully";
@@ -105,23 +105,20 @@ if(isset( $_SESSION['login_user'])){
       <div class="fields-container flx col">
         <div class="field flx col">
           <label for="url">Current Task Details</label>
-          <p style="font-size: 12px; margin-top: 8px; line-height: 110%; color: #646464;">Day - <?php echo $row['task_day'];?> | Track -  <?php echo $row['track'];?> | Level - <?php echo $row['level'];?></p>
+          <p style="font-size: 12px; margin-top: 8px; line-height: 110%; color: #646464;">Day - <?php echo $row['task_day'];?> | Track -  <?php echo $row['track'];?> </p>
         </div>
         <div class="field flx col">
-          <label for="level">Level</label>
-          <select name="level" value="">
-            <option value="Beginner">Beginner</option>
-            <option value="Intermediate">Intermediate</option>
-          </select>
+          <label for="day">Day</label>
+          <input type="text" name="day" maxlength="10" value="<?php echo $row['task'];?>" required>
+          <p style="font-size: 12px; margin-top: 8px; line-height: 110%; color: #646464;">Enter the day e.g 1,2,3,4,5,6</p>
         </div>
         <div class="field flx col">
           <label for="level">Track</label>
-          <select name="track" value="">
-            <option value="backend">Backend</option>
-            <option value="frontend">Frontend</option>
-            <option value="mobile">Mobile</option>
-            <option value="python">Python</option>
-            <option value="ui">UI/UX</option>
+          <select name="track" value="<?php echo $row['task'];?>">
+          <option value="Frontend">Frontend</option>
+          <option value="Backend">Backend</option>
+          <option value="Mobile">Mobile</option>
+          <option value="ML">Machine Learning</option>
           </select>
         </div>
         <div class="field flx col">

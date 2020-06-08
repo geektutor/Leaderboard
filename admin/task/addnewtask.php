@@ -1,7 +1,7 @@
 <?php
 require('../../config/connect.php');
 require('../../config/session.php');
-include ('../../user/taskday.php');
+include ('../../config/taskday.php');
 if(isset( $_SESSION['login_user'])){
 
 ?>
@@ -19,7 +19,8 @@ if(isset( $_SESSION['login_user'])){
  <script src="https://cdn.tiny.cloud/1/f81u5amtw2l096zut1bx25hb08gty3ixwrax24i87te4eydg/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
         <script>
       tinymce.init({
-        selector: '#mytextarea'
+        selector: '#mytextarea',
+        plugins: 'link',
       });
     </script>
 </head>
@@ -56,7 +57,7 @@ if(isset( $_SESSION['login_user'])){
         </li>
         <li class="flx row">
          <img src="../../assets/img/lock.png">
-         <a href="superadmin.php">Superadmin</a>
+         <a href="../superadmin.php">Superadmin</a>
         </li>
         <li class="flx row">
          <img src="../../assets/img/podium.png">
@@ -83,9 +84,8 @@ if(isset( $_SESSION['login_user'])){
       if (isset($_POST['submit'])) {
           $day = $_POST['day'];
           $track = $_POST['track'];
-          $level = $_POST['level'];
           $task = mysqli_real_escape_string($conn, $_POST['task']);
-          $sql = "INSERT INTO task(task_day, track, task, level, cohort) VALUES('$day', '$track', '$task', '$level', '$cohort')";
+          $sql = "INSERT INTO task(task_day, track, task, cohort) VALUES('$day', '$track', '$task', '$cohort')";
           $result = mysqli_query($conn, $sql);
           if ($result) {
               $error = "Task uploaded successfully";
@@ -107,13 +107,6 @@ if(isset( $_SESSION['login_user'])){
           <label for="url">Day</label>
           <input type="text" name="day"maxlength="10" required>
           <p style="font-size: 12px; margin-top: 8px; line-height: 110%; color: #646464;">Enter the day e.g 1,2,3,4,5,6</p>
-        </div>
-        <div class="field flx col">
-          <label for="level">Level</label>
-          <select name="level" value="">
-            <option value="Beginner">Beginner</option>
-            <option value="Intermediate">Intermediate</option>
-          </select>
         </div>
         <div class="field fix col">
           <label for="track">Track</label>

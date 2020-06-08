@@ -1,6 +1,7 @@
 <?php
 require('../config/connect.php');
 require('../config/session.php');
+include ('../user/taskday.php');
 $msg = '';
 if (isset($_SESSION['isSuperAdmin']) && $_SESSION['isSuperAdmin'] == true) {
     $track = $_SESSION['track'];     
@@ -72,7 +73,7 @@ if (isset($_SESSION['isSuperAdmin']) && $_SESSION['isSuperAdmin'] == true) {
     <main class="flx col">
       <form class="mainCard">
       <?php
-        $sql = "SELECT * FROM submissions ORDER BY points ASC";
+        $sql = "SELECT * FROM submissions WHERE `cohort` = '$cohort' ORDER BY points ASC";
         $result = mysqli_query($conn, $sql);
         $count = mysqli_num_rows($result);
         ?>

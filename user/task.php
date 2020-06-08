@@ -8,8 +8,7 @@ if(isset($_POST['submit'])){
     $show = 1;
     $task_day = mysqli_real_escape_string($conn, $_POST['task_day']);
     $track = mysqli_real_escape_string($conn, $_POST['track']);
-    $level = mysqli_real_escape_string($conn, $_POST['level']);
-    $sql = "SELECT * FROM task WHERE task_day = '$task_day' AND track = '$track' AND level = '$level' AND `cohort` = '$cohort' ORDER BY task_day DESC";
+    $sql = "SELECT * FROM task WHERE track = '$track' AND `cohort` = '$cohort' ORDER BY task_day DESC";
     $resultTask = mysqli_query($conn,$sql);
 }
 ?>
@@ -99,34 +98,26 @@ if(isset($_POST['submit'])){
         <main class="flx col">
           <form method="POST" class="flx col">
             <legend>
-              All task <span class="day">Day <?= $days; ?></span>
+              #20DaysOfCode <span class="day">Day <?= $days; ?></span>
             </legend>
             
             <div class="fields-container">
               <div class="field flx col">
-                <label for="day">Level</label>
-                <select name="level" value="">
-                  <option value="Beginner">Beginner</option>
-                  <option value="Intermediate">Intermediate</option>
-                </select>
-              </div>
-              <div class="field flx col">
                 <label for="track">Track</label>
                 <select name="track" value="">
-                  <option value="frontend">Front End</option>
-                  <option value="backend">Back End</option>
-                  <option value="mobile">Mobile</option>
-                  <option value="ui">UI/UX</option>
-                  <option value="python">Python</option>
+                  <option value="Backend">Backend</option>
+                  <option value="Frontend">Frontend</option>
+                  <option value="Mobile">Mobile</option>
+                  <option value="ML">Machine Learning</option>
+                  <option value="GIS">GIS</option>
                 </select>
-                <input type="hidden" name="task_day" value="Day <?= $days?>" />
+                <input type="hidden" name="task_day" value="<?= $days?>" />
               </div>
               <button id="taskDownload" type="submit" name="submit">
                 Check Task
               </button>
               <a href="https://github.com/geektutor/Leaderboard/blob/master/submission_guide.md">What is an accepted submission?</a>
               <br><br>
-              <div class="prev_link"><a href="oldtask.php"><--&nbsp; Previous days</a></div>
             </div>
               <?php if($show == 1){ ?>
              <?php
@@ -134,10 +125,9 @@ if(isset($_POST['submit'])){
               while($row = mysqli_fetch_assoc($resultTask)) {
                 $error = $row['task'];
                 $track = $row['track'];
-                $level = $row['level'];
                 $day = $row['task_day'];
                 echo '<div class="notice flx col">';
-                echo '<h1 class="track"> '.$track.' | '.$level.' | '.$day.'</h1><br>'; 
+                echo '<h1 class="track"> '.$track.' | Day '.$day.'</h1><br>'; 
                 echo '<p>'.$error.'</p></div>';
                 $show = 1;
               }

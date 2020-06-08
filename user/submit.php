@@ -2,14 +2,12 @@
 <?php
 require('../config/connect.php');
 require('../config/session.php');
+include ('taskday.php');
 if(isset( $_SESSION['login_user'])){
     $tt = $_SESSION['login_user'];
     $sql = "SELECT track FROM user WHERE email = '$tt'";
     $result = mysqli_query($conn, $sql);
     $row =mysqli_fetch_assoc($result);
-
-    include ('taskday.php');
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -99,10 +97,9 @@ if(isset( $_SESSION['login_user'])){
   </nav>
    <div class="mainWrapper flx col" id="mainWrp">
     <main class="flx col">
-         <!-- OTHER TRACKS -->
         <form class="flx col main" enctype="multipart/form-data" onsubmit="handleSubmission(event)">
           <legend>
-            Submit task <span class="day" style="float: none;">- Day <?= $days; ?></span> <div class="generic"></div><a class="py" href="submitPY.php">Submit for Python here</a>
+            Submit task <span class="day" style="float: none;">- Day <?= $days; ?></span> <div class="generic"></div><a class="py" href="#">#</a>
           </legend>
             <div class="notice flx col">
             <div id="stats"></div>   
@@ -111,26 +108,17 @@ if(isset( $_SESSION['login_user'])){
       		 <div class="field flx col">
       	    	<label for="track">Track</label>
 		          <select id="track" class="trackS" name="track" value="">
-                <option value="backend">Backend</option>
-		            <option value="python">Python</option>
-                <option value="frontend">Frontend</option>
-                <option value="mobile">Mobile</option>
-                <option value="python">Python</option>
-                <option value="ui">UI/UX</option>
-                <option value="seg">SEG</option>
+                <option value="Backend">Backend</option>
+                <option value="Frontend">Frontend</option>
+                <option value="Mobile">Mobile</option>
+                <option value="ML">Machine Learning</option>
+                <option value="GIS">GIS</option>
               </select>
             </div>
             <div class="field flx col">
               <label for="url">URL</label>
               <input id="url" type="url" name="url" placeholder="Enter URL" required>
               <p style="font-size: 12px; margin-top: 8px; line-height: 110%; color: #646464;"><a href="https://github.com/geektutor/Leaderboard/blob/master/submission_guide.md">Submission Guidelines</a></p>
-            </div>
-            <div class="field flx col">
-              <label for="level">Level</label>
-              <select id="level" name="level" value="">
-                <option value="Beginner">Beginner</option>
-                <option value="Intermediate">Intermediate</option>
-              </select>
             </div>
             <div class="field flx col">
               <label for="comment">Comments?</label>
@@ -143,8 +131,7 @@ if(isset( $_SESSION['login_user'])){
             <input type="hidden" name="cohort" value="<?=$cohort?>">
             <button style="display: none;" class="submit" id="upload" type="submit" name="psubmit">Submit task</button>
             <button id="submitTask" type="submit" name="submit">SUBMIT TASK</button>
-            <div class="prev_link"><a href="newsubmit.php"><--&nbsp; Previous days</a></div>
-	     <div class="prev_link"><a href="old_autograder_submit.php"><--&nbsp; Previous Python</a></div>
+            <div class="prev_link"><a href="#"><--&nbsp; Previous days</a></div>
           </div>
         </form>
      </main>
@@ -158,10 +145,10 @@ if(isset( $_SESSION['login_user'])){
   function handleSubmission(event) {
     event.preventDefault()
     var urls = document.getElementById('url').value;
-    var level = document.getElementById('level').value;
+    var level = '';
     var comment = document.getElementById('comment').value;
     var name = document.getElementById('name').value;
-    var cohort = 1;
+    var cohort = 2;
     var today = new Date();
     var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
     var points;

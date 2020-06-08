@@ -4,7 +4,6 @@ require('../../config/session.php');
 
 if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
   $track = $_GET['track'];
-  $level = $_GET['level'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -88,7 +87,6 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
             <th scope="col">S/N</th>
             <th scope="col">Day</th>
             <th scope="col">Track</th>
-            <th scope="col">Level</th>
             <th scope="col">Task</th>
             <th scope="col">Action</th>
             </tr>
@@ -103,7 +101,6 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
               <td data-label="S/N"><?php echo $j;?></td>
               <td data-label="Day"><?= $row['task_day']; ?></td>
               <td data-label="Track"><?= $row['track'];?></td>
-              <td data-label="Level"><?= $row['level'];?></td>
               <td data-label="Task"><?= $row['task'];?></td>
               <td data-label="Action"><a href="edit_task.php?id=<?=$row['id']?>">Edit</a> | <a href="delete.php?id=<?=$row['id']?>">Delete</a></td>
           </tr>

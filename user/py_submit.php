@@ -48,4 +48,3 @@
         print "You've submitted today's task already";
       
   }
-          

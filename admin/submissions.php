@@ -4,7 +4,6 @@ require('../config/session.php');
 include ('../user/taskday.php');
 if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
     $track = $_GET['track'];
-    $level = $_GET['level'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -77,7 +76,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
         <legend>Submissions</legend>
       <?php
         $current = date('Y-m-d');
-        $sql = "SELECT * FROM submissions WHERE track = '$track' AND level = '$level' AND `points` = 0 AND `cohort` = '$cohort' ";
+        $sql = "SELECT * FROM submissions WHERE track = '$track' AND `points` = 0 AND `cohort` = '$cohort' ";
         $result = mysqli_query($conn, $sql);
         $count = mysqli_num_rows($result);
         ?>

@@ -1,11 +1,11 @@
 <?php
 require('../config/connect.php');
 require('../config/session.php');
+include ('../user/taskday.php');
 if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
     if (isset($_POST['submit'])) {
         $track = $_POST['track'];
-        $level = $_POST['level'];
-        header("location: submissions.php?track=$track&level=$level");
+        header("location: submissions.php?track=$track");
     }
 ?>
 <!DOCTYPE html>
@@ -108,35 +108,24 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
         <div class="scores-card flx row">
            <?php
             global $conn;
+            
             $tracks = [
-             'Begineer' => [
-              'frontend' => 'Beginner', 
-              'backend' => 'Beginner', 
-              'mobile' => 'Beginner', 
-              'python' => 'Beginner', 
-              'ui' => 'Beginner' 
-              ],
-              'Intermediate'=> [
-              'frontend' => 'Intermediate', 
-              'backend' => 'Intermediate',
-              'mobile' => 'Intermediate',
-              'python' => 'Intermediate',
-              'ui' => 'Intermediate'
-              ]
+              'Backend' => 'Backend',
+              'Frontend' => 'Frontend',
+              'Mobile' => 'Mobile',
+              'ML' => 'ML',
+              'GIS' => 'GIS'
             ];
             foreach ($tracks as $track) {
-              foreach ($track as $key => $value) {
-                $track_submission = "SELECT * FROM submissions WHERE track = '$key' AND level = '$value' AND points = 0 ORDER BY track";
+                $track_submission = "SELECT * FROM submissions WHERE track = '$track' AND points = 0 ORDER BY track";
                 $result = mysqli_query($conn, $track_submission);
                 $count = mysqli_num_rows($result);
-                echo '<div class="group field flx col cnt '.$key.'">';
+                echo '<div class="group field flx col cnt '.$track.'">';
                 echo '<img src="../assets/img/medal.png" alt="">';
-                echo '<p class="track">'.$key.'</p>';
-                echo '<p class="level"><a href=submissions.php?track='.$key.'&level='.$value.' style="text-decoration: none">'.$value.'</a></p>';
+                echo '<p class="level"><a href=submissions.php?track='.$track.' style="text-decoration: none">'.$track.'</a></p>';
                 echo '<p class="points">Unmarked: '.$count++.'</p>';
                 echo '</div>';
               }
-            }
            
             ?>
      
