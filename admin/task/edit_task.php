@@ -109,12 +109,12 @@ if(isset( $_SESSION['login_user'])){
         </div>
         <div class="field flx col">
           <label for="day">Day</label>
-          <input type="text" name="day" maxlength="10" required>
+          <input type="text" name="day" maxlength="10" value="<?php echo $row['task'];?>" required>
           <p style="font-size: 12px; margin-top: 8px; line-height: 110%; color: #646464;">Enter the day e.g 1,2,3,4,5,6</p>
         </div>
         <div class="field flx col">
           <label for="level">Track</label>
-          <select name="track" value="">
+          <select name="track" value="<?php echo $row['task'];?>">
           <option value="Frontend">Frontend</option>
           <option value="Backend">Backend</option>
           <option value="Mobile">Mobile</option>
