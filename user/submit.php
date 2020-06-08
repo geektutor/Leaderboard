@@ -112,6 +112,7 @@ if(isset( $_SESSION['login_user'])){
                 <option value="Frontend">Frontend</option>
                 <option value="Mobile">Mobile</option>
                 <option value="ML">Machine Learning</option>
+                <option value="GIS">GIS</option>
               </select>
             </div>
             <div class="field flx col">

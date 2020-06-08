@@ -114,6 +114,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
               'Frontend' => 'Frontend',
               'Mobile' => 'Mobile',
               'ML' => 'ML',
+              'GIS' => 'GIS'
             ];
             foreach ($tracks as $track) {
                 $track_submission = "SELECT * FROM submissions WHERE track = '$track' AND points = 0 ORDER BY track";
