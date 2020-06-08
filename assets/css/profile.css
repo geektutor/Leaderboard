@@ -114,18 +114,21 @@ main {
  color: #BC27C2;
 }
 .Mobile .track {
- color: #53C20A;
+ color: #2E345C;
 }
 .python .track {
  color: #53C20A;
 }
-.group .level a {
+.group .level {
  color: white;
  text-transform: uppercase;
  border-radius: 5px;
  padding: 12px 30px;
- font-size: 25px;
- margin-bottom: 12px;
+ font-size: 14px;
+ margin-bottom: 14px;
+}
+.group .level a {
+ color: white;
 }
 .group .points {
  color: #071733;
