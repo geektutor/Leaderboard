@@ -84,8 +84,9 @@ if(isset( $_SESSION['login_user'])){
     $error = "";
     if (isset($_POST['submit'])) {
         $track = $_POST['track'];
+        $day = $_POST['day'];
         $task = mysqli_real_escape_string($conn, $_POST['task']);
-        $sql = "UPDATE task SET `track` = '$track', `task` = '$task' WHERE id = '$id'";
+        $sql = "UPDATE task SET `task_day` = '$day',`track` = '$track', `task` = '$task' WHERE id = '$id'";
         $result = mysqli_query($conn, $sql);
         if ($conn->query($sql)) {
             $error = "Updated successfully";
@@ -106,7 +107,11 @@ if(isset( $_SESSION['login_user'])){
           <label for="url">Current Task Details</label>
           <p style="font-size: 12px; margin-top: 8px; line-height: 110%; color: #646464;">Day - <?php echo $row['task_day'];?> | Track -  <?php echo $row['track'];?> </p>
         </div>
-        
+        <div class="field flx col">
+          <label for="day">Day</label>
+          <input type="text" name="day" maxlength="10" required>
+          <p style="font-size: 12px; margin-top: 8px; line-height: 110%; color: #646464;">Enter the day e.g 1,2,3,4,5,6</p>
+        </div>
         <div class="field flx col">
           <label for="level">Track</label>
           <select name="track" value="">
