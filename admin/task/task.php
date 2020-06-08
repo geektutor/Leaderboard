@@ -47,7 +47,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
         </li> -->
         <li class="flx row">
          <img src="../../assets/img/task.png">
-         <a href="/task">View Tasks</a>
+         <a href="/task/index.php">View Tasks</a>
         </li>
         <li class="flx row">
          <img src="../../assets/img/lock.png">

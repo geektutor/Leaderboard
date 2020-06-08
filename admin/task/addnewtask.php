@@ -57,7 +57,7 @@ if(isset( $_SESSION['login_user'])){
         </li>
         <li class="flx row">
          <img src="../../assets/img/lock.png">
-         <a href="superadmin.php">Superadmin</a>
+         <a href="../superadmin.php">Superadmin</a>
         </li>
         <li class="flx row">
          <img src="../../assets/img/podium.png">
