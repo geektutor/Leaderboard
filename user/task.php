@@ -125,7 +125,7 @@ if(isset($_POST['submit'])){
                 $track = $row['track'];
                 $day = $row['task_day'];
                 echo '<div class="notice flx col">';
-                echo '<h1 class="track"> '.$track.' | '.$level.' | '.$day.'</h1><br>'; 
+                echo '<h1 class="track"> '.$track.' | '.$day.'</h1><br>'; 
                 echo '<p>'.$error.'</p></div>';
                 $show = 1;
               }
