@@ -107,7 +107,7 @@ if(isset( $_SESSION['login_user'])){
       <?php
       $u = $_SESSION['login_user'];
       $u = rtrim($u, '_');
-      $sql = "SELECT * FROM submissions WHERE `user` = '$u'";
+      $sql = "SELECT * FROM submissions WHERE `user` = '$u' AND `cohort` = '$cohort' ";
       $result = mysqli_query($conn, $sql);
       $count = mysqli_num_rows($result);
       
