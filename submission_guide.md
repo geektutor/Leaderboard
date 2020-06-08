@@ -112,3 +112,24 @@ An acceptable submission is a dartpad link for UI implementations. Codepen won't
 2. Be creative with colours and images(UI implementations).
 3. A submission without following the pattern described in “How to submit” is null and void.
 4. Multiple submissions are considered void.
+
+
+### Machine Learning
+You are free to use any IDE or notebook but most prefarably
+- Jupyter Notebook
+- Google Colab
+
+They make working with data very easy and interactive<br><br>
+
+For submission you will be submitting a link to your work<br>
+If you used **Jupyter Notebook** for your task:
+- Create a **GitHub repository**
+- Upload you **ipynb file** to your newly created GitHub repository
+- Submit the **url of your Github repository**   
+- Follow [This link](https://jupyter.readthedocs.io/en/latest/install.html) to install Jupyter on your system
+
+***Note that you'll create a new repository for each task***
+
+If you're using **Google Colab**:
+- Submit the **url** to your project
+
