@@ -146,7 +146,7 @@ if(isset( $_SESSION['login_user'])){
     var level = '';
     var comment = document.getElementById('comment').value;
     var name = document.getElementById('name').value;
-    var cohort = 1;
+    var cohort = 2;
     var today = new Date();
     var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
     var points;
