@@ -119,13 +119,13 @@ main {
 .python .track {
  color: #53C20A;
 }
-.group .level {
+.group .level a {
  color: white;
  text-transform: uppercase;
  border-radius: 5px;
  padding: 12px 30px;
- font-size: 14px;
- margin-bottom: 14px;
+ font-size: 25px;
+ margin-bottom: 12px;
 }
 .group .points {
  color: #071733;
