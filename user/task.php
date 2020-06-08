@@ -109,7 +109,7 @@ if(isset($_POST['submit'])){
                   <option value="Mobile">Mobile</option>
                   <option value="ML">Machine Learning</option>
                 </select>
-                <input type="hidden" name="task_day" value="Day <?= $days?>" />
+                <input type="hidden" name="task_day" value="<?= $days?>" />
               </div>
               <button id="taskDownload" type="submit" name="submit">
                 Check Task
