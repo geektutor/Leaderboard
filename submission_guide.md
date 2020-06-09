@@ -23,36 +23,14 @@ An acceptable submission  is a [repl.it](https://repl.it) link containing the pr
 2. Ensure that your functions only take in the right input types.
 3. Include documentation strings.
 
-### Backend Intermediate Track
+### Backend 
+FOR ALL BACKEND TASKS, UNLESS STATED OTHERWISE, ALL SUBMISSIONS SHOULD BE THE GITHUB LINK TO THE README.MD FILE OF THE REPOSITORY CONTAINING YOUR SERVER SIDE CODE. THE README SHOULD CONTAIN THE LINK TO THE ENDPOINT OF WHERE YOUR SERVER SIDE SCRIPT IS RUNNING, AND ANY OTHER INFORMATION SPECIFICALLY ASKED FOR.
 
-The backend track shall be divided into three segments of 10 days each over the 30 day period. The first 10 days shall consist of algorithmic questions which do not necessitate setting up a server. The following 10 days shall test your basic knowledge of server-side scripting to perform various tasks and you would be required to host your script on any online platform of your choice. Then the final 10 days shall involve implementing 1 or 2 mini projects to put your knowledge to test.
-
-#### Submission Details
-A public GitHub repository containing your solution to a particular task would suffice. All tasks for the 30 day period must all be pushed to this repository
-
-For the first 10 days, a link to a [repl.it](https://repl.it) page containing your solution to a particular task would suffice. 
-
-For the remaining 20 days, the link to your script which is being hosted on some web-hosting platform of choice (e.g [Heroku](https://heroku.com)) should be provided. As long as all task instruction and procedures are followed, no problem should be encountered 
 
 #### Accepted Languages
 1. Nodejs
 2. PHP / Laravel
 3. Python(Django or Flask)
-
-### Backend Beginner Track
-
-An acceptable submission  is a github link containing the program preferrably in a file named the day name, or the challenge title on the site. Example: "Day 1", "Day One", etc
-
-**How to submit:**
-1. Create an account on [github](https://github.com) and open a new repo with the name `30DaysOfCode`
-2. Write your code in a new file in the repo and test that it works. 
-3. Copy the link to that file from your browser and submit at [30daysofcode.xyz](https://30daysofcode.xyz)
-
-#### Tips to get high grades:
-
-1. Follow instructions.
-2. Ensure that your functions only take in the right input types.
-3. Include documentation strings.
 
 ### Frontend Track
 
@@ -112,3 +90,24 @@ An acceptable submission is a dartpad link for UI implementations. Codepen won't
 2. Be creative with colours and images(UI implementations).
 3. A submission without following the pattern described in “How to submit” is null and void.
 4. Multiple submissions are considered void.
+
+
+### Machine Learning
+You are free to use any IDE or notebook but most prefarably
+- Jupyter Notebook
+- Google Colab
+
+They make working with data very easy and interactive<br><br>
+
+For submission you will be submitting a link to your work<br>
+If you used **Jupyter Notebook** for your task:
+- Create a **GitHub repository**
+- Upload you **ipynb file** to your newly created GitHub repository
+- Submit the **url of your Github repository**   
+- Follow [This link](https://jupyter.readthedocs.io/en/latest/install.html) to install Jupyter on your system
+
+***Note that you'll create a new repository for each task***
+
+If you're using **Google Colab**:
+- Submit the **url** to your project
+
