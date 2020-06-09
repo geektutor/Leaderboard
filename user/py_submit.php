@@ -18,7 +18,6 @@
           return 0;
       }
   }
-
           
   $check = check();
   if(check() == 0){
