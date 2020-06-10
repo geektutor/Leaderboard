@@ -116,24 +116,17 @@ if(isset( $_SESSION['login_user'])){
 		        <div class="field flx col">
 	    	      <label for="track">Track</label>
   		        <select id="track" class="trackS" name="track" value="">
-                <option value="backend">Backend</option>
-		<option value="python">Python</option>
-                <option value="frontend">Frontend</option>
-                <option value="mobile">Mobile</option>
-                <option value="ui">UI/UX</option>
+            <option value="Backend">Backend</option>
+                <option value="Frontend">Frontend</option>
+                <option value="Mobile">Mobile</option>
+                <option value="ML">Machine Learning</option>
+                <option value="GIS">GIS</option>
             </select>
             </div>
             <div class="field flx col">
               <label for="url">URL</label>
               <input id="url" type="url" name="url" placeholder="Enter URL" required>
               <p style="font-size: 12px; margin-top: 8px; line-height: 110%; color: #646464;"><a href="https://github.com/geektutor/Leaderboard/blob/master/submission_guide.md">Submission Guidelines</a></p>
-            </div>
-            <div class="field flx col">
-              <label for="level">Level</label>
-              <select id="level" name="level" value="">
-                <option value="Beginner">Beginner</option>
-                <option value="Intermediate">Intermediate</option>
-              </select>
             </div>
             <div class="field flx col">
               <label for="comment">Comments?</label>
@@ -158,7 +151,7 @@ if(isset( $_SESSION['login_user'])){
   function handleSubmission(event) {
     event.preventDefault()
     var urls = document.getElementById('url').value;
-    var level = document.getElementById('level').value;
+    var level = '';
     var comment = document.getElementById('comment').value;
     var name = document.getElementById('name').value;
     var cohort = 1;

@@ -73,10 +73,11 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
    <div class="mainWrapper flx col" id="mainWrp">
     <main class="flx col">
       <form class="mainCard">
-        <legend>Submissions</legend>
+        <legend>Recent Submissions</legend>
       <?php
+        $taskday = 'Day ' . $days;
         $current = date('Y-m-d');
-        $sql = "SELECT * FROM submissions WHERE track = '$track' AND `points` = 0 AND `cohort` = '$cohort' ";
+        $sql = "SELECT * FROM submissions WHERE track = '$track' AND `points` = 0 AND `cohort` = '$cohort' AND `task_day` = '$taskday'";
         $result = mysqli_query($conn, $sql);
         $count = mysqli_num_rows($result);
         ?>
@@ -86,7 +87,7 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
           <tr>
             <th scope="col">S/N</th>
             <th scope="col">Url</th>
-            <th scope="col">Level</th>
+            <!-- <th scope="col">Level</th> -->
             <th scope="col">Day</th>
             <th scope="col">Points</th>
             </tr>
@@ -100,7 +101,51 @@ if(isset( $_SESSION['login_user']) && $_SESSION['isAdmin'] == true){
           <tr>
               <td data-label="S/N"><?php echo $j;?></td>
               <td data-label="URL"><a href="view.php?id=<?php echo $row['id'];?>"><?php echo $row['user'];?></a></td>
-              <td data-label="Level"><?php echo $row['level'];?></td>
+              <!-- <td data-label="Level"><?php //echo $row['level'];?></td> -->
+              <td data-label="Day"><?php echo $row['task_day'];?></td>
+              <td data-label="Points"><?php echo $row['points'];?></td>
+          </tr>
+          <?php 
+              $j++;
+              }}else{
+                  echo `<p>No Submissions yet</p>`;
+              }
+          ?>
+        </tbody>
+        </table>
+      </div>
+      </form >
+
+      <form class="mainCard">
+        <legend>Old Submissions</legend>
+      <?php
+        $taskday = 'Day ' . $days;
+        $current = date('Y-m-d');
+        $sql = "SELECT * FROM submissions WHERE track = '$track' AND `points` = 0 AND `cohort` = '$cohort' AND `task_day` != '$taskday'";
+        $result = mysqli_query($conn, $sql);
+        $count = mysqli_num_rows($result);
+        ?>
+       <div class="table-responsive">
+        <table class="table" style="text-align: left;">
+         <thead>
+          <tr>
+            <th scope="col">S/N</th>
+            <th scope="col">Url</th>
+            <!-- <th scope="col">Level</th> -->
+            <th scope="col">Day</th>
+            <th scope="col">Points</th>
+            </tr>
+        </thead>
+        <tbody>
+          <?php          
+          if($count > 0){
+              $j =1;
+              while($row = mysqli_fetch_assoc($result)) {
+          ?>
+          <tr>
+              <td data-label="S/N"><?php echo $j;?></td>
+              <td data-label="URL"><a href="view.php?id=<?php echo $row['id'];?>"><?php echo $row['user'];?></a></td>
+              <!-- <td data-label="Level"><?php //echo $row['level'];?></td> -->
               <td data-label="Day"><?php echo $row['task_day'];?></td>
               <td data-label="Points"><?php echo $row['points'];?></td>
           </tr>
