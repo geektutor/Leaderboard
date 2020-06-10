@@ -103,7 +103,7 @@ if(isset( $_SESSION['login_user'])){
         <form class="flx col main" enctype="multipart/form-data" onsubmit="handleSubmission(event)">
           <legend>
             Submit previous task
-            <div id="stats"></div>
+            <div id="stats" style="display: none;">dassfddgfd</div>
           </legend>
           <div class="fields-container">
             <div class="field fix col">
