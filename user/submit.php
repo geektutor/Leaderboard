@@ -101,9 +101,8 @@ if(isset( $_SESSION['login_user'])){
           <legend>
             Submit task <span class="day" style="float: none;">- Day <?= $days; ?></span> <div class="generic"></div><a class="py" href="#">#</a>
           </legend>
-            <div class="notice flx col">
-            <div id="stats"></div>   
-            </div>
+          <div class="notice flx col notice2" style="display: none;"></div> 
+            <div class="notice flx col notice3"></div>
           <div class="fields-container">            
       		 <div class="field flx col">
       	    	<label for="track">Track</label>
@@ -163,8 +162,9 @@ if(isset( $_SESSION['login_user'])){
         data: 'user='+name+'&track='+track+'&task_day='+task_day+'&points='+points+'&sub_date='+date+'&cohort='+cohort+'&level='+level+'&url='+urls+'&comment='+comment+'&n='+n,
         type: 'POST',
         success: function(data) {
-          $('#stats').html(data);
-          $('.notice').html('<p><br>Share on <a style="font-size: 16px;" href="https://twitter.com/intent/tweet?url=https%3A%2F%2F30daysofcode.xyz%2F&via=ecxunilag&text=Day <?= $days;?>%20of%2030%3A%20Check%20out%20my%20solution%20at%3A%20'+urls+'&hashtags=30DaysOfCode%2C%2030DaysOfDesign%2C%20ecxunilag">Twitter </a></p>')
+          $('.notice2').toggle();
+          $('.notice2').html(data);
+          $('.notice3').html('<p>Share on <a style="font-size: 16px;" href="https://twitter.com/intent/tweet?url=https%3A%2F%2F30daysofcode.xyz%2F&via=ecxunilag&text=Day <?= $days;?>%20of%2030%3A%20Check%20out%20my%20solution%20at%3A%20'+urls+'&hashtags=30DaysOfCode%2C%2030DaysOfDesign%2C%20ecxunilag">Twitter </a></p>')
 
         },
         error: function() {}
