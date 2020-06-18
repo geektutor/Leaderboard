@@ -125,7 +125,7 @@ if(isset( $_SESSION['login_user'])){
             </div>
             <div class="field flx col">
             </div>
-            <input type="hidden" id="task_day" name="task_day" value="Day <?= $days; ?>">
+            <input type="hidden" id="task_day" name="task_day" value="<?= $days; ?>">
             <input type="hidden" id="name" name="name" value="<?= $_SESSION['login_user']; ?>">
             <input type="hidden" name="cohort" value="<?=$cohort?>">
             <button style="display: none;" class="submit" id="upload" type="submit" name="psubmit">Submit task</button>
