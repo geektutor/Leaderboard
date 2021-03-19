@@ -1,2 +1,2 @@
 Flask==1.1.1
-Pillow==7.1.1
+Pillow==8.1.1
